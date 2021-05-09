@@ -29,6 +29,9 @@ void CKey_Manager::Update_Key_Manager()
 		m_key |= KEY_LEFT;
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 		m_key |= KEY_RIGHT;
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		m_key |= Key_SPACE;
+
 }
 
 bool CKey_Manager::Key_Up(DWORD dwKey)

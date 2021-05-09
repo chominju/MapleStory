@@ -13,6 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\00.MainApp">
+      <UniqueIdentifier>{ce02c1e9-5875-4a96-a984-caf07c36b8aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject">
+      <UniqueIdentifier>{6ce0bab1-6d75-40c5-a87b-02f2e9be2402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Manager">
+      <UniqueIdentifier>{afd09c66-190d-42d9-8a17-990df230c773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Bitmap">
+      <UniqueIdentifier>{f4615d73-925a-43db-be29-bc7310a20722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Bitmap\Manager">
+      <UniqueIdentifier>{b6439395-c6fd-45d4-afff-ce469c51b28c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\00.Player">
+      <UniqueIdentifier>{f1034598-87b1-4e81-b90b-6b97139ff0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\01.Monster">
+      <UniqueIdentifier>{45e756ee-c396-44f8-9096-1a837ca93769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Line">
+      <UniqueIdentifier>{97bf45ab-cd16-4010-827f-f39a425cc6e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Manager\Load">
+      <UniqueIdentifier>{789b38ec-a556-4a09-aef0-43830068d2e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Manager\Key">
+      <UniqueIdentifier>{59d93d17-b798-405e-8281-ae54aae44eef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Line\Manager">
+      <UniqueIdentifier>{f98f76b4-4f20-4f9e-8637-c67ef031934d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -30,6 +63,36 @@
     <ClInclude Include="MapleStory.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="MainApp.h">
+      <Filter>소스 파일\00.MainApp</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>소스 파일\01.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBitmap.h">
+      <Filter>소스 파일\03.Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitmap_Manager.h">
+      <Filter>소스 파일\03.Bitmap\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>소스 파일\01.GameObject\00.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>소스 파일\01.GameObject\01.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>소스 파일\04.Line</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadData.h">
+      <Filter>소스 파일\02.Manager\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="Key_Manager.h">
+      <Filter>소스 파일\02.Manager\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_Manager.h">
+      <Filter>소스 파일\04.Line\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -37,6 +100,36 @@
     </ClCompile>
     <ClCompile Include="MapleStory.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainApp.cpp">
+      <Filter>소스 파일\00.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>소스 파일\01.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBitmap.cpp">
+      <Filter>소스 파일\03.Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="Bitmap_Manager.cpp">
+      <Filter>소스 파일\03.Bitmap\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\01.GameObject\00.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일\01.GameObject\01.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>소스 파일\04.Line</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadData.cpp">
+      <Filter>소스 파일\02.Manager\Load</Filter>
+    </ClCompile>
+    <ClCompile Include="Key_Manager.cpp">
+      <Filter>소스 파일\02.Manager\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_Manager.cpp">
+      <Filter>소스 파일\04.Line\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

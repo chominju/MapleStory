@@ -13,6 +13,12 @@ public:
 	{
 		if (m_instance)
 		{
+			for (auto&iter : m_instance->m_listLine)
+			{
+				Safe_Delete(iter);
+			}
+			m_instance->m_listLine.clear();
+
 			delete m_instance;
 			m_instance = nullptr;
 		}
@@ -27,6 +33,11 @@ public:
 	void Update_Line_Manager();
 	void Render_Line_Manager(HDC hdc);
 	void Release_Line_Manager();
+
+	list<CLine*>* Get_listLine()
+	{
+		return &m_listLine;
+	}
 
 private:
 	static CLine_Manager* m_instance;

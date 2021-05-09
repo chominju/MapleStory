@@ -1,0 +1,2 @@
+Kerning_City
+../Resource/BackGround/Kerning_City.bmp

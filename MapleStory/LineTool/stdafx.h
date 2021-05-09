@@ -17,6 +17,7 @@
 #include <memory.h>
 #include <tchar.h>
 #include <list>
+#include <map>
 
 #include "Extern.h"
 #include "Enum.h"

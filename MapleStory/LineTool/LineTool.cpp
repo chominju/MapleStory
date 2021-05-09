@@ -48,6 +48,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	DWORD oldTime = GetTickCount();
 	CEditor_Manager editor;
 	editor.Ready_Editor_Manager();
+
+
     // 기본 메시지 루프입니다.
     while (WM_QUIT != msg.message)
     {

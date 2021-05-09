@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "MapleStory.h"
+#include "MainApp.h"
 
 #define MAX_LOADSTRING 100
 
@@ -10,6 +11,7 @@
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+HWND g_hwnd;
 
 // 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -42,15 +44,36 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
+	CMainApp* pMainApp = CMainApp::Create();
+	if (nullptr == pMainApp)
+		return 0;
+
+
     // 기본 메시지 루프입니다.
-    while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-    }
+	msg.message = WM_NULL;
+
+	// 운영체제에서  윈도우가 켜진 이후 흐른 시간을 반환해주는 함수. 
+	// GetTickCount 대략 1/ 1000
+	DWORD dwOldTime = GetTickCount();
+	while (WM_QUIT != msg.message)
+	{
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+		{
+
+			if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////
+		if (dwOldTime + 10 < GetTickCount())
+		{
+			pMainApp->Update_MainApp();
+			pMainApp->Render_MainApp();
+			dwOldTime = GetTickCount();
+		}
+	}
 
     return (int) msg.wParam;
 }
@@ -76,7 +99,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MAPLESTORY));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_MAPLESTORY);
+	wcex.lpszMenuName = NULL;//MAKEINTRESOURCEW(IDC_MAPLESTORY);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -97,14 +120,17 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   RECT rc = { 0, 0, WINCX, WINCY };
+   // 창크기를 재조정해주는 함수. 
+   AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+   HWND hWnd = CreateWindowW(szWindowClass, L"MapleStory", WS_OVERLAPPEDWINDOW,
+      CW_USEDEFAULT, 0, rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
       return FALSE;
    }
-
+   g_hwnd = hWnd;
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 

@@ -28,8 +28,20 @@
     <Filter Include="Manager\04.Key">
       <UniqueIdentifier>{844e9b23-819f-4420-8ec6-803c76ca9c99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager\05.Save">
+    <Filter Include="Manager\06.Map">
+      <UniqueIdentifier>{9d8aefea-0ec4-4ac8-81b0-7feffee22dee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\05.SaveLoad">
       <UniqueIdentifier>{76e92e57-8144-44c7-90dd-1bc2dee67fd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\06.Bitmap">
+      <UniqueIdentifier>{1518938b-bf6c-4938-b0e4-1467eb33d44f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\05.SaveLoad\Load">
+      <UniqueIdentifier>{efb409e8-542d-4aea-baaf-b16c9b4dc84b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\05.SaveLoad\Save">
+      <UniqueIdentifier>{d70e97af-3638-45a9-9ad7-ffb88a8ed4fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +75,21 @@
     <ClInclude Include="Key_Manager.h">
       <Filter>Manager\04.Key</Filter>
     </ClInclude>
+    <ClInclude Include="MyMap.h">
+      <Filter>Manager\06.Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitmap_Manager.h">
+      <Filter>Manager\06.Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBitmap.h">
+      <Filter>Manager\06.Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadData.h">
+      <Filter>Manager\05.SaveLoad\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveData.h">
+      <Filter>Manager\05.SaveLoad\Save</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -85,6 +112,21 @@
     </ClCompile>
     <ClCompile Include="Key_Manager.cpp">
       <Filter>Manager\04.Key</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMap.cpp">
+      <Filter>Manager\06.Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Bitmap_Manager.cpp">
+      <Filter>Manager\06.Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBitmap.cpp">
+      <Filter>Manager\06.Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadData.cpp">
+      <Filter>Manager\05.SaveLoad\Load</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveData.cpp">
+      <Filter>Manager\05.SaveLoad\Save</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
