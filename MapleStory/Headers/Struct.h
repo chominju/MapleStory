@@ -61,8 +61,17 @@ typedef struct
 
 }Player_Info;
 
-typedef struct 
+typedef struct posInt
 {
+	posInt() :x(0), y(0)
+	{
+
+	}
+	posInt(int _x, int _y)
+	{
+		x = _x;
+		y = _y;
+	}
 	int x;
 	int y;
 }Pos_int;

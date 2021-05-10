@@ -58,6 +58,9 @@
     <Filter Include="소스 파일\05.Scene\Manager">
       <UniqueIdentifier>{3fc55d17-c743-4447-8a75-efad4b5dddf8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Manager\Scroll">
+      <UniqueIdentifier>{91d30710-f098-492d-9d9c-ae52a5c76212}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -114,6 +117,9 @@
     <ClInclude Include="Scene_Manager.h">
       <Filter>소스 파일\05.Scene\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Scroll_Manager.h">
+      <Filter>소스 파일\02.Manager\Scroll</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -160,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="Scene_Manager.cpp">
       <Filter>소스 파일\05.Scene\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scroll_Manager.cpp">
+      <Filter>소스 파일\02.Manager\Scroll</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

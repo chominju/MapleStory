@@ -22,13 +22,14 @@ public:
 private:
 	static CGameObject * m_instance;
 	Player_Info m_player_info;
-	float m_power;
-	float m_accel;
-	float m_gravity;
 
 	CurrentKey m_currentKey;
 	bool m_isJump;
-
+	float jumpHeight;
+	float m_power;
+	float current_jumpHeight;
+	float jump_before;
 	HDC m_hdc;
+	float fall;
 };
 

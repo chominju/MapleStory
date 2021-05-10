@@ -10,12 +10,12 @@ public:
 	void Release_Bitmap();
 	Pos_float& GetSize()
 	{
-		return m_scale;
+		return m_bitmapSize;
 	}
 private:
 	HDC m_memDC;
 	HBITMAP m_oldBitmap;
 	HBITMAP m_bitmap;
 
-	Pos_float m_scale;
+	Pos_float m_bitmapSize;
 };

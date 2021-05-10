@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Kerning_City.h"
 #include "Bitmap_Manager.h"
+#include "Scroll_Manager.h"
 
 Kerning_City::Kerning_City()
 {
@@ -14,7 +15,7 @@ Kerning_City::~Kerning_City()
 int Kerning_City::Ready_Scene()
 {
 	m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Kerning_City");
-	startPos = CBitmap_Manager::Get_Instance()->Get_Image_Size(L"Kerning_City");
+	m_SceneSize = CBitmap_Manager::Get_Instance()->Get_Image_Size(L"Kerning_City");
 	return S_OK;
 }
 
@@ -26,7 +27,11 @@ void Kerning_City::Render_Scene(HDC hdc)
 {
 	if (nullptr == m_hdc)
 		return;
-	BitBlt(hdc, 0, 0, WINCX, WINCY, m_hdc, 0, startPos.y-WINCY, SRCCOPY);
+	int scrollX = CScroll_Manager::Get_ScrollX();
+	int scrollY = CScroll_Manager::Get_ScrollY();
+	if (scrollX >= 0)
+		scrollX = 0;
+	BitBlt(hdc, 0, 0, WINCX, WINCY, m_hdc, -scrollX, m_SceneSize.y-WINCY + scrollY, SRCCOPY);
 	//CGameObject_Manager::Get_Instance()->Render_GameObject_Manager(hDC);
 }
 

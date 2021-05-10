@@ -28,6 +28,8 @@ void CKey_Manager::Update_Key_Manager()
 		m_key |= KEY_LEFT;
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 		m_key |= KEY_RIGHT;
+	if (GetAsyncKeyState('C') & 0x8000)
+		m_key |= KEY_C;
 }
 
 bool CKey_Manager::Key_Up(DWORD key)

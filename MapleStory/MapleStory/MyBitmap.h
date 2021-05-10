@@ -7,9 +7,9 @@ public:
 public:
 	HDC Get_memDC() { return m_memDC; }
 	void Insert_Bitmap(const TCHAR* imagePath);
-	Pos_float& GetSize() 
+	Pos_int& GetSize()
 	{
-		return m_scale;
+		return m_bitmapSize;
 	}
 	void Release_Bitmap();
 
@@ -18,5 +18,5 @@ private:
 	HBITMAP m_oldBitmap;
 	HBITMAP m_bitmap;
 
-	Pos_float m_scale;
+	Pos_int m_bitmapSize;
 };

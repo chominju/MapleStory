@@ -41,7 +41,7 @@ void CBitmap_Manager::Insert_Bitmap_Manager(const TCHAR* imageKey, const TCHAR* 
 
 }
 
-Pos_float CBitmap_Manager::Get_Image_Size(const TCHAR * imageKey)
+Pos_int CBitmap_Manager::Get_Image_Size(const TCHAR * imageKey)
 {
 	auto& iter = find_if(m_mapBitmap.begin(), m_mapBitmap.end(), [&](auto& rPair)
 	{
@@ -49,7 +49,7 @@ Pos_float CBitmap_Manager::Get_Image_Size(const TCHAR * imageKey)
 	});
 
 	if (m_mapBitmap.end() == iter)
-		return Pos_float(0, 0);
+		return Pos_int(0, 0);
 
 	return iter->second->GetSize();
 }

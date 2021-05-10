@@ -26,8 +26,8 @@ void CMyBitmap::Insert_Bitmap(const TCHAR * pFilePath)
 
 	BITMAP bit;
 	GetObject(m_bitmap, sizeof(BITMAP), &bit);
-	m_scale.x = bit.bmWidth;
-	m_scale.y = bit.bmHeight;
+	m_bitmapSize.x = bit.bmWidth;
+	m_bitmapSize.y = bit.bmHeight;
 }
 
 void CMyBitmap::Release_Bitmap()

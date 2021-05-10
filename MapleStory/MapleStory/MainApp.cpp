@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Line_Manager.h"
 #include "Scene_Manager.h"
+#include "Key_Manager.h"
 
 CMainApp::CMainApp()
 //:m_pPlayer(nullptr)
@@ -50,6 +51,7 @@ void CMainApp::Update_MainApp()
 {
 	m_player->Update_GameObject();
 	m_player->Late_Update_GameObject();
+	CKey_Manager::Get_Instance()->Update_Key_Manager();
 	CScene_Manager::Get_Instance()->Update_Scene_Manager();
 	//CKey_Manager::Get_Instance()->Update_Key_Manager();
 	//CGameObject_Manager::Get_Instance()->Update_GameObject_Manager();

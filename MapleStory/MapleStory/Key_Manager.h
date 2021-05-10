@@ -12,6 +12,8 @@
 //0010	0000
 #define KEY_DOWN	0x0020
 
+#define KEY_C		0x0040
+
 class CKey_Manager
 {
 public:

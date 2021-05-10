@@ -24,6 +24,8 @@ public:
 		}
 	}
 
+	Pos_int& Get_SceneSize();
+
 public:
 	void Change_Scene_Manager(Scene_ID nextScene);
 	void Update_Scene_Manager();
