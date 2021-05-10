@@ -2,10 +2,10 @@
 
 typedef struct tagInfo
 {
-	float	fX; 
-	float	fY; 
-	int		iCX; 
-	int		iCY; 
+	float	x; 
+	float	y; 
+	int		sizeX; 
+	int		sizeY; 
 }Object_Info;
 
 
@@ -18,7 +18,7 @@ typedef struct tagLinePoint
 	{}
 	float x; 
 	float y; 
-}Pos;
+}Pos_float;
 
 typedef struct tagLINEINFO
 {
@@ -26,12 +26,12 @@ typedef struct tagLINEINFO
 	{
 		ZeroMemory(this, sizeof(tagLINEINFO)); 
 	}
-	tagLINEINFO(Pos tLP, Pos tRP)
+	tagLINEINFO(Pos_float tLP, Pos_float tRP)
 		:left_pos(tLP)
 		,right_pos(tRP)
 		{}
-	Pos left_pos; 
-	Pos right_pos; 
+	Pos_float left_pos; 
+	Pos_float right_pos; 
 }Line_Info;
 
 
@@ -60,3 +60,9 @@ typedef struct
 	DWORD attackTime;
 
 }Player_Info;
+
+typedef struct 
+{
+	int x;
+	int y;
+}Pos_int;

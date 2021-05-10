@@ -6,3 +6,9 @@ Player3
 ../Resource/player_prone1.bmp
 Player4
 ../Resource/player_rope1.bmp
+Kerning_City
+../Resource/BackGround/Kerning_City.bmp
+BackBuffer
+../Resource/BackGround/BackBuffer.bmp
+DoubleBuff
+../Resource/BackGround/DoubleBuff.bmp

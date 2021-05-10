@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "LineTool.h"
-#include "Editor_Manager.h"
+#include "Tool_Editor_Manager.h"
 
 #define MAX_LOADSTRING 100
 

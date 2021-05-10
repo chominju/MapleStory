@@ -24,6 +24,7 @@ public:
 public:
 	HDC Get_memDC(const TCHAR* imageKey);
 	void Insert_Bitmap_Manager(const TCHAR* imageKey, const TCHAR* imagePath);
+	Pos_float Get_Image_Size(const TCHAR* imageKey);
 	void Release_Bitmap_Manager();
 private:
 	static CBitmap_Manager* m_instance;

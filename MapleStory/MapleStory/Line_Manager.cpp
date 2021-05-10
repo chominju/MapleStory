@@ -38,7 +38,7 @@ bool CLine_Manager::Collision_Line_Manager(float finX, float * pOutY)
 	return true;
 }
 
-void CLine_Manager::Insert_Line_Manager(Pos left, Pos right)
+void CLine_Manager::Insert_Line_Manager(Pos_float left, Pos_float right)
 {
 	CLine* line = CLine::Create();
 	line->Set_LineInfo({ { left.x , left.y }, { right.x , right.y } });

@@ -18,7 +18,7 @@ public:
 protected:
 	HDC m_hdc;
 	RECT m_rect;
-	Pos m_currnet_pos;
+	Object_Info m_info;
 	float m_speed;
 	bool m_isDead;
 };

@@ -60,35 +60,35 @@
     <ClInclude Include="LineTool.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Editor_Manager.h">
+    <ClInclude Include="Tool_Editor_Manager.h">
       <Filter>Manager\01.Editor</Filter>
     </ClInclude>
-    <ClInclude Include="Line.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scroll_Manager.h">
+    <ClInclude Include="Tool_Scroll_Manager.h">
       <Filter>Manager\03.Scroll</Filter>
     </ClInclude>
-    <ClInclude Include="Line_Manager.h">
+    <ClInclude Include="Tool_Line_Manager.h">
       <Filter>Manager\02.Line</Filter>
     </ClInclude>
-    <ClInclude Include="Key_Manager.h">
+    <ClInclude Include="Tool_Key_Manager.h">
       <Filter>Manager\04.Key</Filter>
     </ClInclude>
-    <ClInclude Include="MyMap.h">
-      <Filter>Manager\06.Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Bitmap_Manager.h">
-      <Filter>Manager\06.Bitmap</Filter>
-    </ClInclude>
-    <ClInclude Include="MyBitmap.h">
-      <Filter>Manager\06.Bitmap</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadData.h">
+    <ClInclude Include="Tool_LoadData.h">
       <Filter>Manager\05.SaveLoad\Load</Filter>
     </ClInclude>
-    <ClInclude Include="SaveData.h">
+    <ClInclude Include="Tool_SaveData.h">
       <Filter>Manager\05.SaveLoad\Save</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool_Bitmap_Manager.h">
+      <Filter>Manager\06.Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool_MyBitmap.h">
+      <Filter>Manager\06.Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool_MyMap.h">
+      <Filter>Manager\06.Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool_Line.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -98,35 +98,35 @@
     <ClCompile Include="LineTool.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Editor_Manager.cpp">
+    <ClCompile Include="Tool_Editor_Manager.cpp">
       <Filter>Manager\01.Editor</Filter>
     </ClCompile>
-    <ClCompile Include="Line.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scroll_Manager.cpp">
+    <ClCompile Include="Tool_Scroll_Manager.cpp">
       <Filter>Manager\03.Scroll</Filter>
     </ClCompile>
-    <ClCompile Include="Line_Manager.cpp">
+    <ClCompile Include="Tool_Line_Manager.cpp">
       <Filter>Manager\02.Line</Filter>
     </ClCompile>
-    <ClCompile Include="Key_Manager.cpp">
+    <ClCompile Include="Tool_Key_Manager.cpp">
       <Filter>Manager\04.Key</Filter>
     </ClCompile>
-    <ClCompile Include="MyMap.cpp">
-      <Filter>Manager\06.Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Bitmap_Manager.cpp">
-      <Filter>Manager\06.Bitmap</Filter>
-    </ClCompile>
-    <ClCompile Include="MyBitmap.cpp">
-      <Filter>Manager\06.Bitmap</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadData.cpp">
+    <ClCompile Include="Tool_LoadData.cpp">
       <Filter>Manager\05.SaveLoad\Load</Filter>
     </ClCompile>
-    <ClCompile Include="SaveData.cpp">
+    <ClCompile Include="Tool_SaveData.cpp">
       <Filter>Manager\05.SaveLoad\Save</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool_Bitmap_Manager.cpp">
+      <Filter>Manager\06.Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool_MyBitmap.cpp">
+      <Filter>Manager\06.Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool_MyMap.cpp">
+      <Filter>Manager\06.Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool_Line.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

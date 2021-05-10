@@ -23,7 +23,7 @@ private:
 public:
 	bool Collision_Line_Manager(float finX, float* pOutY);
 public:
-	void Insert_Line_Manager(Pos left, Pos right);
+	void Insert_Line_Manager(Pos_float left, Pos_float right);
 	void Ready_Line_Manager();
 	void Render_Line_Manager(HDC hDC);
 	void Release_Line_Manager();

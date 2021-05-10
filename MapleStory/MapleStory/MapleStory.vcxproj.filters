@@ -46,6 +46,18 @@
     <Filter Include="소스 파일\04.Line\Manager">
       <UniqueIdentifier>{f98f76b4-4f20-4f9e-8637-c67ef031934d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\05.Scene">
+      <UniqueIdentifier>{a09ac772-6fc3-4388-b726-40162a2013a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Scene\Menu">
+      <UniqueIdentifier>{73c0fc3d-9baf-4047-a6d4-cdb3a9fa0f81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Scene\Kerning_City">
+      <UniqueIdentifier>{5206a59a-9b0a-455c-99a3-7c02d8ba81a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Scene\Manager">
+      <UniqueIdentifier>{3fc55d17-c743-4447-8a75-efad4b5dddf8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -93,6 +105,15 @@
     <ClInclude Include="Line_Manager.h">
       <Filter>소스 파일\04.Line\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\05.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Kerning_City.h">
+      <Filter>소스 파일\05.Scene\Kerning_City</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Manager.h">
+      <Filter>소스 파일\05.Scene\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -130,6 +151,15 @@
     </ClCompile>
     <ClCompile Include="Line_Manager.cpp">
       <Filter>소스 파일\04.Line\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\05.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Kerning_City.cpp">
+      <Filter>소스 파일\05.Scene\Kerning_City</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Manager.cpp">
+      <Filter>소스 파일\05.Scene\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

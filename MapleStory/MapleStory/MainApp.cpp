@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "MainApp.h"
 #include "LoadData.h"
+#include "Bitmap_Manager.h"
 #include "MyBitmap.h"
 #include "Player.h"
 #include "Line_Manager.h"
+#include "Scene_Manager.h"
 
 CMainApp::CMainApp()
 //:m_pPlayer(nullptr)
@@ -40,6 +42,7 @@ int CMainApp::Ready_MainApp()
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(OBJECT::MOUSE, pObject);
 
 	CLine_Manager::Get_Instance()->Ready_Line_Manager();*/
+	CScene_Manager::Get_Instance()->Change_Scene_Manager(Scene_ID::SCENE_Kerning_City);
 	return READY_OK;
 }
 
@@ -47,6 +50,7 @@ void CMainApp::Update_MainApp()
 {
 	m_player->Update_GameObject();
 	m_player->Late_Update_GameObject();
+	CScene_Manager::Get_Instance()->Update_Scene_Manager();
 	//CKey_Manager::Get_Instance()->Update_Key_Manager();
 	//CGameObject_Manager::Get_Instance()->Update_GameObject_Manager();
 	//CGameObject_Manager::Get_Instance()->Late_Update_GameObject_Manager();
@@ -78,30 +82,33 @@ void CMainApp::Render_MainApp()
 	//	0, 0, //그림에서의 시작 위치 
 	//	SRCCOPY); // 그릴 형식. 
 
+	HDC doubleBuffer = CBitmap_Manager::Get_Instance()->Get_memDC(L"BackBuffer");
+	if (nullptr == doubleBuffer)
+		return;
 
+	HDC backBuffer = CBitmap_Manager::Get_Instance()->Get_memDC(L"BackBuffer");
+	if (nullptr == backBuffer)
+		return;
 
-	//if(CLoadData::Get_Instance()->Get_Map().end()==iter)
-	Rectangle(m_hDC, 0, 0, WINCX, WINCY);
-	// 	Rectangle(m_hDC, 100, 100, WINCX - 100, WINCY - 100);
+	BitBlt(doubleBuffer,// 복사하고자 하는 대상 
+		0, 0,// 그릴 시작 위치
+		WINCX, WINCY, // 그림의 크기 
+		backBuffer,//복사할 대상 
+		0, 0, //그림에서의 시작 위치 
+		SRCCOPY); // 그릴 형식. 
+	TextOut(doubleBuffer, 100, 100, m_szFPS, lstrlen(m_szFPS));
 
-	//HDC hDoubleBuffer = ;
-	//HDC hMemDC;
-	//BitBlt(hDoubleBuffer,// 복사하고자 하는 대상 
-	//	0, 0,// 그릴 시작 위치
-	//	WINCX, WINCY, // 그림의 크기 
-	//	hMemDC,//복사할 대상 
-	//	0, 0, //그림에서의 시작 위치 
-	//	SRCCOPY); // 그릴 형식. 
-	//TextOut(hDoubleBuffer, 100, 100, m_szFPS, lstrlen(m_szFPS));
-	//
-	m_player->Render_GameObject(m_hDC);
-	CLine_Manager::Get_Instance()->Render_Line_Manager(m_hDC);
-	//BitBlt(m_hDC, 0, 0, WINCX, WINCY, hDoubleBuffer, 0, 0, SRCCOPY);
+	
+	CScene_Manager::Get_Instance()->Render_Scene_Manager(doubleBuffer);
+	CLine_Manager::Get_Instance()->Render_Line_Manager(doubleBuffer);
+	m_player->Render_GameObject(doubleBuffer);
+	BitBlt(m_hDC, 0, 0, WINCX, WINCY, doubleBuffer, 0, 0, SRCCOPY);
 }
 
 void CMainApp::Release_MainApp()
 {
 	ReleaseDC(g_hwnd, m_hDC);
+	CScene_Manager::Destroy_Instance();
 	//CBitmap_Manager::Destroy_Instance();
 	//CKey_Manager::Destroy_Instance();
 	//CGameObject_Manager::Destroy_Instance();
