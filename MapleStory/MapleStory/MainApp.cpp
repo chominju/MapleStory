@@ -29,28 +29,16 @@ int CMainApp::Ready_MainApp()
 
 	m_hDC = GetDC(g_hwnd);
 	m_dwFPSTime = GetTickCount();
-	m_player = CPlayer::Create();
-	/*CBitmap_Manager::Get_Instance()->Insert_Bitmap_Manager(L"Maja", L"../Image/maja2.bmp");
-	CBitmap_Manager::Get_Instance()->Insert_Bitmap_Manager(L"BackBuffer", L"../Image/BackBuffer.bmp");
-	CBitmap_Manager::Get_Instance()->Insert_Bitmap_Manager(L"DoubleBuff", L"../Image/Back.bmp");
-	CGameObject* pObject = CPlayer::Create();
-	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(OBJECT::PLAYER, pObject);
+	//m_player = CPlayer::Create();
 
-	pObject = CMonster::Create();
-	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(OBJECT::MONSTER, pObject);
-
-	pObject = CMouse::Create();
-	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(OBJECT::MOUSE, pObject);
-
-	CLine_Manager::Get_Instance()->Ready_Line_Manager();*/
 	CScene_Manager::Get_Instance()->Change_Scene_Manager(Scene_ID::SCENE_Kerning_City);
 	return READY_OK;
 }
 
 void CMainApp::Update_MainApp()
 {
-	m_player->Update_GameObject();
-	m_player->Late_Update_GameObject();
+	//m_player->Update_GameObject();
+	//m_player->Late_Update_GameObject();
 	CKey_Manager::Get_Instance()->Update_Key_Manager();
 	CScene_Manager::Get_Instance()->Update_Scene_Manager();
 	//CKey_Manager::Get_Instance()->Update_Key_Manager();
@@ -102,8 +90,8 @@ void CMainApp::Render_MainApp()
 
 	
 	CScene_Manager::Get_Instance()->Render_Scene_Manager(doubleBuffer);
-	CLine_Manager::Get_Instance()->Render_Line_Manager(doubleBuffer);
-	m_player->Render_GameObject(doubleBuffer);
+	//CLine_Manager::Get_Instance()->Render_Line_Manager(doubleBuffer);
+	//m_player->Render_GameObject(doubleBuffer);
 	BitBlt(m_hDC, 0, 0, WINCX, WINCY, doubleBuffer, 0, 0, SRCCOPY);
 }
 

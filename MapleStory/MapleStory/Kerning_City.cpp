@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "Kerning_City.h"
+#include "Player.h"
+#include "Line_Manager.h";
 #include "Bitmap_Manager.h"
 #include "Scroll_Manager.h"
+#include "GameObject_Manager.h"
 
 Kerning_City::Kerning_City()
 {
@@ -16,11 +19,17 @@ int Kerning_City::Ready_Scene()
 {
 	m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Kerning_City");
 	m_SceneSize = CBitmap_Manager::Get_Instance()->Get_Image_Size(L"Kerning_City");
+
+	CGameObject* object = CPlayer::Create();
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PLAYER, object);
+
 	return S_OK;
 }
 
 void Kerning_City::Update_Scene()
 {
+	CGameObject_Manager::Get_Instance()->Update_GameObject_Manager();
+	CGameObject_Manager::Get_Instance()->Late_Update_GameObject_Manager();
 }
 
 void Kerning_City::Render_Scene(HDC hdc)
@@ -32,6 +41,10 @@ void Kerning_City::Render_Scene(HDC hdc)
 	if (scrollX >= 0)
 		scrollX = 0;
 	BitBlt(hdc, 0, 0, WINCX, WINCY, m_hdc, -scrollX, m_SceneSize.y-WINCY + scrollY, SRCCOPY);
+
+	CLine_Manager::Get_Instance()->Render_Line_Manager(hdc);
+	CGameObject_Manager::Get_Instance()->Render_GameObject_Manager(hdc);
+
 	//CGameObject_Manager::Get_Instance()->Render_GameObject_Manager(hDC);
 }
 

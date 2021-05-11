@@ -75,3 +75,20 @@ typedef struct posInt
 	int x;
 	int y;
 }Pos_int;
+
+
+typedef struct
+{
+	DWORD frame_start;
+	DWORD frame_end;
+	DWORD frame_animation;
+	DWORD frame_speed;
+	DWORD frame_time;
+}Animation_Frame;
+
+typedef struct
+{
+	bool isLeft;
+	bool isRight;
+	bool isJump;
+}Key_Push;

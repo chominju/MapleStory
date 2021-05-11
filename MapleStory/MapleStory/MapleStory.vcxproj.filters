@@ -61,6 +61,12 @@
     <Filter Include="소스 파일\02.Manager\Scroll">
       <UniqueIdentifier>{91d30710-f098-492d-9d9c-ae52a5c76212}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\Manager">
+      <UniqueIdentifier>{9b961466-0727-4201-9239-4246b34cd215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Skill">
+      <UniqueIdentifier>{2f5f38a8-e359-4b37-a871-27ceec60a253}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -120,6 +126,9 @@
     <ClInclude Include="Scroll_Manager.h">
       <Filter>소스 파일\02.Manager\Scroll</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject_Manager.h">
+      <Filter>소스 파일\01.GameObject\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -169,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="Scroll_Manager.cpp">
       <Filter>소스 파일\02.Manager\Scroll</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject_Manager.cpp">
+      <Filter>소스 파일\01.GameObject\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

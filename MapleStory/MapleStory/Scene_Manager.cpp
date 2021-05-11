@@ -37,6 +37,7 @@ void CScene_Manager::Change_Scene_Manager(Scene_ID nextScene)
 		default:
 			break;
 		}
+		m_currentScene = nextScene;
 	}
 }
 

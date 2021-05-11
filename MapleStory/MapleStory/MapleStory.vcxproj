@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="Bitmap_Manager.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObject_Manager.h" />
     <ClInclude Include="Kerning_City.h" />
     <ClInclude Include="Key_Manager.h" />
     <ClInclude Include="Line.h" />
@@ -171,6 +172,7 @@
   <ItemGroup>
     <ClCompile Include="Bitmap_Manager.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObject_Manager.cpp" />
     <ClCompile Include="Kerning_City.cpp" />
     <ClCompile Include="Key_Manager.cpp" />
     <ClCompile Include="Line.cpp" />
