@@ -15,15 +15,11 @@ CSaveData::~CSaveData()
 {
 }
 
-void CSaveData::Save_Data(TCHAR * mapName)
+void CSaveData::Save_Data(TCHAR * fileName)
 {
 	HANDLE hFile;
-	if (!lstrcmp(mapName, L"Kerning_City"))
-	{
-		hFile = CreateFile(L"../ResourceList/lineList.dat", GENERIC_WRITE, 0, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-	}
-	else
-		return;
+	hFile = CreateFile(fileName, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
 		MessageBox(nullptr, L"½ÇÆÐ!", L"systemError", MB_OK);

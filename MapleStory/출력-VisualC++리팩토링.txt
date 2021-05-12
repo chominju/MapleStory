@@ -1,0 +1,39 @@
+﻿C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\LineTool\Field1.cpp(4): 가상 함수 'Ready_Scene'을(를) 만들었습니다.
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\LineTool\Field1.cpp(9): 가상 함수 'Update_Scene'을(를) 만들었습니다.
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\LineTool\Field1.cpp(13): 가상 함수 'Render_Scene'을(를) 만들었습니다.
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\LineTool\Field1.cpp(17): 가상 함수 'Release_Scene'을(를) 만들었습니다.
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\LineTool\Field1.cpp(4): 'Field1' 함수 정의를 성공적으로 만들었습니다.
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\LineTool\Field1.cpp(8): '~Field1' 함수 정의를 성공적으로 만들었습니다.
+
+'CMap1' 이름을 'Field1'(으)로 바꾸기:
+-----------------------------
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(11, 1)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(11, 8)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(16, 1)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(16, 9)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(20, 5)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(32, 6)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(38, 6)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(54, 6)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(58, 10)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(60, 25)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.h(3, 7)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.h(7, 11)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.h(9, 11)
+
+'Field1' 이름을 'CField1'(으)로 바꾸기:
+-------------------------------
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(11, 1)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(11, 9)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(16, 1)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(16, 10)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(20, 5)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(32, 6)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(38, 6)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(54, 6)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(58, 10)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.cpp(60, 25)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.h(3, 7)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.h(7, 11)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Field1.h(9, 11)
+C:\Users\조민주\source\repos\chominju\MapleStory\MapleStory\MapleStory\Scene_Manager.cpp(38, 14)

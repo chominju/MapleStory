@@ -16,6 +16,7 @@
 #define KEY_S		0x0040
 #define KEY_L		0x0080
 
+#define KEY_BACK	0x0100
 
 class CKey_Manager
 {

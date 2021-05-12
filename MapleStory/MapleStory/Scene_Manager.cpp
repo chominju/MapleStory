@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Scene_Manager.h"
 #include "Kerning_City.h"
-
+#include "Field1.h"
 CScene_Manager* CScene_Manager::m_instance = nullptr;
 
 CScene_Manager::CScene_Manager()
@@ -33,6 +33,9 @@ void CScene_Manager::Change_Scene_Manager(Scene_ID nextScene)
 		{
 		case Scene_ID::SCENE_Kerning_City:
 			m_scene = Kerning_City::Create();
+			break;
+		case Scene_ID::SCENE_MAP1:
+			m_scene = CField1::Create();
 			break;
 		default:
 			break;

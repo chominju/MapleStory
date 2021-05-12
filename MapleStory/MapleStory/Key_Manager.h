@@ -12,9 +12,12 @@
 //0010	0000
 #define KEY_DOWN	0x0020
 
-#define KEY_C		0x0040
+#define KEY_F		0x0040
 #define KEY_A		0x0080
-
+#define KEY_Q		0x0080
+#define KEY_W		0x0080
+#define KEY_E		0x0080
+#define KEY_R		0x0080
 class CKey_Manager
 {
 public:

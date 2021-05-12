@@ -8,7 +8,6 @@ private:
 	virtual ~CMonster();
 
 private:
-	Monster_Info m_monster_info;
 
 	// CGameObject을(를) 통해 상속됨
 	virtual int Ready_GameObject() override;

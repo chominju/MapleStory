@@ -33,6 +33,8 @@ void CKey_Manager::Update_Key_Manager()
 		m_key |= KEY_S;
 	if (GetAsyncKeyState('L') & 0x8000)
 		m_key |= KEY_L;
+	if (GetAsyncKeyState(VK_ESCAPE) & 0x8000)
+		m_key |= KEY_BACK;
 
 }
 

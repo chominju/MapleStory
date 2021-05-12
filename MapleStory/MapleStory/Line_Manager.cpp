@@ -29,8 +29,9 @@ bool CLine_Manager::Collision_Line_Manager(CPlayer*player, float finX, float fin
 			float fy2 = pLine->Get_LineInfo()->right_pos.y;
 			float y = (fy2 - fy1) / (fx2 - fx1) * (finX - fx1) + fy1;
 
-			float dis = y - player->GetInfo().y;// -player->GetInfo().sizeY;
-			if (dis < min && dis>= player->GetInfo().sizeY/2-10)
+			float dis = y - player->GetInfo()->y;// -player->GetInfo().sizeY;
+			//float dis = y - *(player->GetInfo()).y;// -player->GetInfo().sizeY;
+			if (dis < min && dis>= player->GetInfo()->sizeY/2-10)
 			{
 				min = dis;
 				*pOutY = y;
@@ -140,15 +141,15 @@ bool CLine_Manager::Floor_Collision_Line_Manager_Line_Manager(CPlayer * player)
 	float min = 10000;
 	for (auto& pLine : m_listLine)
 	{
-		if (pLine->Get_LineInfo()->left_pos.x <= player->GetInfo().x && pLine->Get_LineInfo()->right_pos.x >= player->GetInfo().x)
+		if (pLine->Get_LineInfo()->left_pos.x <= player->GetInfo()->x && pLine->Get_LineInfo()->right_pos.x >= player->GetInfo()->x)
 		{
 			float fx1 = pLine->Get_LineInfo()->left_pos.x;
 			float fy1 = pLine->Get_LineInfo()->left_pos.y;
 			float fx2 = pLine->Get_LineInfo()->right_pos.x;
 			float fy2 = pLine->Get_LineInfo()->right_pos.y;
-			float y = (fy2 - fy1) / (fx2 - fx1) * (player->GetInfo().x - fx1) + fy1;
+			float y = (fy2 - fy1) / (fx2 - fx1) * (player->GetInfo()->x - fx1) + fy1;
 
-			if (player->GetRect().bottom + 5 <= y)
+			if (player->GetRect()->bottom + 5 <= y)
 				return true;
 		}
 	}

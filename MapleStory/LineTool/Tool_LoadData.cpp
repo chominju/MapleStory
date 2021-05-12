@@ -20,9 +20,9 @@ CLoadData::~CLoadData()
 {
 }
 
-void CLoadData::Load_Line()
+void CLoadData::Load_Line(TCHAR * fileName)
 {
-	HANDLE hFile = CreateFile(L"../ResourceList/lineList.dat", GENERIC_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+	HANDLE hFile = CreateFile(fileName, GENERIC_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
 		MessageBox(nullptr, L"로드실패...", L"LoadFail", MB_OK);
@@ -55,7 +55,7 @@ void CLoadData::Load_Line()
 bool CLoadData::Load_Image()
 {
 	ifstream readFile;
-	readFile.open("../ResourceList/MapList.txt");
+	readFile.open("../ResourceList/Tool_List.txt");
 	
 	if (readFile.is_open())
 	{

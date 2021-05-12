@@ -32,6 +32,12 @@ public:
 	void Late_Update_GameObject_Manager();
 	void Render_GameObject_Manager(HDC hDC);
 	void Release_GameObject_Manager();
+	void Release_Specific_GameObject_Manager(Object_ID eID);
+
+	CGameObject*& GetPlayer()
+	{
+		return m_listGameObject[Object_ID::PLAYER].front();
+	}
 
 private:
 	static CGameObject_Manager* m_instance;

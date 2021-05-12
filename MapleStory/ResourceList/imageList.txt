@@ -8,8 +8,8 @@ Player_Right_Prone
 ../Resource/Player/Player_Right_Prone.bmp
 Kerning_City
 ../Resource/BackGround/Kerning_City.bmp
-Map1
-../Resource/BackGround/Map1.bmp
+Field1
+../Resource/BackGround/Field1.bmp
 BackBuffer
 ../Resource/BackGround/BackBuffer.bmp
 DoubleBuff

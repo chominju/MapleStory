@@ -21,8 +21,9 @@ enum Scene_ID
 {
 	SCENE_LOADING,
 	SCENE_Kerning_City,
-	SCENE_STAGE1, 
-	SCENE_STAGE2, 
+	SCENE_MAP1, 
+	SCENE_MAP2, 
+	SCENE_BOSS,
 	SCENE_END
 };
 
@@ -46,7 +47,7 @@ enum Animation
 	JUMP,
 	ROPE,
 	DEAD,
-	PRONE=0
+	PRONE
 };
 
 enum Animation_index

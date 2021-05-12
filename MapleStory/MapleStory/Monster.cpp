@@ -3,7 +3,6 @@
 
 CMonster::CMonster()
 {
-	ZeroMemory(&m_monster_info, sizeof(Monster_Info));
 }
 
 CMonster::~CMonster()

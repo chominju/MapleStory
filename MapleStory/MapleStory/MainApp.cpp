@@ -7,6 +7,7 @@
 #include "Line_Manager.h"
 #include "Scene_Manager.h"
 #include "Key_Manager.h"
+#include "GameObject_Manager.h"
 
 CMainApp::CMainApp()
 //:m_pPlayer(nullptr)
@@ -25,7 +26,8 @@ CMainApp::~CMainApp()
 int CMainApp::Ready_MainApp()
 {
 	CLoadData::Get_Instance()->Load_Image();
-	CLoadData::Get_Instance()->Load_Line();
+	CGameObject* object = CPlayer::Create();
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PLAYER, object);
 
 	m_hDC = GetDC(g_hwnd);
 	m_dwFPSTime = GetTickCount();

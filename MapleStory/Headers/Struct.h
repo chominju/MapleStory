@@ -34,32 +34,38 @@ typedef struct tagLINEINFO
 	Pos_float right_pos; 
 }Line_Info;
 
-
 typedef struct
 {
-	char imageKey[32];
-	char dropKey[32];
-	int hp;
-	int maxHp;
-	int exp;
-	int money;
-	DWORD respawnTime;
-	DWORD respawnPos;
-	DWORD attackTime;
-
-}Monster_Info;
-
-
-typedef struct
-{
-	char imageKey[32];
+	char object_type[32];
 	int hp;
 	int maxHp;
 	int exp;
 	int maxExp;
-	DWORD attackTime;
+	int money;
 
-}Player_Info;
+}Object_Data;
+//typedef struct
+//{
+//	char imageKey[32];
+//	char dropKey[32];
+//
+//	DWORD respawnTime;
+//	DWORD respawnPos;
+//	DWORD attackTime;
+//
+//}Monster_Info;
+//
+//
+//typedef struct
+//{
+//	char imageKey[32];
+//	int hp;
+//	int maxHp;
+//	int exp;
+//	int maxExp;
+//	DWORD attackTime;
+//
+//}Player_Info;
 
 typedef struct posInt
 {

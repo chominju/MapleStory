@@ -26,10 +26,10 @@ public:
 	void Player_Prone();
 	void Player_Swing();
 	void Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd);
+
 	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
-	Player_Info m_player_info;
 
 	CurrentKey m_currentKey;
 	bool m_isJump;
@@ -46,12 +46,12 @@ private:
 	float jump_before;
 	HDC m_left_hdc;
 	HDC m_right_hdc;
-	HDC m_left_prone_hdc;
-	HDC m_right_prone_hdc;
 
 	float fall;
 	Key_Push m_keyPush;
 
+	float m_beforeY;
+	float m_difY;
 
 	//HDC m_temptemp; 스킬 체험
 };

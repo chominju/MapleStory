@@ -28,9 +28,17 @@ void CKey_Manager::Update_Key_Manager()
 		m_key |= KEY_LEFT;
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 		m_key |= KEY_RIGHT;
-	if (GetAsyncKeyState('C') & 0x8000)
-		m_key |= KEY_C;
+	if (GetAsyncKeyState('F') & 0x8000)
+		m_key |= KEY_F;
 	if (GetAsyncKeyState('A') & 0x8000)
+		m_key |= KEY_A;
+	if (GetAsyncKeyState('Q') & 0x8000)
+		m_key |= KEY_A;
+	if (GetAsyncKeyState('W') & 0x8000)
+		m_key |= KEY_A;
+	if (GetAsyncKeyState('E') & 0x8000)
+		m_key |= KEY_A;
+	if (GetAsyncKeyState('R') & 0x8000)
 		m_key |= KEY_A;
 }
 

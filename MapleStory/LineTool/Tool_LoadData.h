@@ -27,7 +27,7 @@ public:
 
 public:
 	bool Load_Image();
-	void Load_Line();
+	void Load_Line(TCHAR * fileName);
 
 	map<const TCHAR*, CMyBitmap*>* Get_Map()
 	{

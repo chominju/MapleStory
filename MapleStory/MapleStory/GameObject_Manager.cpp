@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "GameObject_Manager.h"
 #include "GameObject.h"
-
+#include "Collision_Manager.h"
+#include "Portal.h"
+#include "Scene_Manager.h"
 
 CGameObject_Manager* CGameObject_Manager::m_instance = nullptr;
 CGameObject_Manager::CGameObject_Manager()
@@ -57,11 +59,12 @@ void CGameObject_Manager::Add_GameObject_Manager(Object_ID id, CGameObject * obj
 
 void CGameObject_Manager::Update_GameObject_Manager()
 {
+	int iEvent;
 	for (int i = 0; i < Object_ID::END; ++i)
 	{
 		for (auto& iter = m_listGameObject[i].begin(); iter != m_listGameObject[i].end(); )
 		{
-			int iEvent = (*iter)->Update_GameObject();
+			iEvent = (*iter)->Update_GameObject();
 			if (OBJ_DEAD == iEvent)
 			{
 				Safe_Delete(*iter);
@@ -69,6 +72,19 @@ void CGameObject_Manager::Update_GameObject_Manager()
 			}
 			else
 				++iter;
+		}
+	}
+
+	if (iEvent == MOVE_PORTAL)
+	{
+		for (auto & portal : m_listGameObject[Object_ID::PORTAL])
+		{
+			if (portal->Get_isPortal())
+			{
+				Scene_ID nextScene = dynamic_cast<CPortal*>(portal)->Get_NextSceneID();
+				CScene_Manager::Get_Instance()->Change_Scene_Manager(nextScene);
+				break;
+			}
 		}
 	}
 }
@@ -85,7 +101,7 @@ void CGameObject_Manager::Late_Update_GameObject_Manager()
 		}
 	}
 
-//	CCollision_Manager::Collision_RectEx(&m_listGameObject[OBJECT::MOUSE], &m_listGameObject[OBJECT::MONSTER]);
+	CCollision_Manager::Collision_Portal(&m_listGameObject[Object_ID::PLAYER], &m_listGameObject[Object_ID::PORTAL]);
 
 }
 
@@ -108,4 +124,13 @@ void CGameObject_Manager::Release_GameObject_Manager()
 		}
 		m_listGameObject[i].clear();
 	}
+}
+
+void CGameObject_Manager::Release_Specific_GameObject_Manager(Object_ID eID)
+{
+	for (auto& pObject : m_listGameObject[eID])
+	{
+		Safe_Delete(pObject);
+	}
+	m_listGameObject[eID].clear();
 }

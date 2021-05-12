@@ -7,3 +7,4 @@
 #define OBJ_DEAD	1
 #define WINCX 1024
 #define WINCY 768
+#define MOVE_PORTAL 2

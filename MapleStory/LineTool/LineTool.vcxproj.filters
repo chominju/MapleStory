@@ -28,9 +28,6 @@
     <Filter Include="Manager\04.Key">
       <UniqueIdentifier>{844e9b23-819f-4420-8ec6-803c76ca9c99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager\06.Map">
-      <UniqueIdentifier>{9d8aefea-0ec4-4ac8-81b0-7feffee22dee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager\05.SaveLoad">
       <UniqueIdentifier>{76e92e57-8144-44c7-90dd-1bc2dee67fd9}</UniqueIdentifier>
     </Filter>
@@ -42,6 +39,27 @@
     </Filter>
     <Filter Include="Manager\05.SaveLoad\Save">
       <UniqueIdentifier>{d70e97af-3638-45a9-9ad7-ffb88a8ed4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\06.Scene">
+      <UniqueIdentifier>{9d8aefea-0ec4-4ac8-81b0-7feffee22dee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\06.Scene\Manager">
+      <UniqueIdentifier>{2af1c773-2fff-421f-bbae-6a5b11a8fdea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\06.Scene\Button">
+      <UniqueIdentifier>{c8221eb2-ff21-4636-8de2-fe98cdbcc3d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\06.Scene\Kerning_City">
+      <UniqueIdentifier>{47c35a86-b7c9-4a07-87f7-34b4de2a0c2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\06.Scene\Field1">
+      <UniqueIdentifier>{06140cb9-54b7-4bbf-b6c0-b1d684bc66af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\06.Scene\Boss">
+      <UniqueIdentifier>{40336d1f-69de-42d3-b435-84ab183ecfac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\06.Scene\Menu">
+      <UniqueIdentifier>{0da8e32e-f875-4c92-9e55-29c6e854036b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,11 +102,32 @@
     <ClInclude Include="Tool_MyBitmap.h">
       <Filter>Manager\06.Bitmap</Filter>
     </ClInclude>
-    <ClInclude Include="Tool_MyMap.h">
-      <Filter>Manager\06.Map</Filter>
-    </ClInclude>
     <ClInclude Include="Tool_Line.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Manager\06.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MyButton.h">
+      <Filter>Manager\06.Scene\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Kerning_City.h">
+      <Filter>Manager\06.Scene\Kerning_City</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMenu.h">
+      <Filter>Manager\06.Scene\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool_GameObject.h">
+      <Filter>Manager\06.Scene\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool_GameObject_Manager.h">
+      <Filter>Manager\06.Scene\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool_Scene_Manager.h">
+      <Filter>Manager\06.Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Field1.h">
+      <Filter>Manager\06.Scene\Field1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,11 +161,32 @@
     <ClCompile Include="Tool_MyBitmap.cpp">
       <Filter>Manager\06.Bitmap</Filter>
     </ClCompile>
-    <ClCompile Include="Tool_MyMap.cpp">
-      <Filter>Manager\06.Map</Filter>
-    </ClCompile>
     <ClCompile Include="Tool_Line.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Manager\06.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MyButton.cpp">
+      <Filter>Manager\06.Scene\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Kerning_City.cpp">
+      <Filter>Manager\06.Scene\Kerning_City</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMenu.cpp">
+      <Filter>Manager\06.Scene\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool_GameObject.cpp">
+      <Filter>Manager\06.Scene\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool_GameObject_Manager.cpp">
+      <Filter>Manager\06.Scene\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool_Scene_Manager.cpp">
+      <Filter>Manager\06.Scene\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Field1.cpp">
+      <Filter>Manager\06.Scene\Field1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

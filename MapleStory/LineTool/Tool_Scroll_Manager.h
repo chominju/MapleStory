@@ -9,6 +9,9 @@ public:
 	static void Set_ScrollY(int _fy) { m_scrollPos.y += _fy; }
 	static int Get_ScrollX() { return m_scrollPos.x; }
 	static int Get_ScrollY() { return m_scrollPos.y; }
+
+	static void Reset_ScrollX() { m_scrollPos.x =0; }
+	static void Reset_ScrollY() { m_scrollPos.y =0; }
 private:
 	static Pos_int m_scrollPos;
 };

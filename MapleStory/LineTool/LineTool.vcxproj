@@ -149,15 +149,22 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Field1.h" />
+    <ClInclude Include="Kerning_City.h" />
+    <ClInclude Include="MyButton.h" />
+    <ClInclude Include="MyMenu.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Tool_Scene_Manager.h" />
     <ClInclude Include="Tool_Bitmap_Manager.h" />
     <ClInclude Include="Tool_Editor_Manager.h" />
+    <ClInclude Include="Tool_GameObject.h" />
+    <ClInclude Include="Tool_GameObject_Manager.h" />
     <ClInclude Include="Tool_Key_Manager.h" />
     <ClInclude Include="Tool_Line.h" />
     <ClInclude Include="LineTool.h" />
     <ClInclude Include="Tool_Line_Manager.h" />
     <ClInclude Include="Tool_LoadData.h" />
     <ClInclude Include="Tool_MyBitmap.h" />
-    <ClInclude Include="Tool_MyMap.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Tool_SaveData.h" />
     <ClInclude Include="Tool_Scroll_Manager.h" />
@@ -165,15 +172,22 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Field1.cpp" />
+    <ClCompile Include="Kerning_City.cpp" />
+    <ClCompile Include="MyButton.cpp" />
+    <ClCompile Include="MyMenu.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Tool_Scene_Manager.cpp" />
     <ClCompile Include="Tool_Bitmap_Manager.cpp" />
     <ClCompile Include="Tool_Editor_Manager.cpp" />
+    <ClCompile Include="Tool_GameObject.cpp" />
+    <ClCompile Include="Tool_GameObject_Manager.cpp" />
     <ClCompile Include="Tool_Key_Manager.cpp" />
     <ClCompile Include="Tool_Line.cpp" />
     <ClCompile Include="LineTool.cpp" />
     <ClCompile Include="Tool_Line_Manager.cpp" />
     <ClCompile Include="Tool_LoadData.cpp" />
     <ClCompile Include="Tool_MyBitmap.cpp" />
-    <ClCompile Include="Tool_MyMap.cpp" />
     <ClCompile Include="Tool_SaveData.cpp" />
     <ClCompile Include="Tool_Scroll_Manager.cpp" />
     <ClCompile Include="stdafx.cpp">

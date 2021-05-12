@@ -13,7 +13,7 @@ public:
 		return m_instance;
 	}
 
-	void Save_Data(TCHAR * mapName);
+	void Save_Data(TCHAR * fileName);
 private:
 	static CSaveData* m_instance;
 };

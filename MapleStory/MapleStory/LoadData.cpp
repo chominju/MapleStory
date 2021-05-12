@@ -79,9 +79,9 @@ bool CLoadData::Load_Monster()
 	return true;
 }
 
-bool CLoadData::Load_Line()
+bool CLoadData::Load_Line(TCHAR * fileName)
 {
-	HANDLE hFile = CreateFile(L"../ResourceList/lineList.dat", GENERIC_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+	HANDLE hFile = CreateFile(fileName, GENERIC_READ, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
 		MessageBox(nullptr, L"로드실패...", L"LoadFail", MB_OK);

@@ -16,7 +16,19 @@ public:
 	virtual void Release_GameObject() override;
 	virtual void UpdateRect_GameObject() override;
 
+	void Set_NextSceneID(Scene_ID id)
+	{
+		m_nextScene = id;
+	}
+
+	Scene_ID Get_NextSceneID()
+	{
+		return m_nextScene;
+	}
+
 public:
 	static CGameObject* Create();
+private:
+	Scene_ID m_nextScene;
 };
 

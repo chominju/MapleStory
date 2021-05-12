@@ -9,7 +9,10 @@ CMyMap * CMyMap::m_instance=nullptr;
 
 CMyMap::CMyMap(TCHAR * mapName)
 	:m_mapName(mapName)
+	,m_saveName(L"../ResourceList/")
 {
+	_tcscat(m_saveName, mapName);
+	_tcscat(m_saveName, L"_lineList.dat");
 	//m_mapName = mapName;
 }
 
