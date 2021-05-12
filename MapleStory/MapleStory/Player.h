@@ -23,8 +23,10 @@ public:
 	void Player_MoveRight();
 	void Player_Idle();
 	void Player_Jump();
+	void Player_Prone();
+	void Player_Swing();
 	void Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd);
-	void Play_Animation();
+	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
 	Player_Info m_player_info;
@@ -44,8 +46,10 @@ private:
 	float jump_before;
 	HDC m_left_hdc;
 	HDC m_right_hdc;
+	HDC m_left_prone_hdc;
+	HDC m_right_prone_hdc;
+
 	float fall;
-	Animation_Frame m_animFrame;
 	Key_Push m_keyPush;
 
 

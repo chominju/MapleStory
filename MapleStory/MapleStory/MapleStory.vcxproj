@@ -158,10 +158,12 @@
     <ClInclude Include="Line_Manager.h" />
     <ClInclude Include="LoadData.h" />
     <ClInclude Include="MainApp.h" />
+    <ClInclude Include="Map1.h" />
     <ClInclude Include="MapleStory.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MyBitmap.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene_Manager.h" />
@@ -179,10 +181,12 @@
     <ClCompile Include="Line_Manager.cpp" />
     <ClCompile Include="LoadData.cpp" />
     <ClCompile Include="MainApp.cpp" />
+    <ClCompile Include="Map1.cpp" />
     <ClCompile Include="MapleStory.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MyBitmap.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scene_Manager.cpp" />
     <ClCompile Include="Scroll_Manager.cpp" />

@@ -36,6 +36,9 @@ int CPlayer::Ready_GameObject()
 {
 	m_left_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Left");
 	m_right_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Right");
+	m_left_prone_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Left_Prone");
+	m_right_prone_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Right_Prone");
+
 	//m_temptemp= CBitmap_Manager::Get_Instance()->Get_memDC(L"DoubleStab");
 	//m_temptemp= CBitmap_Manager::Get_Instance()->Get_memDC(L"SavageBlow");
 	//m_info.sizeX =  CBitmap_Manager::Get_Instance()->Get_Image_Size(L"Player1").x;
@@ -81,27 +84,33 @@ int CPlayer::Ready_GameObject()
 int CPlayer::Update_GameObject()
 {
 	//if (CKey_Manager::Get_Instance()->Key_Down(KEY_LEFT))
-	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_LEFT))
-		Player_MoveLeft();
-	if (CKey_Manager::Get_Instance()->Key_Up(KEY_LEFT))
-		m_keyPush.isLeft = false;
-
-
-	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_RIGHT))
-		Player_MoveRight();
-	if (CKey_Manager::Get_Instance()->Key_Up(KEY_RIGHT))
-		m_keyPush.isRight = false;
-
-
-	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_UP))
+	if (!m_keyPush.isAttack)
 	{
-		/*m_info.y -= m_speed;
-		if (m_info.y <= WINCY / 2 - CScroll_Manager::Get_ScrollY())
-			CScroll_Manager::Set_ScrollY(-m_speed);*/
+		if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_LEFT))
+			Player_MoveLeft();
+		if (CKey_Manager::Get_Instance()->Key_Up(KEY_LEFT))
+			m_keyPush.isLeft = false;
+
+
+		if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_RIGHT))
+			Player_MoveRight();
+		if (CKey_Manager::Get_Instance()->Key_Up(KEY_RIGHT))
+			m_keyPush.isRight = false;
+
+
+		if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_UP))
+		{
+			/*m_info.y -= m_speed;
+			if (m_info.y <= WINCY / 2 - CScroll_Manager::Get_ScrollY())
+				CScroll_Manager::Set_ScrollY(-m_speed);*/
+		}
 	}
 
 	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN)) // 아래점프
 	{
+		m_keyPush.isDown = true;
+		if (!m_isJump)
+			Player_Prone();
 		if (CKey_Manager::Get_Instance()->Key_Down(KEY_C))
 		{
 			m_info.y += 5;
@@ -121,7 +130,8 @@ int CPlayer::Update_GameObject()
 		if (m_info.y >= WINCY / 2 + CScroll_Manager::Get_ScrollY())
 			CScroll_Manager::Set_ScrollY(+m_speed);*/
 	}
-
+	if (CKey_Manager::Get_Instance()->Key_Up(KEY_DOWN)) // 아래점프
+		m_keyPush.isDown = false;
 
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 	{
@@ -146,7 +156,13 @@ int CPlayer::Update_GameObject()
 		}
 	}
 
-	if (!m_keyPush.isJump && !m_keyPush.isLeft &&!m_keyPush.isRight)
+	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_A))
+		Player_Swing();
+	if (CKey_Manager::Get_Instance()->Key_Up(KEY_A))
+		m_keyPush.isAttack = false;
+
+
+	if (!m_keyPush.isJump && !m_keyPush.isLeft &&!m_keyPush.isRight &&!m_keyPush.isDown && !m_keyPush.isAttack)
 		Player_Idle();
 	if (m_isJump || m_isDownJump)
 		Player_Jump();
@@ -357,22 +373,56 @@ void CPlayer::Player_Jump()
 		Set_Animation(m_right_hdc, Animation::JUMP, Animation_index::JUMP_INDEX);
 }
 
+void CPlayer::Player_Prone()
+{
+	if (m_currentKey == CurrentKey::CUR_LEFT)
+		Set_Animation(m_left_prone_hdc, Animation::PRONE, Animation_index::PRONE_INDEX);
+	if (m_currentKey == CurrentKey::CUR_RIGHT)
+		Set_Animation(m_right_prone_hdc, Animation::PRONE, Animation_index::PRONE_INDEX);
+
+	m_info.sizeX = 70;
+}
+
+void CPlayer::Player_Swing()
+{
+	m_keyPush.isAttack = true;
+	if (!m_keyPush.isDown)
+	{
+		if (m_currentKey == CurrentKey::CUR_LEFT)
+			Set_Animation(m_left_hdc, Animation::SWING, Animation_index::SWING_INDEX);
+		if (m_currentKey == CurrentKey::CUR_RIGHT)
+			Set_Animation(m_right_hdc, Animation::SWING, Animation_index::SWING_INDEX);
+	}
+	else
+	{
+		if (m_currentKey == CurrentKey::CUR_LEFT)
+			Set_Animation(m_left_prone_hdc, Animation::PRONE, Animation_index::PRONE_SWING_INDEX);
+		if (m_currentKey == CurrentKey::CUR_RIGHT)
+			Set_Animation(m_right_prone_hdc, Animation::PRONE, Animation_index::PRONE_SWING_INDEX);
+
+		m_info.sizeX = 70;
+	}
+}
+
 void CPlayer::Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd)
 {
-	if (Animation::JUMP == animScene || Animation::DEAD == animScene)
-		m_animFrame.frame_start = 0;
+	if (m_animFrame.frame_animation != animScene)
+			m_animFrame.frame_start = 0;
+		//if (Animation::JUMP == animScene || Animation::DEAD == animScene || Animation::PRONE == animScene)
 	m_hdc = hdc;
 	m_animFrame.frame_animation = animScene;
 	m_animFrame.frame_end = frameEnd;
+	m_info.sizeX = 48;
+	m_info.sizeY = 66;
 }
 
-void CPlayer::Play_Animation()
-{
-	if (m_animFrame.frame_time + m_animFrame.frame_speed < GetTickCount())
-	{
-		++m_animFrame.frame_start;
-		m_animFrame.frame_time = GetTickCount();
-		if (m_animFrame.frame_start >= m_animFrame.frame_end)
-			m_animFrame.frame_start = 0;
-	}
-}
+//void CPlayer::Play_Animation()
+//{
+//	if (m_animFrame.frame_time + m_animFrame.frame_speed < GetTickCount())
+//	{
+//		++m_animFrame.frame_start;
+//		m_animFrame.frame_time = GetTickCount();
+//		if (m_animFrame.frame_start >= m_animFrame.frame_end)
+//			m_animFrame.frame_start = 0;
+//	}
+//}

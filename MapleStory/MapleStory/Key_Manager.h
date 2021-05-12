@@ -13,6 +13,7 @@
 #define KEY_DOWN	0x0020
 
 #define KEY_C		0x0040
+#define KEY_A		0x0080
 
 class CKey_Manager
 {

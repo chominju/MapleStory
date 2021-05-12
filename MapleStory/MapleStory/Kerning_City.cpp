@@ -5,6 +5,7 @@
 #include "Bitmap_Manager.h"
 #include "Scroll_Manager.h"
 #include "GameObject_Manager.h"
+#include "Portal.h"
 
 Kerning_City::Kerning_City()
 {
@@ -22,6 +23,14 @@ int Kerning_City::Ready_Scene()
 
 	CGameObject* object = CPlayer::Create();
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PLAYER, object);
+
+	CGameObject* portal = CPortal::Create();
+	portal->SetPos(300, 200);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal);
+
+	CGameObject*portal2 = CPortal::Create();
+	portal2->SetPos(3780, 375);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal2);
 
 	return S_OK;
 }

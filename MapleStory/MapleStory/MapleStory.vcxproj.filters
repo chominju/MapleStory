@@ -67,6 +67,12 @@
     <Filter Include="소스 파일\01.GameObject\02.Skill">
       <UniqueIdentifier>{2f5f38a8-e359-4b37-a871-27ceec60a253}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\05.Scene\Map1">
+      <UniqueIdentifier>{d25d0036-b699-48af-989f-ab3096b618ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\03.Portal">
+      <UniqueIdentifier>{7191668a-e3b2-42a4-9d84-e0c70eaac4ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -129,6 +135,12 @@
     <ClInclude Include="GameObject_Manager.h">
       <Filter>소스 파일\01.GameObject\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Map1.h">
+      <Filter>소스 파일\05.Scene\Map1</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>소스 파일\01.GameObject\03.Portal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -181,6 +193,12 @@
     </ClCompile>
     <ClCompile Include="GameObject_Manager.cpp">
       <Filter>소스 파일\01.GameObject\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Map1.cpp">
+      <Filter>소스 파일\05.Scene\Map1</Filter>
+    </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>소스 파일\01.GameObject\03.Portal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -7,10 +7,9 @@
 
 enum Object_ID
 {
-	BULLET,
-	SHIELD,
 	MONSTER,
 	BOSS,
+	PORTAL,
 	PLAYER,
 	UI,
 	MOUSE,
@@ -46,13 +45,16 @@ enum Animation
 	ALERT,
 	JUMP,
 	ROPE,
-	DEAD
+	DEAD,
+	PRONE=0
 };
 
 enum Animation_index
 {
 	STAND_INDEX = 3,
 	WALK_INDEX = 4,
+	PRONE_INDEX = 1,
+	PRONE_SWING_INDEX = 2,
 	SWING_INDEX = 3,
 	ALERT_INDEX = 3,
 	JUMP_INDEX = 1,

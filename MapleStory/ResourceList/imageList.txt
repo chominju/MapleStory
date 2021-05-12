@@ -2,6 +2,10 @@ Player_Left
 ../Resource/Player/Player_Left.bmp
 Player_Right
 ../Resource/Player/Player_Right.bmp
+Player_Left_Prone
+../Resource/Player/Player_Left_Prone.bmp
+Player_Right_Prone
+../Resource/Player/Player_Right_Prone.bmp
 Kerning_City
 ../Resource/BackGround/Kerning_City.bmp
 Map1
@@ -10,6 +14,8 @@ BackBuffer
 ../Resource/BackGround/BackBuffer.bmp
 DoubleBuff
 ../Resource/BackGround/DoubleBuff.bmp
+Portal
+../Resource/BackGround/Portal.bmp
 DoubleStab
 ../Resource/SkillEffect/DoubleStab/skill_doubleStab.bmp
 SavageBlow

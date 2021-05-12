@@ -90,5 +90,7 @@ typedef struct
 {
 	bool isLeft;
 	bool isRight;
+	bool isDown;
 	bool isJump;
+	bool isAttack;
 }Key_Push;

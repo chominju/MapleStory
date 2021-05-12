@@ -109,7 +109,7 @@ bool CLoadData::Load_Line()
 		//line_list->push_back(pLine);
 	}
 	CloseHandle(hFile);
-	MessageBox(nullptr, L"로드성공", L"LoadSuccess", MB_OK);
+	//MessageBox(nullptr, L"로드성공", L"LoadSuccess", MB_OK);
 
 	/*ifstream readFile;
 	readFile.open("../ResourceList/lineList.txt");
