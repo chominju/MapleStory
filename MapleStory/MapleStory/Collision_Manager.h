@@ -8,7 +8,7 @@ private:
 public:
 	static void Collision_Rect(list<CGameObject*>* listDest, list<CGameObject*>* listSrc);
 	static void Collision_Portal(list<CGameObject*>* player, list<CGameObject*>* portal);
-
+	static bool Collision_Rope(list<CGameObject*>* player, list<CGameObject*>* rope , const RECT** rc);
 private:
 
 };

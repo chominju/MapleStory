@@ -10,7 +10,10 @@ enum Object_ID
 	MONSTER,
 	BOSS,
 	PORTAL,
+	ROPE,
 	PLAYER,
+	SKILL,
+	EFFECT,
 	UI,
 	MOUSE,
 	END
@@ -45,7 +48,7 @@ enum Animation
 	SWING,
 	ALERT,
 	JUMP,
-	ROPE,
+	ROPING,
 	DEAD,
 	PRONE
 };
@@ -60,5 +63,6 @@ enum Animation_index
 	ALERT_INDEX = 3,
 	JUMP_INDEX = 1,
 	ROPE_INDEX = 2,
+	ROPE_STOP_INDEX = 1,
 	DEAD_INDEX = 1
 };

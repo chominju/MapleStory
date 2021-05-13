@@ -25,6 +25,7 @@ public:
 	void Player_Jump();
 	void Player_Prone();
 	void Player_Swing();
+	void Player_Rope();
 	void Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd);
 
 	//void Play_Animation();
@@ -38,20 +39,17 @@ private:
 	bool m_isJumpRight;
 	bool m_isDownJump;
 	bool m_moveLock;
+
 	//bool m_jumpKeyUp;
 
-	float jumpHeight;
+	float m_jumpHeight;
 	float m_power;
 	float current_jumpHeight;
-	float jump_before;
 	HDC m_left_hdc;
 	HDC m_right_hdc;
 
-	float fall;
+	float m_fallSpeed;
 	Key_Push m_keyPush;
-
-	float m_beforeY;
-	float m_difY;
 
 	//HDC m_temptemp; 스킬 체험
 };

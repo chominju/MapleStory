@@ -33,25 +33,4 @@ void CSaveData::Save_Data(TCHAR * fileName)
 	CloseHandle(hFile);
 	MessageBox(nullptr, L"저장완료!", L"오예!", MB_OK);
 
-
-
-
-	/*ofstream writeFile;
-	if (!lstrcmp(mapName, L"Kerning_City"))
-	{
-		writeFile.open("../ResourceList/lineList.txt");
-	}
-	
-
-	for (auto iter : *line_list)
-	{
-		string x1 = to_string(iter->Get_LineInfo()->left_pos.x) + "\n";
-		string y1 = to_string(iter->Get_LineInfo()->left_pos.y) + "\n";
-		string x2 = to_string(iter->Get_LineInfo()->right_pos.x) + "\n";
-		string y2 = to_string(iter->Get_LineInfo()->right_pos.y) + "\n";
-		writeFile.write(x1.c_str(),x1.size());
-		writeFile.write(y1.c_str(),y1.size());
-		writeFile.write(x2.c_str(),x2.size());
-		writeFile.write(y2.c_str(),y2.size());
-	}*/
 }

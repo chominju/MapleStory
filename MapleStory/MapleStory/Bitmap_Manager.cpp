@@ -6,7 +6,6 @@ CBitmap_Manager::CBitmap_Manager()
 {
 }
 
-
 CBitmap_Manager::~CBitmap_Manager()
 {
 	Release_Bitmap_Manager();

@@ -20,7 +20,6 @@ CScene_Manager::~CScene_Manager()
 Pos_int & CScene_Manager::Get_SceneSize()
 {
 	return m_scene->GetSceneSize();
-	// TODO: 여기에 반환 구문을 삽입합니다.
 }
 
 void CScene_Manager::Change_Scene_Manager(Scene_ID nextScene)

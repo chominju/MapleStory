@@ -29,8 +29,7 @@ bool CLine_Manager::Collision_Line_Manager(CPlayer*player, float finX, float fin
 			float fy2 = pLine->Get_LineInfo()->right_pos.y;
 			float y = (fy2 - fy1) / (fx2 - fx1) * (finX - fx1) + fy1;
 
-			float dis = y - player->GetInfo()->y;// -player->GetInfo().sizeY;
-			//float dis = y - *(player->GetInfo()).y;// -player->GetInfo().sizeY;
+			float dis = y - player->GetInfo()->y;
 			if (dis < min && dis>= player->GetInfo()->sizeY/2-10)
 			{
 				min = dis;

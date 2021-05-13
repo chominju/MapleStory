@@ -7,6 +7,7 @@
 #include "GameObject_Manager.h"
 #include "LoadData.h"
 #include "Portal.h"
+#include "Rope.h"
 
 Kerning_City::Kerning_City()
 {
@@ -36,7 +37,15 @@ int Kerning_City::Ready_Scene()
 	dynamic_cast<CPortal*>(portal2)->Set_NextSceneID(SCENE_MAP1);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal2);
 
-	CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100,200);
+	CGameObject* rope = CRope::Create();
+	rope->SetPos(2400, 1250);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(1500, 1250);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 380);
 
 
 	CScroll_Manager::Set_ResetX();
@@ -60,24 +69,8 @@ void Kerning_City::Render_Scene(HDC hdc)
 
 	BitBlt(hdc, 0, 0, WINCX, WINCY, m_hdc, -scrollX, (m_SceneSize.y-WINCY) -scrollY, SRCCOPY);
 
-	//GdiTransparentBlt(hdc, // 그림을 복사하고자 하는 대상. 
-	//	0,//위치 x,y
-	//	0,
-	//	WINCX,// 크기 xy
-	//	WINCY,
-	//	m_hdc,// 복사 할 대상
-	//	-scrollX, m_SceneSize.y-WINCY + scrollY,// 그림의 시작 위치 x,y
-	//	WINCX,// 그리고자 하는 영역의 크기 x,y
-	//	WINCY,
-	//	RGB(255, 0, 255));
-
-
-
-
 	CLine_Manager::Get_Instance()->Render_Line_Manager(hdc);
 	CGameObject_Manager::Get_Instance()->Render_GameObject_Manager(hdc);
-
-	//CGameObject_Manager::Get_Instance()->Render_GameObject_Manager(hDC);
 }
 
 void Kerning_City::Release_Scene()

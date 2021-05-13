@@ -31,7 +31,6 @@ int CMainApp::Ready_MainApp()
 
 	m_hDC = GetDC(g_hwnd);
 	m_dwFPSTime = GetTickCount();
-	//m_player = CPlayer::Create();
 
 	CScene_Manager::Get_Instance()->Change_Scene_Manager(Scene_ID::SCENE_Kerning_City);
 	return READY_OK;
@@ -39,14 +38,8 @@ int CMainApp::Ready_MainApp()
 
 void CMainApp::Update_MainApp()
 {
-	//m_player->Update_GameObject();
-	//m_player->Late_Update_GameObject();
 	CKey_Manager::Get_Instance()->Update_Key_Manager();
 	CScene_Manager::Get_Instance()->Update_Scene_Manager();
-	//CKey_Manager::Get_Instance()->Update_Key_Manager();
-	//CGameObject_Manager::Get_Instance()->Update_GameObject_Manager();
-	//CGameObject_Manager::Get_Instance()->Late_Update_GameObject_Manager();
-
 }
 
 void CMainApp::Render_MainApp()
@@ -58,21 +51,6 @@ void CMainApp::Render_MainApp()
 		m_iFPS = 0;
 		m_dwFPSTime = GetTickCount();
 	}
-
-	//map<const TCHAR*, CMyBitmap*>* m_map_bitMap = CLoadData::Get_Instance()->Get_Map();
-	//auto& iter = find_if(m_map_bitMap->begin(), m_map_bitMap->end(), [&](auto& rpair )
-	//{
-	//	return !lstrcmp(L"Player1", rpair.first);
-	//});
-	//HDC tempDC = iter->second->Get_memDC();
-	//if (tempDC == nullptr)
-	//	return;
-	//BitBlt(m_hDC,// 복사하고자 하는 대상 
-	//	0, 0,// 그릴 시작 위치
-	//	WINCX, WINCY, // 그림의 크기 
-	//	tempDC,//복사할 대상 
-	//	0, 0, //그림에서의 시작 위치 
-	//	SRCCOPY); // 그릴 형식. 
 
 	HDC doubleBuffer = CBitmap_Manager::Get_Instance()->Get_memDC(L"BackBuffer");
 	if (nullptr == doubleBuffer)
@@ -92,8 +70,6 @@ void CMainApp::Render_MainApp()
 
 	
 	CScene_Manager::Get_Instance()->Render_Scene_Manager(doubleBuffer);
-	//CLine_Manager::Get_Instance()->Render_Line_Manager(doubleBuffer);
-	//m_player->Render_GameObject(doubleBuffer);
 	BitBlt(m_hDC, 0, 0, WINCX, WINCY, doubleBuffer, 0, 0, SRCCOPY);
 }
 
@@ -101,10 +77,6 @@ void CMainApp::Release_MainApp()
 {
 	ReleaseDC(g_hwnd, m_hDC);
 	CScene_Manager::Destroy_Instance();
-	//CBitmap_Manager::Destroy_Instance();
-	//CKey_Manager::Destroy_Instance();
-	//CGameObject_Manager::Destroy_Instance();
-	//CLine_Manager::Destroy_Instance();
 }
 
 CMainApp * CMainApp::Create()

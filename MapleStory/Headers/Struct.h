@@ -99,4 +99,6 @@ typedef struct
 	bool isDown;
 	bool isJump;
 	bool isAttack;
+	bool isRope;
+	bool isRopeMove;
 }Key_Push;

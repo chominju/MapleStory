@@ -39,6 +39,11 @@ public:
 		return m_listGameObject[Object_ID::PLAYER].front();
 	}
 
+	list<CGameObject*>& GetObejct(Object_ID id)
+	{
+		return m_listGameObject[id];
+	}
+
 private:
 	static CGameObject_Manager* m_instance;
 	list<CGameObject*> m_listGameObject[Object_ID::END];

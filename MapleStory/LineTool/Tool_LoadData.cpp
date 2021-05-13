@@ -78,26 +78,6 @@ bool CLoadData::Load_Image()
 			MultiByteToWideChar(CP_ACP, 0, ch2, -1, imagePath, len + 1);
 
 			CBitmap_Manager::Get_Instance()->Insert_Bitmap_Manager(imageKey, imagePath);
-			
-		/*	imageKey[str.size()] = 0;
-			wcstombs_s(str.size(),str.c_str(), imageKey, str.size());
-
-			copy_s(str.begin(), str.end(), imageKey);
-			copy
-			if (readFile.eof())
-				return false;
-
-			string str2;
-			getline(readFile, str2);
-			TCHAR *imagePath = new TCHAR[str2.size() + 1];
-			imageKey[str2.size()] = 0;
-			copy(str2.begin(), str2.end(), imagePath);*/
-
-
-			/*CMyBitmap *newBitmap = new CMyBitmap;
-			newBitmap->Insert_Bitmap(imagePath);
-			m_map_bitMap.insert(make_pair(imageKey, newBitmap));*/
-
 		}
 	}
 	else

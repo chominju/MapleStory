@@ -35,8 +35,6 @@ void CCollision_Manager::Collision_Portal(list<CGameObject*>* player, list<CGame
 	{
 		for (auto& portal_object : *portal)
 		{
-			/*if (IntersectRect(&rc, player_object->GetRect(), portal_object->GetRect()))
-			{*/
 			const RECT* playerRect = player_object->GetRect();
 			const RECT* portalRect = portal_object->GetRect();
 
@@ -61,4 +59,23 @@ void CCollision_Manager::Collision_Portal(list<CGameObject*>* player, list<CGame
 			}
 		}
 	}
+}
+
+bool CCollision_Manager::Collision_Rope(list<CGameObject*>* player, list<CGameObject*>* rope, const RECT** rc)
+{
+	for (auto & player_object : *player)
+	{
+		for (auto& rope_object : *rope)
+		{
+			float playerX = player_object->GetInfo()->x;
+			const RECT* ropeRect = rope_object->GetRect();
+
+			if (ropeRect->left <= playerX && playerX <= ropeRect->right)
+			{
+				*rc = ropeRect;
+				return true;
+			}
+		}
+	}
+	return false;
 }

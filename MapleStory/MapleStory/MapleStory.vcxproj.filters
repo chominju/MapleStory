@@ -76,6 +76,9 @@
     <Filter Include="소스 파일\02.Manager\Collision_Manager">
       <UniqueIdentifier>{f6c1e4e9-8518-45ce-b9e8-7c7cb2b50878}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\04.Rope">
+      <UniqueIdentifier>{d07ca558-ab26-4402-b850-89d1d6031916}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -147,6 +150,9 @@
     <ClInclude Include="Field1.h">
       <Filter>소스 파일\05.Scene\Map1</Filter>
     </ClInclude>
+    <ClInclude Include="Rope.h">
+      <Filter>소스 파일\01.GameObject\04.Rope</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -208,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="Field1.cpp">
       <Filter>소스 파일\05.Scene\Map1</Filter>
+    </ClCompile>
+    <ClCompile Include="Rope.cpp">
+      <Filter>소스 파일\01.GameObject\04.Rope</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
