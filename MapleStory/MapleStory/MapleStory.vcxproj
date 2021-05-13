@@ -151,6 +151,9 @@
   <ItemGroup>
     <ClInclude Include="Bitmap_Manager.h" />
     <ClInclude Include="Collision_Manager.h" />
+    <ClInclude Include="DaggerBooster.h" />
+    <ClInclude Include="DoubleJump.h" />
+    <ClInclude Include="DoubleStab.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObject_Manager.h" />
     <ClInclude Include="Kerning_City.h" />
@@ -167,15 +170,20 @@
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Rope.h" />
+    <ClInclude Include="SavageBlow.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene_Manager.h" />
     <ClInclude Include="Scroll_Manager.h" />
+    <ClInclude Include="Skill.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap_Manager.cpp" />
     <ClCompile Include="Collision_Manager.cpp" />
+    <ClCompile Include="DaggerBooster.cpp" />
+    <ClCompile Include="DoubleJump.cpp" />
+    <ClCompile Include="DoubleStab.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObject_Manager.cpp" />
     <ClCompile Include="Kerning_City.cpp" />
@@ -191,9 +199,11 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Rope.cpp" />
+    <ClCompile Include="SavageBlow.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scene_Manager.cpp" />
     <ClCompile Include="Scroll_Manager.cpp" />
+    <ClCompile Include="Skill.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

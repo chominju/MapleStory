@@ -12,8 +12,10 @@ enum Object_ID
 	PORTAL,
 	ROPE,
 	PLAYER,
-	SKILL,
-	EFFECT,
+	ATTACK_SKILL,
+	BUFF_SKILL,
+	SKILL_EFFECT,
+	ITEM,
 	UI,
 	MOUSE,
 	END
@@ -65,4 +67,12 @@ enum Animation_index
 	ROPE_INDEX = 2,
 	ROPE_STOP_INDEX = 1,
 	DEAD_INDEX = 1
+};
+
+enum Item_type
+{
+	EQUIPMENT,
+	WEAR_EQUIPMENT,
+	CONSUME,
+	ETC,
 };

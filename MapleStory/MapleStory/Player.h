@@ -26,13 +26,12 @@ public:
 	void Player_Prone();
 	void Player_Swing();
 	void Player_Rope();
+	void Player_Skill(Animation animScene, Animation_index frameEnd);
 	void Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd);
-
 	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
 
-	CurrentKey m_currentKey;
 	bool m_isJump;
 	bool m_isDoubleJump;
 	bool m_isJumpLeft;
@@ -43,13 +42,15 @@ private:
 	//bool m_jumpKeyUp;
 
 	float m_jumpHeight;
+	float m_DoublejumpHeight;
 	float m_power;
 	float current_jumpHeight;
-	HDC m_left_hdc;
-	HDC m_right_hdc;
+	float current_DoublejumpHeight;
 
 	float m_fallSpeed;
 	Key_Push m_keyPush;
+
+	CurrentKey jumpDir;
 
 	//HDC m_temptemp; 스킬 체험
 };

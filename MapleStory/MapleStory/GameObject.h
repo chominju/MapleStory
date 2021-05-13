@@ -29,6 +29,12 @@ public:
 		m_info.y = y;
 	}
 
+	void SetSize(float x, float y)
+	{
+		m_info.sizeX = x;
+		m_info.sizeY = y;
+	}
+
 	void SetDead()
 	{
 		m_isDead = true;
@@ -49,16 +55,30 @@ public:
 		return m_isPortal;
 	}
 
-	void Play_Animation();
+	virtual void Play_Animation();
+
+	void Set_Target(CGameObject* target)
+	{
+		m_target = target;
+	}
+
+	CurrentKey Get_CurrentKey()
+	{
+		return m_currentKey;
+	}
 
 protected:
 	HDC m_hdc;
 	RECT m_rect;
 	Object_Info m_info;
 	Object_Data m_data;
+	CurrentKey m_currentKey;
 	float m_speed;
 	bool m_isDead;
 	bool m_isPortal;
+	HDC m_left_hdc;
+	HDC m_right_hdc;
 	Animation_Frame m_animFrame;
+	CGameObject* m_target;
 };
 

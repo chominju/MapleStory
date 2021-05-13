@@ -7,6 +7,7 @@
 #include "LoadData.h"
 #include "GameObject_Manager.h"
 #include "Portal.h"
+#include "Rope.h"
 
 CField1::CField1()
 {
@@ -29,6 +30,9 @@ int CField1::Ready_Scene()
 	portal->SetPos(100, 380);
 	dynamic_cast<CPortal*>(portal)->Set_NextSceneID(SCENE_Kerning_City);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal);
+	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
+
+	Create_Rope_Scene();
 
 	CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 380);
 
@@ -60,6 +64,30 @@ void CField1::Render_Scene(HDC hdc)
 
 void CField1::Release_Scene()
 {
+}
+
+void CField1::Create_Rope_Scene()
+{
+	CGameObject*rope = CRope::Create();
+	rope->SetPos(906, 1225);
+	rope->SetSize(10, 80);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(1747, 1225);
+	rope->SetSize(10, 80);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(2125, 1010);
+	rope->SetSize(50, 140);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(1190, 175);
+	rope->SetSize(10, 110);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
 }
 
 CScene * CField1::Create()

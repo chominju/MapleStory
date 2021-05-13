@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Rope.h"
+#include "Scroll_Manager.h"
 
 
 CRope::CRope()
@@ -13,8 +14,8 @@ CRope::~CRope()
 
 int CRope::Ready_GameObject()
 {
-	m_info.sizeX =22;
-	m_info.sizeY = 170;
+	m_info.sizeX = 20;
+	m_info.sizeY = 110;
 	return 0;
 }
 
@@ -31,6 +32,9 @@ void CRope::Late_Update_GameObject()
 void CRope::Render_GameObject(HDC hDC)
 {
 	UpdateRect_GameObject();
+	int X = CScroll_Manager::Get_ScrollX();
+	int Y = CScroll_Manager::Get_ScrollY();
+	Rectangle(hDC, m_rect.left +X, m_rect.top-WINCY +Y, m_rect.right + X, m_rect.bottom - WINCY + Y);
 }
 
 void CRope::Release_GameObject()

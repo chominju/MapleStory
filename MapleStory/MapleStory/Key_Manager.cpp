@@ -33,13 +33,13 @@ void CKey_Manager::Update_Key_Manager()
 	if (GetAsyncKeyState('A') & 0x8000)
 		m_key |= KEY_A;
 	if (GetAsyncKeyState('Q') & 0x8000)
-		m_key |= KEY_A;
+		m_key |= KEY_Q;
 	if (GetAsyncKeyState('W') & 0x8000)
-		m_key |= KEY_A;
+		m_key |= KEY_W;
 	if (GetAsyncKeyState('E') & 0x8000)
-		m_key |= KEY_A;
+		m_key |= KEY_E;
 	if (GetAsyncKeyState('R') & 0x8000)
-		m_key |= KEY_A;
+		m_key |= KEY_R;
 }
 
 bool CKey_Manager::Key_Up(DWORD key)

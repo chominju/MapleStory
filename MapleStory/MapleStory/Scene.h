@@ -10,7 +10,7 @@ public:
 	virtual void Update_Scene() = 0;
 	virtual void Render_Scene(HDC hdc) = 0;
 	virtual void Release_Scene() = 0;
-
+	virtual void Create_Rope_Scene() = 0;
 	Pos_int& GetSceneSize()
 	{
 		return m_SceneSize;

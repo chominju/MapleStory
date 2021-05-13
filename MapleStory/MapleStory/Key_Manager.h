@@ -14,10 +14,11 @@
 
 #define KEY_F		0x0040
 #define KEY_A		0x0080
-#define KEY_Q		0x0080
-#define KEY_W		0x0080
-#define KEY_E		0x0080
-#define KEY_R		0x0080
+#define KEY_Q		0x0100
+#define KEY_W		0x0200
+#define KEY_E		0x0400
+#define KEY_R		0x0800
+
 class CKey_Manager
 {
 public:

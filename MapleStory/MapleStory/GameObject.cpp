@@ -4,6 +4,8 @@
 CGameObject::CGameObject()
 	:m_isDead(false)
 	, m_speed(0.f)
+	, m_target(nullptr)
+	, m_currentKey(CurrentKey::CUR_RIGHT)
 {
 	ZeroMemory(&m_rect, sizeof(RECT));
 }

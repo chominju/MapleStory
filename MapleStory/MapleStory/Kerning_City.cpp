@@ -36,14 +36,8 @@ int Kerning_City::Ready_Scene()
 	portal2->SetPos(100, 380);
 	dynamic_cast<CPortal*>(portal2)->Set_NextSceneID(SCENE_MAP1);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal2);
-
-	CGameObject* rope = CRope::Create();
-	rope->SetPos(2400, 1250);
-	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
-
-	rope = CRope::Create();
-	rope->SetPos(1500, 1250);
-	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
+	Create_Rope_Scene();
 
 	CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 380);
 
@@ -75,6 +69,42 @@ void Kerning_City::Render_Scene(HDC hdc)
 
 void Kerning_City::Release_Scene()
 {
+}
+
+void Kerning_City::Create_Rope_Scene()
+{
+	CGameObject*rope = CRope::Create();
+	rope->SetPos(495, 500);
+	rope->SetSize(5, 580);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(1210, 740);
+	rope->SetSize(50, 200);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(1320, 886);
+	rope->SetSize(50, 200);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(1500, 1180);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(1930, 980);
+	rope->SetSize(40, 90);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(2410, 1180);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
+
+	rope = CRope::Create();
+	rope->SetPos(3150, 1020);
+	rope->SetSize(40, 80);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 }
 
 CScene * Kerning_City::Create()

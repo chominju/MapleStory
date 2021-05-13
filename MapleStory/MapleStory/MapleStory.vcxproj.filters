@@ -79,6 +79,18 @@
     <Filter Include="소스 파일\01.GameObject\04.Rope">
       <UniqueIdentifier>{d07ca558-ab26-4402-b850-89d1d6031916}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Skill\DoubleStab">
+      <UniqueIdentifier>{3429fb3d-5cf6-4c5b-8def-f4ee90ffa602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Skill\DoubleJump">
+      <UniqueIdentifier>{50ef6743-a27f-4813-9610-1ce10705635b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Skill\DaggerBooster">
+      <UniqueIdentifier>{ecf73242-a587-496c-882a-b5d5dd61af96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Skill\SavageBlow">
+      <UniqueIdentifier>{413a0e58-f8d0-4b80-92a6-3a85a00a7ef3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -153,6 +165,21 @@
     <ClInclude Include="Rope.h">
       <Filter>소스 파일\01.GameObject\04.Rope</Filter>
     </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>소스 파일\01.GameObject\02.Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleStab.h">
+      <Filter>소스 파일\01.GameObject\02.Skill\DoubleStab</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleJump.h">
+      <Filter>소스 파일\01.GameObject\02.Skill\DoubleJump</Filter>
+    </ClInclude>
+    <ClInclude Include="DaggerBooster.h">
+      <Filter>소스 파일\01.GameObject\02.Skill\DaggerBooster</Filter>
+    </ClInclude>
+    <ClInclude Include="SavageBlow.h">
+      <Filter>소스 파일\01.GameObject\02.Skill\SavageBlow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -217,6 +244,21 @@
     </ClCompile>
     <ClCompile Include="Rope.cpp">
       <Filter>소스 파일\01.GameObject\04.Rope</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>소스 파일\01.GameObject\02.Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleStab.cpp">
+      <Filter>소스 파일\01.GameObject\02.Skill\DoubleStab</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleJump.cpp">
+      <Filter>소스 파일\01.GameObject\02.Skill\DoubleJump</Filter>
+    </ClCompile>
+    <ClCompile Include="DaggerBooster.cpp">
+      <Filter>소스 파일\01.GameObject\02.Skill\DaggerBooster</Filter>
+    </ClCompile>
+    <ClCompile Include="SavageBlow.cpp">
+      <Filter>소스 파일\01.GameObject\02.Skill\SavageBlow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
