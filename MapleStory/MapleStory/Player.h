@@ -28,6 +28,7 @@ public:
 	void Player_Rope();
 	void Player_Skill(Animation animScene, Animation_index frameEnd);
 	void Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd);
+	void Is_OffSet();
 	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
@@ -38,6 +39,7 @@ private:
 	bool m_isJumpRight;
 	bool m_isDownJump;
 	bool m_moveLock;
+	bool m_isFall;
 
 	//bool m_jumpKeyUp;
 
@@ -51,6 +53,9 @@ private:
 	Key_Push m_keyPush;
 
 	CurrentKey jumpDir;
+
+	bool m_checkScrollY;
+	float m_checkKeepY;
 
 	//HDC m_temptemp; 스킬 체험
 };

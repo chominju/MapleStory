@@ -34,7 +34,10 @@ int CField1::Ready_Scene()
 
 	Create_Rope_Scene();
 
-	CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 380);
+	if(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_isPortal())
+		CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 380);
+	else
+		CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 100);
 
 	CScroll_Manager::Set_ResetX();
 	CScroll_Manager::Set_ResetY();

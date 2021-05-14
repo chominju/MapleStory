@@ -8,6 +8,7 @@
 #include "Scene_Manager.h"
 #include "Key_Manager.h"
 #include "GameObject_Manager.h"
+#include "Scroll_Manager.h"
 
 CMainApp::CMainApp()
 //:m_pPlayer(nullptr)
@@ -40,6 +41,8 @@ void CMainApp::Update_MainApp()
 {
 	CKey_Manager::Get_Instance()->Update_Key_Manager();
 	CScene_Manager::Get_Instance()->Update_Scene_Manager();
+
+	CScroll_Manager::ScrollLock();
 }
 
 void CMainApp::Render_MainApp()
