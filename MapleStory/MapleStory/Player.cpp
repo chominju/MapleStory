@@ -52,6 +52,7 @@ int CPlayer::Ready_GameObject()
 	current_DoublejumpHeight = 0;
 	m_power = 5;
 	m_fallSpeed = 5;
+	m_checkKeepY = -768;
 	UpdateRect_GameObject();
 
 	m_animFrame.frame_start = 0;
@@ -229,6 +230,9 @@ void CPlayer::Render_GameObject(HDC hDC)
 	int scrollX = CScroll_Manager::Get_ScrollX();
 	int scrollY = CScroll_Manager::Get_ScrollY();
 
+	int i;
+	int j;
+
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
 		m_rect.left+ scrollX,//위치 x,y
 		m_rect.top+ scrollY,
@@ -322,12 +326,12 @@ void CPlayer::IsJump()
 							CScroll_Manager::Set_ScrollX(m_speed);
 
 					current_DoublejumpHeight += m_power;
-					if (current_DoublejumpHeight <= m_DoublejumpHeight)
-					{
-						m_info.y -= m_power;
-							CScroll_Manager::Set_ScrollY(m_power);
-						//if ((m_info.y + WINCY / 2 > 0 && m_info.y < 0) || m_info.y >= 0)
-					}
+					//if (current_DoublejumpHeight <= m_DoublejumpHeight)
+					//{
+					//	m_info.y -= m_power;
+					//		CScroll_Manager::Set_ScrollY(m_power);
+					//	//if ((m_info.y + WINCY / 2 > 0 && m_info.y < 0) || m_info.y >= 0)
+					//}
 				}
 
 			}
@@ -341,12 +345,12 @@ void CPlayer::IsJump()
 							CScroll_Manager::Set_ScrollX(-m_speed);
 
 					current_DoublejumpHeight += m_power;
-					if (current_DoublejumpHeight <= m_DoublejumpHeight)
-					{
-						m_info.y -= m_power;
-							CScroll_Manager::Set_ScrollY(m_power);
-						//if ((m_info.y + WINCY / 2 > 0 && m_info.y < 0) || m_info.y >= 0)
-					}
+					//if (current_DoublejumpHeight <= m_DoublejumpHeight)
+					//{
+					//	m_info.y -= m_power;
+					//	CScroll_Manager::Set_ScrollY(m_power);
+					//	//if ((m_info.y + WINCY / 2 > 0 && m_info.y < 0) || m_info.y >= 0)
+					//}
 				}
 			}
 		}
@@ -512,6 +516,10 @@ void CPlayer::Player_Rope()
 		{
 			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN))
 			{
+				float dis = m_info.x - (ropeRect->right + ropeRect->left) / 2;
+				m_info.x -= dis;
+				CScroll_Manager::Set_ScrollX(dis);
+
 				if (m_rect.top <= ropeRect->bottom - WINCY)
 				{
 					m_info.y += m_speed;
@@ -541,6 +549,10 @@ void CPlayer::Player_Rope()
 
 			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_UP))
 			{
+				float dis = m_info.x - (ropeRect->right + ropeRect->left)/2;
+				m_info.x -= dis;
+				CScroll_Manager::Set_ScrollX(dis);
+
 				if (m_rect.bottom >= ropeRect->top - WINCY)
 				{
 					int scrollY = CScroll_Manager::Get_ScrollY();
@@ -578,18 +590,6 @@ void CPlayer::Player_Skill(Animation animScene, Animation_index frameEnd)
 		Set_Animation(m_right_hdc, animScene, frameEnd);
 }
 
-void CPlayer::Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd)
-{
-	if (m_animFrame.frame_animation != animScene)
-			m_animFrame.frame_start = 0;
-
-	m_hdc = hdc;
-	m_animFrame.frame_animation = animScene;
-	m_animFrame.frame_end = frameEnd;
-	m_info.sizeX = 48;
-	m_info.sizeY = 66;
-}
-
 void CPlayer::Is_OffSet()
 {
 	float scrollX = CScroll_Manager::Get_ScrollX();
@@ -604,4 +604,17 @@ void CPlayer::Is_OffSet()
 	//	CScroll_Manager::Set_ScrollY(-m_speed);
 	//if ((WINCY >> 1)- 100 > Y)
 	//	CScroll_Manager::Set_ScrollY(m_speed);
+}
+
+
+void CPlayer::Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd)
+{
+	if (m_animFrame.frame_animation != animScene)
+		m_animFrame.frame_start = 0;
+
+	m_hdc = hdc;
+	m_animFrame.frame_animation = animScene;
+	m_animFrame.frame_end = frameEnd;
+	m_info.sizeX = 48;
+	m_info.sizeY = 66;
 }

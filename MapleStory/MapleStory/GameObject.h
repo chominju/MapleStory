@@ -78,7 +78,11 @@ protected:
 	bool m_isPortal;
 	HDC m_left_hdc;
 	HDC m_right_hdc;
+
+	HDC m_hpBar_hdc;
+	HDC m_hpBackBar_hdc;
 	Animation_Frame m_animFrame;
 	CGameObject* m_target;
+
 };
 

@@ -8,6 +8,7 @@
 #include "GameObject_Manager.h"
 #include "Portal.h"
 #include "Rope.h"
+#include "Mushroom.h"
 
 CField1::CField1()
 {
@@ -38,6 +39,8 @@ int CField1::Ready_Scene()
 		CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 380);
 	else
 		CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 100);
+
+	CreateMonster();
 
 	CScroll_Manager::Set_ResetX();
 	CScroll_Manager::Set_ResetY();
@@ -91,6 +94,33 @@ void CField1::Create_Rope_Scene()
 	rope->SetSize(10, 110);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
+}
+
+void CField1::CreateMonster()
+{
+	CGameObject * mushroom = CMushroom::Create();
+	mushroom->SetPos(200, 150);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
+	
+	mushroom = CMushroom::Create();
+	mushroom->SetPos(300, 150);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
+	
+	mushroom = CMushroom::Create();
+	mushroom->SetPos(300, 350);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
+
+	mushroom = CMushroom::Create();
+	mushroom->SetPos(500, 350);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
+
+	mushroom = CMushroom::Create();
+	mushroom->SetPos(400, 550);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
+
+	mushroom = CMushroom::Create();
+	mushroom->SetPos(100, 550);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
 }
 
 CScene * CField1::Create()

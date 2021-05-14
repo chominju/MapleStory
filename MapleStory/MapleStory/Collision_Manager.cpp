@@ -73,13 +73,25 @@ bool CCollision_Manager::Collision_Rope(list<CGameObject*>* player, list<CGameOb
 			float player_bottom = player_object->GetRect()->bottom;
 			const RECT* ropeRect = rope_object->GetRect();
 
-			if (ropeRect->left <= playerX && playerX <= ropeRect->right)
+			/*if (ropeRect->left <= playerX && playerX <= ropeRect->right)
 			{
 				if (player_top <= ropeRect->bottom - WINCY || player_bottom >= ropeRect->top)
 				{
 				*rc = ropeRect;
 				return true;
 				}
+			}*/
+			RECT temp = {};
+			RECT temp2 = *ropeRect;
+			temp2.bottom -= WINCY;
+			temp2.top -= WINCY;
+			if (IntersectRect(&temp, player_object->GetRect(), &temp2))
+			{
+				/*if (ropeRect->left <= playerX && playerX <= ropeRect->right)
+				{*/
+					*rc = ropeRect;
+					return true;
+				//}
 			}
 		}
 	}

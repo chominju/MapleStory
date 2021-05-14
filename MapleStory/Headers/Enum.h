@@ -76,3 +76,53 @@ enum Item_type
 	CONSUME,
 	ETC,
 };
+
+enum Direction
+{
+	DIR_LEFT,
+	DIR_RIGHT
+};
+
+enum Mushroom_Animation
+{
+	MUSHROOM_STAND,
+	MUSHROOM_WALK,
+	MUSHROOM_HIT,
+	MUSHROOM_DIE,
+	MUSHROOM_JUMP
+};
+
+
+enum Mushroom_Animation_Index
+{
+	MUSHROOM_STAND_INDEX = 2,
+	MUSHROOM_WALK_INDEX = 3,
+	MUSHROOM_HIT_INDEX = 1,
+	MUSHROOM_DIE_INDEX = 3,
+	MUSHROOM_JUMP_INDEX = 1
+};
+
+enum Octopus_Animation
+{
+	OCTOPUS_WALK,
+	OCTOPUS_JUMP,
+	OCTOPUS_HIT,
+	OCTOPUS_DIE
+};
+
+enum Octopus_Animation_Index
+{
+	OCTOPUS_WALK_INDEX = 5,
+	OCTOPUS_HIT_INDEX = 1,
+	OCTOPUS_DIE_INDEX = 4
+};
+
+enum Monster_State
+{
+	STATE_WALK,
+	STATE_TRACE,
+	STATE_JUMP,
+	STATE_HIT,
+	STATE_NOHIT,
+	STATE_DIE
+};

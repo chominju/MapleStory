@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <map>
 #include <list>
+#include <time.h>
 
 #include "Extern.h"
 #include "Define.h"

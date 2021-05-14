@@ -77,35 +77,35 @@ void Kerning_City::Release_Scene()
 void Kerning_City::Create_Rope_Scene()
 {
 	CGameObject*rope = CRope::Create();
-	rope->SetPos(495, 500);
+	rope->SetPos(495, 495);
 	rope->SetSize(5, 580);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->SetPos(1210, 740);
+	rope->SetPos(1215, 740);
 	rope->SetSize(50, 200);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->SetPos(1320, 886);
+	rope->SetPos(1318, 882);
 	rope->SetSize(50, 200);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->SetPos(1500, 1180);
+	rope->SetPos(1505, 1175);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->SetPos(1930, 980);
+	rope->SetPos(1932, 980);
 	rope->SetSize(40, 90);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->SetPos(2410, 1180);
+	rope->SetPos(2408, 1175);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->SetPos(3150, 1020);
+	rope->SetPos(3148, 1015);
 	rope->SetSize(40, 80);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 }

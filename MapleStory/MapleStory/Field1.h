@@ -14,6 +14,9 @@ public:
 	virtual void Render_Scene(HDC hdc) override;
 	virtual void Release_Scene() override;
 	virtual void Create_Rope_Scene() override;
+
+	void CreateMonster();
+
 public:
 	static CScene* Create();
 };

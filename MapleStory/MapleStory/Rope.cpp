@@ -34,7 +34,7 @@ void CRope::Render_GameObject(HDC hDC)
 	UpdateRect_GameObject();
 	int X = CScroll_Manager::Get_ScrollX();
 	int Y = CScroll_Manager::Get_ScrollY();
-	Rectangle(hDC, m_rect.left +X, m_rect.top-WINCY +Y, m_rect.right + X, m_rect.bottom - WINCY + Y);
+	//Rectangle(hDC, m_rect.left +X, m_rect.top-WINCY +Y, m_rect.right + X, m_rect.bottom - WINCY + Y);
 }
 
 void CRope::Release_GameObject()

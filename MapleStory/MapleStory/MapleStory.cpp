@@ -47,7 +47,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	CMainApp* pMainApp = CMainApp::Create();
 	if (nullptr == pMainApp)
 		return 0;
-
+	
+	srand(unsigned(time));
 
     // 기본 메시지 루프입니다.
 	msg.message = WM_NULL;

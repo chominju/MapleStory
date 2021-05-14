@@ -36,9 +36,10 @@ typedef struct tagLINEINFO
 
 typedef struct
 {
-	char object_type[32];
-	int hp;
-	int maxHp;
+	char id[32];
+	int level;
+	float hp;
+	float maxHp;
 	int exp;
 	int maxExp;
 	int money;

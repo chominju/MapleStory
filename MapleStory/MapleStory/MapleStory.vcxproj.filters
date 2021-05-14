@@ -91,6 +91,9 @@
     <Filter Include="소스 파일\01.GameObject\02.Skill\SavageBlow">
       <UniqueIdentifier>{413a0e58-f8d0-4b80-92a6-3a85a00a7ef3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\01.Monster\01.Mushroom">
+      <UniqueIdentifier>{6053a31b-b610-4444-addc-d77f9e86527a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -180,6 +183,9 @@
     <ClInclude Include="SavageBlow.h">
       <Filter>소스 파일\01.GameObject\02.Skill\SavageBlow</Filter>
     </ClInclude>
+    <ClInclude Include="Mushroom.h">
+      <Filter>소스 파일\01.GameObject\01.Monster\01.Mushroom</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -259,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="SavageBlow.cpp">
       <Filter>소스 파일\01.GameObject\02.Skill\SavageBlow</Filter>
+    </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>소스 파일\01.GameObject\01.Monster\01.Mushroom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
