@@ -12,10 +12,24 @@ public:
 		if (m_scrollPos.y <= 0)
 			m_scrollPos.y = 0;
 	}
-	static int Get_ScrollX() { return m_scrollPos.x; }
-	static int Get_ScrollY() { return m_scrollPos.y; }
-	static void Set_ResetX() { m_scrollPos.x = 0; }
-	static void Set_ResetY() { m_scrollPos.y = 0; }
+	static int Get_ScrollX() 
+	{ 
+		//CScene_Manager::Get_Instance()->Get_SceneSize();
+		return m_scrollPos.x; 
+	}
+	static int Get_ScrollY()
+	{ 
+		return m_scrollPos.y;
+	}
+
+	static void Set_ResetX() 
+	{ 
+		m_scrollPos.x = 0; 
+	}
+	static void Set_ResetY() 
+	{
+		m_scrollPos.y = 0;
+	}
 private:
 	static Pos_int m_scrollPos;
 };

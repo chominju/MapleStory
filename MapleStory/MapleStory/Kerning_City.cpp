@@ -27,7 +27,7 @@ int Kerning_City::Ready_Scene()
 
 	CGameObject_Manager::Get_Instance()->Release_Specific_GameObject_Manager(Object_ID::PORTAL);
 	CGameObject* portal = CPortal::Create();
-	portal->SetPos(500, 200);
+	portal->SetPos(300, 200);
 	dynamic_cast<CPortal*>(portal)->Set_NextSceneID(SCENE_BOSS);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal);
 

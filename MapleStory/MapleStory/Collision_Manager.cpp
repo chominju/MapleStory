@@ -40,6 +40,7 @@ void CCollision_Manager::Collision_Portal(list<CGameObject*>* player, list<CGame
 
 			if (playerRect->left >= portalRect->left+20 && playerRect->right <= portalRect->right-20)
 			{
+				if(player_object->GetInfo()->y >= portalRect->top &&player_object->GetInfo()->y <= portalRect->bottom)
 				check = true;
 				player_object->Set_isPortal(true);
 				portal_object->Set_isPortal(true);

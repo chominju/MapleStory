@@ -200,6 +200,11 @@ int CPlayer::Update_GameObject()
 	if (CGameObject_Manager::Get_Instance()->GetObejct(Object_ID::ATTACK_SKILL).empty())
 		m_keyPush.isSkill = false;
 
+	int x = CScroll_Manager::Get_ScrollX();
+	int y = CScroll_Manager::Get_ScrollY();
+	int i;
+	int j;
+
 	return 0;
 }
 
