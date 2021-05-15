@@ -8,6 +8,8 @@ private:
 public:
 	static void Collision_Rect(list<CGameObject*>* listDest, list<CGameObject*>* listSrc);
 	static void Collision_Portal(list<CGameObject*>* player, list<CGameObject*>* portal);
+	static void Collision_Monster(list<CGameObject*>* player, list<CGameObject*>* monster);
+	static void Collision_Skill(list<CGameObject*>* skill, list<CGameObject*>* monster);
 	static bool Collision_Rope(list<CGameObject*>* player, list<CGameObject*>* rope , const RECT** rc);
 private:
 

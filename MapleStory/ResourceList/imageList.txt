@@ -33,8 +33,11 @@ Mushroom_Left
 Mushroom_Right
 ../Resource/Monster/Mushroom_Right.bmp
 Octopus
-../Resource/Monster/Mushroom_Right.bmp
+../Resource/Monster/Octopus.bmp
 Monster_Hp_Bar
 ../Resource/Ui/Monster_Hp_Bar.bmp
 Monster_Hp_BackBar
 ../Resource/Ui/Monster_Hp_BackBar.bmp
+Damage_Skin
+../Resource/DamageSkin/Damage_Skin.bmp
+

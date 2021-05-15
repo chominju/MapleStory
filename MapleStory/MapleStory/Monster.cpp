@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "Monster.h"
 #include "Scroll_Manager.h"
+#include "Bitmap_Manager.h"
 
 CMonster::CMonster()
 {
+	m_hpBar_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Monster_Hp_Bar");
+	m_hpBackBar_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Monster_Hp_BackBar");
 }
 
 CMonster::~CMonster()
@@ -63,7 +66,7 @@ void CMonster::Render_GameObject(HDC hDC)
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
 		m_rect.left + scrollX,//위치 x,y
 		m_rect.top -20 + scrollY,
-		m_info.sizeX *(10.f/100.f),// 크기 xy
+		m_info.sizeX *(m_data.hp/m_data.maxHp),// 크기 xy
 		10,
 		m_hpBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y

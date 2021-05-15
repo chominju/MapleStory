@@ -16,27 +16,31 @@ CLine_Manager::~CLine_Manager()
 	Release_Line_Manager();
 }
 
-bool CLine_Manager::Collision_Line_Manager(CPlayer*player, float finX, float finY, float * pOutY, CurrentKey currentKey)
+bool CLine_Manager::Collision_Line_Manager(CGameObject*object,float * pOutY)
 {
 	float min=10000;
+	bool check=false;
 	for (auto& pLine : m_listLine)
 	{
-		if (pLine->Get_LineInfo()->left_pos.x <= finX && pLine->Get_LineInfo()->right_pos.x >= finX)
+		if (pLine->Get_LineInfo()->left_pos.x <= object->GetInfo()->x && pLine->Get_LineInfo()->right_pos.x >= object->GetInfo()->x)
 		{
 			float fx1 = pLine->Get_LineInfo()->left_pos.x;
 			float fy1 = pLine->Get_LineInfo()->left_pos.y;
 			float fx2 = pLine->Get_LineInfo()->right_pos.x;
 			float fy2 = pLine->Get_LineInfo()->right_pos.y;
-			float y = (fy2 - fy1) / (fx2 - fx1) * (finX - fx1) + fy1;
+			float y = (fy2 - fy1) / (fx2 - fx1) * (object->GetInfo()->x - fx1) + fy1;
 
-			float dis = y - player->GetInfo()->y;
-			if (dis < min && dis>= player->GetInfo()->sizeY/2-10)
+			float dis = y - object->GetInfo()->y;
+			if (dis < min && dis>= object->GetInfo()->sizeY/2-10)
 			{
 				min = dis;
 				*pOutY = y;
+				check = true;
 			}
 		}
 	}
+
+	return check;
 
 
 

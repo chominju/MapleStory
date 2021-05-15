@@ -102,6 +102,10 @@ void CGameObject_Manager::Late_Update_GameObject_Manager()
 	}
 
 	CCollision_Manager::Collision_Portal(&m_listGameObject[Object_ID::PLAYER], &m_listGameObject[Object_ID::PORTAL]);
+	if (!m_listGameObject[Object_ID::MONSTER].empty())
+		CCollision_Manager::Collision_Monster(&m_listGameObject[Object_ID::PLAYER], &m_listGameObject[Object_ID::MONSTER]);
+	if (!m_listGameObject[Object_ID::ATTACK_SKILL].empty())
+		CCollision_Manager::Collision_Skill(&m_listGameObject[Object_ID::ATTACK_SKILL], &m_listGameObject[Object_ID::MONSTER]);
 
 }
 

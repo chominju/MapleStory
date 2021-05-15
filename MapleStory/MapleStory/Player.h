@@ -26,6 +26,7 @@ public:
 	void Player_Prone();
 	void Player_Swing();
 	void Player_Rope();
+	void Player_Hit();
 	void Player_Skill(Animation animScene, Animation_index frameEnd);
 	void Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd);
 	void Is_OffSet();

@@ -23,26 +23,50 @@ public:
 		return &m_info;
 	}
 
-	void SetPos(float x, float y)
+	void Set_Pos(float x, float y)
 	{
 		m_info.x = x;
 		m_info.y = y;
 	}
 
-	void SetSize(float x, float y)
+	void Set_Size(float x, float y)
 	{
 		m_info.sizeX = x;
 		m_info.sizeY = y;
 	}
 
-	void SetDead()
+	void Set_Dead()
 	{
 		m_isDead = true;
+	}
+
+	void Set_IsHit(bool hit)
+	{
+		m_isHit = hit;
+	}
+
+	void Set_IsSkillHit(bool skillHit)
+	{
+		m_isSkillHit = skillHit;
+	}
+
+	bool Get_IsSkillHit()
+	{
+		return m_isSkillHit;
 	}
 
 	void Change_Hp(int hp)
 	{
 		m_data.hp += hp;
+		if (m_data.hp >= m_data.maxHp)
+			m_data.hp = m_data.maxHp;
+		if (m_data.hp <= 0)
+			m_data.hp = 0;
+	}
+
+	float Get_Hp()
+	{
+		return m_data.hp;
 	}
 
 	void Set_isPortal(bool isCollsion)
@@ -75,6 +99,8 @@ protected:
 	CurrentKey m_currentKey;
 	float m_speed;
 	bool m_isDead;
+	bool m_isHit;
+	bool m_isSkillHit;
 	bool m_isPortal;
 	HDC m_left_hdc;
 	HDC m_right_hdc;

@@ -1,13 +1,12 @@
 #pragma once
 #include "GameObject.h"
-class CMonster :
+class CDamageSkin :
 	public CGameObject
 {
+private:
+	explicit CDamageSkin();
 public:
-	explicit CMonster();
-	virtual ~CMonster();
-
-public:
+	virtual ~CDamageSkin();
 	// CGameObject을(를) 통해 상속됨
 	virtual int Ready_GameObject() override;
 	virtual int Update_GameObject() override;
@@ -16,21 +15,17 @@ public:
 	virtual void Release_GameObject() override;
 	virtual void UpdateRect_GameObject() override;
 
-protected:
-	Direction m_dir;
-	Monster_State m_state;
-	float m_attackTime;
-	float m_changeStateTime;
-	float m_changeStateSpeed;
-	float m_changeDirectionTime;
-	float m_changeDirectionSpeed;
+	void Set_PrintDamageNum(int damage)
+	{
+		m_printDamageNum = damage;
+	}
 
-	bool m_isWalk;
-	bool m_isJump;
-	bool m_isDie;
-	bool m_isFall;
-	
-	float m_jumpSpeed;
+	static CGameObject* Create(int damage);
+private:
+	float m_disappearTime;
+	float m_disappearSpeed;
 
+	int m_printDamageNum;
+	int printNum;
 };
 

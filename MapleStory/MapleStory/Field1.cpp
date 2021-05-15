@@ -9,6 +9,7 @@
 #include "Portal.h"
 #include "Rope.h"
 #include "Mushroom.h"
+#include "Octopus.h"
 
 CField1::CField1()
 {
@@ -28,7 +29,7 @@ int CField1::Ready_Scene()
 
 	CGameObject_Manager::Get_Instance()->Release_Specific_GameObject_Manager(Object_ID::PORTAL);
 	CGameObject* portal = CPortal::Create();
-	portal->SetPos(100, 380);
+	portal->Set_Pos(100, 380);
 	dynamic_cast<CPortal*>(portal)->Set_NextSceneID(SCENE_Kerning_City);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
@@ -36,9 +37,9 @@ int CField1::Ready_Scene()
 	Create_Rope_Scene();
 
 	if(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_isPortal())
-		CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 380);
+		CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Pos(100, 380);
 	else
-		CGameObject_Manager::Get_Instance()->GetPlayer()->SetPos(100, 100);
+		CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Pos(100, 100);
 
 	CreateMonster();
 
@@ -75,23 +76,23 @@ void CField1::Release_Scene()
 void CField1::Create_Rope_Scene()
 {
 	CGameObject*rope = CRope::Create();
-	rope->SetPos(906, 1225);
-	rope->SetSize(10, 80);
+	rope->Set_Pos(906, 1225);
+	rope->Set_Size(10, 80);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->SetPos(1747, 1225);
-	rope->SetSize(10, 80);
+	rope->Set_Pos(1747, 1225);
+	rope->Set_Size(10, 80);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->SetPos(2125, 1010);
-	rope->SetSize(50, 140);
+	rope->Set_Pos(2125, 1010);
+	rope->Set_Size(50, 140);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->SetPos(1190, 175);
-	rope->SetSize(10, 110);
+	rope->Set_Pos(1190, 170);
+	rope->Set_Size(10, 110);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 }
@@ -99,28 +100,44 @@ void CField1::Create_Rope_Scene()
 void CField1::CreateMonster()
 {
 	CGameObject * mushroom = CMushroom::Create();
-	mushroom->SetPos(200, 150);
+	mushroom->Set_Pos(200, 150);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
 	
 	mushroom = CMushroom::Create();
-	mushroom->SetPos(300, 150);
+	mushroom->Set_Pos(300, 150);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
 	
 	mushroom = CMushroom::Create();
-	mushroom->SetPos(300, 350);
+	mushroom->Set_Pos(300, 350);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
 
 	mushroom = CMushroom::Create();
-	mushroom->SetPos(500, 350);
+	mushroom->Set_Pos(500, 350);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
 
 	mushroom = CMushroom::Create();
-	mushroom->SetPos(400, 550);
+	mushroom->Set_Pos(400, 400);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
 
 	mushroom = CMushroom::Create();
-	mushroom->SetPos(100, 550);
+	mushroom->Set_Pos(100, 400);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, mushroom);
+
+	CGameObject* octopus = COctopus::Create();
+	octopus->Set_Pos(200, 400);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, octopus);
+
+	octopus = COctopus::Create();
+	octopus->Set_Pos(1800, 400);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, octopus);
+
+	octopus = COctopus::Create();
+	octopus->Set_Pos(1800, 400);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, octopus);
+
+	octopus = COctopus::Create();
+	octopus->Set_Pos(1800, -300);
+	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::MONSTER, octopus);
 }
 
 CScene * CField1::Create()

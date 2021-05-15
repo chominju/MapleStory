@@ -13,7 +13,6 @@
 #include "DoubleJump.h"
 #include "SavageBlow.h"
 
-
 CGameObject * CPlayer::m_instance = nullptr;
 
 CPlayer::CPlayer()
@@ -139,7 +138,7 @@ int CPlayer::Update_GameObject()
 					float fY = 0.f;
 					bool bCollLine = CLine_Manager::Get_Instance()->Floor_Collision_Line_Manager_Line_Manager(this);
 					if (!bCollLine)
-						m_info.y -= m_speed;
+						m_info.y -= 5;
 					else
 					{
 						m_keyPush.isJump = true;
@@ -193,12 +192,16 @@ int CPlayer::Update_GameObject()
 	}
 
 
-	if (!m_keyPush.isJump && !m_keyPush.isLeft &&!m_keyPush.isRight &&!m_keyPush.isDown && !m_keyPush.isAttack &&!m_keyPush.isRope&& !m_keyPush.isSkill)
+	if (!m_keyPush.isJump && !m_keyPush.isLeft &&!m_keyPush.isRight &&!m_keyPush.isDown && !m_keyPush.isAttack &&!m_keyPush.isRope&& !m_keyPush.isSkill &&!m_isHit)
 		Player_Idle();
 	if ((m_isJump || m_isDownJump)&& !m_keyPush.isRope && !m_keyPush.isSkill)
 		Player_Jump();
 	if(m_keyPush.isRope &&!m_keyPush.isRopeMove)
 		Set_Animation(m_left_hdc, Animation::ROPING, Animation_index::ROPE_STOP_INDEX);
+	if (m_isHit)
+	{
+		Player_Hit();
+	}
 	
 	if (CGameObject_Manager::Get_Instance()->GetObejct(Object_ID::ATTACK_SKILL).empty())
 		m_keyPush.isSkill = false;
@@ -278,7 +281,7 @@ CGameObject * CPlayer::Create()
 void CPlayer::IsJump()
 {
 	float fY = 0.f;
-	bool bCollLine = CLine_Manager::Get_Instance()->Collision_Line_Manager(this,m_info.x, m_rect.bottom/*m_info.y + m_info.sizeY / 2*/, &fY, m_currentKey);
+	bool bCollLine = CLine_Manager::Get_Instance()->Collision_Line_Manager(this ,&fY);
 	if (m_isJump && !m_keyPush.isRope)
 	{
 		if (current_jumpHeight <= m_jumpHeight + m_DoublejumpHeight  &&!m_isFall)
@@ -386,7 +389,7 @@ void CPlayer::IsJump()
 
 void CPlayer::Player_MoveLeft()
 {
-	if (!m_isJump && !m_isFall)
+	if (!m_isJump && !m_isFall && !m_keyPush.isSkill)
 		Set_Animation(m_left_hdc, Animation::WALK, Animation_index::WALK_INDEX);
 	m_keyPush.isLeft = true;
 
@@ -403,7 +406,7 @@ void CPlayer::Player_MoveLeft()
 					m_isJumpLeft = true;
 				}
 			}
-			if (!m_keyPush.isRope && !m_isFall/* && !m_keyPush.isDoubleJump*/)
+			if (!m_keyPush.isRope && !m_isFall &&!m_keyPush.isSkill/* && !m_keyPush.isDoubleJump*/)
 			{
 				m_info.x -= m_speed;
 				//if (m_info.x - WINCX / 2 >= 0)
@@ -423,7 +426,7 @@ void CPlayer::Player_MoveLeft()
 
 void CPlayer::Player_MoveRight()
 {
-	if (!m_isJump && !m_isFall)
+	if (!m_isJump && !m_isFall && !m_keyPush.isSkill)
 		Set_Animation(m_right_hdc, Animation::WALK, Animation_index::WALK_INDEX);
 	m_keyPush.isRight = true;
 
@@ -440,7 +443,7 @@ void CPlayer::Player_MoveRight()
 					m_isJump = true;
 				}
 			}
-			if (!m_keyPush.isRope && !m_isFall /*&& !m_keyPush.isDoubleJump*/)
+			if (!m_keyPush.isRope && !m_isFall && !m_keyPush.isSkill/*&& !m_keyPush.isDoubleJump*/)
 			{
 				m_info.x += m_speed;
 
@@ -580,6 +583,13 @@ void CPlayer::Player_Rope()
 			}
 		}
 	}
+}
+void CPlayer::Player_Hit()
+{
+	if (m_currentKey == CurrentKey::CUR_LEFT)
+		Set_Animation(m_left_hdc, Animation::ALERT, Animation_index::ALERT_INDEX);
+	if (m_currentKey == CurrentKey::CUR_RIGHT)
+		Set_Animation(m_right_hdc, Animation::ALERT, Animation_index::ALERT_INDEX);
 }
 void CPlayer::Player_Skill(Animation animScene, Animation_index frameEnd)
 {

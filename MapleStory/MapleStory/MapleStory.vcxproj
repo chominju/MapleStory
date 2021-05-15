@@ -152,6 +152,7 @@
     <ClInclude Include="Bitmap_Manager.h" />
     <ClInclude Include="Collision_Manager.h" />
     <ClInclude Include="DaggerBooster.h" />
+    <ClInclude Include="DamageSkin.h" />
     <ClInclude Include="DoubleJump.h" />
     <ClInclude Include="DoubleStab.h" />
     <ClInclude Include="GameObject.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="MyBitmap.h" />
+    <ClInclude Include="Octopus.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Resource.h" />
@@ -183,6 +185,7 @@
     <ClCompile Include="Bitmap_Manager.cpp" />
     <ClCompile Include="Collision_Manager.cpp" />
     <ClCompile Include="DaggerBooster.cpp" />
+    <ClCompile Include="DamageSkin.cpp" />
     <ClCompile Include="DoubleJump.cpp" />
     <ClCompile Include="DoubleStab.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -198,6 +201,7 @@
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="MyBitmap.cpp" />
+    <ClCompile Include="Octopus.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Rope.cpp" />

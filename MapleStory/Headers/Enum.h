@@ -7,9 +7,9 @@
 
 enum Object_ID
 {
-	MONSTER,
-	BOSS,
 	PORTAL,
+	BOSS,
+	MONSTER,
 	ROPE,
 	PLAYER,
 	ATTACK_SKILL,
@@ -105,7 +105,6 @@ enum Mushroom_Animation_Index
 enum Octopus_Animation
 {
 	OCTOPUS_WALK,
-	OCTOPUS_JUMP,
 	OCTOPUS_HIT,
 	OCTOPUS_DIE
 };

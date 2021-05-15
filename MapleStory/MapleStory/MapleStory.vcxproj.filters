@@ -28,23 +28,8 @@
     <Filter Include="소스 파일\03.Bitmap\Manager">
       <UniqueIdentifier>{b6439395-c6fd-45d4-afff-ce469c51b28c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\00.Player">
-      <UniqueIdentifier>{f1034598-87b1-4e81-b90b-6b97139ff0ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01.GameObject\01.Monster">
-      <UniqueIdentifier>{45e756ee-c396-44f8-9096-1a837ca93769}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\04.Line">
       <UniqueIdentifier>{97bf45ab-cd16-4010-827f-f39a425cc6e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Manager\Load">
-      <UniqueIdentifier>{789b38ec-a556-4a09-aef0-43830068d2e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Manager\Key">
-      <UniqueIdentifier>{59d93d17-b798-405e-8281-ae54aae44eef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\04.Line\Manager">
-      <UniqueIdentifier>{f98f76b4-4f20-4f9e-8637-c67ef031934d}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\05.Scene">
       <UniqueIdentifier>{a09ac772-6fc3-4388-b726-40162a2013a8}</UniqueIdentifier>
@@ -52,47 +37,83 @@
     <Filter Include="소스 파일\05.Scene\Menu">
       <UniqueIdentifier>{73c0fc3d-9baf-4047-a6d4-cdb3a9fa0f81}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\05.Scene\Kerning_City">
-      <UniqueIdentifier>{5206a59a-9b0a-455c-99a3-7c02d8ba81a3}</UniqueIdentifier>
+    <Filter Include="소스 파일\02.Manager\01.GameObject">
+      <UniqueIdentifier>{c30f0257-5190-40c3-805e-0abe9fa24173}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\05.Scene\Manager">
-      <UniqueIdentifier>{3fc55d17-c743-4447-8a75-efad4b5dddf8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Manager\Scroll">
-      <UniqueIdentifier>{91d30710-f098-492d-9d9c-ae52a5c76212}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01.GameObject\Manager">
-      <UniqueIdentifier>{9b961466-0727-4201-9239-4246b34cd215}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01.GameObject\02.Skill">
-      <UniqueIdentifier>{2f5f38a8-e359-4b37-a871-27ceec60a253}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\05.Scene\Map1">
-      <UniqueIdentifier>{d25d0036-b699-48af-989f-ab3096b618ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01.GameObject\03.Portal">
-      <UniqueIdentifier>{7191668a-e3b2-42a4-9d84-e0c70eaac4ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Manager\Collision_Manager">
+    <Filter Include="소스 파일\02.Manager\02.Collision">
       <UniqueIdentifier>{f6c1e4e9-8518-45ce-b9e8-7c7cb2b50878}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\04.Rope">
-      <UniqueIdentifier>{d07ca558-ab26-4402-b850-89d1d6031916}</UniqueIdentifier>
+    <Filter Include="소스 파일\02.Manager\03.Key">
+      <UniqueIdentifier>{59d93d17-b798-405e-8281-ae54aae44eef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\02.Skill\DoubleStab">
+    <Filter Include="소스 파일\01.GameObject\01.Player">
+      <UniqueIdentifier>{f1034598-87b1-4e81-b90b-6b97139ff0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Monster">
+      <UniqueIdentifier>{45e756ee-c396-44f8-9096-1a837ca93769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Monster\01.Mushroom">
+      <UniqueIdentifier>{6053a31b-b610-4444-addc-d77f9e86527a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\03.Skill">
+      <UniqueIdentifier>{2f5f38a8-e359-4b37-a871-27ceec60a253}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\03.Skill\DoubleStab">
       <UniqueIdentifier>{3429fb3d-5cf6-4c5b-8def-f4ee90ffa602}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\02.Skill\DoubleJump">
+    <Filter Include="소스 파일\01.GameObject\03.Skill\DoubleJump">
       <UniqueIdentifier>{50ef6743-a27f-4813-9610-1ce10705635b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\02.Skill\DaggerBooster">
+    <Filter Include="소스 파일\01.GameObject\03.Skill\DaggerBooster">
       <UniqueIdentifier>{ecf73242-a587-496c-882a-b5d5dd61af96}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\02.Skill\SavageBlow">
+    <Filter Include="소스 파일\01.GameObject\03.Skill\SavageBlow">
       <UniqueIdentifier>{413a0e58-f8d0-4b80-92a6-3a85a00a7ef3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\01.Monster\01.Mushroom">
-      <UniqueIdentifier>{6053a31b-b610-4444-addc-d77f9e86527a}</UniqueIdentifier>
+    <Filter Include="소스 파일\01.GameObject\04.Portal">
+      <UniqueIdentifier>{7191668a-e3b2-42a4-9d84-e0c70eaac4ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\05.Rope">
+      <UniqueIdentifier>{d07ca558-ab26-4402-b850-89d1d6031916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\00.GameObject">
+      <UniqueIdentifier>{1d7c665e-a62c-4af0-8fbd-43f2c48f00db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Manager\04.Line">
+      <UniqueIdentifier>{ccf62eb8-6551-4ba3-84ea-34f2a92495d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Manager\05.Scroll">
+      <UniqueIdentifier>{91d30710-f098-492d-9d9c-ae52a5c76212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Scene\01.Kerning_City">
+      <UniqueIdentifier>{5206a59a-9b0a-455c-99a3-7c02d8ba81a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Manager\06.Scene">
+      <UniqueIdentifier>{34a99cdb-f5cc-444b-876a-50e5e32f650a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Manager\07.Load">
+      <UniqueIdentifier>{789b38ec-a556-4a09-aef0-43830068d2e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Scene\02.Map1">
+      <UniqueIdentifier>{d25d0036-b699-48af-989f-ab3096b618ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Scene\00.Scene">
+      <UniqueIdentifier>{3dde63cf-ae68-4044-86bf-3e3645b72223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99.Etc">
+      <UniqueIdentifier>{ea44c66d-5197-4bef-90bb-ba52bf8e3545}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Monster\00.Monster">
+      <UniqueIdentifier>{69002822-97c3-4bf1-9ff3-59b7e9ab9e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\03.Skill\00.Skill">
+      <UniqueIdentifier>{9d615f7d-59f6-40c8-9288-660b0fa732a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Monster\02.Octopus">
+      <UniqueIdentifier>{be55c5aa-9e18-4804-956f-497640a3ad84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\06.DamageSkin">
+      <UniqueIdentifier>{c11a77c6-dd86-4a3f-9693-640e928970b3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +135,6 @@
     <ClInclude Include="MainApp.h">
       <Filter>소스 파일\00.MainApp</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>소스 파일\01.GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="MyBitmap.h">
       <Filter>소스 파일\03.Bitmap</Filter>
     </ClInclude>
@@ -124,81 +142,81 @@
       <Filter>소스 파일\03.Bitmap\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>소스 파일\01.GameObject\00.Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>소스 파일\01.GameObject\01.Monster</Filter>
+      <Filter>소스 파일\01.GameObject\01.Player</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>소스 파일\04.Line</Filter>
     </ClInclude>
     <ClInclude Include="LoadData.h">
-      <Filter>소스 파일\02.Manager\Load</Filter>
+      <Filter>소스 파일\02.Manager\07.Load</Filter>
     </ClInclude>
     <ClInclude Include="Key_Manager.h">
-      <Filter>소스 파일\02.Manager\Key</Filter>
-    </ClInclude>
-    <ClInclude Include="Line_Manager.h">
-      <Filter>소스 파일\04.Line\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>소스 파일\05.Scene</Filter>
+      <Filter>소스 파일\02.Manager\03.Key</Filter>
     </ClInclude>
     <ClInclude Include="Kerning_City.h">
-      <Filter>소스 파일\05.Scene\Kerning_City</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene_Manager.h">
-      <Filter>소스 파일\05.Scene\Manager</Filter>
+      <Filter>소스 파일\05.Scene\01.Kerning_City</Filter>
     </ClInclude>
     <ClInclude Include="Scroll_Manager.h">
-      <Filter>소스 파일\02.Manager\Scroll</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject_Manager.h">
-      <Filter>소스 파일\01.GameObject\Manager</Filter>
+      <Filter>소스 파일\02.Manager\05.Scroll</Filter>
     </ClInclude>
     <ClInclude Include="Portal.h">
-      <Filter>소스 파일\01.GameObject\03.Portal</Filter>
+      <Filter>소스 파일\01.GameObject\04.Portal</Filter>
     </ClInclude>
     <ClInclude Include="Collision_Manager.h">
-      <Filter>소스 파일\02.Manager\Collision_Manager</Filter>
+      <Filter>소스 파일\02.Manager\02.Collision</Filter>
     </ClInclude>
     <ClInclude Include="Field1.h">
-      <Filter>소스 파일\05.Scene\Map1</Filter>
+      <Filter>소스 파일\05.Scene\02.Map1</Filter>
     </ClInclude>
     <ClInclude Include="Rope.h">
-      <Filter>소스 파일\01.GameObject\04.Rope</Filter>
-    </ClInclude>
-    <ClInclude Include="Skill.h">
-      <Filter>소스 파일\01.GameObject\02.Skill</Filter>
+      <Filter>소스 파일\01.GameObject\05.Rope</Filter>
     </ClInclude>
     <ClInclude Include="DoubleStab.h">
-      <Filter>소스 파일\01.GameObject\02.Skill\DoubleStab</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\DoubleStab</Filter>
     </ClInclude>
     <ClInclude Include="DoubleJump.h">
-      <Filter>소스 파일\01.GameObject\02.Skill\DoubleJump</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\DoubleJump</Filter>
     </ClInclude>
     <ClInclude Include="DaggerBooster.h">
-      <Filter>소스 파일\01.GameObject\02.Skill\DaggerBooster</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\DaggerBooster</Filter>
     </ClInclude>
     <ClInclude Include="SavageBlow.h">
-      <Filter>소스 파일\01.GameObject\02.Skill\SavageBlow</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\SavageBlow</Filter>
     </ClInclude>
     <ClInclude Include="Mushroom.h">
-      <Filter>소스 파일\01.GameObject\01.Monster\01.Mushroom</Filter>
+      <Filter>소스 파일\01.GameObject\02.Monster\01.Mushroom</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject_Manager.h">
+      <Filter>소스 파일\02.Manager\01.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>소스 파일\01.GameObject\00.GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_Manager.h">
+      <Filter>소스 파일\02.Manager\04.Line</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Manager.h">
+      <Filter>소스 파일\02.Manager\06.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\05.Scene\00.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>소스 파일\01.GameObject\02.Monster\00.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>소스 파일\01.GameObject\03.Skill\00.Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Octopus.h">
+      <Filter>소스 파일\01.GameObject\02.Monster\02.Octopus</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageSkin.h">
+      <Filter>소스 파일\01.GameObject\06.DamageSkin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MapleStory.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="MainApp.cpp">
       <Filter>소스 파일\00.MainApp</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>소스 파일\01.GameObject</Filter>
     </ClCompile>
     <ClCompile Include="MyBitmap.cpp">
       <Filter>소스 파일\03.Bitmap</Filter>
@@ -207,67 +225,82 @@
       <Filter>소스 파일\03.Bitmap\Manager</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>소스 파일\01.GameObject\00.Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>소스 파일\01.GameObject\01.Monster</Filter>
+      <Filter>소스 파일\01.GameObject\01.Player</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>소스 파일\04.Line</Filter>
     </ClCompile>
     <ClCompile Include="LoadData.cpp">
-      <Filter>소스 파일\02.Manager\Load</Filter>
+      <Filter>소스 파일\02.Manager\07.Load</Filter>
     </ClCompile>
     <ClCompile Include="Key_Manager.cpp">
-      <Filter>소스 파일\02.Manager\Key</Filter>
-    </ClCompile>
-    <ClCompile Include="Line_Manager.cpp">
-      <Filter>소스 파일\04.Line\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>소스 파일\05.Scene</Filter>
+      <Filter>소스 파일\02.Manager\03.Key</Filter>
     </ClCompile>
     <ClCompile Include="Kerning_City.cpp">
-      <Filter>소스 파일\05.Scene\Kerning_City</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene_Manager.cpp">
-      <Filter>소스 파일\05.Scene\Manager</Filter>
+      <Filter>소스 파일\05.Scene\01.Kerning_City</Filter>
     </ClCompile>
     <ClCompile Include="Scroll_Manager.cpp">
-      <Filter>소스 파일\02.Manager\Scroll</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject_Manager.cpp">
-      <Filter>소스 파일\01.GameObject\Manager</Filter>
+      <Filter>소스 파일\02.Manager\05.Scroll</Filter>
     </ClCompile>
     <ClCompile Include="Portal.cpp">
-      <Filter>소스 파일\01.GameObject\03.Portal</Filter>
+      <Filter>소스 파일\01.GameObject\04.Portal</Filter>
     </ClCompile>
     <ClCompile Include="Collision_Manager.cpp">
-      <Filter>소스 파일\02.Manager\Collision_Manager</Filter>
+      <Filter>소스 파일\02.Manager\02.Collision</Filter>
     </ClCompile>
     <ClCompile Include="Field1.cpp">
-      <Filter>소스 파일\05.Scene\Map1</Filter>
+      <Filter>소스 파일\05.Scene\02.Map1</Filter>
     </ClCompile>
     <ClCompile Include="Rope.cpp">
-      <Filter>소스 파일\01.GameObject\04.Rope</Filter>
-    </ClCompile>
-    <ClCompile Include="Skill.cpp">
-      <Filter>소스 파일\01.GameObject\02.Skill</Filter>
+      <Filter>소스 파일\01.GameObject\05.Rope</Filter>
     </ClCompile>
     <ClCompile Include="DoubleStab.cpp">
-      <Filter>소스 파일\01.GameObject\02.Skill\DoubleStab</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\DoubleStab</Filter>
     </ClCompile>
     <ClCompile Include="DoubleJump.cpp">
-      <Filter>소스 파일\01.GameObject\02.Skill\DoubleJump</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\DoubleJump</Filter>
     </ClCompile>
     <ClCompile Include="DaggerBooster.cpp">
-      <Filter>소스 파일\01.GameObject\02.Skill\DaggerBooster</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\DaggerBooster</Filter>
     </ClCompile>
     <ClCompile Include="SavageBlow.cpp">
-      <Filter>소스 파일\01.GameObject\02.Skill\SavageBlow</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\SavageBlow</Filter>
     </ClCompile>
     <ClCompile Include="Mushroom.cpp">
-      <Filter>소스 파일\01.GameObject\01.Monster\01.Mushroom</Filter>
+      <Filter>소스 파일\01.GameObject\02.Monster\01.Mushroom</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject_Manager.cpp">
+      <Filter>소스 파일\02.Manager\01.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>소스 파일\01.GameObject\00.GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_Manager.cpp">
+      <Filter>소스 파일\02.Manager\04.Line</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Manager.cpp">
+      <Filter>소스 파일\02.Manager\06.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\05.Scene\00.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일\99.Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="MapleStory.cpp">
+      <Filter>소스 파일\99.Etc</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일\01.GameObject\02.Monster\00.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>소스 파일\01.GameObject\03.Skill\00.Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Octopus.cpp">
+      <Filter>소스 파일\01.GameObject\02.Monster\02.Octopus</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageSkin.cpp">
+      <Filter>소스 파일\01.GameObject\06.DamageSkin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

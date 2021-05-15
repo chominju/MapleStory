@@ -26,7 +26,13 @@ int CSkill::Update_GameObject()
 	Play_Animation();
 
 	if (m_isDead)
+	{
+		for (auto & monster : CGameObject_Manager::Get_Instance()->GetObejct(Object_ID::MONSTER))
+		{
+			monster->Set_IsSkillHit(false);
+		}
 		return OBJ_DEAD;
+	}
 
 	return OBJ_NOEVENT;
 }
@@ -71,6 +77,6 @@ void CSkill::Play_Animation()
 		++m_animFrame.frame_start;
 		m_animFrame.frame_time = GetTickCount();
 		if (m_animFrame.frame_start >= m_animFrame.frame_end)
-			SetDead();
+			Set_Dead();
 	}
 }

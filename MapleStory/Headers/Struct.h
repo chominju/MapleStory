@@ -1,4 +1,5 @@
 #pragma once
+#include "Enum.h"
 
 typedef struct tagInfo
 {
@@ -36,7 +37,7 @@ typedef struct tagLINEINFO
 
 typedef struct
 {
-	char id[32];
+	Object_ID id;
 	int level;
 	float hp;
 	float maxHp;

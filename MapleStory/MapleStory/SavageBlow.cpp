@@ -28,12 +28,12 @@ int CSavageBlow::Ready_GameObject()
 	if (m_currentKey == CurrentKey::CUR_LEFT)
 	{
 		m_hdc = m_left_hdc;
-		m_info.x = m_target->GetRect()->left - m_info.sizeX / 2;
+		m_info.x = (m_target->GetRect()->left - m_info.sizeX / 2) + 200;
 	}
 	else if (m_currentKey == CurrentKey::CUR_RIGHT)
 	{
 		m_hdc = m_right_hdc;
-		m_info.x = m_target->GetRect()->right + m_info.sizeX / 2;
+		m_info.x = (m_target->GetRect()->right + m_info.sizeX / 2) - 200; 
 	}
 	m_info.y = m_target->GetInfo()->y;
 
@@ -42,6 +42,10 @@ int CSavageBlow::Ready_GameObject()
 	m_animFrame.frame_end = 11;
 	m_animFrame.frame_speed = 50;
 	m_animFrame.frame_time = GetTickCount();
+
+	m_damage = 500;
+	m_hitMonsterNum = 3;
+	m_hitNum = 2;
 
 	return 0;
 }
@@ -60,4 +64,26 @@ CGameObject * CSavageBlow::Create(CGameObject * player)
 		CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ATTACK_SKILL, m_instance);
 	}
 	return m_instance;
+}
+
+int CSavageBlow::Update_GameObject()
+{
+	Set_Target(CGameObject_Manager::Get_Instance()->GetPlayer());
+	if (m_currentKey == CurrentKey::CUR_LEFT)
+		m_info.x = m_target->GetRect()->left - m_info.sizeX / 2 + 50;
+	else if (m_currentKey == CurrentKey::CUR_RIGHT)
+		m_info.x = m_target->GetRect()->right + m_info.sizeX / 2 - 50;
+	m_info.y = m_target->GetInfo()->y;
+	Play_Animation();
+
+	if (m_isDead)
+	{
+		for (auto & monster : CGameObject_Manager::Get_Instance()->GetObejct(Object_ID::MONSTER))
+		{
+			monster->Set_IsSkillHit(false);
+		}
+		return OBJ_DEAD;
+	}
+
+	return OBJ_NOEVENT;
 }

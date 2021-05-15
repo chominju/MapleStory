@@ -1,5 +1,6 @@
 #pragma once
 class CLine;
+class CGameObject;
 class CPlayer;
 class CLine_Manager
 {
@@ -22,7 +23,7 @@ private:
 	CLine_Manager();
 	~CLine_Manager();
 public:
-	bool Collision_Line_Manager(CPlayer*player, float finX, float finY, float* pOutY, CurrentKey currentKey);
+	bool Collision_Line_Manager(CGameObject*object, float * pOutY);
 	bool Floor_Collision_Line_Manager_Line_Manager(CPlayer*player);
 public:
 	void Insert_Line_Manager(Pos_float left, Pos_float right);
