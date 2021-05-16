@@ -27,8 +27,12 @@ int CMushroom::Ready_GameObject()
 	m_speed = 3.f;
 	UpdateRect_GameObject();
 
-	m_dir = Direction::DIR_RIGHT;
-	m_state = Monster_State::STATE_NOHIT;
+	int temp = rand() % 2;
+	if (temp == 0)
+		m_dir = Direction::DIR_RIGHT;
+	else
+		m_dir = Direction::DIR_LEFT;
+
 
 	m_isWalk = true;
 	m_isHit = false;
@@ -41,7 +45,7 @@ int CMushroom::Ready_GameObject()
 	m_power = 5;
 
 	m_changeStateTime=GetTickCount();
-	m_changeStateSpeed=3000;
+	m_changeStateSpeed=5000;
 
 
 	m_animFrame.frame_start = 0;
@@ -49,12 +53,12 @@ int CMushroom::Ready_GameObject()
 	m_animFrame.frame_animation = Mushroom_Animation::MUSHROOM_WALK;
 	m_animFrame.frame_speed =500;
 	m_animFrame.frame_time = GetTickCount();
-	m_changeDirectionSpeed = 2000;
+	m_changeDirectionSpeed = 7000;
 	m_changeDirectionTime = GetTickCount();
 
 	m_data.maxExp = 100;
 	m_data.exp = m_data.maxExp;
-	m_data.maxHp = 1500;
+	m_data.maxHp = 2500;
 	m_data.hp = m_data.maxHp;
 	m_data.money = 100;
 	m_data.maxAttack = 50;
@@ -81,7 +85,7 @@ int CMushroom::Update_GameObject()
 	
 	if (m_isDie)
 		return OBJ_DEAD;
-	/*if (m_changeStateTime + m_changeStateSpeed < GetTickCount())
+	if (m_changeStateTime + m_changeStateSpeed < GetTickCount())
 	{
 		if (m_state == Monster_State::STATE_NOHIT)
 		{
@@ -110,7 +114,7 @@ int CMushroom::Update_GameObject()
 			else
 			{
 				m_isJump = true;
-				m_isWalk = false;
+				//m_isWalk = false;
 				if (m_dir == Direction::DIR_LEFT)
 					Set_Animation(m_left_hdc, Mushroom_Animation::MUSHROOM_JUMP, Mushroom_Animation_Index::MUSHROOM_JUMP_INDEX);
 				else if (m_dir == Direction::DIR_RIGHT)
@@ -120,7 +124,7 @@ int CMushroom::Update_GameObject()
 		}
 		m_changeStateTime = GetTickCount();
 	}
-	*/
+	
 		if (!m_isDead)
 		{
 			if (m_changeDirectionTime + m_changeDirectionSpeed < GetTickCount())
@@ -146,15 +150,15 @@ int CMushroom::Update_GameObject()
 				if (m_dir == Direction::DIR_LEFT)
 				{
 					m_info.x -= m_speed;
-					//if (!CLine_Manager::Get_Instance()->Collision_Line_Manager(this, &fY))
-						//m_info.x += m_speed;
+					if (!CLine_Manager::Get_Instance()->Collision_Line_Manager(this, &fY))
+						m_info.x += m_speed;
 
 				}
 				else if (m_dir == Direction::DIR_RIGHT)
 				{
 					m_info.x += m_speed;
-					/*if (!CLine_Manager::Get_Instance()->Collision_Line_Manager(this, &fY))
-						m_info.x -= m_speed;*/
+					if (!CLine_Manager::Get_Instance()->Collision_Line_Manager(this, &fY))
+						m_info.x -= m_speed;
 				}
 			}
 			if (m_isSkillHit)
@@ -188,12 +192,12 @@ void CMushroom::Late_Update_GameObject()
 {
 	Mushroom_Jump();
 	Play_Animation();
-	if (m_info.x <= 100)
+	if (m_rect.left <= 5)
 	{
 		m_dir = Direction::DIR_RIGHT;
 		m_hdc = m_right_hdc;
 	}
-	else if (m_info.x >= 700)
+	else if (m_rect.right >= 2595)
 	{
 		m_dir = Direction::DIR_LEFT;
 		m_hdc = m_left_hdc;
@@ -249,8 +253,17 @@ void CMushroom::Mushroom_Jump()
 	}
 	else if (bCollLine)
 	{
+		
 		if (abs(m_info.y - (fY - m_info.sizeY / 2)) >= 5)
 		{
+			if (m_dir == Direction::DIR_LEFT)
+			{
+				Set_Animation(m_left_hdc, Mushroom_Animation::MUSHROOM_JUMP, Mushroom_Animation_Index::MUSHROOM_JUMP_INDEX);
+			}
+			else if (m_dir == Direction::DIR_RIGHT)
+			{
+				Set_Animation(m_right_hdc, Mushroom_Animation::MUSHROOM_JUMP, Mushroom_Animation_Index::MUSHROOM_JUMP_INDEX);
+			}
 			m_isFall = true;
 			m_info.y += m_speed;
 		}

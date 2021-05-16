@@ -16,6 +16,13 @@ public:
 	virtual void Release_GameObject() override;
 	virtual void UpdateRect_GameObject() override;
 
+	void Set_DistanceX(int min, int max)
+	{
+		m_minX = min;
+		m_maxX = max;
+	}
+
+
 protected:
 	Direction m_dir;
 	Monster_State m_state;
@@ -31,6 +38,9 @@ protected:
 	bool m_isFall;
 	
 	float m_jumpSpeed;
+
+	float m_minX;
+	float m_maxX;
 
 };
 

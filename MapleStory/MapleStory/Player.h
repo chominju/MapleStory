@@ -31,6 +31,11 @@ public:
 	void Player_Hit();
 	void Player_Skill(Animation animScene, Animation_index frameEnd);
 	void Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd);
+	void Set_CheckKeepY(float y)
+	{
+		m_checkKeepY = y;
+		m_checkScrollY = false;
+	}
 	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
@@ -50,6 +55,7 @@ private:
 	float m_power;
 	float current_jumpHeight;
 	float current_DoublejumpHeight;
+	float m_beforeJumpY;
 
 	float m_fallSpeed;
 	Key_Push m_keyPush;

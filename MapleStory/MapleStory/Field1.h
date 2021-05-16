@@ -19,5 +19,10 @@ public:
 
 public:
 	static CScene* Create();
+
+	float m_createMonsterTime;
+	float m_createMonsterSpeed;
+
+	bool m_Die;
 };
 

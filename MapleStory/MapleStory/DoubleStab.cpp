@@ -42,7 +42,7 @@ int CDoubleStab::Ready_GameObject()
 	m_animFrame.frame_speed = 100;
 	m_animFrame.frame_time = GetTickCount();
 
-	m_damage = 400;
+	m_damage = 100;
 	m_hitMonsterNum = 1;
 	m_hitNum = 1;
 

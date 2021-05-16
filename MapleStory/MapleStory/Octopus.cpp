@@ -36,10 +36,12 @@ int COctopus::Ready_GameObject()
 	m_animFrame.frame_time = GetTickCount();
 	m_changeDirectionSpeed = 2000;
 	m_changeDirectionTime = GetTickCount();
+	m_changeStateTime = GetTickCount();
+	m_changeStateSpeed = 5000;
 
 	m_data.maxExp = 500;
 	m_data.exp = m_data.maxExp;
-	m_data.maxHp = 2000;
+	m_data.maxHp = 3000;
 	m_data.hp = m_data.maxHp;
 	m_data.maxAttack = 200;
 	m_data.minAttack = m_data.maxAttack;
@@ -66,11 +68,23 @@ int COctopus::Update_GameObject()
 	if (m_isDie)
 		return OBJ_DEAD;
 
+	if (m_changeStateTime + m_changeStateSpeed < GetTickCount())
+	{
+		if (m_state == Monster_State::STATE_NOHIT)
+		{
+			int num = rand() % 10;
+			if (num >= 2)
+				m_isWalk = true;
+			else
+				m_isWalk = false;
+		}
+		m_changeStateTime = GetTickCount();
+	}
+
 	if (!m_isDead)
 	{
 		if (m_changeDirectionTime + m_changeDirectionSpeed < GetTickCount())
 		{
-			//m_isJump = true;
 			int num = rand() % 2;
 			if (num == 0)
 				m_dir = Direction::DIR_LEFT;
@@ -128,9 +142,9 @@ int COctopus::Update_GameObject()
 void COctopus::Late_Update_GameObject()
 {
 	Play_Animation();
-	if (m_info.x <= 100)
+	if (m_rect.left <= m_minX)
 		m_dir = Direction::DIR_RIGHT;
-	else if (m_info.x >= 700)
+	else if (m_rect.right >= m_maxX)
 		m_dir = Direction::DIR_LEFT;
 
 

@@ -140,11 +140,21 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 							int skillHit = dynamic_cast<CSkill*>(skill_object)->Get_hitNum();
 
 
-							monster_object->Set_Change_Hp(-(skillHit * damage));
+
+							int minAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_MinAttack();
+							int maxAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_MaxAttack();
+							int *randAttack = new int[skillHit + 1];
+							int attackSum = 0;
+							for (int i = 0; i < skillHit; i++)
+							{
+								randAttack[i] = rand() % maxAttack + minAttack;
+								attackSum += randAttack[i];
+							}
+							monster_object->Set_Change_Hp(-(skillHit * damage + attackSum));
 
 							for (int i = 0; i < skillHit; i++)
 							{
-								CGameObject * damageSkin = CDamageSkin::Create(damage);
+								CGameObject * damageSkin = CDamageSkin::Create(damage + randAttack[i]);
 								damageSkin->Set_Pos(monster_object->GetInfo()->x, monster_object->GetRect()->top - (49)*(i+1));
 								CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::UI, damageSkin);
 							}
@@ -154,6 +164,8 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 								CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Exp(monster_object->Get_Exp());
 								CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(monster_object->Get_Money());
 							}
+
+							delete[] randAttack;
 						}
 					}
 				}

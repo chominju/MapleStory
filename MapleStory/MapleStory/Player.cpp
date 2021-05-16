@@ -12,6 +12,7 @@
 #include "DoubleStab.h"
 #include "DoubleJump.h"
 #include "SavageBlow.h"
+#include "CLevelUp.h"
 
 CGameObject * CPlayer::m_instance = nullptr;
 
@@ -70,9 +71,8 @@ int CPlayer::Ready_GameObject()
 	m_data.level = 1;
 	m_data.maxHp = 2000;
 	m_data.hp = m_data.maxHp;
-	m_data.maxAttack = 300;
 	m_data.minAttack = 100;
-	m_data.minAttack = m_data.maxHp;
+	m_data.maxAttack = 200;
 	m_data.maxExp = 500;
 	m_data.exp = 0;
 	m_data.money = 0;
@@ -184,6 +184,7 @@ int CPlayer::Update_GameObject()
 					if (m_isJumpLeft == false && m_isJumpRight == false)
 						m_moveLock = true;
 					m_isJump = true;
+					m_beforeJumpY = m_info.y;
 				}
 			}
 		}
@@ -590,7 +591,7 @@ void CPlayer::Is_Jump()
 		{
 			m_info.y -= m_power;
 			//if ((m_info.y + WINCY / 2 > 0 && m_info.y < 0)|| m_info.y>=0)
-				CScroll_Manager::Set_ScrollY(m_power);
+				//CScroll_Manager::Set_ScrollY(m_power);
 			
 			current_jumpHeight += m_power;
 		}
@@ -600,12 +601,14 @@ void CPlayer::Is_Jump()
 			{
 				m_info.y += m_fallSpeed;
 				//if ((m_info.y + WINCY / 2 > 0 && m_info.y < 0) || m_info.y >= 0)
-				if (m_checkKeepY<m_info.y)
-					CScroll_Manager::Set_ScrollY(-m_fallSpeed);
+				//if (m_checkKeepY<m_info.y)
+					//CScroll_Manager::Set_ScrollY(-m_fallSpeed);
 			}
 			else
 			{
 				m_info.y = fY - m_info.sizeY / 2;
+				float temp = m_beforeJumpY - m_info.y;
+				//CScroll_Manager::Set_ScrollY(temp);
 				current_jumpHeight = 0;
 				m_isJump = false;
 				m_isJumpRight = false;
@@ -911,28 +914,29 @@ void CPlayer::Player_Skill(Animation animScene, Animation_index frameEnd)
 void CPlayer::Is_OffSet()
 {
 	float scrollX = CScroll_Manager::Get_ScrollX();
-	//float scrollY = CScroll_Manager::Get_ScrollY();
+	float scrollY = CScroll_Manager::Get_ScrollY();
 	float X = m_info.x + scrollX;
-	//float Y = m_info.y + scrollY;
+	float Y = m_info.y + scrollY;
 	if ((WINCX >> 1) + 100 < X)
 		CScroll_Manager::Set_ScrollX(-m_speed);
 	if ((WINCX >> 1) - 100 > X)
 		CScroll_Manager::Set_ScrollX(m_speed);
-	//if ((WINCY >> 1)+ 100 < Y)
-	//	CScroll_Manager::Set_ScrollY(-m_speed);
-	//if ((WINCY >> 1)- 100 > Y)
-	//	CScroll_Manager::Set_ScrollY(m_speed);
+	if ((WINCY >> 1)+ 100 < Y)
+		CScroll_Manager::Set_ScrollY(-m_speed);
+	if ((WINCY >> 1)- 100 > Y)
+		CScroll_Manager::Set_ScrollY(m_speed);
 }
 
 void CPlayer::Is_LevelUp()
 {
 	while (m_data.exp >= m_data.maxExp)
 	{
+		CLevelUp::Create(this);
 		m_data.level++;
 		m_data.maxHp += 500;
 		m_data.hp = m_data.maxHp;
 		m_data.maxAttack += 100;
-		m_data.minAttack + 100;
+		m_data.minAttack += 100;
 		m_data.exp -= m_data.maxExp;
 		m_data.maxExp += 500;
 	}

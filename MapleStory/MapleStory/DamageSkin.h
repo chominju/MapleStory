@@ -17,6 +17,8 @@ public:
 
 	void Set_PrintDamageNum(int damage)
 	{
+		if (damage >= 99999)
+			damage = 99999;
 		m_printDamageNum = damage;
 	}
 
