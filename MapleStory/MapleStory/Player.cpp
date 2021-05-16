@@ -38,6 +38,13 @@ int CPlayer::Ready_GameObject()
 {
 	m_left_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Left");
 	m_right_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Right");
+	m_hpBar_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Hp_Bar");
+	m_hpBackBar_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Hp_BackBar");
+	m_expBar_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Exp_Bar");
+	m_expBackBar_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Player_Exp_BackBar");
+	m_State_Lv_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_Lv");
+	m_State_LvNum_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_LvNum");
+	m_State_Num_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_Num");
 
 	m_hdc = m_left_hdc;
 	m_info.x = 100;
@@ -59,6 +66,19 @@ int CPlayer::Ready_GameObject()
 	m_animFrame.frame_animation = Animation::STAND;
 	m_animFrame.frame_speed = 200;
 	m_animFrame.frame_time = GetTickCount();
+
+	m_data.level = 1;
+	m_data.maxHp = 2000;
+	m_data.hp = m_data.maxHp;
+	m_data.maxAttack = 300;
+	m_data.minAttack = 100;
+	m_data.minAttack = m_data.maxHp;
+	m_data.maxExp = 500;
+	m_data.exp = 0;
+	m_data.money = 0;
+
+	m_hitAnimationNum = 0;
+	m_isInvincibility = false;
 
 	m_checkScrollY = false;
 
@@ -117,7 +137,6 @@ int CPlayer::Update_GameObject()
 
 
 	//	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_UP) || (CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN)))
-			Player_Rope();
 		if (m_keyPush.isRopeMove)
 			if (CKey_Manager::Get_Instance()->Key_Up(KEY_UP) || (CKey_Manager::Get_Instance()->Key_Up(KEY_DOWN)))
 				m_keyPush.isRopeMove = false;
@@ -194,13 +213,23 @@ int CPlayer::Update_GameObject()
 
 	if (!m_keyPush.isJump && !m_keyPush.isLeft &&!m_keyPush.isRight &&!m_keyPush.isDown && !m_keyPush.isAttack &&!m_keyPush.isRope&& !m_keyPush.isSkill &&!m_isHit)
 		Player_Idle();
-	if ((m_isJump || m_isDownJump)&& !m_keyPush.isRope && !m_keyPush.isSkill)
+	if ((m_isJump || m_isDownJump)&& !m_keyPush.isRope && !m_keyPush.isSkill &&!m_isHit)
 		Player_Jump();
 	if(m_keyPush.isRope &&!m_keyPush.isRopeMove)
 		Set_Animation(m_left_hdc, Animation::ROPING, Animation_index::ROPE_STOP_INDEX);
+	
 	if (m_isHit)
 	{
-		Player_Hit();
+		//if(m_hitAnimationNum == 0)
+			Player_Hit();
+			m_hitAnimationNum++;
+
+			if (m_hitAnimationNum >= 100)
+			{
+				m_isHit = false;
+				m_isInvincibility = false;
+				m_hitAnimationNum = 0;
+			}
 	}
 	
 	if (CGameObject_Manager::Get_Instance()->GetObejct(Object_ID::ATTACK_SKILL).empty())
@@ -220,7 +249,9 @@ int CPlayer::Update_GameObject()
 void CPlayer::Late_Update_GameObject()
 {
 	Is_OffSet();
-	IsJump();
+	Player_Rope();
+	Is_Jump();
+	Is_LevelUp();
 	Play_Animation();
 }
 
@@ -246,6 +277,277 @@ void CPlayer::Render_GameObject(HDC hDC)
 		m_info.sizeX,// 그리고자 하는 영역의 크기 x,y
 		m_info.sizeY,
 		RGB(255, 0, 255));
+
+	// HP바
+
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		1024/2 -102,//위치 x,y
+		768 - 54 - 10,
+		204,// 크기 xy
+		54,
+		m_hpBackBar_hdc,// 복사 할 대상
+		0,0,// 그림의 시작 위치 x,y
+		204,// 그리고자 하는 영역의 크기 x,y
+		54,
+		RGB(255, 0, 255));
+
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		1024 / 2 -79,//위치 x,y
+		768 - 28 - 10,
+		175 *(m_data.hp / m_data.maxHp),// 크기 xy
+		17,
+		m_hpBar_hdc,// 복사 할 대상
+		0,0,// 그림의 시작 위치 x,y
+		175,// 그리고자 하는 영역의 크기 x,y
+		17,
+		RGB(255, 255, 255));
+
+
+	// Lv.  << 출력
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		1024 / 2 - 75,//위치 x,y
+		768 - 10 - 47,
+		15,// 크기 xy
+		10,
+		m_State_Lv_hdc,// 복사 할 대상
+		0, 0,// 그림의 시작 위치 x,y
+		15,// 그리고자 하는 영역의 크기 x,y
+		10,
+		RGB(255, 255, 255));
+
+	// Lv. 숫자 출력
+	int temp = m_data.level;
+	int num=0;
+	int temp3 = m_data.level;
+	while (true)
+	{
+		num++;
+		temp3 /= 10;
+		if (temp3 == 0)
+			break;
+	}
+
+	for(int i=0; i<num; i++)
+	{
+		int temp2 = temp % 10;
+		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+			1024 / 2 - 40 - (num/2 + i)*7,//위치 x,y
+			768 - 10 - 47,
+			7,// 크기 xy
+			10,
+			m_State_LvNum_hdc,// 복사 할 대상
+			7 * temp2, 0,// 그림의 시작 위치 x,y
+			7,// 그리고자 하는 영역의 크기 x,y
+			10,
+			RGB(255, 255, 255));
+		temp /= 10;
+		if (temp == 0)
+			break;
+	}
+
+
+	// EXP바
+
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		0,//위치 x,y
+		768 - 10,
+		1024,// 크기 xy
+		10,
+		m_expBackBar_hdc,// 복사 할 대상
+		0, 0,// 그림의 시작 위치 x,y
+		1024,// 그리고자 하는 영역의 크기 x,y
+		10,
+		RGB(255, 0, 255));
+
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		0 + 15,//위치 x,y
+		768 - 7,
+		1008* (m_data.exp / m_data.maxExp),// 크기 xy
+		7,
+		m_expBar_hdc,// 복사 할 대상
+		0, 0,// 그림의 시작 위치 x,y
+		1008,// 그리고자 하는 영역의 크기 x,y
+		7,
+		RGB(255, 255, 255));
+
+
+	// hp. 숫자 출력
+	temp = m_data.hp;
+	num = 0;
+	temp3 = m_data.hp;
+	while (true)
+	{
+		num++;
+		temp3 /= 10;
+		if (temp3 == 0)
+			break;
+	}
+
+	for (int i = 0; i < num; i++)
+	{
+		int temp2 = temp % 10;
+		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+			1024 / 2  -10 - (num / 2 + i) * 7,//위치 x,y
+			768 - 10 - 25,
+			7,// 크기 xy
+			10,
+			m_State_Num_hdc,// 복사 할 대상
+			7 * temp2, 0,// 그림의 시작 위치 x,y
+			7,// 그리고자 하는 영역의 크기 x,y
+			10,
+			RGB(255, 0, 255));
+		temp /= 10;
+		if (temp == 0)
+			break;
+	}
+
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		1024 / 2 + 5,//위치 x,y
+		768 - 10 - 25,
+		7,// 크기 xy
+		10,
+		m_State_Num_hdc,// 복사 할 대상
+		7 * 10, 0,// 그림의 시작 위치 x,y
+		7,// 그리고자 하는 영역의 크기 x,y
+		10,
+		RGB(255, 0, 255));
+
+
+	// MaxHp. 숫자 출력
+	temp = m_data.maxHp;
+	num = 0;
+	temp3 = m_data.maxHp;
+	while (true)
+	{
+		num++;
+		temp3 /= 10;
+		if (temp3 == 0)
+			break;
+	}
+
+	for (int i = 0; i < num; i++)
+	{
+		int temp2 = temp % 10;
+		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+			1024 / 2 + 60- (num / 2 + i) * 7,//위치 x,y
+			768 - 10 - 25,
+			7,// 크기 xy
+			10,
+			m_State_Num_hdc,// 복사 할 대상
+			7 * temp2, 0,// 그림의 시작 위치 x,y
+			7,// 그리고자 하는 영역의 크기 x,y
+			10,
+			RGB(255, 0, 255));
+		temp /= 10;
+		if (temp == 0)
+			break;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// exp. 숫자 출력
+	temp = m_data.exp;
+	num = 0;
+	temp3 = m_data.exp;
+	while (true)
+	{
+		num++;
+		temp3 /= 10;
+		if (temp3 == 0)
+			break;
+	}
+
+	for (int i = 0; i < num; i++)
+	{
+		int temp2 = temp % 10;
+		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+			1024 / 2 -40 -(num / 2 + i) * 7,//위치 x,y
+			768 - 10,
+			7,// 크기 xy
+			10,
+			m_State_Num_hdc,// 복사 할 대상
+			7 * temp2, 0,// 그림의 시작 위치 x,y
+			7,// 그리고자 하는 영역의 크기 x,y
+			10,
+			RGB(255, 0, 255));
+		temp /= 10;
+		if (temp == 0)
+			break;
+	}
+
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		1024 / 2 + 5,//위치 x,y
+		768 - 10,
+		7,// 크기 xy
+		10,
+		m_State_Num_hdc,// 복사 할 대상
+		7 * 10, 0,// 그림의 시작 위치 x,y
+		7,// 그리고자 하는 영역의 크기 x,y
+		10,
+		RGB(255, 0, 255));
+
+
+	// MaxHp. 숫자 출력
+	temp = m_data.maxExp;
+	num = 0;
+	temp3 = m_data.maxExp;
+	while (true)
+	{
+		num++;
+		temp3 /= 10;
+		if (temp3 == 0)
+			break;
+	}
+
+	for (int i = 0; i < num; i++)
+	{
+		int temp2 = temp % 10;
+		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+			1024 / 2 + 60 - (num / 2 + i) * 7,//위치 x,y
+			768 - 10,
+			7,// 크기 xy
+			10,
+			m_State_Num_hdc,// 복사 할 대상
+			7 * temp2, 0,// 그림의 시작 위치 x,y
+			7,// 그리고자 하는 영역의 크기 x,y
+			10,
+			RGB(255, 0, 255));
+		temp /= 10;
+		if (temp == 0)
+			break;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 void CPlayer::Release_GameObject()
@@ -278,7 +580,7 @@ CGameObject * CPlayer::Create()
 	return m_instance;
 }
 
-void CPlayer::IsJump()
+void CPlayer::Is_Jump()
 {
 	float fY = 0.f;
 	bool bCollLine = CLine_Manager::Get_Instance()->Collision_Line_Manager(this ,&fY);
@@ -389,7 +691,7 @@ void CPlayer::IsJump()
 
 void CPlayer::Player_MoveLeft()
 {
-	if (!m_isJump && !m_isFall && !m_keyPush.isSkill)
+	if (!m_isJump && !m_isFall && !m_keyPush.isSkill && !m_isHit)
 		Set_Animation(m_left_hdc, Animation::WALK, Animation_index::WALK_INDEX);
 	m_keyPush.isLeft = true;
 
@@ -426,7 +728,7 @@ void CPlayer::Player_MoveLeft()
 
 void CPlayer::Player_MoveRight()
 {
-	if (!m_isJump && !m_isFall && !m_keyPush.isSkill)
+	if (!m_isJump && !m_isFall && !m_keyPush.isSkill && !m_isHit)
 		Set_Animation(m_right_hdc, Animation::WALK, Animation_index::WALK_INDEX);
 	m_keyPush.isRight = true;
 
@@ -473,10 +775,13 @@ void CPlayer::Player_Idle()
 
 void CPlayer::Player_Jump()
 {
-	if (m_currentKey == CurrentKey::CUR_LEFT)
-		Set_Animation(m_left_hdc, Animation::JUMP, Animation_index::JUMP_INDEX);
-	if (m_currentKey == CurrentKey::CUR_RIGHT)
-		Set_Animation(m_right_hdc, Animation::JUMP, Animation_index::JUMP_INDEX);
+	if (!m_isHit)
+	{
+		if (m_currentKey == CurrentKey::CUR_LEFT)
+			Set_Animation(m_left_hdc, Animation::JUMP, Animation_index::JUMP_INDEX);
+		if (m_currentKey == CurrentKey::CUR_RIGHT)
+			Set_Animation(m_right_hdc, Animation::JUMP, Animation_index::JUMP_INDEX);
+	}
 }
 
 void CPlayer::Player_Prone()
@@ -509,6 +814,7 @@ void CPlayer::Player_Swing()
 		m_info.sizeX = 70;
 	}
 }
+
 void CPlayer::Player_Rope()
 {
 	const RECT* ropeRect{};
@@ -584,6 +890,7 @@ void CPlayer::Player_Rope()
 		}
 	}
 }
+
 void CPlayer::Player_Hit()
 {
 	if (m_currentKey == CurrentKey::CUR_LEFT)
@@ -591,6 +898,7 @@ void CPlayer::Player_Hit()
 	if (m_currentKey == CurrentKey::CUR_RIGHT)
 		Set_Animation(m_right_hdc, Animation::ALERT, Animation_index::ALERT_INDEX);
 }
+
 void CPlayer::Player_Skill(Animation animScene, Animation_index frameEnd)
 {
 	m_keyPush.isSkill = true;
@@ -616,6 +924,19 @@ void CPlayer::Is_OffSet()
 	//	CScroll_Manager::Set_ScrollY(m_speed);
 }
 
+void CPlayer::Is_LevelUp()
+{
+	while (m_data.exp >= m_data.maxExp)
+	{
+		m_data.level++;
+		m_data.maxHp += 500;
+		m_data.hp = m_data.maxHp;
+		m_data.maxAttack += 100;
+		m_data.minAttack + 100;
+		m_data.exp -= m_data.maxExp;
+		m_data.maxExp += 500;
+	}
+}
 
 void CPlayer::Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd)
 {

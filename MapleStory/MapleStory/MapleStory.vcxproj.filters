@@ -115,6 +115,9 @@
     <Filter Include="소스 파일\01.GameObject\06.DamageSkin">
       <UniqueIdentifier>{c11a77c6-dd86-4a3f-9693-640e928970b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\07.Effect">
+      <UniqueIdentifier>{649e25ba-ea67-423d-87b0-41895e3a90f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -213,6 +216,9 @@
     <ClInclude Include="DamageSkin.h">
       <Filter>소스 파일\01.GameObject\06.DamageSkin</Filter>
     </ClInclude>
+    <ClInclude Include="CLevelUp.h">
+      <Filter>소스 파일\01.GameObject\07.Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainApp.cpp">
@@ -301,6 +307,9 @@
     </ClCompile>
     <ClCompile Include="DamageSkin.cpp">
       <Filter>소스 파일\01.GameObject\06.DamageSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevelUp.cpp">
+      <Filter>소스 파일\01.GameObject\07.Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

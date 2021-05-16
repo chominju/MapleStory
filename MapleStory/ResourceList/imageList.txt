@@ -38,6 +38,22 @@ Monster_Hp_Bar
 ../Resource/Ui/Monster_Hp_Bar.bmp
 Monster_Hp_BackBar
 ../Resource/Ui/Monster_Hp_BackBar.bmp
+Player_Hp_BackBar
+../Resource/Ui/Player_Hp_BackBar.bmp
+Player_Hp_Bar
+../Resource/Ui/Player_Hp_Bar.bmp
+Player_Exp_BackBar
+../Resource/Ui/Player_Exp_BackBar.bmp
+Player_Exp_Bar
+../Resource/Ui/Player_Exp_Bar.bmp
+State_Lv
+../Resource/Ui/State_Lv.bmp
+State_LvNum
+../Resource/Ui/State_LvNum2.bmp
+State_Num
+../Resource/Ui/State_Num.bmp
+LevelUp
+../Resource/Ui/LevelUp.bmp
 Damage_Skin
 ../Resource/DamageSkin/Damage_Skin.bmp
 

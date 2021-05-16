@@ -77,6 +77,6 @@ void CSkill::Play_Animation()
 		++m_animFrame.frame_start;
 		m_animFrame.frame_time = GetTickCount();
 		if (m_animFrame.frame_start >= m_animFrame.frame_end)
-			Set_Dead();
+			Set_IsDead();
 	}
 }

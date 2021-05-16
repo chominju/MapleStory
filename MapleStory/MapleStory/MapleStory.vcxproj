@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bitmap_Manager.h" />
+    <ClInclude Include="CLevelUp.h" />
     <ClInclude Include="Collision_Manager.h" />
     <ClInclude Include="DaggerBooster.h" />
     <ClInclude Include="DamageSkin.h" />
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap_Manager.cpp" />
+    <ClCompile Include="CLevelUp.cpp" />
     <ClCompile Include="Collision_Manager.cpp" />
     <ClCompile Include="DaggerBooster.cpp" />
     <ClCompile Include="DamageSkin.cpp" />

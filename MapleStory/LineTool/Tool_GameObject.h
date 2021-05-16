@@ -7,7 +7,7 @@ public:
 public:
 	void Set_Pos(float fX, float fY); 
 	void Set_Angle(float fDegree) { m_fAngle = fDegree; }
-	void Set_Dead() { m_bIsDead = true; }
+	void Set_IsDead() { m_bIsDead = true; }
 	const RECT* Get_Rect() const;
 	const Object_Info* Get_Info() const;
 public:

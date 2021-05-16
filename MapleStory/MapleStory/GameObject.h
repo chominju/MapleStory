@@ -35,9 +35,14 @@ public:
 		m_info.sizeY = y;
 	}
 
-	void Set_Dead()
+	void Set_IsDead()
 	{
 		m_isDead = true;
+	}
+
+	bool Get_IsDead()
+	{
+		return m_isDead;
 	}
 
 	void Set_IsHit(bool hit)
@@ -55,7 +60,18 @@ public:
 		return m_isSkillHit;
 	}
 
-	void Change_Hp(int hp)
+	void Set_IsInvincibility(bool invincibility)
+	{
+		m_isInvincibility = invincibility;
+	}
+
+	bool Get_IsInvincibility()
+	{
+		return m_isInvincibility;
+	}
+
+
+	void Set_Change_Hp(float hp)
 	{
 		m_data.hp += hp;
 		if (m_data.hp >= m_data.maxHp)
@@ -64,9 +80,44 @@ public:
 			m_data.hp = 0;
 	}
 
-	float Get_Hp()
+	float  Get_Hp()
 	{
 		return m_data.hp;
+	}
+
+	int Get_MinAttack()
+	{
+		return m_data.minAttack;
+	}
+
+	int Get_MaxAttack()
+	{
+		return m_data.maxAttack;
+	}
+
+	void  Set_Change_Exp(float exp)
+	{
+		m_data.exp += exp;
+	}
+
+	float Get_Exp()
+	{
+		return m_data.exp;
+	}
+
+	float Get_MaxExp()
+	{
+		return m_data.maxExp;
+	}
+
+	void Set_Change_Money(int money)
+	{
+		m_data.money += money;
+	}
+
+	int Get_Money()
+	{
+		return m_data.money;
 	}
 
 	void Set_isPortal(bool isCollsion)
@@ -100,6 +151,7 @@ protected:
 	float m_speed;
 	bool m_isDead;
 	bool m_isHit;
+	bool m_isInvincibility;
 	bool m_isSkillHit;
 	bool m_isPortal;
 	HDC m_left_hdc;

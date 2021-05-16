@@ -43,9 +43,9 @@ int CSavageBlow::Ready_GameObject()
 	m_animFrame.frame_speed = 50;
 	m_animFrame.frame_time = GetTickCount();
 
-	m_damage = 500;
+	m_damage = 200;
 	m_hitMonsterNum = 3;
-	m_hitNum = 2;
+	m_hitNum = 5;
 
 	return 0;
 }

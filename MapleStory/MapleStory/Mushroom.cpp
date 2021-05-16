@@ -54,9 +54,11 @@ int CMushroom::Ready_GameObject()
 
 	m_data.maxExp = 100;
 	m_data.exp = m_data.maxExp;
-	m_data.maxHp = 3000;
+	m_data.maxHp = 1500;
 	m_data.hp = m_data.maxHp;
 	m_data.money = 100;
+	m_data.maxAttack = 50;
+	m_data.minAttack = m_data.maxAttack;
 
 	return S_OK;
 }

@@ -41,8 +41,10 @@ typedef struct
 	int level;
 	float hp;
 	float maxHp;
-	int exp;
-	int maxExp;
+	int minAttack;
+	int maxAttack;
+	float exp;
+	float maxExp;
 	int money;
 
 }Object_Data;

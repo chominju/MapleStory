@@ -18,7 +18,9 @@ public:
 
 public:
 	static CGameObject* Create();
-	void IsJump();
+	void Is_Jump();
+	void Is_OffSet();
+	void Is_LevelUp();
 	void Player_MoveLeft();
 	void Player_MoveRight();
 	void Player_Idle();
@@ -29,7 +31,6 @@ public:
 	void Player_Hit();
 	void Player_Skill(Animation animScene, Animation_index frameEnd);
 	void Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd);
-	void Is_OffSet();
 	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
@@ -57,6 +58,15 @@ private:
 
 	bool m_checkScrollY;
 	float m_checkKeepY;
+
+	HDC m_expBar_hdc;
+	HDC m_expBackBar_hdc;
+	HDC m_State_Lv_hdc;
+	HDC m_State_LvNum_hdc;
+	HDC m_State_Num_hdc;
+
+
+	int m_hitAnimationNum;
 
 	//HDC m_temptemp; 스킬 체험
 };

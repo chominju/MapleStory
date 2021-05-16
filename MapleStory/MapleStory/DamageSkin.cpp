@@ -36,7 +36,7 @@ int CDamageSkin::Update_GameObject()
 	if (m_isDead)
 		return OBJ_DEAD;
 	if (m_disappearTime + m_disappearSpeed < GetTickCount())
-		Set_Dead();
+		Set_IsDead();
 	return 0;
 }
 
@@ -65,7 +65,7 @@ void CDamageSkin::Render_GameObject(HDC hDC)
 			temp * m_info.sizeX,0,// 그림의 시작 위치 x,y
 			m_info.sizeX,// 그리고자 하는 영역의 크기 x,y
 			m_info.sizeY,
-			RGB(255, 255, 255));
+			RGB(255, 0, 255));
 	}
 
 }

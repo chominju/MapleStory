@@ -39,8 +39,10 @@ int COctopus::Ready_GameObject()
 
 	m_data.maxExp = 500;
 	m_data.exp = m_data.maxExp;
-	m_data.maxHp = 1500;
+	m_data.maxHp = 2000;
 	m_data.hp = m_data.maxHp;
+	m_data.maxAttack = 200;
+	m_data.minAttack = m_data.maxAttack;
 	m_data.money = 500;
 
 	return S_OK;

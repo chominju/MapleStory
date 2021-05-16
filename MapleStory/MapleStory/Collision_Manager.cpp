@@ -24,8 +24,8 @@ void CCollision_Manager::Collision_Rect(list<CGameObject*>* listDest, list<CGame
 		{
 			if (IntersectRect(&rc, dstObject->GetRect(), srcObject->GetRect()))
 			{
-				dstObject->Set_Dead();
-				srcObject->Set_Dead();
+				dstObject->Set_IsDead();
+				srcObject->Set_IsDead();
 			}
 		}
 	}
@@ -81,24 +81,27 @@ void CCollision_Manager::Collision_Monster(list<CGameObject*>* player, list<CGam
 				{
 					check = true;
 					player_object->Set_IsHit(true);
-
+					if (!player_object->Get_IsInvincibility())
+					{
+						player_object->Set_IsInvincibility(true);
+						player_object->Set_Change_Hp(-monster_object->Get_MaxAttack());
+					}
 				}
 			}
 			//}
 		}
 	}
 
-	if (!check)
+	/*if (!check)
 	{
 		for (auto & player_object : *player)
 		{
 			for (auto& portal_object : *monster)
 			{
 				player_object->Set_IsHit(false);
-				portal_object->Set_IsHit(false);
 			}
 		}
-	}
+	}*/
 }
 
 void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameObject*>* monster)
@@ -127,7 +130,7 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 				RECT temp = {};
 				if (IntersectRect(&temp, skillRect, monsterRect))
 				{
-					if (!monster_object->Get_IsSkillHit())
+					if (!monster_object->Get_IsSkillHit() &&!monster_object->Get_IsDead())
 					{
 						if (dynamic_cast<CSkill*>(skill_object)->isHitMonsterNum())
 						{
@@ -137,7 +140,7 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 							int skillHit = dynamic_cast<CSkill*>(skill_object)->Get_hitNum();
 
 
-							monster_object->Change_Hp(-(skillHit * damage));
+							monster_object->Set_Change_Hp(-(skillHit * damage));
 
 							for (int i = 0; i < skillHit; i++)
 							{
@@ -146,7 +149,11 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 								CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::UI, damageSkin);
 							}
 							if (monster_object->Get_Hp() <= 0)
-								monster_object->Set_Dead();
+							{
+								monster_object->Set_IsDead();
+								CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Exp(monster_object->Get_Exp());
+								CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(monster_object->Get_Money());
+							}
 						}
 					}
 				}
