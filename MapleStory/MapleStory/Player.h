@@ -29,6 +29,8 @@ public:
 	void Player_Swing();
 	void Player_Rope();
 	void Player_Hit();
+	void Player_StatUiOpen();
+	void Player_InventoryOpen();
 	void Player_Skill(Animation animScene, Animation_index frameEnd);
 	void Set_Animation(HDC hdc, Animation animScene, Animation_index frameEnd);
 	void Set_CheckKeepY(float y)
@@ -36,6 +38,17 @@ public:
 		m_checkKeepY = y;
 		m_checkScrollY = false;
 	}
+
+	bool Get_IsStatOpen()
+	{
+		return m_isStatOpen;
+	}
+
+	bool Get_IsInventoryOpen()
+	{
+		return m_isInventoryOpen;
+	}
+
 	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
@@ -47,6 +60,8 @@ private:
 	bool m_isDownJump;
 	bool m_moveLock;
 	bool m_isFall;
+	bool m_isStatOpen;
+	bool m_isInventoryOpen;
 
 	//bool m_jumpKeyUp;
 

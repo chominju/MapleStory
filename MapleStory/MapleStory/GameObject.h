@@ -18,9 +18,14 @@ public:
 		return &m_rect;
 	}
 
-	Object_Info* GetInfo()
+	Object_Info* Get_Info()
 	{
 		return &m_info;
+	}
+
+	Object_Data* Get_Data()
+	{
+		return &m_data;
 	}
 
 	void Set_Pos(float x, float y)

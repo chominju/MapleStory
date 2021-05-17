@@ -19,8 +19,8 @@ int CLevelUp::Ready_GameObject()
 	m_info.sizeX = 904;
 	m_info.sizeY = 904;
 
-	m_info.x = m_target->GetInfo()->x;
-	m_info.y = m_target->GetInfo()->y;
+	m_info.x = m_target->Get_Info()->x;
+	m_info.y = m_target->Get_Info()->y;
 
 	m_animFrame.frame_animation = 0;
 	m_animFrame.frame_start = 0;
@@ -38,8 +38,8 @@ int CLevelUp::Ready_GameObject()
 int CLevelUp::Update_GameObject()
 {
 	Set_Target(CGameObject_Manager::Get_Instance()->GetPlayer());
-	m_info.x = m_target->GetInfo()->x;
-	m_info.y = m_target->GetInfo()->y - 250;
+	m_info.x = m_target->Get_Info()->x;
+	m_info.y = m_target->Get_Info()->y - 250;
 	Play_Animation();
 	if (m_isDead)
 		return OBJ_DEAD;

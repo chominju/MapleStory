@@ -118,6 +118,24 @@
     <Filter Include="소스 파일\01.GameObject\07.Effect">
       <UniqueIdentifier>{649e25ba-ea67-423d-87b0-41895e3a90f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui">
+      <UniqueIdentifier>{79c8a8b9-5944-4d47-874a-684ef9f5ee28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\00.Ui">
+      <UniqueIdentifier>{4a008b8e-2ad7-4b9e-a762-73bb8288cb2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\01.Player_Ui">
+      <UniqueIdentifier>{34185a9b-a120-4a46-809e-4f9344a50950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\03.Inventory_Ui">
+      <UniqueIdentifier>{ebd14b41-be49-4d2a-a33e-aecfaf9d97fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\02.Player_StatUi">
+      <UniqueIdentifier>{1361f102-a26c-4965-aa8d-61422f6fe2f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item">
+      <UniqueIdentifier>{e1f7d440-85d7-4991-b73e-0216957c3b35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -219,6 +237,21 @@
     <ClInclude Include="CLevelUp.h">
       <Filter>소스 파일\01.GameObject\07.Effect</Filter>
     </ClInclude>
+    <ClInclude Include="Ui.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\00.Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_Ui.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\01.Player_Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_StatUi.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\02.Player_StatUi</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory_Ui.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>소스 파일\01.GameObject\09.Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainApp.cpp">
@@ -310,6 +343,21 @@
     </ClCompile>
     <ClCompile Include="CLevelUp.cpp">
       <Filter>소스 파일\01.GameObject\07.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Ui.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\00.Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Ui.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\01.Player_Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_StatUi.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\02.Player_StatUi</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory_Ui.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

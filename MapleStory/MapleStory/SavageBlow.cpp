@@ -35,7 +35,7 @@ int CSavageBlow::Ready_GameObject()
 		m_hdc = m_right_hdc;
 		m_info.x = (m_target->GetRect()->right + m_info.sizeX / 2) - 200; 
 	}
-	m_info.y = m_target->GetInfo()->y;
+	m_info.y = m_target->Get_Info()->y;
 
 	m_animFrame.frame_animation = 0;
 	m_animFrame.frame_start = 0;
@@ -73,7 +73,7 @@ int CSavageBlow::Update_GameObject()
 		m_info.x = m_target->GetRect()->left - m_info.sizeX / 2 + 50;
 	else if (m_currentKey == CurrentKey::CUR_RIGHT)
 		m_info.x = m_target->GetRect()->right + m_info.sizeX / 2 - 50;
-	m_info.y = m_target->GetInfo()->y;
+	m_info.y = m_target->Get_Info()->y;
 	Play_Animation();
 
 	if (m_isDead)

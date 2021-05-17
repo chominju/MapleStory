@@ -22,7 +22,5 @@ public:
 
 	float m_createMonsterTime;
 	float m_createMonsterSpeed;
-
-	bool m_Die;
 };
 

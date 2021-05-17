@@ -56,4 +56,7 @@ LevelUp
 ../Resource/Ui/LevelUp.bmp
 Damage_Skin
 ../Resource/DamageSkin/Damage_Skin.bmp
-
+Stat_Main
+../Resource/Ui/Stat_Main.bmp
+Inventory_Ui
+../Resource/Ui/Inventory_Ui.bmp

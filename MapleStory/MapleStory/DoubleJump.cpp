@@ -28,14 +28,14 @@ int CDoubleJump::Ready_GameObject()
 	if (m_currentKey == CurrentKey::CUR_LEFT)
 	{
 		m_hdc = m_left_hdc;
-		m_info.x = m_target->GetRect()->right + m_info.sizeX / 2;
+		m_info.x = m_target->GetRect()->right;
 	}
 	else if (m_currentKey == CurrentKey::CUR_RIGHT)
 	{
 		m_hdc = m_right_hdc;
-		m_info.x = m_target->GetRect()->left - m_info.sizeX / 2;
+		m_info.x = m_target->GetRect()->left;
 	}
-	m_info.y = m_target->GetInfo()->y -50;
+	m_info.y = m_target->Get_Info()->y + 70;
 
 	m_animFrame.frame_animation = 0;
 	m_animFrame.frame_start = 0;
@@ -59,7 +59,7 @@ int CDoubleJump::Update_GameObject()
 		m_hdc = m_right_hdc;
 		m_info.x = m_target->GetRect()->left - m_info.sizeX / 2;
 	}
-	m_info.y = m_target->GetInfo()->y -50;
+	m_info.y = m_target->Get_Info()->y -30;
 	Play_Animation();
 
 	if (m_isDead)

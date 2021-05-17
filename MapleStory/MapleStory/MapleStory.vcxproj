@@ -22,7 +22,7 @@
     <ProjectGuid>{055E4103-F5D5-4B5A-866A-59824D41F6D0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>MapleStory</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -158,6 +158,8 @@
     <ClInclude Include="DoubleStab.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObject_Manager.h" />
+    <ClInclude Include="Inventory_Ui.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Kerning_City.h" />
     <ClInclude Include="Key_Manager.h" />
     <ClInclude Include="Line.h" />
@@ -171,6 +173,8 @@
     <ClInclude Include="MyBitmap.h" />
     <ClInclude Include="Octopus.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Player_StatUi.h" />
+    <ClInclude Include="Player_Ui.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Rope.h" />
@@ -181,6 +185,7 @@
     <ClInclude Include="Skill.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Ui.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bitmap_Manager.cpp" />
@@ -192,6 +197,8 @@
     <ClCompile Include="DoubleStab.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObject_Manager.cpp" />
+    <ClCompile Include="Inventory_Ui.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Kerning_City.cpp" />
     <ClCompile Include="Key_Manager.cpp" />
     <ClCompile Include="Line.cpp" />
@@ -205,6 +212,8 @@
     <ClCompile Include="MyBitmap.cpp" />
     <ClCompile Include="Octopus.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Player_StatUi.cpp" />
+    <ClCompile Include="Player_Ui.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Rope.cpp" />
     <ClCompile Include="SavageBlow.cpp" />
@@ -218,6 +227,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MapleStory.rc" />

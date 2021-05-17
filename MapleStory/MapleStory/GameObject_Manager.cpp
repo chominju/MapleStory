@@ -60,7 +60,8 @@ void CGameObject_Manager::Add_GameObject_Manager(Object_ID id, CGameObject * obj
 void CGameObject_Manager::Update_GameObject_Manager()
 {
 	int iEvent;
-	for (int i = 0; i < Object_ID::END; ++i)
+	int potal = 0;
+	for (int i =0; i < Object_ID::END; ++i)
 	{
 		for (auto& iter = m_listGameObject[i].begin(); iter != m_listGameObject[i].end(); )
 		{
@@ -70,12 +71,13 @@ void CGameObject_Manager::Update_GameObject_Manager()
 				Safe_Delete(*iter);
 				iter = m_listGameObject[i].erase(iter);
 			}
+			else if (iEvent == MOVE_PORTAL)
+				potal = MOVE_PORTAL;
 			else
 				++iter;
 		}
 	}
-
-	if (iEvent == MOVE_PORTAL)
+	if (potal == MOVE_PORTAL)
 	{
 		for (auto & portal : m_listGameObject[Object_ID::PORTAL])
 		{

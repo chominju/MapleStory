@@ -22,7 +22,7 @@ int CSkill::Update_GameObject()
 		m_info.x = m_target->GetRect()->left - m_info.sizeX / 2;
 	else if (m_currentKey == CurrentKey::CUR_RIGHT)
 		m_info.x = m_target->GetRect()->right + m_info.sizeX / 2;
-	m_info.y = m_target->GetInfo()->y;
+	m_info.y = m_target->Get_Info()->y;
 	Play_Animation();
 
 	if (m_isDead)

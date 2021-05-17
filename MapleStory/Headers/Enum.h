@@ -12,6 +12,7 @@ enum Object_ID
 	MONSTER,
 	ROPE,
 	PLAYER,
+	ITEM,
 	ATTACK_SKILL,
 	BUFF_SKILL,
 	SKILL_EFFECT,
@@ -72,9 +73,9 @@ enum Animation_index
 enum Item_type
 {
 	EQUIPMENT,
-	WEAR_EQUIPMENT,
 	CONSUME,
 	ETC,
+	WEAR_EQUIPMENT,
 };
 
 enum Direction

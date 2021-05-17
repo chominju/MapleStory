@@ -34,7 +34,7 @@ int CDoubleStab::Ready_GameObject()
 		m_hdc = m_right_hdc;
 		m_info.x = m_target->GetRect()->right + m_info.sizeX / 2;
 	}
-	m_info.y = m_target->GetInfo()->y;
+	m_info.y = m_target->Get_Info()->y;
 
 	m_animFrame.frame_animation = 0;
 	m_animFrame.frame_start = 0;

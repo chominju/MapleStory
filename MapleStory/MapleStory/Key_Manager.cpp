@@ -40,6 +40,10 @@ void CKey_Manager::Update_Key_Manager()
 		m_key |= KEY_E;
 	if (GetAsyncKeyState('R') & 0x8000)
 		m_key |= KEY_R;
+	if (GetAsyncKeyState('P') & 0x8000)
+		m_key |= KEY_P;
+	if (GetAsyncKeyState('I') & 0x8000)
+		m_key |= KEY_I;
 }
 
 bool CKey_Manager::Key_Up(DWORD key)

@@ -19,6 +19,9 @@
 #define KEY_E		0x0400
 #define KEY_R		0x0800
 
+#define KEY_P		0x1000
+#define KEY_I		0x2000
+
 class CKey_Manager
 {
 public:

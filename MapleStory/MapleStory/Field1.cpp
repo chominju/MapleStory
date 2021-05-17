@@ -21,7 +21,6 @@ CField1::~CField1()
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::PORTAL);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::MONSTER);
-	m_Die = true;
 }
 
 int CField1::Ready_Scene()
@@ -50,20 +49,19 @@ int CField1::Ready_Scene()
 	CScroll_Manager::Set_ResetX();
 	CScroll_Manager::Set_ResetY();
 	CreateMonster();
-	m_Die = false;
 
 	return 0;
 }
 
 void CField1::Update_Scene()
 {
-	CGameObject_Manager::Get_Instance()->Update_GameObject_Manager();
-	CGameObject_Manager::Get_Instance()->Late_Update_GameObject_Manager();
-	if (m_createMonsterTime + m_createMonsterSpeed < GetTickCount() && !m_Die)
+	if (m_createMonsterTime + m_createMonsterSpeed < GetTickCount())
 	{
 		CreateMonster();
 		m_createMonsterTime = GetTickCount();
 	}
+	CGameObject_Manager::Get_Instance()->Update_GameObject_Manager();
+	CGameObject_Manager::Get_Instance()->Late_Update_GameObject_Manager();
 }
 
 void CField1::Render_Scene(HDC hdc)

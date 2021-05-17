@@ -43,7 +43,7 @@ void CCollision_Manager::Collision_Portal(list<CGameObject*>* player, list<CGame
 
 			if (playerRect->left >= portalRect->left+20 && playerRect->right <= portalRect->right-20)
 			{
-				if(player_object->GetInfo()->y >= portalRect->top &&player_object->GetInfo()->y <= portalRect->bottom)
+				if(player_object->Get_Info()->y >= portalRect->top &&player_object->Get_Info()->y <= portalRect->bottom)
 				check = true;
 				player_object->Set_isPortal(true);
 				portal_object->Set_isPortal(true);
@@ -77,7 +77,7 @@ void CCollision_Manager::Collision_Monster(list<CGameObject*>* player, list<CGam
 
 			if (playerRect->left >= monsterRect->left-5 && playerRect->right <= monsterRect->right-5)
 			{
-				if (player_object->GetInfo()->y >= monsterRect->top &&player_object->GetInfo()->y <= monsterRect->bottom)
+				if (player_object->Get_Info()->y >= monsterRect->top &&player_object->Get_Info()->y <= monsterRect->bottom)
 				{
 					check = true;
 					player_object->Set_IsHit(true);
@@ -111,7 +111,7 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 	for (auto & skill_object : *skill)
 	{
 		monster->sort([&](auto& monster1, auto& monster2) {
-			return abs(skill_object->GetInfo()->x - monster1->GetInfo()->x) < abs(skill_object->GetInfo()->x - monster2->GetInfo()->x);
+			return abs(skill_object->Get_Info()->x - monster1->Get_Info()->x) < abs(skill_object->Get_Info()->x - monster2->Get_Info()->x);
 		});
 			for (auto& monster_object : *monster)
 			{
@@ -155,7 +155,7 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 							for (int i = 0; i < skillHit; i++)
 							{
 								CGameObject * damageSkin = CDamageSkin::Create(damage + randAttack[i]);
-								damageSkin->Set_Pos(monster_object->GetInfo()->x, monster_object->GetRect()->top - (49)*(i+1));
+								damageSkin->Set_Pos(monster_object->Get_Info()->x, monster_object->GetRect()->top - (49)*(i+1));
 								CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::UI, damageSkin);
 							}
 							if (monster_object->Get_Hp() <= 0)
@@ -197,7 +197,7 @@ bool CCollision_Manager::Collision_Rope(list<CGameObject*>* player, list<CGameOb
 	{
 		for (auto& rope_object : *rope)
 		{
-			float playerX = player_object->GetInfo()->x;
+			float playerX = player_object->Get_Info()->x;
 			float player_top = player_object->GetRect()->top;
 			float player_bottom = player_object->GetRect()->bottom;
 			const RECT* ropeRect = rope_object->GetRect();
