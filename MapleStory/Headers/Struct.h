@@ -48,6 +48,18 @@ typedef struct
 	int money;
 
 }Object_Data;
+
+typedef struct
+{
+	Object_ID id;
+	Item_type type;
+	char itemName[32];
+	int quantity;
+	int money;
+	int sellMoney;
+	int buyMoney;
+
+}Item_Info;
 //typedef struct
 //{
 //	char imageKey[32];

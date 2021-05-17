@@ -11,6 +11,7 @@ public:
 	static void Collision_Monster(list<CGameObject*>* player, list<CGameObject*>* monster);
 	static void Collision_Skill(list<CGameObject*>* skill, list<CGameObject*>* monster);
 	static bool Collision_Rope(list<CGameObject*>* player, list<CGameObject*>* rope , const RECT** rc);
+	static void Collision_DropItem(list<CGameObject*>* player, list<CGameObject*>* dropItem);
 private:
 
 };

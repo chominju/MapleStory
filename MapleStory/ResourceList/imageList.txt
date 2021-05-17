@@ -60,3 +60,17 @@ Stat_Main
 ../Resource/Ui/Stat_Main.bmp
 Inventory_Ui
 ../Resource/Ui/Inventory_Ui.bmp
+Inventory_Equipment_Button
+../Resource/Ui/Inventory_Equipment_Button.bmp
+Inventory_Consume_Button
+../Resource/Ui/Inventory_Consume_Button.bmp
+Inventory_Etc_Button
+../Resource/Ui/Inventory_Etc_Button.bmp
+Meso
+../Resource/Item/Meso.bmp
+Item
+../Resource/Item/Item.bmp
+Drop_Mushroom
+../Resource/Item/Drop_Mushroom.bmp
+Drop_Octopus
+../Resource/Item/Drop_Octopus.bmp

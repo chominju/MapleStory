@@ -71,6 +71,12 @@ void CGameObject_Manager::Update_GameObject_Manager()
 				Safe_Delete(*iter);
 				iter = m_listGameObject[i].erase(iter);
 			}
+			else if(OBJ_FIELD_OUT == iEvent)
+			{
+		/*		m_listGameObject[i].erase(iter);
+				Safe_Delete(*iter);*/
+				iter = m_listGameObject[i].erase(iter);
+			}
 			else if (iEvent == MOVE_PORTAL)
 				potal = MOVE_PORTAL;
 			else
@@ -108,6 +114,8 @@ void CGameObject_Manager::Late_Update_GameObject_Manager()
 		CCollision_Manager::Collision_Monster(&m_listGameObject[Object_ID::PLAYER], &m_listGameObject[Object_ID::MONSTER]);
 	if (!m_listGameObject[Object_ID::ATTACK_SKILL].empty())
 		CCollision_Manager::Collision_Skill(&m_listGameObject[Object_ID::ATTACK_SKILL], &m_listGameObject[Object_ID::MONSTER]);
+	if (!m_listGameObject[Object_ID::DROP_ITEM].empty())
+		CCollision_Manager::Collision_DropItem(&m_listGameObject[Object_ID::PLAYER], &m_listGameObject[Object_ID::DROP_ITEM]);
 
 }
 

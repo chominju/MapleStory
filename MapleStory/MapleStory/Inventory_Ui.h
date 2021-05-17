@@ -23,5 +23,10 @@ private:
 	HDC m_equipment_hdc;
 	HDC m_consume_hdc;
 	HDC m_etc_hdc;
+
+	CGameObject* m_EquipmentButton;
+	CGameObject* m_ConsumeButton;
+	CGameObject* m_EtcButton;
+
 };
 

@@ -12,11 +12,12 @@ enum Object_ID
 	MONSTER,
 	ROPE,
 	PLAYER,
-	ITEM,
+	DROP_ITEM,
+	INVENTORY_ITEM,
+	BUTTON,
 	ATTACK_SKILL,
 	BUFF_SKILL,
 	SKILL_EFFECT,
-	ITEM,
 	UI,
 	MOUSE,
 	END
@@ -72,9 +73,10 @@ enum Animation_index
 
 enum Item_type
 {
-	EQUIPMENT,
+	MESO,
 	CONSUME,
 	ETC,
+	EQUIPMENT,
 	WEAR_EQUIPMENT,
 };
 

@@ -573,7 +573,7 @@ void CPlayer::Player_Rope()
 			{
 				float dis = m_info.x - (ropeRect->right + ropeRect->left) / 2;
 				m_info.x -= dis;
-				CScroll_Manager::Set_ScrollX(dis);
+				//CScroll_Manager::Set_ScrollX(dis);
 
 				if (m_rect.top <= ropeRect->bottom - WINCY)
 				{
@@ -584,7 +584,7 @@ void CPlayer::Player_Rope()
 					m_isJump = true;
 					m_keyPush.isDoubleJump = false;
 					m_keyPush.isDoubleJumpReady = false;
-					CScroll_Manager::Set_ScrollY(-m_speed);
+					//CScroll_Manager::Set_ScrollY(-m_speed);
 				}
 
 				UpdateRect_GameObject();
@@ -606,7 +606,7 @@ void CPlayer::Player_Rope()
 			{
 				float dis = m_info.x - (ropeRect->right + ropeRect->left)/2;
 				m_info.x -= dis;
-				CScroll_Manager::Set_ScrollX(dis);
+				//CScroll_Manager::Set_ScrollX(dis);
 
 				if (m_rect.bottom >= ropeRect->top - WINCY)
 				{
@@ -617,7 +617,7 @@ void CPlayer::Player_Rope()
 					m_keyPush.isRopeMove = true;
 					m_keyPush.isDoubleJump = false;
 					m_keyPush.isDoubleJumpReady = false;
-					CScroll_Manager::Set_ScrollY(m_speed);
+					//CScroll_Manager::Set_ScrollY(m_speed);
 				}
 				UpdateRect_GameObject();
 

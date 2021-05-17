@@ -3,6 +3,8 @@
 #include "GameObject_Manager.h"
 #include "Bitmap_Manager.h"
 #include "Player.h"
+#include "Inventory_Button.h"
+#include "Inventory_RectManager.h"
 
 CGameObject* CInventory_Ui::instance=nullptr;
 
@@ -23,6 +25,22 @@ int CInventory_Ui::Ready_GameObject()
 	m_info.y = 200;
 	m_info.sizeX = 185;
 	m_info.sizeY = 351;
+	UpdateRect_GameObject();
+
+	m_EquipmentButton = CInventory_Button::Create();
+	m_EquipmentButton->Set_Pos(m_rect.left + 20, m_rect.top +15);
+	dynamic_cast<CInventory_Button*>(m_EquipmentButton)->Set_FrameKey(L"Inventory_Equipment_Button");
+
+	m_ConsumeButton = CInventory_Button::Create();
+	m_ConsumeButton->Set_Pos(m_rect.left + 60, m_rect.top + 15);
+	dynamic_cast<CInventory_Button*>(m_ConsumeButton)->Set_FrameKey(L"Inventory_Consume_Button");
+
+	m_EtcButton = CInventory_Button::Create();
+	m_EtcButton->Set_Pos(m_rect.left + 100, m_rect.top + 15);
+	dynamic_cast<CInventory_Button*>(m_EtcButton)->Set_FrameKey(L"Inventory_Etc_Button");
+
+	CInventory_RectManager::Create(m_rect);
+
 	return 0;
 }
 
@@ -30,11 +48,18 @@ int CInventory_Ui::Update_GameObject()
 {
 	m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
 	Set_UiData(m_player->Get_Data());
+
 	return 0;
 }
 
 void CInventory_Ui::Late_Update_GameObject()
 {
+	m_EquipmentButton->Late_Update_GameObject();
+	m_ConsumeButton->Late_Update_GameObject();
+	m_EtcButton->Late_Update_GameObject();
+	CInventory_RectManager::Get_Instance()->Set_isEquipmentClick(dynamic_cast<CInventory_Button*>(m_EquipmentButton)->Get_IsEquipmentClick());
+	CInventory_RectManager::Get_Instance()->Set_isConsumeClick(dynamic_cast<CInventory_Button*>(m_ConsumeButton)->Get_IsConsumeClick());
+	CInventory_RectManager::Get_Instance()->Set_m_isEtcClick(dynamic_cast<CInventory_Button*>(m_EtcButton)->Get_IsEtcClick());
 }
 
 void CInventory_Ui::Render_GameObject(HDC hDC)
@@ -52,6 +77,42 @@ void CInventory_Ui::Render_GameObject(HDC hDC)
 			m_info.sizeX,// 그리고자 하는 영역의 크기 x,y
 			m_info.sizeY,
 			RGB(255, 0, 255));
+
+		m_EquipmentButton->Render_GameObject(hDC);
+		m_ConsumeButton->Render_GameObject(hDC);
+		m_EtcButton->Render_GameObject(hDC);
+
+		CInventory_RectManager::Get_Instance()->Render_GameObject(hDC);
+
+		// 돈 출력
+		int temp = m_data.money;
+		int num = 0;
+		int temp3 = m_data.money;
+		while (true)
+		{
+			num++;
+			temp3 /= 10;
+			if (temp3 == 0)
+				break;
+		}
+
+		for (int i = 0; i < num; i++)
+		{
+			int temp2 = temp % 10;
+			GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+				m_rect.left + 120 - (num / 2 + i) * 7,//위치 x,y+ i) * 7,//위치 x,y
+				m_rect.bottom - 62 ,
+				7,// 크기 xy
+				10,
+				m_State_Num_hdc,// 복사 할 대상
+				7 * temp2, 0,// 그림의 시작 위치 x,y
+				7,// 그리고자 하는 영역의 크기 x,y
+				10,
+				RGB(255, 0, 255));
+			temp /= 10;
+			if (temp == 0)
+				break;
+		}
 	}
 }
 

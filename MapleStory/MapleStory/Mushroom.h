@@ -23,6 +23,7 @@ public:
 
 	float m_power;
 	float m_accel;
+	float jumpDelay;
 
 public:
 	static CGameObject * Create();

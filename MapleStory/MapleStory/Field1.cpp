@@ -85,12 +85,12 @@ void CField1::Release_Scene()
 void CField1::Create_Rope_Scene()
 {
 	CGameObject*rope = CRope::Create();
-	rope->Set_Pos(906, 1225);
+	rope->Set_Pos(906, 1220);
 	rope->Set_Size(10, 80);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 
 	rope = CRope::Create();
-	rope->Set_Pos(1747, 1225);
+	rope->Set_Pos(1747, 1220);
 	rope->Set_Size(10, 80);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ROPE, rope);
 

@@ -156,8 +156,12 @@
     <ClInclude Include="DamageSkin.h" />
     <ClInclude Include="DoubleJump.h" />
     <ClInclude Include="DoubleStab.h" />
+    <ClInclude Include="Drop_Mushroom.h" />
+    <ClInclude Include="Drop_Octopus.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObject_Manager.h" />
+    <ClInclude Include="Inventory_Button.h" />
+    <ClInclude Include="Inventory_RectManager.h" />
     <ClInclude Include="Inventory_Ui.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Kerning_City.h" />
@@ -168,6 +172,7 @@
     <ClInclude Include="MainApp.h" />
     <ClInclude Include="Field1.h" />
     <ClInclude Include="MapleStory.h" />
+    <ClInclude Include="Meso.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="MyBitmap.h" />
@@ -190,6 +195,9 @@
   <ItemGroup>
     <ClCompile Include="Bitmap_Manager.cpp" />
     <ClCompile Include="CLevelUp.cpp" />
+    <ClCompile Include="Drop_Mushroom.cpp" />
+    <ClCompile Include="Drop_Octopus.cpp" />
+    <ClCompile Include="Inventory_Button.cpp" />
     <ClCompile Include="Collision_Manager.cpp" />
     <ClCompile Include="DaggerBooster.cpp" />
     <ClCompile Include="DamageSkin.cpp" />
@@ -197,6 +205,7 @@
     <ClCompile Include="DoubleStab.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObject_Manager.cpp" />
+    <ClCompile Include="Inventory_RectManager.cpp" />
     <ClCompile Include="Inventory_Ui.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Kerning_City.cpp" />
@@ -207,6 +216,7 @@
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="Field1.cpp" />
     <ClCompile Include="MapleStory.cpp" />
+    <ClCompile Include="Meso.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="MyBitmap.cpp" />

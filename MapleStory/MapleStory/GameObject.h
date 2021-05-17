@@ -147,6 +147,7 @@ public:
 		return m_currentKey;
 	}
 
+
 protected:
 	HDC m_hdc;
 	RECT m_rect;

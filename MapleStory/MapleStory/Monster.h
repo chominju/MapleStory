@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+
 class CMonster :
 	public CGameObject
 {
@@ -36,11 +37,14 @@ protected:
 	bool m_isJump;
 	bool m_isDie;
 	bool m_isFall;
+	bool m_trace;
 	
 	float m_jumpSpeed;
 
 	float m_minX;
 	float m_maxX;
+
+	CGameObject* m_player;
 
 };
 

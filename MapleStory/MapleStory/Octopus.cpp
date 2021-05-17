@@ -2,7 +2,9 @@
 #include "Octopus.h"
 #include "Bitmap_Manager.h"
 #include "Line_Manager.h"
-
+#include "GameObject_Manager.h"
+#include "Meso.h"
+#include "Drop_Octopus.h"
 COctopus::COctopus()
 {
 }
@@ -45,13 +47,14 @@ int COctopus::Ready_GameObject()
 	m_data.hp = m_data.maxHp;
 	m_data.maxAttack = 200;
 	m_data.minAttack = m_data.maxAttack;
-	m_data.money = 500;
+	m_data.money = 1000;
 
 	return S_OK;
 }
 
 int COctopus::Update_GameObject()
 {
+	m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
 	if (m_isDead)
 	{
 		if (m_dir == Direction::DIR_LEFT)
@@ -66,7 +69,15 @@ int COctopus::Update_GameObject()
 			m_isDie = true;
 	}
 	if (m_isDie)
+	{
+		int temp = rand() % 10;
+		if (temp > 3)
+			CMeso::Create(this);
+		temp = rand() % 10;
+		if (temp > 6)
+			CDrop_Octopus::Create(this);
 		return OBJ_DEAD;
+	}
 
 	if (m_changeStateTime + m_changeStateSpeed < GetTickCount())
 	{

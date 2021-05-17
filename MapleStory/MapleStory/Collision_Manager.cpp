@@ -6,6 +6,8 @@
 #include "Skill.h"
 #include "GameObject_Manager.h"
 #include "DamageSkin.h"
+#include "Item.h"
+#include "Inventory_RectManager.h"
 
 CCollision_Manager::CCollision_Manager()
 {
@@ -162,7 +164,6 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 							{
 								monster_object->Set_IsDead();
 								CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Exp(monster_object->Get_Exp());
-								CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(monster_object->Get_Money());
 							}
 
 							delete[] randAttack;
@@ -225,4 +226,32 @@ bool CCollision_Manager::Collision_Rope(list<CGameObject*>* player, list<CGameOb
 		}
 	}
 	return false;
+}
+
+void CCollision_Manager::Collision_DropItem(list<CGameObject*>* player, list<CGameObject*>* dropItem)
+{
+	for (auto & player_object : *player)
+	{
+		for (auto& dropItem_object : *dropItem)
+		{
+			const RECT* playerRect = player_object->GetRect();
+			const RECT* dropItem_objectRect = dropItem_object->GetRect();
+			RECT temp = {};
+			if (IntersectRect(&temp, playerRect, dropItem_objectRect))
+			{
+				CItem* tempItem = dynamic_cast<CItem*>(dropItem_object);
+				if (tempItem->Get_ItemInfo()->type == Item_type::MESO)
+				{
+					player_object->Set_Change_Money(dynamic_cast<CItem*>(dropItem_object)->Get_ItemInfo()->money);
+					dropItem_object->Set_IsDead();
+				}
+				if (tempItem->Get_ItemInfo()->type == Item_type::ETC)
+				{
+					tempItem->Set_m_isFieldOut(true);
+					CInventory_RectManager::Get_Instance()->Push_EtcList(tempItem);
+				}
+			}
+			//}
+		}
+	}
 }

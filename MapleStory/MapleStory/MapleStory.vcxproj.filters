@@ -136,6 +136,24 @@
     <Filter Include="소스 파일\01.GameObject\09.Item">
       <UniqueIdentifier>{e1f7d440-85d7-4991-b73e-0216957c3b35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\00.Item">
+      <UniqueIdentifier>{af9c5396-53fb-49d6-84fd-a943901fe2c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\01.Meso">
+      <UniqueIdentifier>{0f59e362-acc7-41f0-820f-e4a956dec2b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Button">
+      <UniqueIdentifier>{739ee677-1ee1-4d92-b7f3-0b4d10a74fcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Rect">
+      <UniqueIdentifier>{fd6da224-8ee6-4177-a33f-663a871c9878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\02.Drop_Octopus">
+      <UniqueIdentifier>{f13b2cd8-f1c2-4a0a-9722-0de269a285fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\03.Drop_Mushroom">
+      <UniqueIdentifier>{5349ec25-6dd9-4dd9-bb91-6b60a11a6e01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -250,7 +268,22 @@
       <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
-      <Filter>소스 파일\01.GameObject\09.Item</Filter>
+      <Filter>소스 파일\01.GameObject\09.Item\00.Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Meso.h">
+      <Filter>소스 파일\01.GameObject\09.Item\01.Meso</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory_Button.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory_RectManager.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Rect</Filter>
+    </ClInclude>
+    <ClInclude Include="Drop_Octopus.h">
+      <Filter>소스 파일\01.GameObject\09.Item\02.Drop_Octopus</Filter>
+    </ClInclude>
+    <ClInclude Include="Drop_Mushroom.h">
+      <Filter>소스 파일\01.GameObject\09.Item\03.Drop_Mushroom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -357,7 +390,22 @@
       <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
-      <Filter>소스 파일\01.GameObject\09.Item</Filter>
+      <Filter>소스 파일\01.GameObject\09.Item\00.Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Meso.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item\01.Meso</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory_Button.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory_RectManager.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Rect</Filter>
+    </ClCompile>
+    <ClCompile Include="Drop_Octopus.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item\02.Drop_Octopus</Filter>
+    </ClCompile>
+    <ClCompile Include="Drop_Mushroom.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item\03.Drop_Mushroom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
