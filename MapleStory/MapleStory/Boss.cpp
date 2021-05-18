@@ -50,6 +50,7 @@ int CBoss::Ready_GameObject()
 
 
 
+
 	m_data.maxExp = 1000000;
 	m_data.exp = m_data.maxExp;
 	m_data.maxHp = 100000;
