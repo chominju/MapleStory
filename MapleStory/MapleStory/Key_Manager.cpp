@@ -44,6 +44,8 @@ void CKey_Manager::Update_Key_Manager()
 		m_key |= KEY_P;
 	if (GetAsyncKeyState('I') & 0x8000)
 		m_key |= KEY_I;
+	if (GetAsyncKeyState(VK_F5) & 0x8000)
+		m_key |= KEY_F5;
 }
 
 bool CKey_Manager::Key_Up(DWORD key)

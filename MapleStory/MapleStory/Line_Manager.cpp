@@ -3,6 +3,7 @@
 #include "Line.h"
 #include "Player.h"
 #include <vector>
+#include "Key_Manager.h"
 
 CLine_Manager* CLine_Manager::m_pInstance = nullptr;
 
@@ -187,9 +188,19 @@ void CLine_Manager::Ready_Line_Manager()
 
 void CLine_Manager::Render_Line_Manager(HDC hDC)
 {
-	for (auto& pLine : m_listLine)
+	if(CKey_Manager::Get_Instance()->Key_Down(KEY_F5))
 	{
-		pLine->Render_Line(hDC);
+		if (m_isLinePrint)
+			m_isLinePrint = false;
+		else
+			m_isLinePrint = true;
+	}
+	if (m_isLinePrint)
+	{
+		for (auto& pLine : m_listLine)
+		{
+			pLine->Render_Line(hDC);
+		}
 	}
 }
 

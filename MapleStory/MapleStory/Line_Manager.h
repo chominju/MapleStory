@@ -34,5 +34,7 @@ public:
 private:
 	static CLine_Manager* m_pInstance;
 	list<CLine*> m_listLine;
+
+	bool m_isLinePrint;
 };
 

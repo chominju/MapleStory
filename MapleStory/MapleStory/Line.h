@@ -14,5 +14,6 @@ public:
 	static CLine* Create(Line_Info* line_Info = nullptr);
 private:
 	Line_Info m_line_info;
+
 };
 
