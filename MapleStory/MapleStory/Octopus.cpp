@@ -5,6 +5,8 @@
 #include "GameObject_Manager.h"
 #include "Meso.h"
 #include "Drop_Octopus.h"
+#include "White_Potion.h"
+
 COctopus::COctopus()
 {
 }
@@ -15,7 +17,7 @@ COctopus::~COctopus()
 
 int COctopus::Ready_GameObject()
 {
-	m_hdc= CBitmap_Manager::Get_Instance()->Get_memDC(L"Octopus");
+	m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Octopus");
 	m_info.sizeX = 90;
 	m_info.sizeY = 80;
 	m_info.x = 300;
@@ -32,7 +34,7 @@ int COctopus::Ready_GameObject()
 	m_jumpSpeed = 5;
 
 	m_animFrame.frame_start = 0;
-	m_animFrame.frame_end = Octopus_Animation_Index::OCTOPUS_WALK_INDEX; 
+	m_animFrame.frame_end = Octopus_Animation_Index::OCTOPUS_WALK_INDEX;
 	m_animFrame.frame_animation = Octopus_Animation::OCTOPUS_WALK;
 	m_animFrame.frame_speed = 500;
 	m_animFrame.frame_time = GetTickCount();
@@ -71,11 +73,12 @@ int COctopus::Update_GameObject()
 	if (m_isDie)
 	{
 		int temp = rand() % 10;
-		if (temp > 3)
-			CMeso::Create(this);
-		temp = rand() % 10;
-		if (temp > 6)
-			CDrop_Octopus::Create(this);
+		if (temp > 7)
+			CMeso::Create(m_info.x,m_rect.top, m_data.money);
+		else if (temp > 5)
+			CDrop_Octopus::Create(m_info.x, m_rect.top);
+		else if (temp > 3)
+			CWhite_Potion::Create(m_info.x, m_rect.top);
 		return OBJ_DEAD;
 	}
 

@@ -18,5 +18,6 @@ public:
 	static CGameObject * Create();
 private:
 	static CGameObject * instance;
+	HDC m_skillKey;
 };
 

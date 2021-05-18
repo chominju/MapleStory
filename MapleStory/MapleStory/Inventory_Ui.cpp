@@ -5,8 +5,13 @@
 #include "Player.h"
 #include "Inventory_Button.h"
 #include "Inventory_RectManager.h"
+#include "Item.h"
+#include "Key_Manager.h"
+#include "Item.h"
+#include <algorithm>
 
-CGameObject* CInventory_Ui::instance=nullptr;
+
+CGameObject* CInventory_Ui::instance = nullptr;
 
 CInventory_Ui::CInventory_Ui()
 {
@@ -21,14 +26,14 @@ int CInventory_Ui::Ready_GameObject()
 {
 	m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Inventory_Ui");
 	m_State_Num_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_Num");
-	m_info.x = 450;
-	m_info.y = 200;
+	m_info.x = 900;
+	m_info.y = 500;
 	m_info.sizeX = 185;
 	m_info.sizeY = 351;
 	UpdateRect_GameObject();
 
 	m_EquipmentButton = CInventory_Button::Create();
-	m_EquipmentButton->Set_Pos(m_rect.left + 20, m_rect.top +15);
+	m_EquipmentButton->Set_Pos(m_rect.left + 20, m_rect.top + 15);
 	dynamic_cast<CInventory_Button*>(m_EquipmentButton)->Set_FrameKey(L"Inventory_Equipment_Button");
 
 	m_ConsumeButton = CInventory_Button::Create();
@@ -48,6 +53,71 @@ int CInventory_Ui::Update_GameObject()
 {
 	m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
 	Set_UiData(m_player->Get_Data());
+
+	if (dynamic_cast<CPlayer*>(m_player)->Get_IsInventoryOpen())
+	{
+		POINT pt = {};
+		GetCursorPos(&pt);
+		ScreenToClient(g_hwnd, &pt);
+		list<CItem*>* getList = CInventory_RectManager::Get_Instance()->Get_CurrentList();
+
+		for (list<CItem*>::iterator iter = getList->begin(); iter != getList->end(); iter++)
+		{
+			//for (auto& list : *getList)
+			//{
+			if (PtInRect((*iter)->GetRect(), pt))
+			{
+				if (!m_isItemMove)
+				{
+					if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
+					{
+						CInventory_RectManager::Get_Instance()->Use_Item((*iter)->Get_ItemInfo()->itemName);
+					}
+
+					if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
+					{
+						temp = (*iter);
+						m_beforePos = *(*iter)->Get_Info();
+						beforeIter = iter;
+						m_isItemMove = true;
+					}
+				}
+				else
+				{
+					if (beforeIter != iter)
+					{
+						if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
+						{
+							Object_Info temp2 = *(*iter)->Get_Info();
+							iter_swap(beforeIter, iter);
+							(*iter)->Set_Pos(temp2.x, temp2.y);
+							(*beforeIter)->Set_Pos(m_beforePos.x, m_beforePos.y);
+							/*Object_Info m_afterInfo = *(*iter)->Get_Info();
+							temp->Set_Pos(m_afterInfo.x, m_afterInfo.y);
+							list->Set_Pos(m_beforePos.x, m_beforePos.y);*/
+							m_isItemMove = false;
+
+							temp = nullptr;
+						}
+					}
+				}
+			}
+		}
+		if (m_isItemMove)
+		{
+			temp->Set_Pos(pt.x, pt.y);
+
+			if (!PtInRect(&m_rect, pt))
+			{
+				if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
+				{
+					CInventory_RectManager::Get_Instance()->Drop_Item(temp->Get_ItemInfo()->itemName , m_beforePos);
+					m_isItemMove = false;
+					temp = nullptr;
+				}
+			}
+		}
+	}
 
 	return 0;
 }
@@ -101,7 +171,7 @@ void CInventory_Ui::Render_GameObject(HDC hDC)
 			int temp2 = temp % 10;
 			GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
 				m_rect.left + 120 - (num / 2 + i) * 7,//위치 x,y+ i) * 7,//위치 x,y
-				m_rect.bottom - 62 ,
+				m_rect.bottom - 62,
 				7,// 크기 xy
 				10,
 				m_State_Num_hdc,// 복사 할 대상

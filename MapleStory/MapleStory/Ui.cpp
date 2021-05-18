@@ -27,7 +27,7 @@ void CUi::Late_Update_GameObject()
 
 void CUi::Render_GameObject(HDC hDC)
 {
-	
+
 }
 
 void CUi::Release_GameObject()

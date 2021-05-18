@@ -1,5 +1,6 @@
 #pragma once
 #include "Ui.h"
+class CItem;
 class CInventory_Ui :
 	public CUi
 {
@@ -16,6 +17,7 @@ public:
 
 public:
 	static CGameObject * Create();
+
 private:
 	static CGameObject* instance;
 	CGameObject * m_player;
@@ -28,5 +30,9 @@ private:
 	CGameObject* m_ConsumeButton;
 	CGameObject* m_EtcButton;
 
+	CItem * temp;
+	list<CItem*>::iterator beforeIter;
+	Object_Info m_beforePos;
+	bool m_isItemMove;
 };
 

@@ -30,6 +30,11 @@ public:
 		m_isFieldOut = fieldOut;
 	}
 
+	void Set_Money(int money)
+	{
+		m_itemInfo.money = money;
+	}
+
 protected:
 	Item_Info m_itemInfo;
 	bool m_isFieldOut;

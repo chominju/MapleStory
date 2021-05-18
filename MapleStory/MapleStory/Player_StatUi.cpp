@@ -17,10 +17,10 @@ CPlayer_StatUi::~CPlayer_StatUi()
 
 int CPlayer_StatUi::Ready_GameObject()
 {
-	m_hdc= CBitmap_Manager::Get_Instance()->Get_memDC(L"Stat_Main");
+	m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Stat_Main");
 	m_State_Num_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_Num");
-	m_info.x = 750;
-	m_info.y = 200;
+	m_info.x = 900;
+	m_info.y = 180;
 	m_info.sizeX = 212;
 	m_info.sizeY = 336;
 	return S_OK;
@@ -65,7 +65,7 @@ void CPlayer_StatUi::Render_GameObject(HDC hDC)
 				break;
 		}
 
-		for (int i = 0; i<num; i++)
+		for (int i = 0; i < num; i++)
 		{
 			int temp2 = temp % 10;
 			GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
@@ -77,7 +77,7 @@ void CPlayer_StatUi::Render_GameObject(HDC hDC)
 				7 * temp2, 0,// 그림의 시작 위치 x,y
 				7,// 그리고자 하는 영역의 크기 x,y
 				10,
-				RGB(255,0 , 255));
+				RGB(255, 0, 255));
 			temp /= 10;
 			if (temp == 0)
 				break;
@@ -94,7 +94,7 @@ void CPlayer_StatUi::Render_GameObject(HDC hDC)
 				break;
 		}
 
-		for (int i = 0; i<num; i++)
+		for (int i = 0; i < num; i++)
 		{
 			int temp2 = temp % 10;
 			GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 

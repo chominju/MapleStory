@@ -5,11 +5,11 @@
 #define KEY_RBUTTON 0x0002
 //0000	0100
 #define KEY_LEFT	0x0004
-//0000	1000
+//0000	1000		 
 #define KEY_RIGHT	0x0008
-//0001	0000
+//0001	0000		  
 #define KEY_UP		0x0010
-//0010	0000
+//0010	0000		 
 #define KEY_DOWN	0x0020
 
 #define KEY_F		0x0040
@@ -21,6 +21,9 @@
 
 #define KEY_P		0x1000
 #define KEY_I		0x2000
+#define KEY_Z		0x4000
+
+#define KEY_F5		0x8000
 
 class CKey_Manager
 {

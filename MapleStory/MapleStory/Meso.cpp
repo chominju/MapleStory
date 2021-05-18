@@ -20,12 +20,9 @@ int CMeso::Ready_GameObject()
 
 	m_info.sizeX = 25;
 	m_info.sizeY = 24;
-	m_info.x = m_target->Get_Info()->x;
-	m_info.y = m_target->GetRect()->top;
 
 	m_itemInfo.id = Object_ID::DROP_ITEM;
 	m_itemInfo.type = Item_type::MESO;
-	m_itemInfo.money = dynamic_cast<CMonster*>(m_target)->Get_Data()->money;
 	m_itemInfo.buyMoney = 0;
 	m_itemInfo.sellMoney = 0;
 	m_itemInfo.quantity = 1;
@@ -78,15 +75,16 @@ void CMeso::Release_GameObject()
 {
 }
 
-CGameObject * CMeso::Create(CGameObject * monster)
+CGameObject * CMeso::Create(float posX, float posY , int money)
 {
 	CGameObject * instance = new CMeso;
-	instance->Set_Target(monster);
 	if (0 > instance->Ready_GameObject())
 	{
 		Safe_Delete(instance);
 		instance = nullptr;
 	}
+	instance->Set_Pos(posX, posY);
+	dynamic_cast<CMeso*>(instance)->Set_Money(money);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, instance);
 	return instance;
 }

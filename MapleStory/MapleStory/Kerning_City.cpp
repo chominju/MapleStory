@@ -11,6 +11,7 @@
 #include "Player_Ui.h"
 #include "Player_StatUi.h"
 #include "Inventory_Ui.h"
+#include "Scene_Manager.h"
 
 Kerning_City::Kerning_City()
 {
@@ -22,6 +23,7 @@ Kerning_City::~Kerning_City()
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::PORTAL);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::MONSTER);
+	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::DROP_ITEM);
 }
 
 int Kerning_City::Ready_Scene()
@@ -46,6 +48,7 @@ int Kerning_City::Ready_Scene()
 	portal2->Set_Pos(100, 380);
 	dynamic_cast<CPortal*>(portal2)->Set_NextSceneID(SCENE_MAP1);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal2);
+
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::MONSTER);
 	Create_Rope_Scene();

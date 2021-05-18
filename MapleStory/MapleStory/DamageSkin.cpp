@@ -37,6 +37,7 @@ int CDamageSkin::Update_GameObject()
 		return OBJ_DEAD;
 	if (m_disappearTime + m_disappearSpeed < GetTickCount())
 		Set_IsDead();
+	m_info.y -= 2;
 	return 0;
 }
 
@@ -52,17 +53,17 @@ void CDamageSkin::Render_GameObject(HDC hDC)
 	int scrollY = CScroll_Manager::Get_ScrollY();
 
 	int temp2 = m_printDamageNum;
-	for(int i=0; i< printNum; i++)
+	for (int i = 0; i < printNum; i++)
 	{
 		int temp = temp2 % 10;
 		temp2 /= 10;
 		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
-			(m_rect.left + scrollX) + m_info.sizeX*(printNum/2 - i),//위치 x,y
+			(m_rect.left + scrollX) + m_info.sizeX*(printNum / 2 - i),//위치 x,y
 			m_rect.top + scrollY,
 			m_info.sizeX,// 크기 xy
 			m_info.sizeY,
 			m_hdc,// 복사 할 대상
-			temp * m_info.sizeX,0,// 그림의 시작 위치 x,y
+			temp * m_info.sizeX, 0,// 그림의 시작 위치 x,y
 			m_info.sizeX,// 그리고자 하는 영역의 크기 x,y
 			m_info.sizeY,
 			RGB(255, 0, 255));

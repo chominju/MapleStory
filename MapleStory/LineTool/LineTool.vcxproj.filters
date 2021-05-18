@@ -129,6 +129,9 @@
     <ClInclude Include="Field1.h">
       <Filter>Manager\06.Scene\Field1</Filter>
     </ClInclude>
+    <ClInclude Include="CBossMapTool.h">
+      <Filter>Manager\06.Scene\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -187,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="Field1.cpp">
       <Filter>Manager\06.Scene\Field1</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossMapTool.cpp">
+      <Filter>Manager\06.Scene\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

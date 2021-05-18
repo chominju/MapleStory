@@ -10,3 +10,5 @@ Tool_Button3
 ../Resource/Tool_Button/Tool_Button3.bmp
 Menu
 ../Resource/Tool_Button/Tool_Menu.bmp
+BossMap
+../Resource/BackGround/BossMap.bmp

@@ -39,4 +39,4 @@ private:
 	static bool m_isEquipmentClick;
 	static bool m_isConsumeClick;
 	static bool m_isEtcClick;
-};	
+};

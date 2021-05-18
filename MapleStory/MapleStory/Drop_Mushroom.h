@@ -15,5 +15,5 @@ public:
 	virtual void Render_GameObject(HDC hDC) override;
 	virtual void Release_GameObject() override;
 
-	static CGameObject * Create(CGameObject * monster);
+	static CGameObject * Create(float posX, float posY);
 };

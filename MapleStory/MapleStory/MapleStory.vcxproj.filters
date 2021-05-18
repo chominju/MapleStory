@@ -154,6 +154,21 @@
     <Filter Include="소스 파일\01.GameObject\09.Item\03.Drop_Mushroom">
       <UniqueIdentifier>{5349ec25-6dd9-4dd9-bb91-6b60a11a6e01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\04.Red_Potion">
+      <UniqueIdentifier>{72bfa910-ddfc-4869-a82d-32c4086438a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\05.White_Potion">
+      <UniqueIdentifier>{6286a06e-4cb4-4c36-930b-d419cfe49105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\06.Power_Elixir">
+      <UniqueIdentifier>{1347bda2-3b8b-4ebf-a21a-66e066952ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Scene\03.BossMap">
+      <UniqueIdentifier>{1cbd5188-2d9d-4604-9f9c-25942b1044fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Monster\03.Boss">
+      <UniqueIdentifier>{1cd1ca33-5edb-489a-8d7a-bf0093726246}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -285,6 +300,21 @@
     <ClInclude Include="Drop_Mushroom.h">
       <Filter>소스 파일\01.GameObject\09.Item\03.Drop_Mushroom</Filter>
     </ClInclude>
+    <ClInclude Include="Red_Potion.h">
+      <Filter>소스 파일\01.GameObject\09.Item\04.Red_Potion</Filter>
+    </ClInclude>
+    <ClInclude Include="White_Potion.h">
+      <Filter>소스 파일\01.GameObject\09.Item\05.White_Potion</Filter>
+    </ClInclude>
+    <ClInclude Include="Power_Elixir.h">
+      <Filter>소스 파일\01.GameObject\09.Item\06.Power_Elixir</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMap.h">
+      <Filter>소스 파일\05.Scene\03.BossMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainApp.cpp">
@@ -406,6 +436,21 @@
     </ClCompile>
     <ClCompile Include="Drop_Mushroom.cpp">
       <Filter>소스 파일\01.GameObject\09.Item\03.Drop_Mushroom</Filter>
+    </ClCompile>
+    <ClCompile Include="Red_Potion.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item\04.Red_Potion</Filter>
+    </ClCompile>
+    <ClCompile Include="White_Potion.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item\05.White_Potion</Filter>
+    </ClCompile>
+    <ClCompile Include="Power_Elixir.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item\06.Power_Elixir</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMap.cpp">
+      <Filter>소스 파일\05.Scene\03.BossMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

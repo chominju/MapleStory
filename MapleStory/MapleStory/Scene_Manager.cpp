@@ -2,6 +2,7 @@
 #include "Scene_Manager.h"
 #include "Kerning_City.h"
 #include "Field1.h"
+#include "BossMap.h"
 CScene_Manager* CScene_Manager::m_instance = nullptr;
 
 CScene_Manager::CScene_Manager()
@@ -36,6 +37,8 @@ void CScene_Manager::Change_Scene_Manager(Scene_ID nextScene)
 		case Scene_ID::SCENE_MAP1:
 			m_scene = CField1::Create();
 			break;
+		case Scene_ID::SCENE_BOSS:
+			m_scene = CBossMap::Create();
 		default:
 			break;
 		}

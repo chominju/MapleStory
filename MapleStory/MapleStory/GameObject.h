@@ -120,6 +120,7 @@ public:
 		m_data.money += money;
 	}
 
+
 	int Get_Money()
 	{
 		return m_data.money;

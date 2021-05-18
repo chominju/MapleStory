@@ -3,6 +3,7 @@
 #include "MyMenu.h"
 #include "Kerning_City.h"
 #include "Field1.h"
+#include "CBossMapTool.h"
 CScene_Manager* CScene_Manager::m_pInstance =nullptr;
 CScene_Manager::CScene_Manager()
 	:m_pScene(nullptr)
@@ -45,7 +46,11 @@ void CScene_Manager::Change_Scene_Manager(TOOL_ID eNextScene)
 			 dynamic_cast<CField1*>(m_pScene)->Set_SaveName(L"../ResourceList/Field1_lineList.dat");
 			break;
 		case CScene_Manager::TOOL_ID::TOOL_BOSS:
-			//m_pScene = CStage::Create();
+			m_pScene = CBossMapTool::Create();
+			dynamic_cast<CBossMapTool*>(m_pScene)->Set_Hdc(L"BossMap");
+			dynamic_cast<CBossMapTool*>(m_pScene)->Set_StartPos(L"BossMap");
+			dynamic_cast<CBossMapTool*>(m_pScene)->Set_MapName(L"BossMap");
+			dynamic_cast<CBossMapTool*>(m_pScene)->Set_SaveName(L"../ResourceList/BossMap_lineList.dat");
 			break;
 		case CScene_Manager::TOOL_ID::TOOL_END:
 			break;

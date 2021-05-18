@@ -49,7 +49,37 @@ public:
 	void Push_ConsumeList(CItem * item);
 	void Push_EtcList(CItem * item);
 
+	void Find_EquipmentList(char * itemName);
+	void Find_ConsumeList(char * itemName);
+	void Find_EtcList(char * itemName);
 
+	void Use_Item(char * itemName);
+	void Drop_Item(char * itemName, Object_Info pos);
+
+	list<CItem*>* Get_EquipmentList()
+	{
+		return &m_equipmentList;
+	}
+
+	list<CItem*>* Get_ConsumeList()
+	{
+		return &m_consumeList;
+	}
+
+	list<CItem*>* Get_EtcList()
+	{
+		return &m_etcList;
+	}
+
+	list<CItem*>* Get_CurrentList()
+	{
+		if (m_isEquipmentClick)
+			return &m_equipmentList;
+		if (m_isConsumeClick)
+			return &m_consumeList;
+		if (m_isEtcClick)
+			return &m_etcList;
+	}
 
 	static void Create(RECT pos);
 

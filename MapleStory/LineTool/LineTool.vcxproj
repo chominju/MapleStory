@@ -149,6 +149,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CBossMapTool.h" />
     <ClInclude Include="Field1.h" />
     <ClInclude Include="Kerning_City.h" />
     <ClInclude Include="MyButton.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBossMapTool.cpp" />
     <ClCompile Include="Field1.cpp" />
     <ClCompile Include="Kerning_City.cpp" />
     <ClCompile Include="MyButton.cpp" />

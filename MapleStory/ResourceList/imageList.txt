@@ -10,6 +10,8 @@ Kerning_City
 ../Resource/BackGround/Kerning_City.bmp
 Field1
 ../Resource/BackGround/Field1.bmp
+BossMap
+../Resource/BackGround/BossMap.bmp
 BackBuffer
 ../Resource/BackGround/BackBuffer.bmp
 DoubleBuff
@@ -74,3 +76,9 @@ Drop_Mushroom
 ../Resource/Item/Drop_Mushroom.bmp
 Drop_Octopus
 ../Resource/Item/Drop_Octopus.bmp
+Skill_Key
+../Resource/Ui/Skill_Key.bmp
+Boss_Left
+../Resource/Boss/Boss_Left.bmp
+Boss_Right
+../Resource/Boss/Boss_Right.bmp

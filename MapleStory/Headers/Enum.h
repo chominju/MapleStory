@@ -17,6 +17,7 @@ enum Object_ID
 	BUTTON,
 	ATTACK_SKILL,
 	BUFF_SKILL,
+	BOSS_SKILL,
 	SKILL_EFFECT,
 	UI,
 	MOUSE,
@@ -28,8 +29,7 @@ enum Scene_ID
 {
 	SCENE_LOADING,
 	SCENE_Kerning_City,
-	SCENE_MAP1, 
-	SCENE_MAP2, 
+	SCENE_MAP1,
 	SCENE_BOSS,
 	SCENE_END
 };
@@ -118,6 +118,27 @@ enum Octopus_Animation_Index
 	OCTOPUS_HIT_INDEX = 1,
 	OCTOPUS_DIE_INDEX = 4
 };
+
+enum Boss_Animation
+{
+	Boss_STAND,
+	Boss_WALK,
+	Boss_ATTACK1=0,
+	Boss_ATTACK2=0,
+	Boss_ATTACK3=0,
+	Boss_DIE=0
+};
+
+enum Boss_Animation_Index
+{
+	Boss_STAND_INDEX = 6,
+	Boss_WALK_INDEX = 6,
+	Boss_ATTACK1_INDEX,
+	Boss_ATTACK2_INDEX,
+	Boss_ATTACK3_INDEX,
+	Boss_DIE_INDEX = 4
+};
+
 
 enum Monster_State
 {

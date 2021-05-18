@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "Inventory_RectManager.h"
 #include "Item.h"
+#include "GameObject_Manager.h"
+#include "Red_Potion.h"
+#include "White_Potion.h"
+#include "Drop_Mushroom.h"
+#include "Drop_Octopus.h"
+#include "Power_Elixir.h"
 CInventory_RectManager * CInventory_RectManager::instance = nullptr;
 CInventory_RectManager::CInventory_RectManager()
 {
@@ -138,6 +144,31 @@ void CInventory_RectManager::Push_EquipmentList(CItem * item)
 
 void CInventory_RectManager::Push_ConsumeList(CItem * item)
 {
+	bool check = false;
+	for (auto & list : m_consumeList)
+	{
+		if (!strcmp(list->Get_ItemInfo()->itemName, item->Get_ItemInfo()->itemName))
+		{
+			check = true;
+			list->Set_Change_Quantity(item->Get_ItemInfo()->quantity);
+		}
+	}
+
+	if (!check)
+	{
+		for (auto & list : m_consumeList)
+		{
+			if (!strcmp(list->Get_ItemInfo()->itemName, "NONE"))
+			{
+				Object_Info tempInfo = *(list->Get_Info());
+				Safe_Delete(list);
+				list = item;
+				list->Set_Pos(tempInfo.x, tempInfo.y);
+				break;
+			}
+		}
+	}
+
 }
 
 void CInventory_RectManager::Push_EtcList(CItem * item)
@@ -167,6 +198,113 @@ void CInventory_RectManager::Push_EtcList(CItem * item)
 		}
 	}
 
+}
+
+void CInventory_RectManager::Find_EquipmentList(char * itemName)
+{
+
+}
+
+void CInventory_RectManager::Find_ConsumeList(char * itemName)
+{
+}
+
+void CInventory_RectManager::Find_EtcList(char * itemName)
+{
+}
+
+void CInventory_RectManager::Use_Item(char * itemName)
+{
+	if (m_isEquipmentClick)
+	{
+		/*for (auto & list : m_equipmentList)
+		{
+		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+		{
+		check = true;
+		list->Set_Change_Quantity(item->Get_ItemInfo()->quantity);
+		}
+		}*/
+	}
+	if (m_isConsumeClick)
+	{
+		for (auto & list : m_consumeList)
+		{
+			if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+			{
+				CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Hp(list->Get_ItemInfo()->hp);
+				list->Set_Change_Quantity(-1);
+				if (list->Get_ItemInfo()->quantity == 0)
+				{
+					Object_Info tempInfo = *list->Get_Info();
+					CItem * temp = new CItem;
+					temp->Set_Pos(tempInfo.x, tempInfo.y);
+					temp->Set_Size(tempInfo.sizeX, tempInfo.sizeY);
+
+					Safe_Delete(list);
+					list = temp;
+					int i;
+					i = 10;
+				}
+			}
+		}
+		if (m_isEtcClick)
+		{
+			//m_etcList
+		}
+	}
+}
+
+void CInventory_RectManager::Drop_Item(char * itemName , Object_Info pos)
+{
+	RECT rc;
+	//list<Object_Info> tempList;
+	list<CItem*>* tempList;
+	if (m_isEquipmentClick)
+		tempList = &m_equipmentList;
+	else if (m_isConsumeClick)
+		tempList = &m_consumeList;
+	else if (m_isEtcClick)
+		tempList = &m_etcList;
+	else
+		return;
+	for (auto& list : *tempList)
+	{
+		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+		{
+			//CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM , )
+			list->Set_Change_Quantity(-1);
+			if (!strcmp(itemName,"»¡°£ Æ÷¼Ç"))
+				CGameObject * item = CRed_Potion::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+			else if (!strcmp(itemName, "ÇÏ¾á Æ÷¼Ç"))
+				CGameObject * item = CWhite_Potion::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+			else if (!strcmp(itemName, "ÆÄ¿ö ¿¤¸¯¼­"))
+			{
+				/*	CGameObject * item = CPower_Elixir::Create();
+					item->Set_Pos(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+					CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, item);*/
+			}
+			else if (!strcmp(itemName, "¿ÁÅäÆÛ½º ´Ù¸®"))
+				CGameObject * item = CDrop_Octopus::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+			else if (!strcmp(itemName, "ÁÖÈ²¹ö¼¸ °«"))
+				CGameObject * item = CDrop_Mushroom::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+			if (list->Get_ItemInfo()->quantity == 0)
+			{
+				Object_Info tempInfo = *list->Get_Info();
+				CItem * temp = new CItem;
+				temp->Set_Pos(pos.x, pos.y);
+				temp->Set_Size(pos.sizeX, pos.sizeY);
+
+				Safe_Delete(list);
+				list = temp;
+				int i;
+				i = 10;
+			}
+			else
+				list->Set_Pos(pos.x, pos.y);
+
+		}
+	}
 }
 
 void CInventory_RectManager::Create(RECT pos)

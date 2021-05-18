@@ -15,7 +15,7 @@ public:
 	virtual void Render_GameObject(HDC hDC) override;
 	virtual void Release_GameObject() override;
 
-	static CGameObject * Create(CGameObject * player);
+	static CGameObject * Create(float posX, float posY, int money);
 
 };
 

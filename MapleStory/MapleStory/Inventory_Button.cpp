@@ -3,9 +3,9 @@
 #include "Key_Manager.h"
 #include "Bitmap_Manager.h"
 
-bool CInventory_Button::m_isEquipmentClick=false;
-bool CInventory_Button::m_isConsumeClick=true;
-bool CInventory_Button::m_isEtcClick=false;
+bool CInventory_Button::m_isEquipmentClick = false;
+bool CInventory_Button::m_isConsumeClick = true;
+bool CInventory_Button::m_isEtcClick = false;
 CInventory_Button::CInventory_Button()
 {
 }
@@ -57,7 +57,7 @@ void CInventory_Button::Late_Update_GameObject()
 		}
 
 	}
-	
+
 }
 
 void CInventory_Button::Render_GameObject(HDC hDC)

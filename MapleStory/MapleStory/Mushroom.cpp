@@ -6,6 +6,7 @@
 #include "GameObject_Manager.h"
 #include "Meso.h"
 #include "Drop_Mushroom.h"
+#include "Red_Potion.h"
 CMushroom::CMushroom()
 {
 }
@@ -39,21 +40,21 @@ int CMushroom::Ready_GameObject()
 	m_isWalk = true;
 	m_isHit = false;
 	m_isFall = false;
-	m_jumpHeight=80;
-	m_currentHeight=0;
+	m_jumpHeight = 80;
+	m_currentHeight = 0;
 	m_jumpSpeed = 5;
 	m_power = 15;
 	m_accel = 0;
 	m_power = 5;
 
-	m_changeStateTime=GetTickCount();
-	m_changeStateSpeed=5000;
+	m_changeStateTime = GetTickCount();
+	m_changeStateSpeed = 5000;
 	m_state = Monster_State::STATE_NOHIT;
 
 	m_animFrame.frame_start = 0;
 	m_animFrame.frame_end = Mushroom_Animation_Index::MUSHROOM_WALK_INDEX;
 	m_animFrame.frame_animation = Mushroom_Animation::MUSHROOM_WALK;
-	m_animFrame.frame_speed =500;
+	m_animFrame.frame_speed = 500;
 	m_animFrame.frame_time = GetTickCount();
 	m_changeDirectionSpeed = 7000;
 	m_changeDirectionTime = GetTickCount();
@@ -86,18 +87,19 @@ int CMushroom::Update_GameObject()
 		{
 			Set_Animation(m_right_hdc, Mushroom_Animation::MUSHROOM_DIE, Mushroom_Animation_Index::MUSHROOM_DIE_INDEX);
 		}
-		if (m_animFrame.frame_start >= m_animFrame.frame_end -1)
+		if (m_animFrame.frame_start >= m_animFrame.frame_end - 1)
 			m_isDie = true;
 	}
-	
+
 	if (m_isDie)
 	{
 		int temp = rand() % 10;
-		if (temp > 3)
-			CMeso::Create(this);
-		temp = rand() % 10;
-		if (temp > 6)
-			CDrop_Mushroom::Create(this);
+		if (temp > 7)
+			CMeso::Create(m_info.x, m_rect.top , m_data.money);
+		else if (temp > 5)
+			CDrop_Mushroom::Create(m_info.x, m_rect.top);
+		else if (temp > 3)
+			CRed_Potion::Create(m_info.x, m_rect.top);
 		return OBJ_DEAD;
 	}
 	if (!m_isHit)
@@ -153,13 +155,13 @@ int CMushroom::Update_GameObject()
 				int num = rand() % 2;
 				if (num == 0)
 				{
-				m_dir = Direction::DIR_LEFT;
-				m_hdc = m_left_hdc;
+					m_dir = Direction::DIR_LEFT;
+					m_hdc = m_left_hdc;
 				}
 				else
 				{
-				m_dir = Direction::DIR_RIGHT;
-				m_hdc = m_right_hdc;
+					m_dir = Direction::DIR_RIGHT;
+					m_hdc = m_right_hdc;
 				}
 				m_changeDirectionTime = GetTickCount();
 			}
@@ -208,7 +210,7 @@ int CMushroom::Update_GameObject()
 	}
 
 
-	if (m_isHit && !m_isSkillHit &&!m_trace)
+	if (m_isHit && !m_isSkillHit && !m_trace)
 	{
 
 		if (m_info.x > m_player->Get_Info()->x)
@@ -310,7 +312,7 @@ void CMushroom::Mushroom_Jump()
 	}
 	else if (bCollLine)
 	{
-		
+
 		if (abs(m_info.y - (fY - m_info.sizeY / 2)) >= 5)
 		{
 			if (m_dir == Direction::DIR_LEFT)

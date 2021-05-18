@@ -3,36 +3,36 @@
 
 typedef struct tagInfo
 {
-	float	x; 
-	float	y; 
-	int		sizeX; 
-	int		sizeY; 
+	float	x;
+	float	y;
+	int		sizeX;
+	int		sizeY;
 }Object_Info;
 
 
 typedef struct tagLinePoint
 {
-	tagLinePoint() :x(0.f),y(0.f){}
+	tagLinePoint() :x(0.f), y(0.f) {}
 	tagLinePoint(float _fx, float _fy)
 		:x(_fx)
 		, y(_fy)
 	{}
-	float x; 
-	float y; 
+	float x;
+	float y;
 }Pos_float;
 
 typedef struct tagLINEINFO
 {
 	tagLINEINFO()
 	{
-		ZeroMemory(this, sizeof(tagLINEINFO)); 
+		ZeroMemory(this, sizeof(tagLINEINFO));
 	}
 	tagLINEINFO(Pos_float tLP, Pos_float tRP)
 		:left_pos(tLP)
-		,right_pos(tRP)
-		{}
-	Pos_float left_pos; 
-	Pos_float right_pos; 
+		, right_pos(tRP)
+	{}
+	Pos_float left_pos;
+	Pos_float right_pos;
 }Line_Info;
 
 typedef struct
@@ -58,6 +58,8 @@ typedef struct
 	int money;
 	int sellMoney;
 	int buyMoney;
+	int attack;
+	int hp;
 
 }Item_Info;
 //typedef struct

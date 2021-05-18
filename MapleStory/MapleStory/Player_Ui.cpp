@@ -22,6 +22,7 @@ int CPlayer_Ui::Ready_GameObject()
 	m_State_Lv_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_Lv");
 	m_State_LvNum_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_LvNum");
 	m_State_Num_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_Num");
+	m_skillKey = CBitmap_Manager::Get_Instance()->Get_memDC(L"Skill_Key");
 	return S_OK;
 }
 
@@ -86,7 +87,7 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 			break;
 	}
 
-	for (int i = 0; i<num; i++)
+	for (int i = 0; i < num; i++)
 	{
 		int temp2 = temp % 10;
 		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
@@ -128,6 +129,20 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 		1008,// 그리고자 하는 영역의 크기 x,y
 		7,
 		RGB(255, 255, 255));
+
+	// key 바
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		WINCX - 211,//위치 x,y
+		WINCY - 73 - 8,
+		211,// 크기 xy
+		73,
+		m_skillKey,// 복사 할 대상
+		0, 0,// 그림의 시작 위치 x,y
+		211,// 그리고자 하는 영역의 크기 x,y
+		73,
+		RGB(255, 0, 255));
+
+
 
 
 	// hp. 숫자 출력
