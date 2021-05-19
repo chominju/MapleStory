@@ -82,3 +82,13 @@ Boss_Left
 ../Resource/Boss/Boss_Left.bmp
 Boss_Right
 ../Resource/Boss/Boss_Right.bmp
+Boss_Teleport
+../Resource/Boss/Boss_Teleport.bmp
+Boss_Attack1
+../Resource/Boss/Boss_Attack1.bmp
+Boss_Attack2
+../Resource/Boss/Boss_Attack2.bmp
+Boss_Attack3
+../Resource/Boss/Boss_Attack3.bmp
+Boss_Attack2_Ball
+../Resource/Boss/Boss_Attack2_Ball.bmp

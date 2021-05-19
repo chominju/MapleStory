@@ -21,6 +21,7 @@ CBossMap::~CBossMap()
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::MONSTER);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::DROP_ITEM);
+	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::BOSS);
 }
 
 int CBossMap::Ready_Scene()

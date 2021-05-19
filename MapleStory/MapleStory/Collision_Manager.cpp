@@ -9,6 +9,7 @@
 #include "Item.h"
 #include "Inventory_RectManager.h"
 #include "Key_Manager.h"
+#include "Boss.h"
 
 CCollision_Manager::CCollision_Manager()
 {
@@ -191,6 +192,117 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 			}
 		}
 	}*/
+}
+
+void CCollision_Manager::Collision_Boss(list<CGameObject*>* skill, list<CGameObject*>* boss)
+{
+	bool check = false;
+
+	for (auto & skill_object : *skill)
+	{
+		for (auto& boss_object : *boss)
+		{
+			if (dynamic_cast<CBoss*>(boss_object)->Get_Isvisibility())
+			{
+				const RECT skillRect = *skill_object->GetRect();
+				const RECT monsterRect = *boss_object->GetRect();
+
+				RECT temp = {};
+				if (IntersectRect(&temp, &skillRect, &monsterRect))
+				{
+					if (!boss_object->Get_IsSkillHit() && !boss_object->Get_IsDead())
+					{
+						if (dynamic_cast<CSkill*>(skill_object)->isHitMonsterNum())
+						{
+							boss_object->Set_IsSkillHit(true); // 스킬 맞음 ON
+							boss_object->Set_IsHit(true);
+							int damage = dynamic_cast<CSkill*>(skill_object)->Get_Damage();
+							int skillHit = dynamic_cast<CSkill*>(skill_object)->Get_hitNum();
+
+							int minAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_MinAttack();
+							int maxAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_MaxAttack();
+							int *randAttack = new int[skillHit + 1];
+							int attackSum = 0;
+							for (int i = 0; i < skillHit; i++)
+							{
+								randAttack[i] = rand() % maxAttack + minAttack;
+								attackSum += randAttack[i];
+							}
+							boss_object->Set_Change_Hp(-(skillHit * damage + attackSum));
+
+							for (int i = 0; i < skillHit; i++)
+							{
+								CGameObject * damageSkin = CDamageSkin::Create(damage + randAttack[i]);
+								damageSkin->Set_Pos(boss_object->Get_Info()->x, boss_object->GetRect()->top - (49)*(i + 1));
+								CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::UI, damageSkin);
+							}
+							if (boss_object->Get_Hp() <= 0)
+							{
+								boss_object->Set_IsDead();
+								CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Exp(boss_object->Get_Exp());
+							}
+
+							delete[] randAttack;
+						}
+					}
+				}
+				else
+				{
+					boss_object->Set_IsSkillHit(false); // 스킬 끝나서 OFF
+				}
+			}
+			//}
+		}
+	}
+}
+
+void CCollision_Manager::Collision_BossSkill(list<CGameObject*>* skill, list<CGameObject*>* player)
+{
+	bool check = false;
+
+	for (auto & skill_object : *skill)
+	{
+		for (auto& player_object : *player)
+		{
+			RECT skillRect = *skill_object->GetRect();
+			RECT playerRect = *player_object->GetRect();
+			if (dynamic_cast<CPlayer*>(player_object)->GetKeyPush().isDown)
+				playerRect.top += 35;
+
+			RECT temp = {};
+			if (IntersectRect(&temp, &skillRect, &playerRect))
+			{
+				if (!player_object->Get_IsSkillHit() && !player_object->Get_IsDead())
+				{
+					if (dynamic_cast<CSkill*>(skill_object)->isHitMonsterNum())
+					{
+						player_object->Set_IsSkillHit(true); // 스킬 맞음 ON
+						player_object->Set_IsHit(true);
+						int damage = dynamic_cast<CSkill*>(skill_object)->Get_Damage();
+						int skillHit = dynamic_cast<CSkill*>(skill_object)->Get_hitNum();
+
+						if (!player_object->Get_IsInvincibility())
+						{
+							player_object->Set_IsInvincibility(true);
+							player_object->Set_Change_Hp(-damage);
+						}
+
+						if (player_object->Get_Hp() <= 0)
+						{
+							player_object->Set_IsDead();
+						}
+
+					}
+				}
+			}
+			else
+			{
+				player_object->Set_IsSkillHit(false); // 스킬 끝나서 OFF
+			}
+
+			//}
+		}
+	}
 }
 
 bool CCollision_Manager::Collision_Rope(list<CGameObject*>* player, list<CGameObject*>* rope, const RECT** rc)

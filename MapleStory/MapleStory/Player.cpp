@@ -238,7 +238,7 @@ int CPlayer::Update_GameObject()
 			Player_Hit();
 			m_hitAnimationNum++;
 
-			if (m_hitAnimationNum >= 100)
+			if (m_hitAnimationNum >= 50)
 			{
 				m_isHit = false;
 				m_isInvincibility = false;

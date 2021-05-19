@@ -49,6 +49,16 @@ public:
 		return m_isInventoryOpen;
 	}
 
+	Key_Push GetKeyPush()
+	{
+		return m_keyPush;
+	}
+
+	bool Get_IsJump()
+	{
+		return m_isJump;
+	}
+
 	//void Play_Animation();
 private:
 	static CGameObject * m_instance;

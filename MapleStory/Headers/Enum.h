@@ -8,9 +8,9 @@
 enum Object_ID
 {
 	PORTAL,
-	BOSS,
 	MONSTER,
 	ROPE,
+	BOSS,
 	PLAYER,
 	DROP_ITEM,
 	INVENTORY_ITEM,
@@ -121,21 +121,23 @@ enum Octopus_Animation_Index
 
 enum Boss_Animation
 {
-	Boss_STAND,
-	Boss_WALK,
-	Boss_ATTACK1=0,
-	Boss_ATTACK2=0,
-	Boss_ATTACK3=0,
-	Boss_DIE=0
+	BOSS_STAND,
+	BOSS_WALK,
+	BOSS_LEFT = 0,
+	BOSS_RIGHT = 1,
+	BOSS_TELEPORT=0,
+	BOSS_TELEPORT_AFTER=1,
+	BOSS_DIE=0
 };
 
 enum Boss_Animation_Index
 {
-	Boss_STAND_INDEX = 6,
-	Boss_WALK_INDEX = 6,
-	Boss_ATTACK1_INDEX,
-	Boss_ATTACK2_INDEX,
-	Boss_ATTACK3_INDEX,
+	BOSS_STAND_INDEX = 6,
+	BOSS_WALK_INDEX = 6,
+	BOSS_ATTACK1_INDEX = 10,
+	BOSS_ATTACK2_INDEX = 14,
+	BOSS_ATTACK3_INDEX = 15,
+	BOSS_TELEPORT_INDEX = 4,
 	Boss_DIE_INDEX = 4
 };
 

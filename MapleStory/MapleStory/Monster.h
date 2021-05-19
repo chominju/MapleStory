@@ -23,6 +23,11 @@ public:
 		m_maxX = max;
 	}
 
+	Direction Get_Direction()
+	{
+		return m_dir;
+	}
+
 
 protected:
 	Direction m_dir;

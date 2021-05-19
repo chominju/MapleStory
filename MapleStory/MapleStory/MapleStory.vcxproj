@@ -152,6 +152,7 @@
     <ClInclude Include="Bitmap_Manager.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossMap.h" />
+    <ClInclude Include="Boss_Attack2_Ball.h" />
     <ClInclude Include="CLevelUp.h" />
     <ClInclude Include="Collision_Manager.h" />
     <ClInclude Include="DaggerBooster.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="Bitmap_Manager.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossMap.cpp" />
+    <ClCompile Include="Boss_Attack2_Ball.cpp" />
     <ClCompile Include="CLevelUp.cpp" />
     <ClCompile Include="Drop_Mushroom.cpp" />
     <ClCompile Include="Drop_Octopus.cpp" />

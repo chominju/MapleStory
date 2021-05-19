@@ -114,8 +114,12 @@ void CGameObject_Manager::Late_Update_GameObject_Manager()
 		CCollision_Manager::Collision_Monster(&m_listGameObject[Object_ID::PLAYER], &m_listGameObject[Object_ID::MONSTER]);
 	if (!m_listGameObject[Object_ID::ATTACK_SKILL].empty())
 		CCollision_Manager::Collision_Skill(&m_listGameObject[Object_ID::ATTACK_SKILL], &m_listGameObject[Object_ID::MONSTER]);
+	if (!m_listGameObject[Object_ID::BOSS_SKILL].empty())
+		CCollision_Manager::Collision_BossSkill(&m_listGameObject[Object_ID::BOSS_SKILL], &m_listGameObject[Object_ID::PLAYER]);
 	if (!m_listGameObject[Object_ID::DROP_ITEM].empty())
 		CCollision_Manager::Collision_DropItem(&m_listGameObject[Object_ID::PLAYER], &m_listGameObject[Object_ID::DROP_ITEM]);
+	if (!m_listGameObject[Object_ID::BOSS].empty())
+		CCollision_Manager::Collision_Boss(&m_listGameObject[Object_ID::ATTACK_SKILL], &m_listGameObject[Object_ID::BOSS]);
 
 }
 

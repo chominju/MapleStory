@@ -13,7 +13,7 @@ public:
 	virtual void Release_GameObject() = 0;
 	virtual void UpdateRect_GameObject() = 0;
 public:
-	const RECT* GetRect()
+	RECT* GetRect()
 	{
 		return &m_rect;
 	}

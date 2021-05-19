@@ -169,6 +169,9 @@
     <Filter Include="소스 파일\01.GameObject\02.Monster\03.Boss">
       <UniqueIdentifier>{1cd1ca33-5edb-489a-8d7a-bf0093726246}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Monster\03.Boss\00.Boss_Attack2_Ball">
+      <UniqueIdentifier>{5e229ff8-1b5c-4005-803f-19f40a1faf0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -258,9 +261,6 @@
     <ClInclude Include="Monster.h">
       <Filter>소스 파일\01.GameObject\02.Monster\00.Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Skill.h">
-      <Filter>소스 파일\01.GameObject\03.Skill\00.Skill</Filter>
-    </ClInclude>
     <ClInclude Include="Octopus.h">
       <Filter>소스 파일\01.GameObject\02.Monster\02.Octopus</Filter>
     </ClInclude>
@@ -314,6 +314,12 @@
     </ClInclude>
     <ClInclude Include="Boss.h">
       <Filter>소스 파일\01.GameObject\02.Monster\03.Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss_Attack2_Ball.h">
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\00.Boss_Attack2_Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>소스 파일\01.GameObject\03.Skill\00.Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +457,9 @@
     </ClCompile>
     <ClCompile Include="Boss.cpp">
       <Filter>소스 파일\01.GameObject\02.Monster\03.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss_Attack2_Ball.cpp">
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\00.Boss_Attack2_Ball</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
