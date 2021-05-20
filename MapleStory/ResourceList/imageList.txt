@@ -92,3 +92,5 @@ Boss_Attack3
 ../Resource/Boss/Boss_Attack3.bmp
 Boss_Attack2_Ball
 ../Resource/Boss/Boss_Attack2_Ball.bmp
+Boss_Die
+'../Resource/Boss/Boss_Die.bmp

@@ -23,6 +23,7 @@ int CBoss::Ready_GameObject()
 	m_attack1_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Attack1");
 	m_attack2_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Attack2");
 	m_attack3_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Attack3");
+	m_objectDie_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Die");	
 
 	m_hdc = m_left_hdc;
 
@@ -43,6 +44,9 @@ int CBoss::Ready_GameObject()
 
 	m_Attack3SizeX = 413;
 	m_Attack3SizeY = 360;
+
+	m_DieSizeX = 341;
+	m_DieSizeY = 345;
 
 	m_speed = 2.f;
 	UpdateRect_GameObject();
@@ -103,125 +107,143 @@ int CBoss::Update_GameObject()
 {
 	if (m_isDead)
 	{
-		return OBJ_DEAD;
-	}
-	m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
-
-	if (!m_isAttackOn)	// 공격스킬을 사용하지 않았을 때
-	{
-		//if (m_changeStateTime + m_changeStateSpeed < GetTickCount() && m_isvisibility)
-		if(m_isvisibility)
-		{
-			if (m_Attack3Time + m_Attack3Speed < GetTickCount())
-			{
-				if (m_dir == Direction::DIR_LEFT)
-					Set_Animation(m_attack3_hdc, Boss_Animation::BOSS_LEFT, Boss_Animation_Index::BOSS_ATTACK3_INDEX);
-				else if (m_dir == Direction::DIR_RIGHT)
-					Set_Animation(m_attack3_hdc, Boss_Animation::BOSS_RIGHT, Boss_Animation_Index::BOSS_ATTACK3_INDEX);
-				m_isAttackOn = true;
-				m_info.y = 475;
-				m_info.sizeX = m_Attack3SizeX;
-				m_info.sizeY = m_Attack3SizeY;
-				m_animFrame.frame_speed = 100;
-				m_Attack3Time = GetTickCount();
-				m_isAttack1 = false;
-				m_isAttack2 = false;
-				m_isAttack3 = true;
-			}
-
-			else if (m_TeleportTime + m_TeleportSpeed < GetTickCount())
-			{
-				m_isvisibility = false;
-				m_isTeleport = true;
-				m_isAttackOn = true;
-				m_TeleportAfterTime = GetTickCount();
-				m_TeleportTime = GetTickCount();
-				Set_TelePortAnimation(m_teleport_hdc, Boss_Animation::BOSS_TELEPORT, Boss_Animation_Index::BOSS_TELEPORT_INDEX);
-
-			}
-			else if (m_Attack2Time + m_Attack2Speed < GetTickCount())
-			{
-				if (m_dir == Direction::DIR_LEFT)
-					Set_Animation(m_attack2_hdc, Boss_Animation::BOSS_LEFT, Boss_Animation_Index::BOSS_ATTACK2_INDEX);
-				else if (m_dir == Direction::DIR_RIGHT)
-					Set_Animation(m_attack2_hdc, Boss_Animation::BOSS_RIGHT, Boss_Animation_Index::BOSS_ATTACK2_INDEX);
-				m_isAttackOn = true;
-				m_info.y = 527;
-				m_info.sizeX = m_Attack2SizeX;
-				m_info.sizeY = m_Attack2SizeY;
-				m_Attack2Time = GetTickCount();
-				m_isAttack1 = false;
-				m_isAttack2 = true;
-				m_isAttack3 = false;
-			}
-			else if (m_Attack1Time + m_Attack1Speed < GetTickCount())
-			{
-				if (m_dir == Direction::DIR_LEFT)
-				{
-					if (m_player->GetRect()->right - 40 > m_rect.left/* && m_player->Get_Info()->x < m_info.x +10*/)
-					{
-						m_isAttackOn = true;
-						Set_Animation(m_attack1_hdc, Boss_Animation::BOSS_LEFT, Boss_Animation_Index::BOSS_ATTACK1_INDEX);
-					}
-				}
-				else if (m_dir == Direction::DIR_RIGHT)
-				{
-					if (m_player->GetRect()->left + 40 < m_rect.right/* && m_player->Get_Info()->x >m_info.x -10*/)
-					{
-						m_isAttackOn = true;
-						Set_Animation(m_attack1_hdc, Boss_Animation::BOSS_RIGHT, Boss_Animation_Index::BOSS_ATTACK1_INDEX);
-					}
-				}
-				if (m_isAttackOn)
-				{
-					m_isAttack1 = true;
-					m_isAttack2 = false;
-					m_isAttack3 = false;
-					m_info.sizeX = m_Attack1SizeX;
-					m_info.sizeY = m_Attack1SizeY;
-					m_info.y = 517;
-					m_animFrame.frame_speed = 100;
-					m_Attack1Time = GetTickCount();
-				}
-			}
-		}
-	}
-
-	if (m_isTeleport &&!m_isTeleportAfter)
-	{
-		if (m_TeleportAfterTime + m_TeleportAfterSpeed < GetTickCount())
-		{
-			m_info.x = m_player->Get_Info()->x;
-			Set_TelePortAnimation(m_teleport_hdc, Boss_Animation::BOSS_TELEPORT_AFTER, Boss_Animation_Index::BOSS_TELEPORT_INDEX);
-			m_isTeleportAfter = true;
-		}
-	}
-
-
-
-	float fY;
-	if (!m_isFall &!m_isAttackOn &!m_isTeleport)
-	{
-		if (m_dir == Direction::DIR_LEFT && m_player->GetRect()->right - 40 < m_rect.left)
-		{
-			m_info.x -= m_speed;
-			Set_Animation(m_left_hdc, Boss_Animation::BOSS_WALK, Boss_Animation_Index::BOSS_WALK_INDEX);
-		}
-		else if (m_dir == Direction::DIR_RIGHT && m_player->GetRect()->left + 40 > m_rect.right)
-		{
-			m_info.x += m_speed;
-			Set_Animation(m_right_hdc, Boss_Animation::BOSS_WALK, Boss_Animation_Index::BOSS_WALK_INDEX);
-		}
-		else
-		{
+			m_isCollisionOn = false;
+			m_isAttackOn = false;
+			m_isvisibility = true;
+			m_isTeleport = false;
+			m_isAttack1 = false;
+			m_isAttack2 = false;
+			m_isAttack3 = false;
+			m_info.y = 500;
+			m_info.sizeX = m_DieSizeX;
+			m_info.sizeY = m_DieSizeY;
 			if (m_dir == Direction::DIR_LEFT)
-				Set_Animation(m_left_hdc, Boss_Animation::BOSS_STAND, Boss_Animation_Index::BOSS_STAND_INDEX);
+				Set_Animation(m_objectDie_hdc, Boss_Animation::BOSS_LEFT, Boss_Animation_Index::Boss_DIE_INDEX);
 			else if (m_dir == Direction::DIR_RIGHT)
-				Set_Animation(m_right_hdc, Boss_Animation::BOSS_STAND, Boss_Animation_Index::BOSS_STAND_INDEX);
-		}
+				Set_Animation(m_objectDie_hdc, Boss_Animation::BOSS_RIGHT, Boss_Animation_Index::Boss_DIE_INDEX);
+			if (m_animFrame.frame_start == m_animFrame.frame_end - 1)
+				return OBJ_DEAD;
 	}
+	else
+	{
+		m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
 
-	return 0;
+		if (!m_isAttackOn)	// 공격스킬을 사용하지 않았을 때
+		{
+			//if (m_changeStateTime + m_changeStateSpeed < GetTickCount() && m_isvisibility)
+			if (m_isvisibility)
+			{
+				if (m_Attack3Time + m_Attack3Speed < GetTickCount())
+				{
+					if (m_dir == Direction::DIR_LEFT)
+						Set_Animation(m_attack3_hdc, Boss_Animation::BOSS_LEFT, Boss_Animation_Index::BOSS_ATTACK3_INDEX);
+					else if (m_dir == Direction::DIR_RIGHT)
+						Set_Animation(m_attack3_hdc, Boss_Animation::BOSS_RIGHT, Boss_Animation_Index::BOSS_ATTACK3_INDEX);
+					m_isAttackOn = true;
+					m_info.y = 475;
+					m_info.sizeX = m_Attack3SizeX;
+					m_info.sizeY = m_Attack3SizeY;
+					m_animFrame.frame_speed = 100;
+					m_Attack3Time = GetTickCount();
+					m_isAttack1 = false;
+					m_isAttack2 = false;
+					m_isAttack3 = true;
+				}
+
+				else if (m_TeleportTime + m_TeleportSpeed < GetTickCount())
+				{
+					m_isvisibility = false;
+					m_isTeleport = true;
+					m_isAttackOn = true;
+					m_TeleportAfterTime = GetTickCount();
+					m_TeleportTime = GetTickCount();
+					Set_TelePortAnimation(m_teleport_hdc, Boss_Animation::BOSS_TELEPORT, Boss_Animation_Index::BOSS_TELEPORT_INDEX);
+
+				}
+				else if (m_Attack2Time + m_Attack2Speed < GetTickCount())
+				{
+					if (m_dir == Direction::DIR_LEFT)
+						Set_Animation(m_attack2_hdc, Boss_Animation::BOSS_LEFT, Boss_Animation_Index::BOSS_ATTACK2_INDEX);
+					else if (m_dir == Direction::DIR_RIGHT)
+						Set_Animation(m_attack2_hdc, Boss_Animation::BOSS_RIGHT, Boss_Animation_Index::BOSS_ATTACK2_INDEX);
+					m_isAttackOn = true;
+					m_info.y = 527;
+					m_info.sizeX = m_Attack2SizeX;
+					m_info.sizeY = m_Attack2SizeY;
+					m_Attack2Time = GetTickCount();
+					m_isAttack1 = false;
+					m_isAttack2 = true;
+					m_isAttack3 = false;
+				}
+				else if (m_Attack1Time + m_Attack1Speed < GetTickCount())
+				{
+					if (m_dir == Direction::DIR_LEFT)
+					{
+						if (m_player->GetRect()->right - 40 > m_rect.left/* && m_player->Get_Info()->x < m_info.x +10*/)
+						{
+							m_isAttackOn = true;
+							Set_Animation(m_attack1_hdc, Boss_Animation::BOSS_LEFT, Boss_Animation_Index::BOSS_ATTACK1_INDEX);
+						}
+					}
+					else if (m_dir == Direction::DIR_RIGHT)
+					{
+						if (m_player->GetRect()->left + 40 < m_rect.right/* && m_player->Get_Info()->x >m_info.x -10*/)
+						{
+							m_isAttackOn = true;
+							Set_Animation(m_attack1_hdc, Boss_Animation::BOSS_RIGHT, Boss_Animation_Index::BOSS_ATTACK1_INDEX);
+						}
+					}
+					if (m_isAttackOn)
+					{
+						m_isAttack1 = true;
+						m_isAttack2 = false;
+						m_isAttack3 = false;
+						m_info.sizeX = m_Attack1SizeX;
+						m_info.sizeY = m_Attack1SizeY;
+						m_info.y = 517;
+						m_animFrame.frame_speed = 100;
+						m_Attack1Time = GetTickCount();
+					}
+				}
+			}
+		}
+
+		if (m_isTeleport && !m_isTeleportAfter)
+		{
+			if (m_TeleportAfterTime + m_TeleportAfterSpeed < GetTickCount())
+			{
+				m_info.x = m_player->Get_Info()->x;
+				Set_TelePortAnimation(m_teleport_hdc, Boss_Animation::BOSS_TELEPORT_AFTER, Boss_Animation_Index::BOSS_TELEPORT_INDEX);
+				m_isTeleportAfter = true;
+			}
+		}
+
+
+
+		float fY;
+		if (!m_isFall & !m_isAttackOn & !m_isTeleport)
+		{
+			if (m_dir == Direction::DIR_LEFT && m_player->GetRect()->right - 40 < m_rect.left)
+			{
+				m_info.x -= m_speed;
+				Set_Animation(m_left_hdc, Boss_Animation::BOSS_WALK, Boss_Animation_Index::BOSS_WALK_INDEX);
+			}
+			else if (m_dir == Direction::DIR_RIGHT && m_player->GetRect()->left + 40 > m_rect.right)
+			{
+				m_info.x += m_speed;
+				Set_Animation(m_right_hdc, Boss_Animation::BOSS_WALK, Boss_Animation_Index::BOSS_WALK_INDEX);
+			}
+			else
+			{
+				if (m_dir == Direction::DIR_LEFT)
+					Set_Animation(m_left_hdc, Boss_Animation::BOSS_STAND, Boss_Animation_Index::BOSS_STAND_INDEX);
+				else if (m_dir == Direction::DIR_RIGHT)
+					Set_Animation(m_right_hdc, Boss_Animation::BOSS_STAND, Boss_Animation_Index::BOSS_STAND_INDEX);
+			}
+		}
+
+		return 0;
+	}
 }
 
 void CBoss::Late_Update_GameObject()
@@ -230,20 +252,23 @@ void CBoss::Late_Update_GameObject()
 	Play_AttackAnimation();
 	Boss_Attack();
 	Play_TeleportAnimation();
-	if (m_rect.left <= 5 || m_rect.right < m_player->GetRect()->left - 20 || m_info.x < m_player->Get_Info()->x)
+	if (!m_isDead)
 	{
-		if (!m_isAttackOn)
+		if (m_rect.left <= 5 || m_rect.right < m_player->GetRect()->left - 20 || m_info.x < m_player->Get_Info()->x)
 		{
-			m_dir = Direction::DIR_RIGHT;
-			m_hdc = m_right_hdc;
+			if (!m_isAttackOn)
+			{
+				m_dir = Direction::DIR_RIGHT;
+				m_hdc = m_right_hdc;
+			}
 		}
-	}
-	if (m_rect.right >= CScene_Manager::Get_Instance()->Get_SceneSize().x - 5 || m_info.x > m_player->Get_Info()->x)
-	{
-		if (!m_isAttackOn)
+		if (m_rect.right >= CScene_Manager::Get_Instance()->Get_SceneSize().x - 5 || m_info.x > m_player->Get_Info()->x)
 		{
-			m_dir = Direction::DIR_LEFT;
-			m_hdc = m_left_hdc;
+			if (!m_isAttackOn)
+			{
+				m_dir = Direction::DIR_LEFT;
+				m_hdc = m_left_hdc;
+			}
 		}
 	}
 
@@ -301,9 +326,9 @@ void CBoss::Render_GameObject(HDC hDC)
 
 
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
-		0,//위치 x,y
+		WINCX / 4,//위치 x,y
 		0,
-		WINCX,// 크기 xy
+		WINCX/2,// 크기 xy
 		10*3,
 		m_hpBackBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y
@@ -314,9 +339,9 @@ void CBoss::Render_GameObject(HDC hDC)
 
 
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
-		0,//위치 x,y
+		WINCX / 4,//위치 x,y
 		0,
-		WINCX *(m_data.hp / m_data.maxHp),// 크기 xy
+		WINCX / 2 *(m_data.hp / m_data.maxHp),// 크기 xy
 		10*3,
 		m_hpBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y

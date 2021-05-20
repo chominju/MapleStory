@@ -125,9 +125,8 @@ enum Boss_Animation
 	BOSS_WALK,
 	BOSS_LEFT = 0,
 	BOSS_RIGHT = 1,
-	BOSS_TELEPORT=0,
-	BOSS_TELEPORT_AFTER=1,
-	BOSS_DIE=0
+	BOSS_TELEPORT = 0,
+	BOSS_TELEPORT_AFTER = 1,
 };
 
 enum Boss_Animation_Index
@@ -138,7 +137,7 @@ enum Boss_Animation_Index
 	BOSS_ATTACK2_INDEX = 14,
 	BOSS_ATTACK3_INDEX = 15,
 	BOSS_TELEPORT_INDEX = 4,
-	Boss_DIE_INDEX = 4
+	Boss_DIE_INDEX = 14
 };
 
 

@@ -66,6 +66,9 @@ private:
 	float m_Attack3SizeX;
 	float m_Attack3SizeY;
 
+	float m_DieSizeX;
+	float m_DieSizeY;
+
 	bool m_isAttack1;
 	bool m_isAttack2;
 	bool m_isAttack3;

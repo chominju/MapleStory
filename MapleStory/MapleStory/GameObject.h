@@ -166,6 +166,7 @@ protected:
 
 	HDC m_hpBar_hdc;
 	HDC m_hpBackBar_hdc;
+	HDC m_objectDie_hdc;
 	Animation_Frame m_animFrame;
 	CGameObject* m_target;
 
