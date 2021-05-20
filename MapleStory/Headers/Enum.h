@@ -8,6 +8,7 @@
 enum Object_ID
 {
 	PORTAL,
+	NPC,
 	MONSTER,
 	ROPE,
 	BOSS,

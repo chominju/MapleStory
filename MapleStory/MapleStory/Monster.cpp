@@ -70,8 +70,8 @@ void CMonster::Render_GameObject(HDC hDC)
 		10,
 		m_hpBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y
-		182,// 그리고자 하는 영역의 크기 x,y
-		21,
+		176,// 그리고자 하는 영역의 크기 x,y
+		15,
 		RGB(255, 0, 255));
 }
 

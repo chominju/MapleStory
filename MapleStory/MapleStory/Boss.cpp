@@ -25,6 +25,7 @@ int CBoss::Ready_GameObject()
 	m_attack2_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Attack2");
 	m_attack3_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Attack3");
 	m_objectDie_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Die");	
+	m_icon = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Icon");
 
 	m_hdc = m_left_hdc;
 
@@ -329,7 +330,7 @@ void CBoss::Render_GameObject(HDC hDC)
 		WINCX / 4,//위치 x,y
 		0,
 		WINCX/2,// 크기 xy
-		10*3,
+		35,
 		m_hpBackBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y
 		182,// 그리고자 하는 영역의 크기 x,y
@@ -339,14 +340,25 @@ void CBoss::Render_GameObject(HDC hDC)
 
 
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
-		WINCX / 4,//위치 x,y
-		0,
-		WINCX / 2 *(m_data.hp / m_data.maxHp),// 크기 xy
-		10*3,
+		WINCX / 4 + 8,//위치 x,y
+		5,
+		(WINCX / 2 - 16)*(m_data.hp / m_data.maxHp),// 크기 xy
+		24,
 		m_hpBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y
-		182,// 그리고자 하는 영역의 크기 x,y
-		21,
+		176,// 그리고자 하는 영역의 크기 x,y
+		15,
+		RGB(255, 0, 255));
+
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		WINCX / 4 - 35,//위치 x,y
+		0,
+		35,// 크기 xy
+		35,
+		m_icon,// 복사 할 대상
+		0, 0,// 그림의 시작 위치 x,y
+		35,// 그리고자 하는 영역의 크기 x,y
+		35,
 		RGB(255, 0, 255));
 }
 

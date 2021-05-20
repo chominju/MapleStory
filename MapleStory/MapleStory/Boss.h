@@ -77,6 +77,7 @@ private:
 	HDC m_attack1_hdc;
 	HDC m_attack2_hdc;
 	HDC m_attack3_hdc;
+	HDC m_icon;
 	Animation_Frame m_animTeleportFrame;
 };
 

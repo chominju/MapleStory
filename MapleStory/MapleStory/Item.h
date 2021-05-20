@@ -20,9 +20,19 @@ public:
 		return &m_itemInfo;
 	}
 
+	void Set_ItemInfo(Item_Info itemInfo)
+	{
+		m_itemInfo = itemInfo;
+	}
+
 	void Set_Change_Quantity(int quantity)
 	{
 		m_itemInfo.quantity += quantity;
+	}
+
+	void Set_Quantity(int quantity)
+	{
+		m_itemInfo.quantity = quantity;
 	}
 
 	void Set_m_isFieldOut(bool fieldOut)

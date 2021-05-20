@@ -184,6 +184,21 @@
     <Filter Include="소스 파일\01.GameObject\02.Monster\03.Boss\02.Clock">
       <UniqueIdentifier>{ffa4ea87-c57d-4be4-9de8-b9d5e2273a75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\10.Npc">
+      <UniqueIdentifier>{0508f177-3d0b-4b6f-ba56-1176543a10d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\05.Shop_Ui">
+      <UniqueIdentifier>{8a7315e7-6300-45ff-9e68-f75b34b55f68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\04.Button\Close_Button">
+      <UniqueIdentifier>{e37aa451-052d-4532-a4d5-fd19a3d82a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\05.Shop_Ui\00.Shop_Ui">
+      <UniqueIdentifier>{2087e465-6979-48db-80e1-173652ef4d60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\05.Shop_Ui\01.Shop_Rect">
+      <UniqueIdentifier>{d92364d0-ce24-4e81-aeac-71b9daeb13f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -339,6 +354,18 @@
     <ClInclude Include="Clock.h">
       <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\02.Clock</Filter>
     </ClInclude>
+    <ClInclude Include="Npc.h">
+      <Filter>소스 파일\01.GameObject\10.Npc</Filter>
+    </ClInclude>
+    <ClInclude Include="Close_Button.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\04.Button\Close_Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop_Ui.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\05.Shop_Ui\00.Shop_Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop_RectManager.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\05.Shop_Ui\01.Shop_Rect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainApp.cpp">
@@ -484,6 +511,18 @@
     </ClCompile>
     <ClCompile Include="Clock.cpp">
       <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\02.Clock</Filter>
+    </ClCompile>
+    <ClCompile Include="Npc.cpp">
+      <Filter>소스 파일\01.GameObject\10.Npc</Filter>
+    </ClCompile>
+    <ClCompile Include="Close_Button.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\04.Button\Close_Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop_Ui.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\05.Shop_Ui\00.Shop_Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop_RectManager.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\05.Shop_Ui\01.Shop_Rect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

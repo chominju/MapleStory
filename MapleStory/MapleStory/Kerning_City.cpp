@@ -12,7 +12,7 @@
 #include "Player_StatUi.h"
 #include "Inventory_Ui.h"
 #include "Scene_Manager.h"
-
+#include "Npc.h"
 Kerning_City::Kerning_City()
 {
 }
@@ -32,6 +32,7 @@ int Kerning_City::Ready_Scene()
 	CPlayer_Ui::Create();
 	CPlayer_StatUi::Create();
 	CInventory_Ui::Create();
+	CNpc::Create();
 	m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Kerning_City");
 	m_SceneSize = CBitmap_Manager::Get_Instance()->Get_Image_Size(L"Kerning_City");
 	CLine_Manager::Get_Instance()->Release_Line_Manager();

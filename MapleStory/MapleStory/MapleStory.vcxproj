@@ -155,6 +155,7 @@
     <ClInclude Include="Boss_Attack2_Ball.h" />
     <ClInclude Include="CLevelUp.h" />
     <ClInclude Include="Clock.h" />
+    <ClInclude Include="Close_Button.h" />
     <ClInclude Include="Collision_Manager.h" />
     <ClInclude Include="DaggerBooster.h" />
     <ClInclude Include="DamageSkin.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="MyBitmap.h" />
+    <ClInclude Include="Npc.h" />
     <ClInclude Include="Octopus.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player_Die_Button.h" />
@@ -194,6 +196,8 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene_Manager.h" />
     <ClInclude Include="Scroll_Manager.h" />
+    <ClInclude Include="Shop_RectManager.h" />
+    <ClInclude Include="Shop_Ui.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -207,6 +211,7 @@
     <ClCompile Include="Boss_Attack2_Ball.cpp" />
     <ClCompile Include="CLevelUp.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="Close_Button.cpp" />
     <ClCompile Include="Drop_Mushroom.cpp" />
     <ClCompile Include="Drop_Octopus.cpp" />
     <ClCompile Include="Inventory_Button.cpp" />
@@ -232,6 +237,7 @@
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="MyBitmap.cpp" />
+    <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Octopus.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_Die_Button.cpp" />
@@ -245,6 +251,8 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scene_Manager.cpp" />
     <ClCompile Include="Scroll_Manager.cpp" />
+    <ClCompile Include="Shop_RectManager.cpp" />
+    <ClCompile Include="Shop_Ui.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

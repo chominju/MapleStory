@@ -1,13 +1,14 @@
 #pragma once
 #include "Ui.h"
+
 class CItem;
-class CInventory_Ui :
+class CShop_Ui :
 	public CUi
 {
 private:
-	explicit CInventory_Ui();
+	explicit CShop_Ui();
 public:
-	virtual ~CInventory_Ui();
+	virtual ~CShop_Ui();
 
 	virtual int Ready_GameObject() override;
 	virtual int Update_GameObject() override;
@@ -16,7 +17,7 @@ public:
 	virtual void Release_GameObject() override;
 
 public:
-	static CGameObject * Create();
+	static CGameObject * Create(CGameObject * npc);
 
 private:
 	static CGameObject* instance;
@@ -25,14 +26,12 @@ private:
 	HDC m_equipment_hdc;
 	HDC m_consume_hdc;
 	HDC m_etc_hdc;
+	HDC m_close_hdc;
 
 	CGameObject* m_EquipmentButton;
 	CGameObject* m_ConsumeButton;
 	CGameObject* m_EtcButton;
+	CGameObject* m_CloseButton;
 
-	CItem * temp;
-	list<CItem*>::iterator beforeIter;
-	Object_Info m_beforePos;
-	bool m_isItemMove;
 };
 
