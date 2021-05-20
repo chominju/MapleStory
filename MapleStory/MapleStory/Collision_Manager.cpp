@@ -291,6 +291,7 @@ void CCollision_Manager::Collision_BossSkill(list<CGameObject*>* skill, list<CGa
 						{
 							player_object->Set_IsDead();
 						}
+						skill_object->Set_IsDead();
 
 					}
 				}

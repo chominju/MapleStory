@@ -16,6 +16,7 @@ public:
 		return m_SceneSize;
 	}
 
+
 protected:
 	HDC m_hdc;
 	Pos_int m_SceneSize;

@@ -19,5 +19,7 @@ public:
 private:
 	static CGameObject * instance;
 	HDC m_skillKey;
+	HDC m_playerDie_Message_hdc;
+	CGameObject* m_Player_Die_Button;
 };
 

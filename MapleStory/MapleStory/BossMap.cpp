@@ -11,6 +11,7 @@
 #include "Player_StatUi.h"
 #include "Inventory_Ui.h"
 #include "Boss.h"
+#include "Clock.h"
 CBossMap::CBossMap()
 {
 }
@@ -22,6 +23,7 @@ CBossMap::~CBossMap()
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::MONSTER);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::DROP_ITEM);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::BOSS);
+	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::BOSS_SKILL);
 }
 
 int CBossMap::Ready_Scene()
@@ -39,17 +41,29 @@ int CBossMap::Ready_Scene()
 	if (CGameObject_Manager::Get_Instance()->GetPlayer()->Get_isPortal())
 		CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Pos(100, 500);
 
-	CGameObject*boss = CBoss::Create();
+	boss = CBoss::Create();
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::BOSS, boss);
 
 	CScroll_Manager::Set_ResetX();
 	CScroll_Manager::Set_ResetY();
+
+	m_createClockTime = GetTickCount();
+	m_createClockSpeed = 300;
 
 	return 0;
 }
 
 void CBossMap::Update_Scene()
 {
+	if (boss->Get_Hp() / boss->Get_MaxHp() <= 0.3f)
+	{
+		if (m_createClockTime + m_createClockSpeed < GetTickCount())
+		{
+			CClock::Create();
+			m_createClockTime = GetTickCount();
+		}
+
+	}
 	CGameObject_Manager::Get_Instance()->Update_GameObject_Manager();
 	CGameObject_Manager::Get_Instance()->Late_Update_GameObject_Manager();
 }

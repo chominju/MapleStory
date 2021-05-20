@@ -154,6 +154,7 @@
     <ClInclude Include="BossMap.h" />
     <ClInclude Include="Boss_Attack2_Ball.h" />
     <ClInclude Include="CLevelUp.h" />
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Collision_Manager.h" />
     <ClInclude Include="DaggerBooster.h" />
     <ClInclude Include="DamageSkin.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="MyBitmap.h" />
     <ClInclude Include="Octopus.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Player_Die_Button.h" />
     <ClInclude Include="Player_StatUi.h" />
     <ClInclude Include="Player_Ui.h" />
     <ClInclude Include="Portal.h" />
@@ -204,6 +206,7 @@
     <ClCompile Include="BossMap.cpp" />
     <ClCompile Include="Boss_Attack2_Ball.cpp" />
     <ClCompile Include="CLevelUp.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Drop_Mushroom.cpp" />
     <ClCompile Include="Drop_Octopus.cpp" />
     <ClCompile Include="Inventory_Button.cpp" />
@@ -231,6 +234,7 @@
     <ClCompile Include="MyBitmap.cpp" />
     <ClCompile Include="Octopus.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Player_Die_Button.cpp" />
     <ClCompile Include="Player_StatUi.cpp" />
     <ClCompile Include="Player_Ui.cpp" />
     <ClCompile Include="Portal.cpp" />

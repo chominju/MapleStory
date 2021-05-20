@@ -72,6 +72,7 @@ int CPlayer::Ready_GameObject()
 
 	m_data.level = 1;
 	m_data.maxHp = 2000;
+
 	m_data.hp = m_data.maxHp;
 	m_data.minAttack = 100;
 	m_data.maxAttack = 200;
@@ -89,152 +90,161 @@ int CPlayer::Ready_GameObject()
 
 int CPlayer::Update_GameObject()
 {
-	if (!m_keyPush.isAttack && !m_keyPush.isDown && !m_keyPush.isRope && !m_keyPush.isRopeMove)
+	if (m_data.hp <= 0)
 	{
-		if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_Q))												// 스킬 Q(더블스탭)
+		if (m_currentKey == CurrentKey::CUR_LEFT)
+			Set_Animation(m_left_hdc, Animation::DEAD, Animation_index::DEAD_INDEX);
+		if (m_currentKey == CurrentKey::CUR_RIGHT)
+			Set_Animation(m_right_hdc, Animation::DEAD, Animation_index::DEAD_INDEX);
+	}
+	else
+	{
+		if (!m_keyPush.isAttack && !m_keyPush.isDown && !m_keyPush.isRope && !m_keyPush.isRopeMove)
 		{
-			if (!m_keyPush.isSkill)
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_Q))												// 스킬 Q(더블스탭)
 			{
-				CGameObject * DoubleStab = CDoubleStab::Create(this);
-				Player_Skill(Animation::SWING, Animation_index::SWING_INDEX);
+				if (!m_keyPush.isSkill)
+				{
+					CGameObject * DoubleStab = CDoubleStab::Create(this);
+					Player_Skill(Animation::SWING, Animation_index::SWING_INDEX);
+				}
+			}
+
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_W))												// 스킬 W(새비지블로우)
+			{
+				if (!m_keyPush.isSkill)
+				{
+					CGameObject * DoubleStab = CSavageBlow::Create(this);
+					Player_Skill(Animation::SWING, Animation_index::SWING_INDEX);
+				}
+			}
+
+			if (m_isJump)
+			{
+				if (m_keyPush.isDoubleJumpReady && !m_keyPush.isDoubleJump)
+				{
+					if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_F))										// 스킬 (더블점프)
+					{
+						m_keyPush.isDoubleJump = true;
+						jumpDir = m_currentKey;
+						m_DoublejumpHeight = 20;
+						CGameObject * DoubleStab = CDoubleJump::Create(this);
+						//Player_Skill(Animation::JUMP , Animation_index::JUMP_INDEX);
+					}
+				}
 			}
 		}
 
-		if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_W))												// 스킬 W(새비지블로우)
+		if (!m_keyPush.isAttack && !m_keyPush.isDown)															// 좌우키 + 로프(위아래)
+		{
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_LEFT))
+				Player_MoveLeft();
+			if (CKey_Manager::Get_Instance()->Key_Up(KEY_LEFT))
+				m_keyPush.isLeft = false;
+
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_RIGHT))
+				Player_MoveRight();
+			if (CKey_Manager::Get_Instance()->Key_Up(KEY_RIGHT))
+				m_keyPush.isRight = false;
+
+
+			//	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_UP) || (CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN)))
+			if (m_keyPush.isRopeMove)
+				if (CKey_Manager::Get_Instance()->Key_Up(KEY_UP) || (CKey_Manager::Get_Instance()->Key_Up(KEY_DOWN)))
+					m_keyPush.isRopeMove = false;
+		}
+
+		if (!m_isDownJump && !m_keyPush.isRope)
 		{
 			if (!m_keyPush.isSkill)
 			{
-				CGameObject * DoubleStab = CSavageBlow::Create(this);
-				Player_Skill(Animation::SWING, Animation_index::SWING_INDEX);
+				if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN))										// 아래모션 / 아래점프
+				{
+					m_keyPush.isDown = true;
+					if (!m_isJump)
+						Player_Prone();
+					if (CKey_Manager::Get_Instance()->Key_Down(KEY_F))
+					{
+						m_info.y += 5;
+						float fY = 0.f;
+						bool bCollLine = CLine_Manager::Get_Instance()->Floor_Collision_Line_Manager_Line_Manager(this);
+						if (!bCollLine)
+							m_info.y -= 5;
+						else
+						{
+							m_keyPush.isJump = true;
+							m_isDownJump = true;
+							m_moveLock = true;
+						}
+					}
+				}
+				if (CKey_Manager::Get_Instance()->Key_Up(KEY_DOWN))
+					m_keyPush.isDown = false;
+			}
+		}
+
+
+
+		if (!m_isDownJump)
+		{
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_F))
+			{
+				if (!CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN))
+				{
+					if (!m_isJump)
+					{
+						if (m_isJumpLeft == false && m_isJumpRight == false)
+							m_moveLock = true;
+						m_isJump = true;
+						m_beforeJumpY = m_info.y;
+					}
+				}
 			}
 		}
 
 		if (m_isJump)
 		{
-			if (m_keyPush.isDoubleJumpReady && !m_keyPush.isDoubleJump)
+			if (CKey_Manager::Get_Instance()->Key_Up(KEY_F))
 			{
-				if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_F))										// 스킬 (더블점프)
-				{
-					m_keyPush.isDoubleJump = true;
-					jumpDir = m_currentKey;
-					m_DoublejumpHeight = 20;
-					CGameObject * DoubleStab = CDoubleJump::Create(this);
-					//Player_Skill(Animation::JUMP , Animation_index::JUMP_INDEX);
-				}
+				m_keyPush.isDoubleJumpReady = true;
 			}
 		}
-	}
-
-	if (!m_keyPush.isAttack && !m_keyPush.isDown)															// 좌우키 + 로프(위아래)
-	{
-		if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_LEFT))
-			Player_MoveLeft();
-		if (CKey_Manager::Get_Instance()->Key_Up(KEY_LEFT))
-			m_keyPush.isLeft = false;
-
-		if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_RIGHT))
-			Player_MoveRight();
-		if (CKey_Manager::Get_Instance()->Key_Up(KEY_RIGHT))
-			m_keyPush.isRight = false;
 
 
-	//	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_UP) || (CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN)))
-		if (m_keyPush.isRopeMove)
-			if (CKey_Manager::Get_Instance()->Key_Up(KEY_UP) || (CKey_Manager::Get_Instance()->Key_Up(KEY_DOWN)))
-				m_keyPush.isRopeMove = false;
-	}
-
-	if (!m_isDownJump && !m_keyPush.isRope)																
-	{
 		if (!m_keyPush.isSkill)
 		{
-			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN))										// 아래모션 / 아래점프
-			{
-				m_keyPush.isDown = true;
-				if (!m_isJump)
-					Player_Prone();
-				if (CKey_Manager::Get_Instance()->Key_Down(KEY_F))
-				{
-					m_info.y += 5;
-					float fY = 0.f;
-					bool bCollLine = CLine_Manager::Get_Instance()->Floor_Collision_Line_Manager_Line_Manager(this);
-					if (!bCollLine)
-						m_info.y -= 5;
-					else
-					{
-						m_keyPush.isJump = true;
-						m_isDownJump = true;
-						m_moveLock = true;
-					}
-				}
-			}
-			if (CKey_Manager::Get_Instance()->Key_Up(KEY_DOWN))
-				m_keyPush.isDown = false;
+			if (m_isPortal)	// 포탈 위
+				if (CKey_Manager::Get_Instance()->Key_Down(KEY_UP))
+					return MOVE_PORTAL;
+
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_A))
+				Player_Swing();
+			if (CKey_Manager::Get_Instance()->Key_Up(KEY_A))
+				m_keyPush.isAttack = false;
 		}
-	}
 
-	
-
-	if (!m_isDownJump)
-	{
-		if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_F))
+		if (CKey_Manager::Get_Instance()->Key_Down(KEY_P))
 		{
-			if (!CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN))
-			{
-				if (!m_isJump)
-				{
-					if (m_isJumpLeft == false && m_isJumpRight == false)
-						m_moveLock = true;
-					m_isJump = true;
-					m_beforeJumpY = m_info.y;
-				}
-			}
+			Player_StatUiOpen();
 		}
-	}
 
-	if (m_isJump)
-	{
-		if (CKey_Manager::Get_Instance()->Key_Up(KEY_F))
+		if (CKey_Manager::Get_Instance()->Key_Down(KEY_I))
 		{
-			m_keyPush.isDoubleJumpReady = true;
+			Player_InventoryOpen();
 		}
-	}
-
-	
-	if (!m_keyPush.isSkill)
-	{
-		if (m_isPortal)	// 포탈 위
-			if (CKey_Manager::Get_Instance()->Key_Down(KEY_UP))
-				return MOVE_PORTAL;
-
-		if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_A))
-			Player_Swing();
-		if (CKey_Manager::Get_Instance()->Key_Up(KEY_A))
-			m_keyPush.isAttack = false;
-	}
-
-	if (CKey_Manager::Get_Instance()->Key_Down(KEY_P))
-	{
-		Player_StatUiOpen();
-	}
-
-	if (CKey_Manager::Get_Instance()->Key_Down(KEY_I))
-	{
-		Player_InventoryOpen();
-	}
 
 
 
-	if (!m_keyPush.isJump && !m_keyPush.isLeft &&!m_keyPush.isRight &&!m_keyPush.isDown && !m_keyPush.isAttack &&!m_keyPush.isRope&& !m_keyPush.isSkill &&!m_isHit)
-		Player_Idle();
-	if ((m_isJump || m_isDownJump)&& !m_keyPush.isRope && !m_keyPush.isSkill &&!m_isHit)
-		Player_Jump();
-	if(m_keyPush.isRope &&!m_keyPush.isRopeMove)
-		Set_Animation(m_left_hdc, Animation::ROPING, Animation_index::ROPE_STOP_INDEX);
-	
-	if (m_isHit)
-	{
-		//if(m_hitAnimationNum == 0)
+		if (!m_keyPush.isJump && !m_keyPush.isLeft && !m_keyPush.isRight && !m_keyPush.isDown && !m_keyPush.isAttack && !m_keyPush.isRope && !m_keyPush.isSkill && !m_isHit)
+			Player_Idle();
+		if ((m_isJump || m_isDownJump) && !m_keyPush.isRope && !m_keyPush.isSkill && !m_isHit)
+			Player_Jump();
+		if (m_keyPush.isRope && !m_keyPush.isRopeMove)
+			Set_Animation(m_left_hdc, Animation::ROPING, Animation_index::ROPE_STOP_INDEX);
+
+		if (m_isHit)
+		{
+			//if(m_hitAnimationNum == 0)
 			Player_Hit();
 			m_hitAnimationNum++;
 
@@ -244,19 +254,20 @@ int CPlayer::Update_GameObject()
 				m_isInvincibility = false;
 				m_hitAnimationNum = 0;
 			}
-	}
-	
-	if (CGameObject_Manager::Get_Instance()->GetObejct(Object_ID::ATTACK_SKILL).empty())
-		m_keyPush.isSkill = false;
-
-
-	if(CScroll_Manager::ScrollLock())
-		if (!m_checkScrollY)
-		{
-			m_checkScrollY = true;
-			m_checkKeepY = m_info.y;
 		}
 
+		if (CGameObject_Manager::Get_Instance()->GetObejct(Object_ID::ATTACK_SKILL).empty())
+			m_keyPush.isSkill = false;
+
+
+		if (CScroll_Manager::ScrollLock())
+			if (!m_checkScrollY)
+			{
+				m_checkScrollY = true;
+				m_checkKeepY = m_info.y;
+			}
+
+	}
 	return 0;
 }
 

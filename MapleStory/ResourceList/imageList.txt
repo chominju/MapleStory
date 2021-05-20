@@ -68,6 +68,10 @@ Inventory_Consume_Button
 ../Resource/Ui/Inventory_Consume_Button.bmp
 Inventory_Etc_Button
 ../Resource/Ui/Inventory_Etc_Button.bmp
+Die_Message
+../Resource/Ui/Die_Message.bmp
+Player_Die_Message_Button
+../Resource/Ui/Die_Button.bmp
 Meso
 ../Resource/Item/Meso.bmp
 Item
@@ -93,4 +97,10 @@ Boss_Attack3
 Boss_Attack2_Ball
 ../Resource/Boss/Boss_Attack2_Ball.bmp
 Boss_Die
-'../Resource/Boss/Boss_Die.bmp
+../Resource/Boss/Boss_Die.bmp
+Boss_Green_Clock
+../Resource/Boss/Boss_Green_Clock.bmp
+Boss_Purple_Clock
+../Resource/Boss/Boss_Purple_Clock.bmp
+Boss_Blue_Clock
+../Resource/Boss/Boss_Blue_Clock.bmp

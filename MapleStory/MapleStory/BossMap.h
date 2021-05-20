@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+class CGameObject;
 class CBossMap :
 	public CScene
 {
@@ -17,5 +18,10 @@ public:
 
 public:
 	static CScene* Create();
+private:
+	CGameObject*boss;
+
+	float m_createClockTime;
+	float m_createClockSpeed;
 };
 

@@ -2,6 +2,7 @@
 #include "Player_Ui.h"
 #include "GameObject_Manager.h"
 #include "Bitmap_Manager.h"
+#include "Player_Die_Button.h"
 
 CGameObject * CPlayer_Ui::instance = nullptr;
 CPlayer_Ui::CPlayer_Ui()
@@ -23,6 +24,13 @@ int CPlayer_Ui::Ready_GameObject()
 	m_State_LvNum_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_LvNum");
 	m_State_Num_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_Num");
 	m_skillKey = CBitmap_Manager::Get_Instance()->Get_memDC(L"Skill_Key");
+	m_playerDie_Message_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Die_Message");
+
+	m_Player_Die_Button = Player_Die_Button::Create();
+	m_Player_Die_Button->Set_Pos(m_rect.left + 20, m_rect.top + 15);
+	dynamic_cast<Player_Die_Button*>(m_Player_Die_Button)->Set_FrameKey(L"Player_Die_Message_Button");
+
+	
 	return S_OK;
 }
 
@@ -34,6 +42,7 @@ int CPlayer_Ui::Update_GameObject()
 
 void CPlayer_Ui::Late_Update_GameObject()
 {
+	m_Player_Die_Button->Late_Update_GameObject();
 }
 
 void CPlayer_Ui::Render_GameObject(HDC hDC)
@@ -304,6 +313,23 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 		temp /= 10;
 		if (temp == 0)
 			break;
+	}
+
+
+	if (m_data.hp <= 0)
+	{
+		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+			WINCX /2-170,//위치 x,y
+			WINCY/2 -60,
+			340,// 크기 xy
+			110,
+			m_playerDie_Message_hdc,// 복사 할 대상
+			0,0,// 그림의 시작 위치 x,y
+			340,// 그리고자 하는 영역의 크기 x,y
+			110,
+			RGB(255, 0, 255));
+
+		m_Player_Die_Button->Render_GameObject(hDC);
 	}
 }
 

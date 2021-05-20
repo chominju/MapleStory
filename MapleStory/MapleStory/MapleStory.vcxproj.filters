@@ -142,9 +142,6 @@
     <Filter Include="소스 파일\01.GameObject\09.Item\01.Meso">
       <UniqueIdentifier>{0f59e362-acc7-41f0-820f-e4a956dec2b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Button">
-      <UniqueIdentifier>{739ee677-1ee1-4d92-b7f3-0b4d10a74fcb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Rect">
       <UniqueIdentifier>{fd6da224-8ee6-4177-a33f-663a871c9878}</UniqueIdentifier>
     </Filter>
@@ -169,8 +166,23 @@
     <Filter Include="소스 파일\01.GameObject\02.Monster\03.Boss">
       <UniqueIdentifier>{1cd1ca33-5edb-489a-8d7a-bf0093726246}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\02.Monster\03.Boss\00.Boss_Attack2_Ball">
+    <Filter Include="소스 파일\01.GameObject\08.Ui\04.Button">
+      <UniqueIdentifier>{b1900728-bfe5-4b7a-8988-21cfe290a726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\04.Button\Inventory_Button">
+      <UniqueIdentifier>{739ee677-1ee1-4d92-b7f3-0b4d10a74fcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\08.Ui\04.Button\Player_Die_Button">
+      <UniqueIdentifier>{78506f7d-cf7b-43c2-8d9b-5b68736a9838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Monster\03.Boss\00.Boss">
+      <UniqueIdentifier>{457214fe-9465-412b-8e96-af73f79e11ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Monster\03.Boss\01.Boss_Attack2_Ball">
       <UniqueIdentifier>{5e229ff8-1b5c-4005-803f-19f40a1faf0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\02.Monster\03.Boss\02.Clock">
+      <UniqueIdentifier>{ffa4ea87-c57d-4be4-9de8-b9d5e2273a75}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -289,7 +301,7 @@
       <Filter>소스 파일\01.GameObject\09.Item\01.Meso</Filter>
     </ClInclude>
     <ClInclude Include="Inventory_Button.h">
-      <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Button</Filter>
+      <Filter>소스 파일\01.GameObject\08.Ui\04.Button\Inventory_Button</Filter>
     </ClInclude>
     <ClInclude Include="Inventory_RectManager.h">
       <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Rect</Filter>
@@ -312,14 +324,20 @@
     <ClInclude Include="BossMap.h">
       <Filter>소스 파일\05.Scene\03.BossMap</Filter>
     </ClInclude>
-    <ClInclude Include="Boss.h">
-      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss</Filter>
-    </ClInclude>
     <ClInclude Include="Boss_Attack2_Ball.h">
-      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\00.Boss_Attack2_Ball</Filter>
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\01.Boss_Attack2_Ball</Filter>
     </ClInclude>
     <ClInclude Include="Skill.h">
       <Filter>소스 파일\01.GameObject\03.Skill\00.Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_Die_Button.h">
+      <Filter>소스 파일\01.GameObject\08.Ui\04.Button\Player_Die_Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\00.Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\02.Clock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -432,7 +450,7 @@
       <Filter>소스 파일\01.GameObject\09.Item\01.Meso</Filter>
     </ClCompile>
     <ClCompile Include="Inventory_Button.cpp">
-      <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Button</Filter>
+      <Filter>소스 파일\01.GameObject\08.Ui\04.Button\Inventory_Button</Filter>
     </ClCompile>
     <ClCompile Include="Inventory_RectManager.cpp">
       <Filter>소스 파일\01.GameObject\08.Ui\03.Inventory_Ui\Inventory_Rect</Filter>
@@ -455,11 +473,17 @@
     <ClCompile Include="BossMap.cpp">
       <Filter>소스 파일\05.Scene\03.BossMap</Filter>
     </ClCompile>
-    <ClCompile Include="Boss.cpp">
-      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss</Filter>
-    </ClCompile>
     <ClCompile Include="Boss_Attack2_Ball.cpp">
-      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\00.Boss_Attack2_Ball</Filter>
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\01.Boss_Attack2_Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Die_Button.cpp">
+      <Filter>소스 파일\01.GameObject\08.Ui\04.Button\Player_Die_Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\00.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>소스 파일\01.GameObject\02.Monster\03.Boss\02.Clock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

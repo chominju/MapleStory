@@ -90,6 +90,11 @@ public:
 		return m_data.hp;
 	}
 
+	float  Get_MaxHp()
+	{
+		return m_data.maxHp;
+	}
+
 	int Get_MinAttack()
 	{
 		return m_data.minAttack;

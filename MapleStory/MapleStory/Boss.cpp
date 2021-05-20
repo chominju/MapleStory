@@ -7,6 +7,7 @@
 #include "Scene_Manager.h"
 #include "Boss_Attack2_Ball.h"
 #include "Player.h"
+
 CBoss::CBoss()
 {
 }
@@ -87,7 +88,7 @@ int CBoss::Ready_GameObject()
 
 	m_data.maxExp = 1000000;
 	m_data.exp = m_data.maxExp;
-	m_data.maxHp = 100000;
+	m_data.maxHp = 10000;
 	m_data.hp = m_data.maxHp;
 	m_data.money = 1000000;
 	m_data.maxAttack = 5000;
@@ -114,7 +115,6 @@ int CBoss::Update_GameObject()
 			m_isAttack1 = false;
 			m_isAttack2 = false;
 			m_isAttack3 = false;
-			m_info.y = 500;
 			m_info.sizeX = m_DieSizeX;
 			m_info.sizeY = m_DieSizeY;
 			if (m_dir == Direction::DIR_LEFT)
@@ -513,7 +513,7 @@ void CBoss::Boss_Attack()
 				{
 					if (!m_player->Get_IsInvincibility())
 					{
-						m_player->Set_Change_Hp(-10);
+						m_player->Set_Change_Hp(-1);
 						m_player->Set_IsSkillHit(true); // 스킬 맞음 ON
 						m_player->Set_IsHit(true);
 						m_player->Set_IsInvincibility(true);
