@@ -90,8 +90,10 @@ int CInventory_Ui::Update_GameObject()
 						{
 							if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
 							{
+								getList->empty();
 								Object_Info temp2 = *(*iter)->Get_Info();
 								iter_swap(beforeIter, iter);
+								getList->empty();
 								(*iter)->Set_Pos(temp2.x, temp2.y);
 								(*beforeIter)->Set_Pos(m_beforePos.x, m_beforePos.y);
 								/*Object_Info m_afterInfo = *(*iter)->Get_Info();

@@ -64,6 +64,33 @@ int CShop_RectManager::Update_GameObject()
 	list<CItem*>* invenEquip = CInventory_RectManager::Get_Instance()->Get_EquipmentList();
 	list<CItem*>* invenConsume = CInventory_RectManager::Get_Instance()->Get_ConsumeList();
 	list<CItem*>* invenEtc = CInventory_RectManager::Get_Instance()->Get_EtcList();
+
+	list<CItem*>* curlist =  Get_CurrentList();
+	list<CItem*>::iterator finditer = curlist->end();
+	Object_Info findInfo;
+	for (list<CItem*>::iterator iter = curlist->begin(); iter!= curlist->end(); iter++)
+	{
+		if (!strcmp((*iter)->Get_ItemInfo()->itemName, "NONE"))
+		{
+			finditer = iter;
+			findInfo = *(*iter)->Get_Info();
+		}
+		else
+		{
+			if (finditer == curlist->end())
+				continue;
+			else
+			{
+				Pos_float pos = (*iter)->Get_shopPos();
+				iter_swap(finditer, iter);
+				(*iter)->Set_Pos(pos.x, pos.y);
+				(*finditer)->Set_shopPos(findInfo.x, findInfo.y);
+			}
+		}
+	}
+
+
+
 	for (auto & inven : *invenEquip)
 	{
 		if (!strcmp(inven->Get_ItemInfo()->itemName, "NONE"))
