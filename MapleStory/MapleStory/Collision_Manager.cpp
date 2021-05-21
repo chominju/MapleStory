@@ -276,6 +276,7 @@ void CCollision_Manager::Collision_BossSkill(list<CGameObject*>* skill, list<CGa
 				{
 					if (dynamic_cast<CSkill*>(skill_object)->isHitMonsterNum())
 					{
+						CSoundMgr::Get_Instance()->PlaySound(L"Boss_CharDam2.mp3", CSoundMgr::PLAYER);
 						player_object->Set_IsSkillHit(true); // 스킬 맞음 ON
 						player_object->Set_IsHit(true);
 						int damage = dynamic_cast<CSkill*>(skill_object)->Get_Damage();
@@ -355,6 +356,7 @@ void CCollision_Manager::Collision_DropItem(list<CGameObject*>* player, list<CGa
 				RECT temp = {};
 				if (IntersectRect(&temp, playerRect, dropItem_objectRect))
 				{
+					CSoundMgr::Get_Instance()->PlaySound(L"PickUpItem.mp3",CSoundMgr::PLAYER);
 					CItem* tempItem = dynamic_cast<CItem*>(dropItem_object);
 					if (tempItem->Get_ItemInfo()->type == Item_type::MESO)
 					{

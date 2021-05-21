@@ -24,6 +24,7 @@ CBossMap::~CBossMap()
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::DROP_ITEM);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::BOSS);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::BOSS_SKILL);
+	CSoundMgr::Get_Instance()->StopAll();
 }
 
 int CBossMap::Ready_Scene()
@@ -49,6 +50,9 @@ int CBossMap::Ready_Scene()
 
 	m_createClockTime = GetTickCount();
 	m_createClockSpeed = 300;
+
+	CSoundMgr::Get_Instance()->StopAll();
+	CSoundMgr::Get_Instance()->PlayBGM(L"TimeChaos.mp3");
 
 	return 0;
 }

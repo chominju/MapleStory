@@ -56,6 +56,10 @@ public:
 		return m_shopPos;
 	}
 
+	RECT* Get_ShopRect()
+	{
+		return &m_shopRect;
+	}
 
 protected:
 	Item_Info m_itemInfo;
@@ -64,5 +68,6 @@ protected:
 	HDC m_State_Num_hdc;
 	int m_selectImageX;
 	int m_selectImageY;
+	RECT m_shopRect;
 };
 

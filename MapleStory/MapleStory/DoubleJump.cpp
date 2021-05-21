@@ -79,6 +79,7 @@ CGameObject * CDoubleJump::Create(CGameObject * player)
 	instance->Set_Target(player);
 	instance->Ready_GameObject();
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::BUFF_SKILL, instance);
+	CSoundMgr::Get_Instance()->PlaySound(L"DoubleJump_Use.mp3", CSoundMgr::PLAYER);
 
 	return instance;
 }

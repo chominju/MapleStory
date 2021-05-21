@@ -97,5 +97,6 @@ CGameObject * CLevelUp::Create(CGameObject * player)
 	instance->Set_Target(player);
 	instance->Ready_GameObject();
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ATTACK_SKILL, instance);
+	CSoundMgr::Get_Instance()->PlaySound(L"LevelUp.mp3", CSoundMgr::PLAYER);
 	return nullptr;
 }

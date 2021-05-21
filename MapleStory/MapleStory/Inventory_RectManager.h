@@ -55,6 +55,8 @@ public:
 
 	void Use_Item(char * itemName);
 	void Drop_Item(char * itemName, Object_Info pos);
+	void Find_DeleteItem(char * itemName);
+	void DeleteItem(CItem* item , Pos_float shopPos);
 
 	list<CItem*>* Get_EquipmentList()
 	{
@@ -97,5 +99,7 @@ private:
 	bool m_isConsumeClick;
 	bool m_isEtcClick;
 
+	list<CItem*>::iterator m_deleteIter;
+	Object_Info m_deleteItemPos;
 };
 

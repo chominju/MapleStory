@@ -20,6 +20,13 @@
 #include <map>
 #include <list>
 #include <time.h>
+#include <string>
+using namespace std;
+
+// 사운드
+#include <io.h>
+#include "fmod.h"
+#pragma comment(lib, "fmodex_vc.lib")
 
 #include "Extern.h"
 #include "Define.h"
@@ -28,5 +35,7 @@
 #include "Function.h"
 
 
+#include "SoundMgr.h"
+
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
-using namespace std;
+

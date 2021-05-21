@@ -8,6 +8,7 @@
 #include "Drop_Octopus.h"
 #include "Power_Elixir.h"
 #include "Shop_RectManager.h"
+#include "Player.h"
 
 CInventory_RectManager * CInventory_RectManager::instance = nullptr;
 CInventory_RectManager::CInventory_RectManager()
@@ -232,13 +233,15 @@ void CInventory_RectManager::Use_Item(char * itemName)
 	{
 		for (auto & list : m_consumeList)
 		{
-			if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+			if (!strcmp(list->Get_ItemInfo()->itemName, itemName) && strcmp(itemName, "NONE"))
 			{
 				CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Hp(list->Get_ItemInfo()->hp);
 				list->Set_Change_Quantity(-1);
+				CSoundMgr::Get_Instance()->PlaySound(L"Potion_Use.mp3", CSoundMgr::PLAYER);
 				if (list->Get_ItemInfo()->quantity == 0)
 				{
-					CShop_RectManager::Get_Instance()->Find_DeleteItem(itemName);
+					if (dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Get_IsShopClick())
+						CShop_RectManager::Get_Instance()->Find_DeleteItem(itemName);
 					Object_Info tempInfo = *list->Get_Info();
 					CItem * temp = new CItem;
 					temp->Set_Pos(tempInfo.x, tempInfo.y);
@@ -246,7 +249,8 @@ void CInventory_RectManager::Use_Item(char * itemName)
 
 					Safe_Delete(list);
 					list = temp;
-					CShop_RectManager::Get_Instance()->DeleteItem(list);
+					if (dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Get_IsShopClick())
+						CShop_RectManager::Get_Instance()->DeleteItem(list);
 					int i;
 					i = 10;
 				}
@@ -311,6 +315,31 @@ void CInventory_RectManager::Drop_Item(char * itemName , Object_Info pos)
 
 		}
 	}
+}
+
+void CInventory_RectManager::Find_DeleteItem(char * itemName)
+{
+	list<CItem*>* tempList = Get_CurrentList();
+	for (list<CItem*>::iterator iter = tempList->begin(); iter != tempList->end(); iter++)
+	{
+		if (!strcmp((*iter)->Get_ItemInfo()->itemName, itemName))
+		{
+			m_deleteIter = iter;
+			m_deleteItemPos = *(*iter)->Get_Info();
+		}
+	}
+}
+
+void CInventory_RectManager::DeleteItem(CItem * item, Pos_float shopPos)
+{
+	m_consumeList.empty();
+	//*m_deleteIter = item;
+	//Safe_Delete(m_deleteIter);
+	*m_deleteIter = nullptr;
+	*m_deleteIter = new CItem();
+	(*m_deleteIter)->Set_Pos(m_deleteItemPos.x, m_deleteItemPos.y);
+	(*m_deleteIter)->Set_Size(m_deleteItemPos.sizeX, m_deleteItemPos.sizeY);
+	(*m_deleteIter)->Set_shopPos(shopPos.x, shopPos.y);
 }
 
 void CInventory_RectManager::Create(RECT pos)

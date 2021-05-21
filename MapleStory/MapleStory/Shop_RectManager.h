@@ -105,5 +105,8 @@ private:
 	list<CItem*>::iterator m_deleteIter;
 	CItem* deleteItem;
 	Pos_float m_deleteItemPos;
+
+	bool m_isItemExist;
+	list<CItem*>::iterator m_ExistIter;
 };
 

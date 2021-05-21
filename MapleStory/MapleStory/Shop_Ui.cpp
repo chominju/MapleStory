@@ -70,7 +70,7 @@ int CShop_Ui::Update_GameObject()
 		list<CItem*>* getList = CShop_RectManager::Get_Instance()->Get_CurrentList();
 		for (list<CItem*>::iterator iter = getList->begin(); iter != getList->end(); iter++)
 		{
-			if (PtInRect((*iter)->GetRect(), pt))
+			if (PtInRect((*iter)->Get_ShopRect(), pt))
 			{
 				if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
 				{

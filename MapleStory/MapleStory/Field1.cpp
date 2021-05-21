@@ -22,6 +22,7 @@ CField1::~CField1()
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::MONSTER);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::DROP_ITEM);
+	CSoundMgr::Get_Instance()->StopAll();
 }
 
 int CField1::Ready_Scene()

@@ -199,6 +199,9 @@
     <Filter Include="소스 파일\01.GameObject\08.Ui\05.Shop_Ui\01.Shop_Rect">
       <UniqueIdentifier>{d92364d0-ce24-4e81-aeac-71b9daeb13f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06.SoundManager">
+      <UniqueIdentifier>{a6a07997-92ab-4cc6-9769-71720fdfbb26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -366,6 +369,9 @@
     <ClInclude Include="Shop_RectManager.h">
       <Filter>소스 파일\01.GameObject\08.Ui\05.Shop_Ui\01.Shop_Rect</Filter>
     </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>소스 파일\06.SoundManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainApp.cpp">
@@ -523,6 +529,9 @@
     </ClCompile>
     <ClCompile Include="Shop_RectManager.cpp">
       <Filter>소스 파일\01.GameObject\08.Ui\05.Shop_Ui\01.Shop_Rect</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>소스 파일\06.SoundManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

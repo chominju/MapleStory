@@ -149,6 +149,7 @@ int CBoss::Update_GameObject()
 					m_isAttack1 = false;
 					m_isAttack2 = false;
 					m_isAttack3 = true;
+					CSoundMgr::Get_Instance()->PlaySound(L"Boss_Attack3.mp3", CSoundMgr::MONSTER);
 				}
 
 				else if (m_TeleportTime + m_TeleportSpeed < GetTickCount())
@@ -159,6 +160,7 @@ int CBoss::Update_GameObject()
 					m_TeleportAfterTime = GetTickCount();
 					m_TeleportTime = GetTickCount();
 					Set_TelePortAnimation(m_teleport_hdc, Boss_Animation::BOSS_TELEPORT, Boss_Animation_Index::BOSS_TELEPORT_INDEX);
+					CSoundMgr::Get_Instance()->PlaySound(L"Boss_Teleport.mp3", CSoundMgr::MONSTER);
 
 				}
 				else if (m_Attack2Time + m_Attack2Speed < GetTickCount())
@@ -175,6 +177,7 @@ int CBoss::Update_GameObject()
 					m_isAttack1 = false;
 					m_isAttack2 = true;
 					m_isAttack3 = false;
+					CSoundMgr::Get_Instance()->PlaySound(L"Boss_Attack2.mp3", CSoundMgr::MONSTER);
 				}
 				else if (m_Attack1Time + m_Attack1Speed < GetTickCount())
 				{
@@ -204,6 +207,7 @@ int CBoss::Update_GameObject()
 						m_info.y = 517;
 						m_animFrame.frame_speed = 100;
 						m_Attack1Time = GetTickCount();
+						CSoundMgr::Get_Instance()->PlaySound(L"Boss_Attack1.mp3", CSoundMgr::MONSTER);
 					}
 				}
 			}
@@ -491,6 +495,7 @@ void CBoss::Boss_Attack()
 							m_player->Set_IsSkillHit(true); // 스킬 맞음 ON
 							m_player->Set_IsHit(true);
 							m_player->Set_IsInvincibility(true);
+							CSoundMgr::Get_Instance()->PlaySound(L"Boss_CharDam1.mp3", CSoundMgr::PLAYER);
 						}
 					}
 				}
@@ -504,6 +509,7 @@ void CBoss::Boss_Attack()
 							m_player->Set_IsSkillHit(true); // 스킬 맞음 ON
 							m_player->Set_IsHit(true);
 							m_player->Set_IsInvincibility(true);
+							CSoundMgr::Get_Instance()->PlaySound(L"Boss_CharDam1.mp3", CSoundMgr::PLAYER);
 						}
 					}
 				}
@@ -529,6 +535,7 @@ void CBoss::Boss_Attack()
 						m_player->Set_IsSkillHit(true); // 스킬 맞음 ON
 						m_player->Set_IsHit(true);
 						m_player->Set_IsInvincibility(true);
+						CSoundMgr::Get_Instance()->PlaySound(L"Boss_CharDam3.mp3", CSoundMgr::PLAYER);
 					}
 				}
 			}

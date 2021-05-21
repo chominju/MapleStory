@@ -25,7 +25,7 @@ int CDrop_Mushroom::Ready_GameObject()
 	m_itemInfo.type = Item_type::ETC;
 	m_itemInfo.money = 0;
 	m_itemInfo.buyMoney = 0;
-	m_itemInfo.sellMoney = 10;
+	m_itemInfo.sellMoney = 500;
 	m_itemInfo.quantity = 1;
 	strcpy_s(m_itemInfo.itemName, "ÁÖÈ²¹ö¼¸ °«");
 

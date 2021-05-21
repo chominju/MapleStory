@@ -27,7 +27,7 @@ int CWhite_Potion::Ready_GameObject()
 	m_itemInfo.type = Item_type::CONSUME;
 	m_itemInfo.money = 0;
 	m_itemInfo.buyMoney = 0;
-	m_itemInfo.sellMoney = 10;
+	m_itemInfo.sellMoney = 100;
 	m_itemInfo.quantity = 1;
 	m_itemInfo.hp = 500;
 	strcpy_s(m_itemInfo.itemName, "ÇÏ¾á Æ÷¼Ç");

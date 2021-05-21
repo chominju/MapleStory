@@ -25,7 +25,7 @@ int CDrop_Octopus::Ready_GameObject()
 	m_itemInfo.type = Item_type::ETC;
 	m_itemInfo.money = 0;
 	m_itemInfo.buyMoney = 0;
-	m_itemInfo.sellMoney = 100;
+	m_itemInfo.sellMoney = 1000;
 	m_itemInfo.quantity = 1;
 	strcpy_s(m_itemInfo.itemName, "옥토퍼스 다리");
 

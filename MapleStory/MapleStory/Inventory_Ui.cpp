@@ -114,6 +114,7 @@ int CInventory_Ui::Update_GameObject()
 					if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
 					{
 						CInventory_RectManager::Get_Instance()->Drop_Item(temp->Get_ItemInfo()->itemName, m_beforePos);
+						CSoundMgr::Get_Instance()->PlaySound(L"DropItem.mp3", CSoundMgr::PLAYER);
 						m_isItemMove = false;
 						temp = nullptr;
 					}

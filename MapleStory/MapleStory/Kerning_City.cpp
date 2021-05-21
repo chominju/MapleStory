@@ -13,6 +13,7 @@
 #include "Inventory_Ui.h"
 #include "Scene_Manager.h"
 #include "Npc.h"
+
 Kerning_City::Kerning_City()
 {
 }
@@ -24,6 +25,7 @@ Kerning_City::~Kerning_City()
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::MONSTER);
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::DROP_ITEM);
+	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::NPC);
 }
 
 int Kerning_City::Ready_Scene()
@@ -63,6 +65,8 @@ int Kerning_City::Ready_Scene()
 
 	CScroll_Manager::Set_ResetX();
 	CScroll_Manager::Set_ResetY();
+
+	CSoundMgr::Get_Instance()->PlayBGM(L"Kerning_City.mp3");
 
 	return S_OK;
 }

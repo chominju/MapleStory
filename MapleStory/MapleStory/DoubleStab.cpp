@@ -61,6 +61,7 @@ CGameObject * CDoubleStab::Create(CGameObject * player)
 		m_instance->Set_Target(player);
 		m_instance->Ready_GameObject();
 		CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::ATTACK_SKILL, m_instance);
+		CSoundMgr::Get_Instance()->PlaySound(L"DoubleStab_Use.mp3", CSoundMgr::PLAYER);
 	}
 	
 		return m_instance;
