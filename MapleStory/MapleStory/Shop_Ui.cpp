@@ -7,6 +7,9 @@
 #include "Npc.h"
 #include "Close_Button.h"
 #include "Shop_RectManager.h"
+#include "Key_Manager.h"
+#include "Item.h"
+
 
 CGameObject* CShop_Ui::instance = nullptr;
 
@@ -16,6 +19,7 @@ CShop_Ui::CShop_Ui()
 
 CShop_Ui::~CShop_Ui()
 {
+	instance = nullptr;
 }
 
 int CShop_Ui::Ready_GameObject()
@@ -46,7 +50,9 @@ int CShop_Ui::Ready_GameObject()
 	dynamic_cast<CClose_Button*>(m_CloseButton)->Set_FrameKey(L"Close_Ui");
 
 	CShop_RectManager::Create(m_rect);
-
+	CShop_RectManager::Get_Instance()->Set_isEquipmentClick(dynamic_cast<CInventory_Button*>(m_EquipmentButton)->Get_IsEquipmentClick());
+	CShop_RectManager::Get_Instance()->Set_isConsumeClick(dynamic_cast<CInventory_Button*>(m_ConsumeButton)->Get_IsConsumeClick());
+	CShop_RectManager::Get_Instance()->Set_m_isEtcClick(dynamic_cast<CInventory_Button*>(m_EtcButton)->Get_IsEtcClick());
 	return 0;
 }
 
@@ -57,25 +63,49 @@ int CShop_Ui::Update_GameObject()
 		m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
 		Set_UiData(m_player->Get_Data());
 		CShop_RectManager::Get_Instance()->Update_GameObject();
+
+		POINT pt = {};
+		GetCursorPos(&pt);
+		ScreenToClient(g_hwnd, &pt);
+		list<CItem*>* getList = CShop_RectManager::Get_Instance()->Get_CurrentList();
+		for (list<CItem*>::iterator iter = getList->begin(); iter != getList->end(); iter++)
+		{
+			if (PtInRect((*iter)->GetRect(), pt))
+			{
+				if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
+				{
+					CShop_RectManager::Get_Instance()->SellItem((*iter)->Get_ItemInfo()->itemName);
+				}
+			}
+		}
+
 	}
 
 	if (dynamic_cast<CClose_Button*>(m_CloseButton)->Get_isCloseButton())
 	{
 		dynamic_cast<CClose_Button*>(m_CloseButton)->Set_isCloseButton(false);
 		dynamic_cast<CNpc*>(m_target)->Set_isNpcClick(false);
+		dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Set_IsShopClick(false);
+		CShop_RectManager::Get_Instance()->Release_GameObject();
+		return OBJ_DEAD;
 	}
+
+	//CShop_RectManager::Get_Instance()->GET
 	return 0;
 }
 
 void CShop_Ui::Late_Update_GameObject()
 {
-	m_EquipmentButton->Late_Update_GameObject();
-	m_ConsumeButton->Late_Update_GameObject();
-	m_EtcButton->Late_Update_GameObject();
-	m_CloseButton->Late_Update_GameObject();
-	CShop_RectManager::Get_Instance()->Set_isEquipmentClick(dynamic_cast<CInventory_Button*>(m_EquipmentButton)->Get_IsEquipmentClick());
-	CShop_RectManager::Get_Instance()->Set_isConsumeClick(dynamic_cast<CInventory_Button*>(m_ConsumeButton)->Get_IsConsumeClick());
-	CShop_RectManager::Get_Instance()->Set_m_isEtcClick(dynamic_cast<CInventory_Button*>(m_EtcButton)->Get_IsEtcClick());
+	if (dynamic_cast<CNpc*>(m_target)->Get_isNpcClick())
+	{
+		m_EquipmentButton->Late_Update_GameObject();
+		m_ConsumeButton->Late_Update_GameObject();
+		m_EtcButton->Late_Update_GameObject();
+		m_CloseButton->Late_Update_GameObject();
+		CShop_RectManager::Get_Instance()->Set_isEquipmentClick(dynamic_cast<CInventory_Button*>(m_EquipmentButton)->Get_IsEquipmentClick());
+		CShop_RectManager::Get_Instance()->Set_isConsumeClick(dynamic_cast<CInventory_Button*>(m_ConsumeButton)->Get_IsConsumeClick());
+		CShop_RectManager::Get_Instance()->Set_m_isEtcClick(dynamic_cast<CInventory_Button*>(m_EtcButton)->Get_IsEtcClick());
+	}
 }
 
 void CShop_Ui::Render_GameObject(HDC hDC)

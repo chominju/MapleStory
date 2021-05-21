@@ -6,6 +6,7 @@
 #include "Scroll_Manager.h"
 #include "Key_Manager.h"
 #include "Shop_Ui.h"
+#include "Player.h"
 
 CGameObject * CNpc::m_instance=nullptr;
 
@@ -47,8 +48,8 @@ int CNpc::Update_GameObject()
 		if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
 		{
 			m_shopUi = CShop_Ui::Create(this);
-			
 			m_isNpcClick = true;
+			dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Set_IsShopClick(true);
 		}
 	}
 

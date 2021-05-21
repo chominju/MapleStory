@@ -18,7 +18,6 @@ public:
 
 public:
 	static CGameObject * Create(CGameObject * npc);
-
 private:
 	static CGameObject* instance;
 	CGameObject * m_player;
@@ -33,5 +32,8 @@ private:
 	CGameObject* m_EtcButton;
 	CGameObject* m_CloseButton;
 
+	bool m_isEquipmentClick;
+	bool m_isConsumeClick;
+	bool m_isEtcClick;
 };
 

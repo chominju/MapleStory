@@ -45,9 +45,24 @@ public:
 		m_itemInfo.money = money;
 	}
 
+	void Set_shopPos(float x, float y)
+	{
+		m_shopPos.x = x;
+		m_shopPos.y = y;
+	}
+
+	Pos_float Get_shopPos()
+	{
+		return m_shopPos;
+	}
+
+
 protected:
 	Item_Info m_itemInfo;
+	Pos_float m_shopPos;
 	bool m_isFieldOut;
 	HDC m_State_Num_hdc;
+	int m_selectImageX;
+	int m_selectImageY;
 };
 

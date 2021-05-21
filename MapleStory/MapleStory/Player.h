@@ -49,6 +49,16 @@ public:
 		return m_isInventoryOpen;
 	}
 
+	bool Get_IsShopClick()
+	{
+		return m_isShopClick;
+	}
+
+	void Set_IsShopClick(bool click)
+	{
+		m_isShopClick = click;
+	}
+
 	Key_Push GetKeyPush()
 	{
 		return m_keyPush;
@@ -72,6 +82,7 @@ private:
 	bool m_isFall;
 	bool m_isStatOpen;
 	bool m_isInventoryOpen;
+	bool m_isShopClick;
 
 	//bool m_jumpKeyUp;
 
@@ -95,8 +106,6 @@ private:
 	HDC m_State_Lv_hdc;
 	HDC m_State_LvNum_hdc;
 	HDC m_State_Num_hdc;
-
-
 	int m_hitAnimationNum;
 
 	//HDC m_temptemp; 스킬 체험

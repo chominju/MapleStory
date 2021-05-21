@@ -61,26 +61,45 @@ int CShop_RectManager::Ready_GameObject()
 
 int CShop_RectManager::Update_GameObject()
 {
-	list<CItem*>* tempEquip = CInventory_RectManager::Get_Instance()->Get_EquipmentList();
-	list<CItem*>* tempConsume = CInventory_RectManager::Get_Instance()->Get_ConsumeList();
-	list<CItem*>* tempEtc = CInventory_RectManager::Get_Instance()->Get_EtcList();
-	for (auto & temp : *tempEquip)
+	list<CItem*>* invenEquip = CInventory_RectManager::Get_Instance()->Get_EquipmentList();
+	list<CItem*>* invenConsume = CInventory_RectManager::Get_Instance()->Get_ConsumeList();
+	list<CItem*>* invenEtc = CInventory_RectManager::Get_Instance()->Get_EtcList();
+	for (auto & inven : *invenEquip)
 	{
-		if (!strcmp(temp->Get_ItemInfo()->itemName, "NONE"))
-			continue;
-
+		if (!strcmp(inven->Get_ItemInfo()->itemName, "NONE"))
+			break;
 		for (auto & shop : m_equipmentList)
 		{
+			if (!strcmp(shop->Get_ItemInfo()->itemName, inven->Get_ItemInfo()->itemName))
+				break;
 			if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
 			{
 				Object_Info tempPos = *shop->Get_Info();
-				shop = temp;
-				shop->Set_Pos(tempPos.x, tempPos.y);
+				shop = inven;
+				shop->Set_shopPos(tempPos.x, tempPos.y);
+				break;
+			}
+		}
+	}
+	for (auto & inven : *invenConsume)
+	{
+		if (!strcmp(inven->Get_ItemInfo()->itemName,"NONE"))
+			continue;
+		for (auto & shop : m_consumeList)
+		{
+			if (!strcmp(shop->Get_ItemInfo()->itemName, inven->Get_ItemInfo()->itemName))
+				break;
+			if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
+			{
+			Object_Info tempPos = *shop->Get_Info();
+			shop = inven;
+			shop->Set_shopPos(tempPos.x, tempPos.y);
+			break;
 			}
 		}
 	}
 
-	for (auto & temp : *tempConsume)
+	/*for (auto & temp : *tempConsume)
 	{
 		if (!strcmp(temp->Get_ItemInfo()->itemName, "»¡°£ Æ÷¼Ç"))
 		{
@@ -120,19 +139,22 @@ int CShop_RectManager::Update_GameObject()
 				}
 			}
 		}
-	}
+	}*/
 
-	for (auto & temp : *tempEtc)
+	for (auto & inven : *invenEtc)
 	{
-		if (!strcmp(temp->Get_ItemInfo()->itemName, "NONE"))
-			continue;
+		if (!strcmp(inven->Get_ItemInfo()->itemName, "NONE"))
+			break;
 		for (auto & shop : m_etcList)
 		{
+			if (!strcmp(shop->Get_ItemInfo()->itemName, inven->Get_ItemInfo()->itemName))
+				break;
 			if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
 			{
 				Object_Info tempPos = *shop->Get_Info();
-				shop = temp;
-				shop->Set_Pos(tempPos.x, tempPos.y);
+				shop = inven;
+				shop->Set_shopPos(tempPos.x, tempPos.y);
+				break;
 			}
 		}
 	}
@@ -149,6 +171,7 @@ int CShop_RectManager::Update_GameObject()
 
 void CShop_RectManager::Late_Update_GameObject()
 {
+	
 }
 
 void CShop_RectManager::Render_GameObject(HDC hDC)
@@ -174,6 +197,29 @@ void CShop_RectManager::Render_GameObject(HDC hDC)
 
 void CShop_RectManager::Release_GameObject()
 {
+	m_shopList.clear();
+	m_equipmentList.clear();
+	m_consumeList.clear();
+	m_etcList.clear();
+	instance = nullptr;
+
+	//for (auto & temp : m_shopList)
+	//	Safe_Delete(temp);
+	//for (auto & temp : m_equipmentList)
+	//	Safe_Delete(temp);
+	//for (auto & temp : m_consumeList)
+	//	Safe_Delete(temp);
+	//for (auto & temp : m_etcList)
+	//	Safe_Delete(temp);
+	//for (auto & temp : m_shopList)
+	//	Safe_Delete(temp);
+
+	//m_shopList.clear();
+	//m_equipmentList.clear();
+	//m_consumeList.clear();
+	//m_etcList.clear();
+	//Safe_Delete(instance);
+	//instance = nullptr;
 }
 
 void CShop_RectManager::UpdateRect_GameObject()
@@ -210,6 +256,99 @@ void CShop_RectManager::Use_Item(char * itemName)
 
 void CShop_RectManager::Drop_Item(char * itemName, Object_Info pos)
 {
+}
+
+void CShop_RectManager::Find_DeleteItem(char * itemName)
+{
+	for (list<CItem*>::iterator iter = m_consumeList.begin(); iter != m_consumeList.end(); iter++)
+	{
+		if (!strcmp((*iter)->Get_ItemInfo()->itemName, itemName))
+
+		{
+			m_deleteIter = iter;
+			m_deleteItemPos=(*iter)->Get_shopPos();
+		}
+	}
+
+	/*for (auto & list : m_consumeList)
+	{
+		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+		{
+			deleteItem = list;
+			m_deleteItemPos = list->Get_shopPos();
+		}
+	}*/
+}
+
+void CShop_RectManager::DeleteItem(CItem * item)
+{
+	m_consumeList.empty();
+	//*m_deleteIter = item;
+	//Safe_Delete(*m_deleteIter);
+	*m_deleteIter = new CItem();
+	(*m_deleteIter)->Set_Pos(m_deleteItemPos.x, m_deleteItemPos.y);
+	(*m_deleteIter)->Set_Size(33, 33);
+	//Safe_Delete(deleteItem);
+	//deleteItem = new CItem();
+	//deleteItem->Set_Pos(m_deleteItemPos.x, m_deleteItemPos.y);
+
+	/*Object_Info tempObjInfo = *list->Get_Info();
+	Pos_float tempInfo = list->Get_shopPos();
+	CItem * temp = new CItem;
+	temp->Set_shopPos(tempInfo.x, tempInfo.y);
+	temp->Set_Size(tempObjInfo.sizeX, tempObjInfo.sizeY);
+
+	Safe_Delete(list);
+	list = temp;
+	int i;
+	i = 10;*/
+	m_consumeList.empty();
+	int j;
+	j = 0;
+}
+
+void CShop_RectManager::SellItem(char * itemName)
+{
+	if (m_isEquipmentClick)
+	{
+		/*for (auto & list : m_equipmentList)
+		{
+		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+		{
+		check = true;
+		list->Set_Change_Quantity(item->Get_ItemInfo()->quantity);
+		}
+		}*/
+	}
+	if (m_isConsumeClick)
+	{
+		for (auto & list : m_consumeList)
+		{
+			if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+			{
+				CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(list->Get_ItemInfo()->sellMoney);
+				list->Set_Change_Quantity(-1);
+				if (list->Get_ItemInfo()->quantity == 0)
+				{
+					CShop_RectManager::Get_Instance()->Find_DeleteItem(itemName);
+					Object_Info tempInfo = *list->Get_Info();
+					CItem * temp = new CItem;
+					temp->Set_Pos(tempInfo.x, tempInfo.y);
+					temp->Set_Size(tempInfo.sizeX, tempInfo.sizeY);
+
+					Safe_Delete(list);
+					list = temp;
+					CShop_RectManager::Get_Instance()->DeleteItem(list);
+					int i;
+					i = 10;
+				}
+			}
+		}
+		if (m_isEtcClick)
+		{
+			//m_etcList
+		}
+	}
 }
 
 void CShop_RectManager::Create(RECT pos)

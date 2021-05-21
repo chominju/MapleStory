@@ -54,6 +54,9 @@ public:
 
 	void Use_Item(char * itemName);
 	void Drop_Item(char * itemName, Object_Info pos);
+	void Find_DeleteItem(char * itemName);
+	void DeleteItem(CItem* item);
+	void SellItem(char * itemName);
 
 	list<CItem*>* Get_EquipmentList()
 	{
@@ -70,15 +73,15 @@ public:
 		return &m_etcList;
 	}
 
-	//list<CItem*>* Get_CurrentList()
-	//{
-	//	if (m_isEquipmentClick)
-	//		return &m_equipmentList;
-	//	if (m_isConsumeClick)
-	//		return &m_consumeList;
-	//	if (m_isEtcClick)
-	//		return &m_etcList;
-	//}
+	list<CItem*>* Get_CurrentList()
+	{
+		if (m_isEquipmentClick)
+			return &m_equipmentList;
+		if (m_isConsumeClick)
+			return &m_consumeList;
+		if (m_isEtcClick)
+			return &m_etcList;
+	}
 
 	static void Create(RECT pos);
 
@@ -98,5 +101,9 @@ private:
 	bool m_isEquipmentClick;
 	bool m_isConsumeClick;
 	bool m_isEtcClick;
+
+	list<CItem*>::iterator m_deleteIter;
+	CItem* deleteItem;
+	Pos_float m_deleteItemPos;
 };
 

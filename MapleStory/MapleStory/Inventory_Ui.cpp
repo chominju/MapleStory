@@ -54,71 +54,73 @@ int CInventory_Ui::Update_GameObject()
 	m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
 	Set_UiData(m_player->Get_Data());
 
-	if (dynamic_cast<CPlayer*>(m_player)->Get_IsInventoryOpen())
-	{
-		POINT pt = {};
-		GetCursorPos(&pt);
-		ScreenToClient(g_hwnd, &pt);
-		list<CItem*>* getList = CInventory_RectManager::Get_Instance()->Get_CurrentList();
-
-		for (list<CItem*>::iterator iter = getList->begin(); iter != getList->end(); iter++)
+	//if (!dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Get_IsShopClick())
+	//{
+		if (dynamic_cast<CPlayer*>(m_player)->Get_IsInventoryOpen())
 		{
-			//for (auto& list : *getList)
-			//{
-			if (PtInRect((*iter)->GetRect(), pt))
-			{
-				if (!m_isItemMove)
-				{
-					if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
-					{
-						CInventory_RectManager::Get_Instance()->Use_Item((*iter)->Get_ItemInfo()->itemName);
-					}
+			POINT pt = {};
+			GetCursorPos(&pt);
+			ScreenToClient(g_hwnd, &pt);
+			list<CItem*>* getList = CInventory_RectManager::Get_Instance()->Get_CurrentList();
 
-					if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
-					{
-						temp = (*iter);
-						m_beforePos = *(*iter)->Get_Info();
-						beforeIter = iter;
-						m_isItemMove = true;
-					}
-				}
-				else
+			for (list<CItem*>::iterator iter = getList->begin(); iter != getList->end(); iter++)
+			{
+				//for (auto& list : *getList)
+				//{
+				if (PtInRect((*iter)->GetRect(), pt))
 				{
-					if (beforeIter != iter)
+					if (!m_isItemMove)
 					{
+						if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
+						{
+							CInventory_RectManager::Get_Instance()->Use_Item((*iter)->Get_ItemInfo()->itemName);
+						}
+
 						if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
 						{
-							Object_Info temp2 = *(*iter)->Get_Info();
-							iter_swap(beforeIter, iter);
-							(*iter)->Set_Pos(temp2.x, temp2.y);
-							(*beforeIter)->Set_Pos(m_beforePos.x, m_beforePos.y);
-							/*Object_Info m_afterInfo = *(*iter)->Get_Info();
-							temp->Set_Pos(m_afterInfo.x, m_afterInfo.y);
-							list->Set_Pos(m_beforePos.x, m_beforePos.y);*/
-							m_isItemMove = false;
+							temp = (*iter);
+							m_beforePos = *(*iter)->Get_Info();
+							beforeIter = iter;
+							m_isItemMove = true;
+						}
+					}
+					else
+					{
+						if (beforeIter != iter)
+						{
+							if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
+							{
+								Object_Info temp2 = *(*iter)->Get_Info();
+								iter_swap(beforeIter, iter);
+								(*iter)->Set_Pos(temp2.x, temp2.y);
+								(*beforeIter)->Set_Pos(m_beforePos.x, m_beforePos.y);
+								/*Object_Info m_afterInfo = *(*iter)->Get_Info();
+								temp->Set_Pos(m_afterInfo.x, m_afterInfo.y);
+								list->Set_Pos(m_beforePos.x, m_beforePos.y);*/
+								m_isItemMove = false;
 
-							temp = nullptr;
+								temp = nullptr;
+							}
 						}
 					}
 				}
 			}
-		}
-		if (m_isItemMove)
-		{
-			temp->Set_Pos(pt.x, pt.y);
-
-			if (!PtInRect(&m_rect, pt))
+			if (m_isItemMove)
 			{
-				if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
+				temp->Set_Pos(pt.x, pt.y);
+
+				if (!PtInRect(&m_rect, pt))
 				{
-					CInventory_RectManager::Get_Instance()->Drop_Item(temp->Get_ItemInfo()->itemName , m_beforePos);
-					m_isItemMove = false;
-					temp = nullptr;
+					if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
+					{
+						CInventory_RectManager::Get_Instance()->Drop_Item(temp->Get_ItemInfo()->itemName, m_beforePos);
+						m_isItemMove = false;
+						temp = nullptr;
+					}
 				}
 			}
-		}
+		//}
 	}
-
 	return 0;
 }
 

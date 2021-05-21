@@ -7,6 +7,8 @@
 #include "Drop_Mushroom.h"
 #include "Drop_Octopus.h"
 #include "Power_Elixir.h"
+#include "Shop_RectManager.h"
+
 CInventory_RectManager * CInventory_RectManager::instance = nullptr;
 CInventory_RectManager::CInventory_RectManager()
 {
@@ -236,6 +238,7 @@ void CInventory_RectManager::Use_Item(char * itemName)
 				list->Set_Change_Quantity(-1);
 				if (list->Get_ItemInfo()->quantity == 0)
 				{
+					CShop_RectManager::Get_Instance()->Find_DeleteItem(itemName);
 					Object_Info tempInfo = *list->Get_Info();
 					CItem * temp = new CItem;
 					temp->Set_Pos(tempInfo.x, tempInfo.y);
@@ -243,6 +246,7 @@ void CInventory_RectManager::Use_Item(char * itemName)
 
 					Safe_Delete(list);
 					list = temp;
+					CShop_RectManager::Get_Instance()->DeleteItem(list);
 					int i;
 					i = 10;
 				}
@@ -290,6 +294,7 @@ void CInventory_RectManager::Drop_Item(char * itemName , Object_Info pos)
 				CGameObject * item = CDrop_Mushroom::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
 			if (list->Get_ItemInfo()->quantity == 0)
 			{
+				//CShop_RectManager::Get_Instance()->Find_DeleteItem(itemName);
 				Object_Info tempInfo = *list->Get_Info();
 				CItem * temp = new CItem;
 				temp->Set_Pos(pos.x, pos.y);
@@ -297,6 +302,7 @@ void CInventory_RectManager::Drop_Item(char * itemName , Object_Info pos)
 
 				Safe_Delete(list);
 				list = temp;
+				//CShop_RectManager::Get_Instance()->DeleteItem(list);
 				int i;
 				i = 10;
 			}
