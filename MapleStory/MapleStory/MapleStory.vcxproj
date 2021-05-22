@@ -149,7 +149,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArcaneShade_Dagger.h" />
     <ClInclude Include="Bitmap_Manager.h" />
+    <ClInclude Include="Blood_Dagger.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossMap.h" />
     <ClInclude Include="Boss_Attack2_Ball.h" />
@@ -203,10 +205,12 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Ui.h" />
-    <ClInclude Include="White_Potion.h" />
+    <ClInclude Include="Eilxir.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArcaneShade_Dagger.cpp" />
     <ClCompile Include="Bitmap_Manager.cpp" />
+    <ClCompile Include="Blood_Dagger.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossMap.cpp" />
     <ClCompile Include="Boss_Attack2_Ball.cpp" />
@@ -263,7 +267,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Ui.cpp" />
-    <ClCompile Include="White_Potion.cpp" />
+    <ClCompile Include="Eilxir.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MapleStory.rc" />

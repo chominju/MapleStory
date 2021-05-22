@@ -73,7 +73,7 @@ int CInventory_Ui::Update_GameObject()
 					{
 						if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
 						{
-							CInventory_RectManager::Get_Instance()->Use_Item((*iter)->Get_ItemInfo()->itemName);
+							CInventory_RectManager::Get_Instance()->Use_Item((*iter)->Get_ItemInfo()->itemName, (*iter));
 						}
 
 						if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))

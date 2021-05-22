@@ -14,7 +14,6 @@ enum Object_ID
 	BOSS,
 	PLAYER,
 	DROP_ITEM,
-	INVENTORY_ITEM,
 	BUTTON,
 	ATTACK_SKILL,
 	BUFF_SKILL,
@@ -79,6 +78,14 @@ enum Item_type
 	ETC,
 	EQUIPMENT,
 	WEAR_EQUIPMENT,
+};
+
+enum Item_Place
+{
+	FIELD_ITEM,
+	SHOP_ITEM,
+	INVENTORY_ITEM,
+	EQUIPMENT_ITEM
 };
 
 enum Direction

@@ -35,7 +35,7 @@ int CRed_Potion::Ready_GameObject()
 	m_speed = 1;
 
 	m_selectImageX = 0;
-	m_selectImageY = 1;
+	m_selectImageY = 0;
 
 	UpdateRect_GameObject();
 	return 0;

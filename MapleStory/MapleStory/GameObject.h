@@ -105,6 +105,17 @@ public:
 		return m_data.maxAttack;
 	}
 
+	int Get_TotalMinAttack()
+	{
+		return m_data.TotalminAttack;
+	}
+
+	int Get_TotalMaxAttack()
+	{
+		return m_data.TotalmaxAttack;
+	}
+
+
 	void  Set_Change_Exp(float exp)
 	{
 		m_data.exp += exp;

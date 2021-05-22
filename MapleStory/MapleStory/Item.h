@@ -61,9 +61,30 @@ public:
 		return &m_shopRect;
 	}
 
+	virtual int Get_ItemInfoHp()
+	{
+		return m_itemInfo.hp;
+	}
+
+	int Get_ItemInfoAttack()
+	{
+		return m_itemInfo.attack;
+	}
+
+	Item_Place Get_ItemPlace()
+	{
+		return m_itemPlace;
+	}
+
+	void Set_ItemPlace(Item_Place itemPlace)
+	{
+		m_itemPlace = itemPlace;
+	}
+
 protected:
 	Item_Info m_itemInfo;
 	Pos_float m_shopPos;
+	Item_Place m_itemPlace;
 	bool m_isFieldOut;
 	HDC m_State_Num_hdc;
 	int m_selectImageX;

@@ -1,12 +1,12 @@
 #pragma once
 #include "Item.h"
-class CPower_Elixir :
+class CArcaneShade_Dagger :
 	public CItem
 {
 private:
-	explicit CPower_Elixir();
+	explicit CArcaneShade_Dagger();
 public:
-	virtual ~CPower_Elixir();
+	virtual ~CArcaneShade_Dagger();
 
 	// CGameObject을(를) 통해 상속됨
 	virtual int Ready_GameObject() override;
@@ -17,6 +17,4 @@ public:
 
 	static CGameObject * Create(float posX, float posY);
 	static CItem * Create();
-
-	virtual int Get_ItemInfoHp();
 };

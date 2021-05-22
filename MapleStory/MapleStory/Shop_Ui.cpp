@@ -61,7 +61,7 @@ int CShop_Ui::Update_GameObject()
 	if (dynamic_cast<CNpc*>(m_target)->Get_isNpcClick())
 	{
 		m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
-		Set_UiData(m_player->Get_Data());
+		//Set_UiData(m_player->Get_Data());
 		CShop_RectManager::Get_Instance()->Update_GameObject();
 
 		POINT pt = {};
@@ -75,6 +75,23 @@ int CShop_Ui::Update_GameObject()
 				if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
 				{
 					CShop_RectManager::Get_Instance()->SellItem((*iter)->Get_ItemInfo()->itemName);
+				}
+			}
+		}
+
+
+
+		POINT pt2 = {};
+		GetCursorPos(&pt2);
+		ScreenToClient(g_hwnd, &pt2);
+		list<CItem*>* shopList = CShop_RectManager::Get_Instance()->Get_ShopList();
+		for (list<CItem*>::iterator iter = shopList->begin(); iter != shopList->end(); iter++)
+		{
+			if (PtInRect((*iter)->Get_ShopRect(), pt2))
+			{
+				if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
+				{
+					CShop_RectManager::Get_Instance()->BuyItem((*iter)->Get_ItemInfo()->itemName);
 				}
 			}
 		}
@@ -129,6 +146,43 @@ void CShop_Ui::Render_GameObject(HDC hDC)
 		m_CloseButton->Render_GameObject(hDC);
 
 		CShop_RectManager::Get_Instance()->Render_GameObject(hDC);
+
+
+		int temp = m_player->Get_Data()->money;
+		int num = 0;
+		int temp3 = m_player->Get_Data()->money;
+		while (true)
+		{
+			num++;
+			temp3 /= 10;
+			if (temp3 == 0)
+				break;
+		}
+
+		for (int i = 0; i < num; i++)
+		{
+			int temp2 = temp % 10;
+			GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+				m_rect.right - 30 - 5 - i * 7,//위치 x,y+ i) * 7,//위치 x,y
+				m_rect.top + 64,
+				7,// 크기 xy
+				10,
+				m_State_Num_hdc,// 복사 할 대상
+				7 * temp2, 0,// 그림의 시작 위치 x,y
+				7,// 그리고자 하는 영역의 크기 x,y
+				10,
+				RGB(255, 0, 255));
+			temp /= 10;
+			if (temp == 0)
+				break;
+		}
+
+
+
+
+
+
+
 	}
 }
 

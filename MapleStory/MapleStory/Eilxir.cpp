@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "White_Potion.h"
+#include "Eilxir.h"
 #include "Bitmap_Manager.h"
 #include "GameObject_Manager.h"
 #include "Line_Manager.h"
@@ -7,16 +7,16 @@
 #include "Scroll_Manager.h"
 
 
-CWhite_Potion::CWhite_Potion()
+CEilxir::CEilxir()
 {
 }
 
 
-CWhite_Potion::~CWhite_Potion()
+CEilxir::~CEilxir()
 {
 }
 
-int CWhite_Potion::Ready_GameObject()
+int CEilxir::Ready_GameObject()
 {
 	m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Item");
 	m_State_Num_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"State_Num");
@@ -26,22 +26,21 @@ int CWhite_Potion::Ready_GameObject()
 	m_itemInfo.id = Object_ID::DROP_ITEM;
 	m_itemInfo.type = Item_type::CONSUME;
 	m_itemInfo.money = 0;
-	m_itemInfo.buyMoney = 0;
-	m_itemInfo.sellMoney = 100;
+	m_itemInfo.buyMoney = 1000;
+	m_itemInfo.sellMoney = 500;
 	m_itemInfo.quantity = 1;
-	m_itemInfo.hp = 500;
-	strcpy_s(m_itemInfo.itemName, "ÇÏ¾á Æ÷¼Ç");
+	strcpy_s(m_itemInfo.itemName, "¿¤¸¯¼­");
 
 	m_speed = 1;
 
 	m_selectImageX = 1;
-	m_selectImageY = 1;
+	m_selectImageY = 0;
 
 	UpdateRect_GameObject();
 	return 0;
 }
 
-void CWhite_Potion::Late_Update_GameObject()
+void CEilxir::Late_Update_GameObject()
 {
 	float fY = 0.f;
 	bool bCollLine = CLine_Manager::Get_Instance()->Collision_Line_Manager(this, &fY);
@@ -105,13 +104,13 @@ void CWhite_Potion::Late_Update_GameObject()
 //	}
 //}
 
-void CWhite_Potion::Release_GameObject()
+void CEilxir::Release_GameObject()
 {
 }
 
-CGameObject * CWhite_Potion::Create(float posX, float posY)
+CGameObject * CEilxir::Create(float posX, float posY)
 {
-	CGameObject * instance = new CWhite_Potion;
+	CGameObject * instance = new CEilxir;
 	if (0 > instance->Ready_GameObject())
 	{
 		Safe_Delete(instance);
@@ -120,4 +119,11 @@ CGameObject * CWhite_Potion::Create(float posX, float posY)
 	instance->Set_Pos(posX, posY);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, instance);
 	return instance;
+}
+
+int CEilxir::Get_ItemInfoHp()
+{
+	int playerMaxHp = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Data()->maxHp;
+	m_itemInfo.hp = playerMaxHp / 2;
+	return m_itemInfo.hp;
 }

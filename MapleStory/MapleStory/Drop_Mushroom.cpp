@@ -25,14 +25,14 @@ int CDrop_Mushroom::Ready_GameObject()
 	m_itemInfo.type = Item_type::ETC;
 	m_itemInfo.money = 0;
 	m_itemInfo.buyMoney = 0;
-	m_itemInfo.sellMoney = 500;
+	m_itemInfo.sellMoney = 5000;
 	m_itemInfo.quantity = 1;
 	strcpy_s(m_itemInfo.itemName, "ÁÖÈ²¹ö¼¸ °«");
 
 	m_speed = 1;
 
 	m_selectImageX = 0;
-	m_selectImageY = 2;
+	m_selectImageY = 1;
 
 	UpdateRect_GameObject();
 	return 0;

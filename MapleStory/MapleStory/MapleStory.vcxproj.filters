@@ -154,9 +154,6 @@
     <Filter Include="소스 파일\01.GameObject\09.Item\04.Red_Potion">
       <UniqueIdentifier>{72bfa910-ddfc-4869-a82d-32c4086438a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\09.Item\05.White_Potion">
-      <UniqueIdentifier>{6286a06e-4cb4-4c36-930b-d419cfe49105}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\01.GameObject\09.Item\06.Power_Elixir">
       <UniqueIdentifier>{1347bda2-3b8b-4ebf-a21a-66e066952ed2}</UniqueIdentifier>
     </Filter>
@@ -201,6 +198,15 @@
     </Filter>
     <Filter Include="소스 파일\06.SoundManager">
       <UniqueIdentifier>{a6a07997-92ab-4cc6-9769-71720fdfbb26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\05.Eilxir">
+      <UniqueIdentifier>{6286a06e-4cb4-4c36-930b-d419cfe49105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\07.Blood_Dagger">
+      <UniqueIdentifier>{1bf2ad0e-e77a-4a74-91ac-49bc6d87c1be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\09.Item\08.ArcaneShade_Dagger">
+      <UniqueIdentifier>{e88d1f6e-5270-4385-b4ca-a060f7e6e008}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -333,9 +339,6 @@
     <ClInclude Include="Red_Potion.h">
       <Filter>소스 파일\01.GameObject\09.Item\04.Red_Potion</Filter>
     </ClInclude>
-    <ClInclude Include="White_Potion.h">
-      <Filter>소스 파일\01.GameObject\09.Item\05.White_Potion</Filter>
-    </ClInclude>
     <ClInclude Include="Power_Elixir.h">
       <Filter>소스 파일\01.GameObject\09.Item\06.Power_Elixir</Filter>
     </ClInclude>
@@ -371,6 +374,15 @@
     </ClInclude>
     <ClInclude Include="SoundMgr.h">
       <Filter>소스 파일\06.SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Eilxir.h">
+      <Filter>소스 파일\01.GameObject\09.Item\05.Eilxir</Filter>
+    </ClInclude>
+    <ClInclude Include="Blood_Dagger.h">
+      <Filter>소스 파일\01.GameObject\09.Item\07.Blood_Dagger</Filter>
+    </ClInclude>
+    <ClInclude Include="ArcaneShade_Dagger.h">
+      <Filter>소스 파일\01.GameObject\09.Item\08.ArcaneShade_Dagger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -497,9 +509,6 @@
     <ClCompile Include="Red_Potion.cpp">
       <Filter>소스 파일\01.GameObject\09.Item\04.Red_Potion</Filter>
     </ClCompile>
-    <ClCompile Include="White_Potion.cpp">
-      <Filter>소스 파일\01.GameObject\09.Item\05.White_Potion</Filter>
-    </ClCompile>
     <ClCompile Include="Power_Elixir.cpp">
       <Filter>소스 파일\01.GameObject\09.Item\06.Power_Elixir</Filter>
     </ClCompile>
@@ -532,6 +541,15 @@
     </ClCompile>
     <ClCompile Include="SoundMgr.cpp">
       <Filter>소스 파일\06.SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Eilxir.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item\05.Eilxir</Filter>
+    </ClCompile>
+    <ClCompile Include="Blood_Dagger.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item\07.Blood_Dagger</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcaneShade_Dagger.cpp">
+      <Filter>소스 파일\01.GameObject\09.Item\08.ArcaneShade_Dagger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

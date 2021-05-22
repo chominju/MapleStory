@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+class CItem;
 class CPlayer :
 	public CGameObject
 {
@@ -69,6 +70,16 @@ public:
 		return m_isJump;
 	}
 
+	CItem* Get_Weapon()
+	{
+		return m_weapon;
+	}
+
+	void Set_Weapon(CItem * weapon)
+	{
+		m_weapon = weapon;
+	}
+
 	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
@@ -107,6 +118,8 @@ private:
 	HDC m_State_LvNum_hdc;
 	HDC m_State_Num_hdc;
 	int m_hitAnimationNum;
+
+	CItem* m_weapon;
 
 	//HDC m_temptemp; 스킬 체험
 };

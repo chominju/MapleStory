@@ -57,6 +57,7 @@ public:
 	void Find_DeleteItem(char * itemName);
 	void DeleteItem(CItem* item);
 	void SellItem(char * itemName);
+	void BuyItem(char * itemName);
 
 	list<CItem*>* Get_EquipmentList()
 	{
@@ -71,6 +72,11 @@ public:
 	list<CItem*>* Get_EtcList()
 	{
 		return &m_etcList;
+	}
+
+	list<CItem*>* Get_ShopList()
+	{
+		return &m_shopList;
 	}
 
 	list<CItem*>* Get_CurrentList()

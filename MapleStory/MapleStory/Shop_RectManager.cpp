@@ -4,8 +4,10 @@
 #include "GameObject_Manager.h"
 #include "Inventory_RectManager.h"
 #include "Red_Potion.h"
-#include "White_Potion.h"
-
+#include "Eilxir.h"
+#include "Power_Elixir.h"
+#include "Blood_Dagger.h"
+#include "ArcaneShade_Dagger.h"
 
 CShop_RectManager* CShop_RectManager::instance = nullptr;
 CShop_RectManager::CShop_RectManager()
@@ -22,13 +24,38 @@ int CShop_RectManager::Ready_GameObject()
 	m_info.sizeY = 33;
 
 	CItem* temp;
-
+	CItem* tempItem;
 	for (int i = 0; i < 5; i++)
 	{
+		if (i == 0)
+		{
+			tempItem = CPower_Elixir::Create();
+			tempItem->Set_Size(33, 33);
+			tempItem->Set_shopPos(m_info.x + 30, m_info.y + 130 + 40 * i);
+			tempItem->Set_Quantity(99);
+			m_shopList.push_back(tempItem);
+		}
+		else if (i == 1)
+		{
+			tempItem = CBlood_Dagger::Create();
+			tempItem->Set_Size(33, 33);
+			tempItem->Set_shopPos(m_info.x + 30, m_info.y + 130 + 40 * i);
+			m_shopList.push_back(tempItem);
+		}
+		else if (i == 2)
+		{
+			tempItem = CArcaneShade_Dagger::Create();
+			tempItem->Set_Size(33, 33);
+			tempItem->Set_shopPos(m_info.x + 30, m_info.y + 130 + 40 * i);
+			m_shopList.push_back(tempItem);
+		}
+		else
+		{
 			temp = new CItem;
 			temp->Set_Size(33, 33);
 			temp->Set_Pos(m_info.x + 30, m_info.y + 130 + 40 * i);
 			m_shopList.push_back(temp);
+		}
 	}
 
 	for (int i = 0; i < 5; i++)
@@ -68,6 +95,7 @@ int CShop_RectManager::Update_GameObject()
 	list<CItem*>* curlist =  Get_CurrentList();
 	list<CItem*>::iterator finditer = curlist->end();
 	Object_Info findInfo;
+
 	for (list<CItem*>::iterator iter = curlist->begin(); iter!= curlist->end(); iter++)
 	{
 		if (!strcmp((*iter)->Get_ItemInfo()->itemName, "NONE"))
@@ -97,7 +125,9 @@ int CShop_RectManager::Update_GameObject()
 			continue;
 		for (auto & shop : m_equipmentList)
 		{
-			if (!strcmp(shop->Get_ItemInfo()->itemName, inven->Get_ItemInfo()->itemName))
+			/*if (!strcmp(shop->Get_ItemInfo()->itemName, inven->Get_ItemInfo()->itemName))
+				break;*/
+			if (shop == inven)
 				break;
 			if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
 			{
@@ -114,7 +144,7 @@ int CShop_RectManager::Update_GameObject()
 			continue;
 		for (auto & shop : m_consumeList)
 		{
-			if (!strcmp(shop->Get_ItemInfo()->itemName, inven->Get_ItemInfo()->itemName))
+			if (shop == inven)
 				break;
 			if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
 			{
@@ -133,7 +163,7 @@ int CShop_RectManager::Update_GameObject()
 			continue;
 		for (auto & shop : m_etcList)
 		{
-			if (!strcmp(shop->Get_ItemInfo()->itemName, inven->Get_ItemInfo()->itemName))
+			if (shop == inven)
 				break;
 			if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
 			{
@@ -290,6 +320,44 @@ void CShop_RectManager::SellItem(char * itemName)
 				m_consumeList.empty();
 				int i;
 				i = 10;
+			}
+		}
+	}
+}
+
+void CShop_RectManager::BuyItem(char * itemName)
+{
+	for (auto & list : m_shopList)
+	{
+		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+		{
+			if (list->Get_ItemInfo()->sellMoney < CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Money())
+			{
+				CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(-list->Get_ItemInfo()->buyMoney);
+				if (list->Get_ItemInfo()->type == Item_type::CONSUME)
+				{
+					CItem* item = CPower_Elixir::Create();
+					item->Set_m_isFieldOut(true);
+					item->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
+					CInventory_RectManager::Get_Instance()->Push_ConsumeList(item);
+				}
+				else if (list->Get_ItemInfo()->type == Item_type::EQUIPMENT)
+				{
+					if (!strcmp(list->Get_ItemInfo()->itemName, "아케인셰이드 대거"))
+					{
+						CItem* item = CArcaneShade_Dagger::Create();
+						item->Set_m_isFieldOut(true);
+						item->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
+						CInventory_RectManager::Get_Instance()->Push_EquipmentList(item);
+					}
+					else if (!strcmp(list->Get_ItemInfo()->itemName, "블러드 대거"))
+					{
+						CItem* item = CBlood_Dagger::Create();
+						item->Set_m_isFieldOut(true);
+						item->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
+						CInventory_RectManager::Get_Instance()->Push_EquipmentList(item);
+					}
+				}
 			}
 		}
 	}

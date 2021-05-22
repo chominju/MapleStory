@@ -54,9 +54,9 @@ void CPlayer_StatUi::Render_GameObject(HDC hDC)
 			m_info.sizeY,
 			RGB(255, 0, 255));
 
-		int temp = m_data.minAttack;
+		int temp = m_data.TotalminAttack;
 		int num = 0;
-		int temp3 = m_data.minAttack;
+		int temp3 = m_data.TotalminAttack;
 		while (true)
 		{
 			num++;
@@ -83,9 +83,9 @@ void CPlayer_StatUi::Render_GameObject(HDC hDC)
 				break;
 		}
 
-		temp = m_data.maxAttack;
+		temp = m_data.TotalmaxAttack;
 		num = 0;
-		temp3 = m_data.maxAttack;
+		temp3 = m_data.TotalmaxAttack;
 		while (true)
 		{
 			num++;

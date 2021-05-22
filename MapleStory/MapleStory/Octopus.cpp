@@ -5,7 +5,7 @@
 #include "GameObject_Manager.h"
 #include "Meso.h"
 #include "Drop_Octopus.h"
-#include "White_Potion.h"
+#include "Eilxir.h"
 
 COctopus::COctopus()
 {
@@ -78,7 +78,7 @@ int COctopus::Update_GameObject()
 		else if (temp > 5)
 			CDrop_Octopus::Create(m_info.x, m_rect.top);
 		else if (temp > 3)
-			CWhite_Potion::Create(m_info.x, m_rect.top);
+			CEilxir::Create(m_info.x, m_rect.top);
 		return OBJ_DEAD;
 	}
 

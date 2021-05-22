@@ -3,7 +3,7 @@
 #include "Item.h"
 #include "GameObject_Manager.h"
 #include "Red_Potion.h"
-#include "White_Potion.h"
+#include "Eilxir.h"
 #include "Drop_Mushroom.h"
 #include "Drop_Octopus.h"
 #include "Power_Elixir.h"
@@ -142,24 +142,9 @@ void CInventory_RectManager::UpdateRect_GameObject()
 
 void CInventory_RectManager::Push_EquipmentList(CItem * item)
 {
-
-}
-
-void CInventory_RectManager::Push_ConsumeList(CItem * item)
-{
-	bool check = false;
-	for (auto & list : m_consumeList)
+	if (item->Get_ItemInfo()->type == Item_type::EQUIPMENT)
 	{
-		if (!strcmp(list->Get_ItemInfo()->itemName, item->Get_ItemInfo()->itemName))
-		{
-			check = true;
-			list->Set_Change_Quantity(item->Get_ItemInfo()->quantity);
-		}
-	}
-
-	if (!check)
-	{
-		for (auto & list : m_consumeList)
+		for (auto & list : m_equipmentList)
 		{
 			if (!strcmp(list->Get_ItemInfo()->itemName, "NONE"))
 			{
@@ -168,6 +153,36 @@ void CInventory_RectManager::Push_ConsumeList(CItem * item)
 				list = item;
 				list->Set_Pos(tempInfo.x, tempInfo.y);
 				break;
+			}
+		}
+	}
+}
+
+void CInventory_RectManager::Push_ConsumeList(CItem * item)
+{
+	if (item->Get_ItemInfo()->type == Item_type::CONSUME)
+	{
+		bool check = false;
+		for (auto & list : m_consumeList)
+		{
+			if (!strcmp(list->Get_ItemInfo()->itemName, item->Get_ItemInfo()->itemName))
+			{
+				check = true;
+				list->Set_Change_Quantity(item->Get_ItemInfo()->quantity);
+			}
+		}
+		if (!check)
+		{
+			for (auto & list : m_consumeList)
+			{
+				if (!strcmp(list->Get_ItemInfo()->itemName, "NONE"))
+				{
+					Object_Info tempInfo = *(list->Get_Info());
+					Safe_Delete(list);
+					list = item;
+					list->Set_Pos(tempInfo.x, tempInfo.y);
+					break;
+				}
 			}
 		}
 	}
@@ -216,26 +231,80 @@ void CInventory_RectManager::Find_EtcList(char * itemName)
 {
 }
 
-void CInventory_RectManager::Use_Item(char * itemName)
+void CInventory_RectManager::Use_Item(char * itemName , CItem*& useItem)
 {
 	if (m_isEquipmentClick)
 	{
-		/*for (auto & list : m_equipmentList)
+		//for (auto & list : m_equipmentList)
+		//{
+		//	if (!strcmp(list->Get_ItemInfo()->itemName, itemName) && strcmp(itemName, "NONE"))
+		//	{
+		//		CPlayer *getPlayer = dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer());
+		//		if (getPlayer->Get_Weapon() == nullptr)
+		//		{
+		//			// ÀåÂø Àåºñ°¡ ¾øÀ» ¶§
+		//			int invenPosX = list->Get_Info()->x;
+		//			int invenPosY = list->Get_Info()->y;
+		//			list->Set_ItemPlace(Item_Place::EQUIPMENT_ITEM);
+		//			getPlayer->Set_Weapon(list);
+		//			list = new CItem();
+		//			list->Set_Size(33, 33);
+		//			list->Set_Pos(invenPosX, invenPosY);
+		//		}
+		//		else
+		//		{
+		//			int invenPosX = list->Get_Info()->x;
+		//			int invenPosY = list->Get_Info()->y;
+		//			Pos_float shop_pos = list->Get_shopPos();
+		//			CItem* getWeapon = getPlayer->Get_Weapon();
+		//			list->Set_ItemPlace(Item_Place::EQUIPMENT_ITEM);
+		//			getPlayer->Set_Weapon(list);
+
+		//			getWeapon->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
+		//			getWeapon->Set_Pos(invenPosX, invenPosY);
+		//			getWeapon->Set_shopPos(shop_pos.x, shop_pos.y);
+		//			list = getWeapon;
+		//		}
+		//	}
+		//}
+		if (!strcmp(useItem->Get_ItemInfo()->itemName, itemName) && strcmp(itemName, "NONE"))
 		{
-		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
-		{
-		check = true;
-		list->Set_Change_Quantity(item->Get_ItemInfo()->quantity);
+			CPlayer *getPlayer = dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer());
+			if (getPlayer->Get_Weapon() == nullptr)
+			{
+				// ÀåÂø Àåºñ°¡ ¾øÀ» ¶§
+				int invenPosX = useItem->Get_Info()->x;
+				int invenPosY = useItem->Get_Info()->y;
+				useItem->Set_ItemPlace(Item_Place::EQUIPMENT_ITEM);
+				getPlayer->Set_Weapon(useItem);
+				useItem = new CItem();
+				useItem->Set_Size(33, 33);
+				useItem->Set_Pos(invenPosX, invenPosY);
+			}
+			else
+			{
+				int invenPosX = useItem->Get_Info()->x;
+				int invenPosY = useItem->Get_Info()->y;
+				Pos_float shop_pos = useItem->Get_shopPos();
+				CItem* getWeapon = getPlayer->Get_Weapon();
+				useItem->Set_ItemPlace(Item_Place::EQUIPMENT_ITEM);
+				getPlayer->Set_Weapon(useItem);
+
+				getWeapon->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
+				getWeapon->Set_Pos(invenPosX, invenPosY);
+				getWeapon->Set_shopPos(shop_pos.x, shop_pos.y);
+				useItem = getWeapon;
+			}
 		}
-		}*/
 	}
-	if (m_isConsumeClick)
+
+	else if (m_isConsumeClick)
 	{
 		for (auto & list : m_consumeList)
 		{
 			if (!strcmp(list->Get_ItemInfo()->itemName, itemName) && strcmp(itemName, "NONE"))
 			{
-				CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Hp(list->Get_ItemInfo()->hp);
+				CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Hp(list->Get_ItemInfoHp());
 				list->Set_Change_Quantity(-1);
 				CSoundMgr::Get_Instance()->PlaySound(L"Potion_Use.mp3", CSoundMgr::PLAYER);
 				if (list->Get_ItemInfo()->quantity == 0)
@@ -284,8 +353,8 @@ void CInventory_RectManager::Drop_Item(char * itemName , Object_Info pos)
 			list->Set_Change_Quantity(-1);
 			if (!strcmp(itemName,"»¡°£ Æ÷¼Ç"))
 				CGameObject * item = CRed_Potion::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
-			else if (!strcmp(itemName, "ÇÏ¾á Æ÷¼Ç"))
-				CGameObject * item = CWhite_Potion::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+			else if (!strcmp(itemName, "¿¤¸¯¼­"))
+				CGameObject * item = CEilxir::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
 			else if (!strcmp(itemName, "ÆÄ¿ö ¿¤¸¯¼­"))
 			{
 				/*	CGameObject * item = CPower_Elixir::Create();

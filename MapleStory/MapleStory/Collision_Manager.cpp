@@ -79,16 +79,19 @@ void CCollision_Manager::Collision_Monster(list<CGameObject*>* player, list<CGam
 			const RECT* playerRect = player_object->GetRect();
 			const RECT* monsterRect = monster_object->GetRect();
 
-			if (playerRect->left >= monsterRect->left - 5 && playerRect->right <= monsterRect->right - 5)
+			if (!monster_object->Get_IsDead())
 			{
-				if (player_object->Get_Info()->y >= monsterRect->top &&player_object->Get_Info()->y <= monsterRect->bottom)
+				if (playerRect->left >= monsterRect->left - 5 && playerRect->right <= monsterRect->right - 5)
 				{
-					check = true;
-					player_object->Set_IsHit(true);
-					if (!player_object->Get_IsInvincibility())
+					if (player_object->Get_Info()->y >= monsterRect->top &&player_object->Get_Info()->y <= monsterRect->bottom)
 					{
-						player_object->Set_IsInvincibility(true);
-						player_object->Set_Change_Hp(-monster_object->Get_MaxAttack());
+						check = true;
+						player_object->Set_IsHit(true);
+						if (!player_object->Get_IsInvincibility())
+						{
+							player_object->Set_IsInvincibility(true);
+							player_object->Set_Change_Hp(-monster_object->Get_MaxAttack());
+						}
 					}
 				}
 			}
@@ -145,8 +148,8 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 
 
 
-						int minAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_MinAttack();
-						int maxAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_MaxAttack();
+						int minAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_TotalMinAttack();
+						int maxAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_TotalMaxAttack();
 						int *randAttack = new int[skillHit + 1];
 						int attackSum = 0;
 						for (int i = 0; i < skillHit; i++)
@@ -366,11 +369,13 @@ void CCollision_Manager::Collision_DropItem(list<CGameObject*>* player, list<CGa
 					if (tempItem->Get_ItemInfo()->type == Item_type::ETC)
 					{
 						tempItem->Set_m_isFieldOut(true);
+						tempItem->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
 						CInventory_RectManager::Get_Instance()->Push_EtcList(tempItem);
 					}
 					else if (tempItem->Get_ItemInfo()->type == Item_type::CONSUME)
 					{
 						tempItem->Set_m_isFieldOut(true);
+						tempItem->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
 						CInventory_RectManager::Get_Instance()->Push_ConsumeList(tempItem);
 					}
 				}

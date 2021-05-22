@@ -13,6 +13,7 @@
 #include "DoubleJump.h"
 #include "SavageBlow.h"
 #include "CLevelUp.h"
+#include "Item.h"
 
 CGameObject * CPlayer::m_instance = nullptr;
 
@@ -84,12 +85,19 @@ int CPlayer::Ready_GameObject()
 	m_isInvincibility = false;
 
 	m_checkScrollY = false;
+	m_weapon = nullptr;
 
 	return 0;
 }
 
 int CPlayer::Update_GameObject()
 {
+	int weaponAttack = 0;
+	if (m_weapon != nullptr)
+		weaponAttack = m_weapon->Get_ItemInfo()->attack;
+	m_data.TotalminAttack = m_data.minAttack + weaponAttack;
+	m_data.TotalmaxAttack = m_data.maxAttack + weaponAttack;
+
 	if (m_data.hp <= 0)
 	{
 		if (m_currentKey == CurrentKey::CUR_LEFT)

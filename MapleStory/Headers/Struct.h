@@ -43,6 +43,8 @@ typedef struct
 	float maxHp;
 	int minAttack;
 	int maxAttack;
+	int TotalminAttack;
+	int TotalmaxAttack;
 	float exp;
 	float maxExp;
 	int money;
