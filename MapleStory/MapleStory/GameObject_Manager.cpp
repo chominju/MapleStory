@@ -90,6 +90,7 @@ void CGameObject_Manager::Update_GameObject_Manager()
 			if (portal->Get_isPortal())
 			{
 				Scene_ID nextScene = dynamic_cast<CPortal*>(portal)->Get_NextSceneID();
+				m_listGameObject[Object_ID::PLAYER].front()->Set_Pos(dynamic_cast<CPortal*>(portal)->Get_NextScenePos().x, dynamic_cast<CPortal*>(portal)->Get_NextScenePos().y);
 				CScene_Manager::Get_Instance()->Change_Scene_Manager(nextScene);
 				break;
 			}

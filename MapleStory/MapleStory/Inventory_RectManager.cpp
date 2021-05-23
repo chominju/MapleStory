@@ -386,16 +386,21 @@ void CInventory_RectManager::Drop_Item(char * itemName , Object_Info pos)
 	}
 }
 
-void CInventory_RectManager::Find_DeleteItem(char * itemName)
+void CInventory_RectManager::Find_DeleteItem(char * itemName , CItem*& useItem)
 {
 	list<CItem*>* tempList = Get_CurrentList();
 	for (list<CItem*>::iterator iter = tempList->begin(); iter != tempList->end(); iter++)
 	{
-		if (!strcmp((*iter)->Get_ItemInfo()->itemName, itemName))
+		if (*iter == useItem)
 		{
 			m_deleteIter = iter;
 			m_deleteItemPos = *(*iter)->Get_Info();
 		}
+		/*if (!strcmp((*iter)->Get_ItemInfo()->itemName, itemName))
+		{
+			m_deleteIter = iter;
+			m_deleteItemPos = *(*iter)->Get_Info();
+		}*/
 	}
 }
 

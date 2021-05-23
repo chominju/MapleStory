@@ -10,6 +10,8 @@ Kerning_City
 ../Resource/BackGround/Kerning_City.bmp
 Field1
 ../Resource/BackGround/Field1.bmp
+Menu
+../Resource/BackGround/Menu.bmp
 BossMap
 ../Resource/BackGround/BossMap.bmp
 BackBuffer

@@ -26,9 +26,21 @@ public:
 		return m_nextScene;
 	}
 
+	void Set_NextScenePos(float x, float y)
+	{
+		m_nextScenePos.x = x;
+		m_nextScenePos.y = y;
+	}
+
+	Pos_float Get_NextScenePos()
+	{
+		return m_nextScenePos;
+	}
+
 public:
 	static CGameObject* Create();
 private:
 	Scene_ID m_nextScene;
+	Pos_float m_nextScenePos;
 };
 

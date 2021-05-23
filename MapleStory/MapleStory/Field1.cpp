@@ -35,6 +35,7 @@ int CField1::Ready_Scene()
 	CGameObject* portal = CPortal::Create();
 	portal->Set_Pos(100, 380);
 	dynamic_cast<CPortal*>(portal)->Set_NextSceneID(SCENE_Kerning_City);
+	dynamic_cast<CPortal*>(portal)->Set_NextScenePos(100, 380);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal);
 
 	Create_Rope_Scene();

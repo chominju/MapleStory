@@ -34,9 +34,6 @@
     <Filter Include="소스 파일\05.Scene">
       <UniqueIdentifier>{a09ac772-6fc3-4388-b726-40162a2013a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\05.Scene\Menu">
-      <UniqueIdentifier>{73c0fc3d-9baf-4047-a6d4-cdb3a9fa0f81}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Manager\01.GameObject">
       <UniqueIdentifier>{c30f0257-5190-40c3-805e-0abe9fa24173}</UniqueIdentifier>
     </Filter>
@@ -207,6 +204,9 @@
     </Filter>
     <Filter Include="소스 파일\01.GameObject\09.Item\08.ArcaneShade_Dagger">
       <UniqueIdentifier>{e88d1f6e-5270-4385-b4ca-a060f7e6e008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Scene\04.Menu">
+      <UniqueIdentifier>{937eb357-12c1-4d7e-aedb-06e1fcc3983e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -384,6 +384,9 @@
     <ClInclude Include="ArcaneShade_Dagger.h">
       <Filter>소스 파일\01.GameObject\09.Item\08.ArcaneShade_Dagger</Filter>
     </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>소스 파일\05.Scene\04.Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainApp.cpp">
@@ -550,6 +553,9 @@
     </ClCompile>
     <ClCompile Include="ArcaneShade_Dagger.cpp">
       <Filter>소스 파일\01.GameObject\09.Item\08.ArcaneShade_Dagger</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>소스 파일\05.Scene\04.Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

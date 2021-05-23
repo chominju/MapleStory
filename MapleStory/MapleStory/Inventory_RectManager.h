@@ -55,7 +55,7 @@ public:
 
 	void Use_Item(char * itemName, CItem*& useItem);
 	void Drop_Item(char * itemName, Object_Info pos);
-	void Find_DeleteItem(char * itemName);
+	void Find_DeleteItem(char * itemName , CItem*& useItem);
 	void DeleteItem(CItem* item, Pos_float shopPos);
 
 	list<CItem*>* Get_EquipmentList()

@@ -96,31 +96,49 @@ int CShop_RectManager::Update_GameObject()
 	list<CItem*>::iterator finditer = curlist->end();
 	Object_Info findInfo;
 
-	for (list<CItem*>::iterator iter = curlist->begin(); iter!= curlist->end(); iter++)
+	//bool isPush = false;
+	for (list<CItem*>::iterator iter = curlist->begin(); iter != curlist->end(); iter++)
 	{
-		if (!strcmp((*iter)->Get_ItemInfo()->itemName, "NONE"))
-		{
-			finditer = iter;
-			findInfo = *(*iter)->Get_Info();
-		}
-		else
-		{
-			if (finditer == curlist->end())
-				continue;
+		//if (!isPush)
+		//{
+			if (!strcmp((*iter)->Get_ItemInfo()->itemName, "NONE"))
+			{
+				finditer = iter;
+				findInfo = *(*iter)->Get_Info();
+			}
 			else
 			{
+				if (finditer == curlist->end())
+					continue;
+				else
+				{
+					Pos_float pos = (*iter)->Get_shopPos();
+					iter_swap(finditer, iter);
+					(*iter)->Set_Pos(pos.x, pos.y);
+					(*finditer)->Set_shopPos(findInfo.x, findInfo.y);
+					finditer = curlist->end();
+					//isPush = true;
+				}
+			}
+	//	}
+		/*else
+		{
+			if (strcmp((*iter)->Get_ItemInfo()->itemName, "NONE") && strcmp((*finditer)->Get_ItemInfo()->itemName, "NONE"))
+			{
 				Pos_float pos = (*iter)->Get_shopPos();
+				findInfo = *(*finditer)->Get_Info();
+
 				iter_swap(finditer, iter);
 				(*iter)->Set_Pos(pos.x, pos.y);
 				(*finditer)->Set_shopPos(findInfo.x, findInfo.y);
 			}
-		}
+		}*/
 	}
-
 
 
 	for (auto & inven : *invenEquip)
 	{
+		bool check = false;
 		if (!strcmp(inven->Get_ItemInfo()->itemName, "NONE"))
 			continue;
 		for (auto & shop : m_equipmentList)
@@ -128,13 +146,29 @@ int CShop_RectManager::Update_GameObject()
 			/*if (!strcmp(shop->Get_ItemInfo()->itemName, inven->Get_ItemInfo()->itemName))
 				break;*/
 			if (shop == inven)
-				break;
-			if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
 			{
-				Object_Info tempPos = *shop->Get_Info();
-				shop = inven;
-				shop->Set_shopPos(tempPos.x, tempPos.y);
+				check = true;
 				break;
+			}
+			//if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
+			//{
+			//	Object_Info tempPos = *shop->Get_Info();
+			//	shop = inven;
+			//	shop->Set_shopPos(tempPos.x, tempPos.y);
+			//	break;
+			//}
+		}
+		if (!check)
+		{
+			for (auto & shop : m_equipmentList)
+			{
+				if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
+				{
+					Object_Info tempPos = *shop->Get_Info();
+					shop = inven;
+					shop->Set_shopPos(tempPos.x, tempPos.y);
+					break;
+				}
 			}
 		}
 	}
@@ -296,13 +330,33 @@ void CShop_RectManager::DeleteItem(CItem * item)
 	j = 0;
 }
 
-void CShop_RectManager::SellItem(char * itemName)
+void CShop_RectManager::SellItem(char * itemName, CItem*& useItem)
 {
 	list<CItem*>* tempList = Get_CurrentList();
 
 	for (auto & list : *tempList)
 	{
-		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+		if(list == useItem)
+		{
+			CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(list->Get_ItemInfo()->sellMoney);
+			list->Set_Change_Quantity(-1);
+			if (list->Get_ItemInfo()->quantity == 0)
+			{
+				CInventory_RectManager::Get_Instance()->Find_DeleteItem(itemName , list);
+				Pos_float tempInfo = list->Get_shopPos();
+				CItem * temp = new CItem;
+				temp->Set_Pos(tempInfo.x, tempInfo.y);
+				temp->Set_Size(33, 33);
+
+				Safe_Delete(list);
+				list = temp;
+				CInventory_RectManager::Get_Instance()->DeleteItem(list, tempInfo);
+				m_consumeList.empty();
+				int i;
+				i = 10;
+			}
+		}
+		/*if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
 		{
 			CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(list->Get_ItemInfo()->sellMoney);
 			list->Set_Change_Quantity(-1);
@@ -321,7 +375,7 @@ void CShop_RectManager::SellItem(char * itemName)
 				int i;
 				i = 10;
 			}
-		}
+		}*/
 	}
 }
 
@@ -331,7 +385,7 @@ void CShop_RectManager::BuyItem(char * itemName)
 	{
 		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
 		{
-			if (list->Get_ItemInfo()->sellMoney < CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Money())
+			if (list->Get_ItemInfo()->buyMoney < CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Money())
 			{
 				CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(-list->Get_ItemInfo()->buyMoney);
 				if (list->Get_ItemInfo()->type == Item_type::CONSUME)

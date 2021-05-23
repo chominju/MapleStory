@@ -25,6 +25,8 @@
 
 #define KEY_F5		0x8000
 
+#define KEY_RETURN	0x00010000
+
 class CKey_Manager
 {
 public:

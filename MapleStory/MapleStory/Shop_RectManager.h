@@ -56,7 +56,7 @@ public:
 	void Drop_Item(char * itemName, Object_Info pos);
 	void Find_DeleteItem(char * itemName);
 	void DeleteItem(CItem* item);
-	void SellItem(char * itemName);
+	void SellItem(char * itemName , CItem*& useItem);
 	void BuyItem(char * itemName);
 
 	list<CItem*>* Get_EquipmentList()

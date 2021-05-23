@@ -27,7 +27,7 @@ enum Object_ID
 
 enum Scene_ID
 {
-	SCENE_LOADING,
+	SCENE_MENU,
 	SCENE_Kerning_City,
 	SCENE_MAP1,
 	SCENE_BOSS,

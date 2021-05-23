@@ -179,6 +179,7 @@
     <ClInclude Include="MainApp.h" />
     <ClInclude Include="Field1.h" />
     <ClInclude Include="MapleStory.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Meso.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Mushroom.h" />
@@ -238,6 +239,7 @@
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="Field1.cpp" />
     <ClCompile Include="MapleStory.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Meso.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mushroom.cpp" />

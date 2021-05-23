@@ -27,8 +27,8 @@ int CArcaneShade_Dagger::Ready_GameObject()
 	m_itemInfo.id = Object_ID::DROP_ITEM;
 	m_itemInfo.type = Item_type::EQUIPMENT;
 	m_itemInfo.money = 0;
-	m_itemInfo.buyMoney = 20000;
-	m_itemInfo.sellMoney = 10000;
+	m_itemInfo.buyMoney = 10000;
+	m_itemInfo.sellMoney = 5000;
 	m_itemInfo.quantity = 1;
 	m_itemInfo.attack = 5000;
 	strcpy_s(m_itemInfo.itemName, "아케인셰이드 대거");

@@ -48,6 +48,8 @@ void CKey_Manager::Update_Key_Manager()
 		m_key |= KEY_Z;
 	if (GetAsyncKeyState(VK_F5) & 0x8000)
 		m_key |= KEY_F5;
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+		m_key |= KEY_RETURN;
 }
 
 bool CKey_Manager::Key_Up(DWORD key)

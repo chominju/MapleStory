@@ -24,8 +24,8 @@ int CBlood_Dagger::Ready_GameObject()
 	m_itemInfo.id = Object_ID::DROP_ITEM;
 	m_itemInfo.type = Item_type::EQUIPMENT;
 	m_itemInfo.money = 0;
-	m_itemInfo.buyMoney = 10000;
-	m_itemInfo.sellMoney = 5000;
+	m_itemInfo.buyMoney = 5000;
+	m_itemInfo.sellMoney = 3000;
 	m_itemInfo.quantity = 1;
 	m_itemInfo.attack = 1000;
 	strcpy_s(m_itemInfo.itemName, "블러드 대거");

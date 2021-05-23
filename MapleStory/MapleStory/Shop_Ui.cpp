@@ -74,7 +74,7 @@ int CShop_Ui::Update_GameObject()
 			{
 				if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
 				{
-					CShop_RectManager::Get_Instance()->SellItem((*iter)->Get_ItemInfo()->itemName);
+					CShop_RectManager::Get_Instance()->SellItem((*iter)->Get_ItemInfo()->itemName, (*iter));
 				}
 			}
 		}

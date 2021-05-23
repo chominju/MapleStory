@@ -44,12 +44,14 @@ int Kerning_City::Ready_Scene()
 	CGameObject* portal = CPortal::Create();
 	portal->Set_Pos(300, 200);
 	dynamic_cast<CPortal*>(portal)->Set_NextSceneID(SCENE_BOSS);
+	dynamic_cast<CPortal*>(portal)->Set_NextScenePos(50, 550);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal);
 
 	CGameObject*portal2 = CPortal::Create();
 	//portal2->SetPos(3780, 375);
 	portal2->Set_Pos(100, 380);
 	dynamic_cast<CPortal*>(portal2)->Set_NextSceneID(SCENE_MAP1);
+	dynamic_cast<CPortal*>(portal2)->Set_NextScenePos(100, 380);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal2);
 
 	CGameObject_Manager::Get_Instance()->DeleteID(Object_ID::ROPE);
@@ -57,11 +59,11 @@ int Kerning_City::Ready_Scene()
 	Create_Rope_Scene();
 
 
-	if (CGameObject_Manager::Get_Instance()->GetPlayer()->Get_isPortal())
-		CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Pos(100, 380);
-	else
+	if (!CGameObject_Manager::Get_Instance()->GetPlayer()->Get_isPortal())
 		CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Pos(100, 100);
-	dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Set_CheckKeepY(-593);
+	//else
+	//	CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Pos(100, 100);
+	//dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Set_CheckKeepY(-593);
 
 	CScroll_Manager::Set_ResetX();
 	CScroll_Manager::Set_ResetY();

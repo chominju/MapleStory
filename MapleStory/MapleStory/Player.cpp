@@ -28,6 +28,7 @@ CPlayer::CPlayer()
 	, m_power(0.f)
 	, m_isStatOpen(false)
 	, m_isInventoryOpen(false)
+,m_isShopClick(false)
 	, current_jumpHeight(0)
 {
 	ZeroMemory(&m_animFrame, sizeof(Animation_Frame));

@@ -3,6 +3,8 @@
 #include "Kerning_City.h"
 #include "Field1.h"
 #include "BossMap.h"
+#include "Menu.h"
+
 CScene_Manager* CScene_Manager::m_instance = nullptr;
 
 CScene_Manager::CScene_Manager()
@@ -31,6 +33,9 @@ void CScene_Manager::Change_Scene_Manager(Scene_ID nextScene)
 		Safe_Delete(m_scene);
 		switch (m_nextScene)
 		{
+		case Scene_ID::SCENE_MENU:
+			m_scene = CMenu::Create();
+			break;
 		case Scene_ID::SCENE_Kerning_City:
 			m_scene = Kerning_City::Create();
 			break;

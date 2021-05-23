@@ -35,7 +35,7 @@ int CMainApp::Ready_MainApp()
 	m_dwFPSTime = GetTickCount();
 
 	CSoundMgr::Get_Instance()->Initialize();
-	CScene_Manager::Get_Instance()->Change_Scene_Manager(Scene_ID::SCENE_Kerning_City);
+	CScene_Manager::Get_Instance()->Change_Scene_Manager(Scene_ID::SCENE_MENU);
 	return READY_OK;
 }
 
