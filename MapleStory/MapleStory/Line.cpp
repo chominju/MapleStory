@@ -25,8 +25,8 @@ void CLine::Render_Line(HDC hDC)
 	hpen = CreatePen(PS_SOLID, 2, RGB(255, 255, 0));
 	hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
 
-	MoveToEx(hDC, m_line_info.left_pos.x + scrollX, m_line_info.left_pos.y+ scrollY, nullptr);
-	LineTo(hDC, m_line_info.right_pos.x + scrollX, m_line_info.right_pos.y+ scrollY);
+	MoveToEx(hDC, (int)m_line_info.left_pos.x + scrollX, (int)m_line_info.left_pos.y+ scrollY, nullptr);
+	LineTo(hDC, (int)m_line_info.right_pos.x + scrollX, (int)m_line_info.right_pos.y+ scrollY);
 	
 	hbr = (HBRUSH)::SelectObject(hDC, hbrOld);
 	DeleteObject(hbr); // 생성한 브러쉬 삭제

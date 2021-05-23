@@ -24,7 +24,7 @@ public:
 
 	static CGameObject* Create(int damage);
 private:
-	float m_disappearTime;
+	DWORD m_disappearTime;
 	float m_disappearSpeed;
 
 	int m_printDamageNum;

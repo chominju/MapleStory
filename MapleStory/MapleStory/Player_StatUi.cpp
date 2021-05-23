@@ -23,7 +23,7 @@ int CPlayer_StatUi::Ready_GameObject()
 	m_info.y = 180;
 	m_info.sizeX = 212;
 	m_info.sizeY = 336;
-	return S_OK;
+	return READY_OK;
 }
 
 int CPlayer_StatUi::Update_GameObject()
@@ -54,9 +54,9 @@ void CPlayer_StatUi::Render_GameObject(HDC hDC)
 			m_info.sizeY,
 			RGB(255, 0, 255));
 
-		int temp = m_data.TotalminAttack;
+		int temp = (int)m_data.TotalminAttack;
 		int num = 0;
-		int temp3 = m_data.TotalminAttack;
+		int temp3 = (int)m_data.TotalminAttack;
 		while (true)
 		{
 			num++;
@@ -83,9 +83,9 @@ void CPlayer_StatUi::Render_GameObject(HDC hDC)
 				break;
 		}
 
-		temp = m_data.TotalmaxAttack;
+		temp = (int)m_data.TotalmaxAttack;
 		num = 0;
-		temp3 = m_data.TotalmaxAttack;
+		temp3 = (int)m_data.TotalmaxAttack;
 		while (true)
 		{
 			num++;
@@ -115,9 +115,9 @@ void CPlayer_StatUi::Render_GameObject(HDC hDC)
 
 		// hp 표시
 
-		temp = m_data.hp;
+		temp = (int)m_data.hp;
 		num = 0;
-		temp3 = m_data.hp;
+		temp3 = (int)m_data.hp;
 		while (true)
 		{
 			num++;
@@ -157,9 +157,9 @@ void CPlayer_StatUi::Render_GameObject(HDC hDC)
 
 
 		// MaxHp. 숫자 출력
-		temp = m_data.maxHp;
+		temp = (int)m_data.maxHp;
 		num = 0;
-		temp3 = m_data.maxHp;
+		temp3 = (int)m_data.maxHp;
 		while (true)
 		{
 			num++;

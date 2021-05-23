@@ -70,13 +70,13 @@ void CLine_Manager::Update_Line_Manager()
 	pt.x -= CScroll_Manager::Get_ScrollX();
 	pt.y -= CScroll_Manager::Get_ScrollY();
 	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_LEFT))
-		CScroll_Manager::Set_ScrollX(5.f);
+		CScroll_Manager::Set_ScrollX(5);
 	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_RIGHT))
-		CScroll_Manager::Set_ScrollX(-5.f);
+		CScroll_Manager::Set_ScrollX(-5);
 	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_UP))
-		CScroll_Manager::Set_ScrollY(5.f);
+		CScroll_Manager::Set_ScrollY(5);
 	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN))
-		CScroll_Manager::Set_ScrollY(-5.f);
+		CScroll_Manager::Set_ScrollY(-5);
 
 	if (CKey_Manager::Get_Instance()->Key_Down(KEY_LBUTTON))
 	{

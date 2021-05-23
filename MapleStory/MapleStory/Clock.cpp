@@ -22,26 +22,26 @@ int CClock::Ready_GameObject()
 		m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Purple_Clock");
 		m_info.sizeX = 167;
 		m_info.sizeY = 164;
-		m_damage = 50;
+		m_damage = 7;
 	}
 	else if (num >=5)	// 파란운석
 	{
 		m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Blue_Clock");
 		m_info.sizeX = 108;
 		m_info.sizeY = 107;
-		m_damage = 30;
+		m_damage = 3;
 	}
 	else	// 초록운석
 	{
 		m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Boss_Green_Clock");
 		m_info.sizeX = 63;
 		m_info.sizeY = 63;
-		m_damage = 10;
+		m_damage = 1;
 	}
 
-	m_speed = rand() % 6 + 2;
-	m_info.x = rand() % CScene_Manager::Get_Instance()->Get_SceneSize().x;
-	m_info.y = -m_info.sizeY/2;
+	m_speed = (float)(rand() % 6 + 2);
+	m_info.x = (float)(rand() % CScene_Manager::Get_Instance()->Get_SceneSize().x);
+	m_info.y = (float)(-m_info.sizeY/2);
 
 	m_animFrame.frame_start = 0;
 	m_animFrame.frame_end = 6;

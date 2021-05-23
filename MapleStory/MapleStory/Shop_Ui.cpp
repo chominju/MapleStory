@@ -34,19 +34,19 @@ int CShop_Ui::Ready_GameObject()
 	UpdateRect_GameObject();
 
 	m_EquipmentButton = CInventory_Button::Create();
-	m_EquipmentButton->Set_Pos(m_rect.left + 270, m_rect.top + 100);
+	m_EquipmentButton->Set_Pos((float)m_rect.left + 270, (float)m_rect.top + 100);
 	dynamic_cast<CInventory_Button*>(m_EquipmentButton)->Set_FrameKey(L"Inventory_Equipment_Button");
 
 	m_ConsumeButton = CInventory_Button::Create();
-	m_ConsumeButton->Set_Pos(m_rect.left + 310, m_rect.top + 100);
+	m_ConsumeButton->Set_Pos((float)m_rect.left + 310, (float)m_rect.top + 100);
 	dynamic_cast<CInventory_Button*>(m_ConsumeButton)->Set_FrameKey(L"Inventory_Consume_Button");
 
 	m_EtcButton = CInventory_Button::Create();
-	m_EtcButton->Set_Pos(m_rect.left + 350, m_rect.top + 100);
+	m_EtcButton->Set_Pos((float)m_rect.left + 350, (float)m_rect.top + 100);
 	dynamic_cast<CInventory_Button*>(m_EtcButton)->Set_FrameKey(L"Inventory_Etc_Button");
 
 	m_CloseButton = CClose_Button::Create();
-	m_CloseButton->Set_Pos(m_rect.left + 180, m_rect.top + 70);
+	m_CloseButton->Set_Pos((float)m_rect.left + 180, (float)m_rect.top + 70);
 	dynamic_cast<CClose_Button*>(m_CloseButton)->Set_FrameKey(L"Close_Ui");
 
 	CShop_RectManager::Create(m_rect);
@@ -61,7 +61,6 @@ int CShop_Ui::Update_GameObject()
 	if (dynamic_cast<CNpc*>(m_target)->Get_isNpcClick())
 	{
 		m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
-		//Set_UiData(m_player->Get_Data());
 		CShop_RectManager::Get_Instance()->Update_GameObject();
 
 		POINT pt = {};
@@ -91,7 +90,7 @@ int CShop_Ui::Update_GameObject()
 			{
 				if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
 				{
-					CShop_RectManager::Get_Instance()->BuyItem((*iter)->Get_ItemInfo()->itemName);
+					CShop_RectManager::Get_Instance()->BuyItem((*iter));
 				}
 			}
 		}
@@ -107,7 +106,6 @@ int CShop_Ui::Update_GameObject()
 		return OBJ_DEAD;
 	}
 
-	//CShop_RectManager::Get_Instance()->GET
 	return 0;
 }
 
@@ -176,13 +174,6 @@ void CShop_Ui::Render_GameObject(HDC hDC)
 			if (temp == 0)
 				break;
 		}
-
-
-
-
-
-
-
 	}
 }
 

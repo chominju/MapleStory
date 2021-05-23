@@ -21,7 +21,6 @@ public:
 		m_data = *data;
 	}
 
-
 protected:
 	HDC m_expBar_hdc;
 	HDC m_expBackBar_hdc;

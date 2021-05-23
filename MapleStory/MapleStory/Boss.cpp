@@ -87,11 +87,12 @@ int CBoss::Ready_GameObject()
 
 
 
-	m_data.maxExp = 1000000;
+	m_data.maxExp = 10000;
 	m_data.exp = m_data.maxExp;
-	m_data.maxHp = 10000;
+	m_data.maxHp = 5000;
+//	m_data.maxHp = 5000000;
 	m_data.hp = m_data.maxHp;
-	m_data.money = 1000000;
+	m_data.money = 10000;
 	m_data.maxAttack = 5000;
 	m_data.minAttack = m_data.maxAttack;
 	m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
@@ -223,9 +224,6 @@ int CBoss::Update_GameObject()
 			}
 		}
 
-
-
-		float fY;
 		if (!m_isFall & !m_isAttackOn & !m_isTeleport)
 		{
 			if (m_dir == Direction::DIR_LEFT && m_player->GetRect()->right - 40 < m_rect.left)
@@ -247,8 +245,8 @@ int CBoss::Update_GameObject()
 			}
 		}
 
-		return 0;
 	}
+		return 0;
 }
 
 void CBoss::Late_Update_GameObject()
@@ -346,7 +344,7 @@ void CBoss::Render_GameObject(HDC hDC)
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
 		WINCX / 4 + 8,//위치 x,y
 		5,
-		(WINCX / 2 - 16)*(m_data.hp / m_data.maxHp),// 크기 xy
+		(int)((WINCX / 2 - 16)*(m_data.hp / m_data.maxHp)),// 크기 xy
 		24,
 		m_hpBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y
@@ -491,7 +489,7 @@ void CBoss::Boss_Attack()
 					{
 						if (!m_player->Get_IsInvincibility())
 						{
-							m_player->Set_Change_Hp(-100);
+							m_player->Set_Change_Hp(-(m_player->Get_Data()->maxHp*0.1));
 							m_player->Set_IsSkillHit(true); // 스킬 맞음 ON
 							m_player->Set_IsHit(true);
 							m_player->Set_IsInvincibility(true);
@@ -505,7 +503,7 @@ void CBoss::Boss_Attack()
 					{
 						if (!m_player->Get_IsInvincibility())
 						{
-							m_player->Set_Change_Hp(-100);
+							m_player->Set_Change_Hp(-(m_player->Get_Data()->maxHp*0.1));
 							m_player->Set_IsSkillHit(true); // 스킬 맞음 ON
 							m_player->Set_IsHit(true);
 							m_player->Set_IsInvincibility(true);
@@ -531,7 +529,7 @@ void CBoss::Boss_Attack()
 				{
 					if (!m_player->Get_IsInvincibility())
 					{
-						m_player->Set_Change_Hp(-1);
+						m_player->Set_Change_Hp(-(m_player->Get_Data()->maxHp*0.9));
 						m_player->Set_IsSkillHit(true); // 스킬 맞음 ON
 						m_player->Set_IsHit(true);
 						m_player->Set_IsInvincibility(true);

@@ -13,7 +13,7 @@ CUi::~CUi()
 int CUi::Ready_GameObject()
 {
 
-	return S_OK;
+	return READY_OK;
 }
 
 int CUi::Update_GameObject()

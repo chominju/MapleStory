@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "BossMap.h"
 #include "Player.h"
-#include "Line_Manager.h";
+#include "Line_Manager.h"
 #include "Bitmap_Manager.h"
 #include "Scroll_Manager.h"
 #include "GameObject_Manager.h"
@@ -39,9 +39,6 @@ int CBossMap::Ready_Scene()
 	dynamic_cast<CPortal*>(portal)->Set_NextSceneID(SCENE_Kerning_City);
 	dynamic_cast<CPortal*>(portal)->Set_NextScenePos(300, 200);
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal);
-
-	//if (CGameObject_Manager::Get_Instance()->GetPlayer()->Get_isPortal())
-	//	CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Pos(100, 500);
 
 	boss = CBoss::Create();
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::BOSS, boss);

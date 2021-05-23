@@ -32,7 +32,7 @@ int CLevelUp::Ready_GameObject()
 	m_hitMonsterNum = 100;
 	m_hitNum = 1;
 
-	return S_OK;
+	return READY_OK;
 }
 
 int CLevelUp::Update_GameObject()
@@ -79,17 +79,6 @@ void CLevelUp::UpdateRect_GameObject()
 	m_rect.right = static_cast<LONG>(m_info.x + (m_info.sizeX / 2));
 	m_rect.bottom = static_cast<LONG>(m_info.y + (m_info.sizeY / 2));
 }
-
-//void CLevelUp::Play_Animation()
-//{
-//	if (m_animFrame.frame_time + m_animFrame.frame_speed < GetTickCount())
-//	{
-//		++m_animFrame.frame_start;
-//		m_animFrame.frame_time = GetTickCount();
-//		if (m_animFrame.frame_start >= m_animFrame.frame_end)
-//			Set_IsDead();
-//	}
-//}
 
 CGameObject * CLevelUp::Create(CGameObject * player)
 {

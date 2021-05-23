@@ -34,7 +34,7 @@ public:
 		m_info.y = y;
 	}
 
-	void Set_Size(float x, float y)
+	void Set_Size(int x, int y)
 	{
 		m_info.sizeX = x;
 		m_info.sizeY = y;
@@ -95,22 +95,22 @@ public:
 		return m_data.maxHp;
 	}
 
-	int Get_MinAttack()
+	float Get_MinAttack()
 	{
 		return m_data.minAttack;
 	}
 
-	int Get_MaxAttack()
+	float Get_MaxAttack()
 	{
 		return m_data.maxAttack;
 	}
 
-	int Get_TotalMinAttack()
+	float Get_TotalMinAttack()
 	{
 		return m_data.TotalminAttack;
 	}
 
-	int Get_TotalMaxAttack()
+	float Get_TotalMaxAttack()
 	{
 		return m_data.TotalmaxAttack;
 	}

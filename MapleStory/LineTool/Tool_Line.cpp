@@ -13,8 +13,8 @@ CLine::~CLine()
 
 void CLine::Render_Line(HDC hDC)
 {
-	float fScrollX = CScroll_Manager::Get_ScrollX();
-	float fScrollY = CScroll_Manager::Get_ScrollY();
+	int fScrollX = CScroll_Manager::Get_ScrollX();
+	int fScrollY = CScroll_Manager::Get_ScrollY();
 
 	HPEN hpen;
 	HPEN hpenOld;
@@ -25,8 +25,8 @@ void CLine::Render_Line(HDC hDC)
 	hpen = CreatePen(PS_SOLID, 2, RGB(255, 255, 0));
 	hpenOld = (HPEN)::SelectObject(hDC, (HGDIOBJ)hpen);
 
-	MoveToEx(hDC, m_lineInfo.left_pos.x + fScrollX, m_lineInfo.left_pos.y + fScrollY, nullptr);
-	LineTo(hDC, m_lineInfo.right_pos.x + fScrollX, m_lineInfo.right_pos.y + fScrollY);
+	MoveToEx(hDC, (int)m_lineInfo.left_pos.x + fScrollX, (int)m_lineInfo.left_pos.y + fScrollY, nullptr);
+	LineTo(hDC, (int)m_lineInfo.right_pos.x + fScrollX, (int)m_lineInfo.right_pos.y + fScrollY);
 	
 	hbr = (HBRUSH)::SelectObject(hDC, hbrOld);
 	DeleteObject(hbr); // 생성한 브러쉬 삭제

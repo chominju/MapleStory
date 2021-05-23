@@ -31,17 +31,17 @@ int CInventory_Ui::Ready_GameObject()
 	m_info.sizeX = 185;
 	m_info.sizeY = 351;
 	UpdateRect_GameObject();
-
+	
 	m_EquipmentButton = CInventory_Button::Create();
-	m_EquipmentButton->Set_Pos(m_rect.left + 20, m_rect.top + 15);
+	m_EquipmentButton->Set_Pos((float)m_rect.left + 20, (float)m_rect.top + 15);
 	dynamic_cast<CInventory_Button*>(m_EquipmentButton)->Set_FrameKey(L"Inventory_Equipment_Button");
 
 	m_ConsumeButton = CInventory_Button::Create();
-	m_ConsumeButton->Set_Pos(m_rect.left + 60, m_rect.top + 15);
+	m_ConsumeButton->Set_Pos((float)m_rect.left + 60, (float)m_rect.top + 15);
 	dynamic_cast<CInventory_Button*>(m_ConsumeButton)->Set_FrameKey(L"Inventory_Consume_Button");
 
 	m_EtcButton = CInventory_Button::Create();
-	m_EtcButton->Set_Pos(m_rect.left + 100, m_rect.top + 15);
+	m_EtcButton->Set_Pos((float)m_rect.left + 100, (float)m_rect.top + 15);
 	dynamic_cast<CInventory_Button*>(m_EtcButton)->Set_FrameKey(L"Inventory_Etc_Button");
 
 	CInventory_RectManager::Create(m_rect);
@@ -54,8 +54,6 @@ int CInventory_Ui::Update_GameObject()
 	m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
 	Set_UiData(m_player->Get_Data());
 
-	//if (!dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Get_IsShopClick())
-	//{
 		if (dynamic_cast<CPlayer*>(m_player)->Get_IsInventoryOpen())
 		{
 			POINT pt = {};
@@ -65,23 +63,25 @@ int CInventory_Ui::Update_GameObject()
 
 			for (list<CItem*>::iterator iter = getList->begin(); iter != getList->end(); iter++)
 			{
-				//for (auto& list : *getList)
-				//{
 				if (PtInRect((*iter)->GetRect(), pt))
 				{
 					if (!m_isItemMove)
 					{
 						if (CKey_Manager::Get_Instance()->Key_Up(KEY_RBUTTON))
 						{
-							CInventory_RectManager::Get_Instance()->Use_Item((*iter)->Get_ItemInfo()->itemName, (*iter));
+							CInventory_RectManager::Get_Instance()->Use_Item((*iter));
 						}
 
 						if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
 						{
-							temp = (*iter);
-							m_beforePos = *(*iter)->Get_Info();
-							beforeIter = iter;
-							m_isItemMove = true;
+							if (strcmp((*iter)->Get_ItemInfo()->itemName, "NONE"))
+							{
+								temp = (*iter);
+								m_beforePos = *(*iter)->Get_Info();
+								beforeIter = iter;
+								m_isItemMove = true;
+								CSoundMgr::Get_Instance()->PlaySound(L"DropItem.mp3", CSoundMgr::PLAYER);
+							}
 						}
 					}
 					else
@@ -96,12 +96,10 @@ int CInventory_Ui::Update_GameObject()
 								getList->empty();
 								(*iter)->Set_Pos(temp2.x, temp2.y);
 								(*beforeIter)->Set_Pos(m_beforePos.x, m_beforePos.y);
-								/*Object_Info m_afterInfo = *(*iter)->Get_Info();
-								temp->Set_Pos(m_afterInfo.x, m_afterInfo.y);
-								list->Set_Pos(m_beforePos.x, m_beforePos.y);*/
 								m_isItemMove = false;
 
 								temp = nullptr;
+								CSoundMgr::Get_Instance()->PlaySound(L"DropItem.mp3", CSoundMgr::PLAYER);
 							}
 						}
 					}
@@ -109,13 +107,13 @@ int CInventory_Ui::Update_GameObject()
 			}
 			if (m_isItemMove)
 			{
-				temp->Set_Pos(pt.x, pt.y);
+				temp->Set_Pos((float)pt.x, (float)pt.y);
 
 				if (!PtInRect(&m_rect, pt))
 				{
 					if (CKey_Manager::Get_Instance()->Key_Up(KEY_LBUTTON))
 					{
-						CInventory_RectManager::Get_Instance()->Drop_Item(temp->Get_ItemInfo()->itemName, m_beforePos);
+						CInventory_RectManager::Get_Instance()->Drop_Item(temp->Get_ItemInfo()->itemName, m_beforePos, temp , &beforeIter);
 						CSoundMgr::Get_Instance()->PlaySound(L"DropItem.mp3", CSoundMgr::PLAYER);
 						m_isItemMove = false;
 						temp = nullptr;

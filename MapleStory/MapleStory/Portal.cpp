@@ -23,7 +23,7 @@ int CPortal::Ready_GameObject()
 	m_animFrame.frame_start = 0;
 	m_animFrame.frame_time = GetTickCount();
 
-	return S_OK;
+	return READY_OK;
 }
 
 int CPortal::Update_GameObject()

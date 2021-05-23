@@ -3,6 +3,7 @@
 #include "GameObject_Manager.h"
 #include "Bitmap_Manager.h"
 #include "Player_Die_Button.h"
+#include "Inventory_RectManager.h"
 
 CGameObject * CPlayer_Ui::instance = nullptr;
 CPlayer_Ui::CPlayer_Ui()
@@ -27,11 +28,11 @@ int CPlayer_Ui::Ready_GameObject()
 	m_playerDie_Message_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Die_Message");
 
 	m_Player_Die_Button = Player_Die_Button::Create();
-	m_Player_Die_Button->Set_Pos(m_rect.left + 20, m_rect.top + 15);
+	m_Player_Die_Button->Set_Pos((float)m_rect.left + 20, (float)m_rect.top + 15);
 	dynamic_cast<Player_Die_Button*>(m_Player_Die_Button)->Set_FrameKey(L"Player_Die_Message_Button");
 
 	
-	return S_OK;
+	return READY_OK;
 }
 
 int CPlayer_Ui::Update_GameObject()
@@ -63,7 +64,7 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
 		1024 / 2 - 79,//위치 x,y
 		768 - 28 - 10,
-		175 * (m_data.hp / m_data.maxHp),// 크기 xy
+		(int)(175 * (m_data.hp / m_data.maxHp)),// 크기 xy
 		17,
 		m_hpBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y
@@ -131,7 +132,7 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
 		0 + 15,//위치 x,y
 		768 - 7,
-		1008 * (m_data.exp / m_data.maxExp),// 크기 xy
+		(int)(1008 * (m_data.exp / m_data.maxExp)),// 크기 xy
 		7,
 		m_expBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y
@@ -139,25 +140,11 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 		7,
 		RGB(255, 255, 255));
 
-	// key 바
-	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
-		WINCX - 211,//위치 x,y
-		WINCY - 73 - 8,
-		211,// 크기 xy
-		73,
-		m_skillKey,// 복사 할 대상
-		0, 0,// 그림의 시작 위치 x,y
-		211,// 그리고자 하는 영역의 크기 x,y
-		73,
-		RGB(255, 0, 255));
-
-
-
 
 	// hp. 숫자 출력
-	temp = m_data.hp;
+	temp = (int)m_data.hp;
 	num = 0;
-	temp3 = m_data.hp;
+	temp3 = (int)m_data.hp;
 	while (true)
 	{
 		num++;
@@ -197,9 +184,9 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 
 
 	// MaxHp. 숫자 출력
-	temp = m_data.maxHp;
+	temp = (int)m_data.maxHp;
 	num = 0;
-	temp3 = m_data.maxHp;
+	temp3 = (int)m_data.maxHp;
 	while (true)
 	{
 		num++;
@@ -229,24 +216,10 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	// exp. 숫자 출력
-	temp = m_data.exp;
+	temp = (int)m_data.exp;
 	num = 0;
-	temp3 = m_data.exp;
+	temp3 = (int)m_data.exp;
 	while (true)
 	{
 		num++;
@@ -286,9 +259,9 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 
 
 	// MaxHp. 숫자 출력
-	temp = m_data.maxExp;
+	temp = (int)m_data.maxExp;
 	num = 0;
-	temp3 = m_data.maxExp;
+	temp3 = (int)m_data.maxExp;
 	while (true)
 	{
 		num++;
@@ -316,17 +289,126 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 	}
 
 
+
+	// key 바
+	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+		WINCX - 176,//위치 x,y
+		WINCY - 71 - 8,
+		176,// 크기 xy
+		71,
+		m_skillKey,// 복사 할 대상
+		0, 0,// 그림의 시작 위치 x,y
+		176,// 그리고자 하는 영역의 크기 x,y
+		71,
+		RGB(255, 0, 255));
+
+
+	// 빨간포션. 숫자 출력
+	temp = CInventory_RectManager::Get_Instance()->Get_ItemQuantity("빨간 포션");
+	num = 0;
+	temp3 = temp;
+	while (true)
+	{
+		num++;
+		temp3 /= 10;
+		if (temp3 == 0)
+			break;
+	}
+
+	for (int i = 0; i < num; i++)
+	{
+		int temp2 = temp % 10;
+		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+			WINCX - 176 + 27 - (num / 2 + i) * 7,//위치 x,y
+			WINCY - 71 - 8 + 23,
+			7,// 크기 xy
+			10,
+			m_State_Num_hdc,// 복사 할 대상
+			7 * temp2, 0,// 그림의 시작 위치 x,y
+			7,// 그리고자 하는 영역의 크기 x,y
+			10,
+			RGB(255, 0, 255));
+		temp /= 10;
+		if (temp == 0)
+			break;
+	}
+
+	// 엘릭서. 숫자 출력
+	temp = CInventory_RectManager::Get_Instance()->Get_ItemQuantity("엘릭서");
+	num = 0;
+	temp3 = temp;
+	while (true)
+	{
+		num++;
+		temp3 /= 10;
+		if (temp3 == 0)
+			break;
+	}
+
+	for (int i = 0; i < num; i++)
+	{
+		int temp2 = temp % 10;
+		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+			WINCX - 176 + 62 - (num / 2 + i) * 7,//위치 x,y
+			WINCY - 71 - 8 + 23,
+			7,// 크기 xy
+			10,
+			m_State_Num_hdc,// 복사 할 대상
+			7 * temp2, 0,// 그림의 시작 위치 x,y
+			7,// 그리고자 하는 영역의 크기 x,y
+			10,
+			RGB(255, 0, 255));
+		temp /= 10;
+		if (temp == 0)
+			break;
+	}
+
+
+	// 파워 엘릭서. 숫자 출력
+	temp = CInventory_RectManager::Get_Instance()->Get_ItemQuantity("파워 엘릭서");
+	num = 0;
+	temp3 = temp;
+	while (true)
+	{
+		num++;
+		temp3 /= 10;
+		if (temp3 == 0)
+			break;
+	}
+
+	for (int i = 0; i < num; i++)
+	{
+		int temp2 = temp % 10;
+		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
+			WINCX - 176 + 97 - (num / 2 + i) * 7,//위치 x,y
+			WINCY - 71 - 8 + 23,
+			7,// 크기 xy
+			10,
+			m_State_Num_hdc,// 복사 할 대상
+			7 * temp2, 0,// 그림의 시작 위치 x,y
+			7,// 그리고자 하는 영역의 크기 x,y
+			10,
+			RGB(255, 0, 255));
+		temp /= 10;
+		if (temp == 0)
+			break;
+	}
+
+
+
+
+
 	if (m_data.hp <= 0)
 	{
 		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
 			WINCX /2-170,//위치 x,y
-			WINCY/2 -60,
-			340,// 크기 xy
-			110,
+			WINCY/2 -100,
+			405,// 크기 xy
+			155,
 			m_playerDie_Message_hdc,// 복사 할 대상
 			0,0,// 그림의 시작 위치 x,y
-			340,// 그리고자 하는 영역의 크기 x,y
-			110,
+			405,// 그리고자 하는 영역의 크기 x,y
+			155,
 			RGB(255, 0, 255));
 
 		m_Player_Die_Button->Render_GameObject(hDC);

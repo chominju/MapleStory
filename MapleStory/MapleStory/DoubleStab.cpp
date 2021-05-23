@@ -27,12 +27,12 @@ int CDoubleStab::Ready_GameObject()
 	if (m_currentKey == CurrentKey::CUR_LEFT)
 	{
 		m_hdc = m_left_hdc;
-		m_info.x = m_target->GetRect()->left - m_info.sizeX/2;
+		m_info.x = (float)m_target->GetRect()->left - m_info.sizeX/2;
 	}
 	else if (m_currentKey == CurrentKey::CUR_RIGHT)
 	{
 		m_hdc = m_right_hdc;
-		m_info.x = m_target->GetRect()->right + m_info.sizeX / 2;
+		m_info.x = (float)m_target->GetRect()->right + m_info.sizeX / 2;
 	}
 	m_info.y = m_target->Get_Info()->y;
 
@@ -42,7 +42,7 @@ int CDoubleStab::Ready_GameObject()
 	m_animFrame.frame_speed = 100;
 	m_animFrame.frame_time = GetTickCount();
 
-	m_damage = 100;
+	m_damage = 1;
 	m_hitMonsterNum = 1;
 	m_hitNum = 1;
 

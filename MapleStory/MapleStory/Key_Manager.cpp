@@ -48,8 +48,18 @@ void CKey_Manager::Update_Key_Manager()
 		m_key |= KEY_Z;
 	if (GetAsyncKeyState(VK_F5) & 0x8000)
 		m_key |= KEY_F5;
+	if (GetAsyncKeyState(VK_F6) & 0x8000)
+		m_key |= KEY_F6;
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 		m_key |= KEY_RETURN;
+	if (GetAsyncKeyState('1') & 0x8000)
+		m_key |= KEY_1;
+	if (GetAsyncKeyState('2') & 0x8000)
+		m_key |= KEY_2;
+	if (GetAsyncKeyState('3') & 0x8000)
+		m_key |= KEY_3;
+	if (GetAsyncKeyState(VK_NUMPAD0) & 0x8000)
+		m_key |= KEY_NUMPAD0;
 }
 
 bool CKey_Manager::Key_Up(DWORD key)
@@ -69,9 +79,6 @@ bool CKey_Manager::Key_Up(DWORD key)
 
 bool CKey_Manager::Key_Down(DWORD key)
 {
-	//0000 0000
-	//0000 0001
-	//0000 0000 
 	if ((m_key & key) && !(m_keyDown & key))
 	{
 		m_keyDown |= key;

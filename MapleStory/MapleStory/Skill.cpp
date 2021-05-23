@@ -19,9 +19,9 @@ int CSkill::Update_GameObject()
 {
 	Set_Target(CGameObject_Manager::Get_Instance()->GetPlayer());
 	if (m_currentKey == CurrentKey::CUR_LEFT)
-		m_info.x = m_target->GetRect()->left - m_info.sizeX / 2;
+		m_info.x = (float)m_target->GetRect()->left - m_info.sizeX / 2;
 	else if (m_currentKey == CurrentKey::CUR_RIGHT)
-		m_info.x = m_target->GetRect()->right + m_info.sizeX / 2;
+		m_info.x = (float)m_target->GetRect()->right + m_info.sizeX / 2;
 	m_info.y = m_target->Get_Info()->y;
 	Play_Animation();
 

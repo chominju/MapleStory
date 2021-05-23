@@ -24,8 +24,8 @@ public:
 
 	void SetPos(RECT pos)
 	{
-		m_info.x = pos.left;
-		m_info.y = pos.top;
+		m_info.x = (float)pos.left;
+		m_info.y = (float)pos.top;
 	}
 
 	void Set_isEquipmentClick(bool equipment)
@@ -44,20 +44,10 @@ public:
 		m_isEtcClick = etc;
 	}
 
-	void Push_EquipmentList(CItem * item);
-	void Push_ConsumeList(CItem * item);
-	void Push_EtcList(CItem * item);
-
-	void Find_EquipmentList(char * itemName);
-	void Find_ConsumeList(char * itemName);
-	void Find_EtcList(char * itemName);
-
-	void Use_Item(char * itemName);
-	void Drop_Item(char * itemName, Object_Info pos);
 	void Find_DeleteItem(char * itemName);
 	void DeleteItem(CItem* item);
 	void SellItem(char * itemName , CItem*& useItem);
-	void BuyItem(char * itemName);
+	void BuyItem(CItem*& item);
 
 	list<CItem*>* Get_EquipmentList()
 	{
@@ -83,19 +73,18 @@ public:
 	{
 		if (m_isEquipmentClick)
 			return &m_equipmentList;
-		if (m_isConsumeClick)
+		else if (m_isConsumeClick)
 			return &m_consumeList;
-		if (m_isEtcClick)
+		else if (m_isEtcClick)
 			return &m_etcList;
+		else
+			return nullptr;
 	}
 
 	static void Create(RECT pos);
 
 private:
 	static CShop_RectManager* instance;
-	//list<Object_Info> m_equipmentList;
-	//list<Object_Info> m_consumeList;
-	//list<Object_Info> m_etcList;
 
 	list<CItem*> m_shopList;
 	list<CItem*> m_equipmentList;

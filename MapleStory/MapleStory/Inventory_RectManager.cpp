@@ -24,23 +24,14 @@ int CInventory_RectManager::Ready_GameObject()
 	m_info.sizeX = 33;
 	m_info.sizeY = 33;
 
-	//Object_Info temp;
 	CItem* temp;
-	//temp.sizeX = 33;
-	//temp.sizeY = 33;
 	for (int i = 0; i < 6; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
 			temp = new CItem;
 			temp->Set_Size(33, 33);
-			//temp.x = m_info.x +30 + 40 * j;
-			//temp.y = m_info.y +50+ 40 * i;
-
 			temp->Set_Pos(m_info.x + 30 + 40 * j, m_info.y + 50 + 40 * i);
-
-			//m_info.x += 40 * j;
-			//m_info.y += 40 * i;
 			m_equipmentList.push_back(temp);
 		}
 	}
@@ -51,13 +42,7 @@ int CInventory_RectManager::Ready_GameObject()
 		{
 			temp = new CItem;
 			temp->Set_Size(33, 33);
-			//temp.x = m_info.x +30 + 40 * j;
-			//temp.y = m_info.y +50+ 40 * i;
-
 			temp->Set_Pos(m_info.x + 30 + 40 * j, m_info.y + 50 + 40 * i);
-
-			//m_info.x += 40 * j;
-			//m_info.y += 40 * i;
 			m_consumeList.push_back(temp);
 		}
 	}
@@ -68,13 +53,7 @@ int CInventory_RectManager::Ready_GameObject()
 		{
 			temp = new CItem;
 			temp->Set_Size(33, 33);
-			//temp.x = m_info.x +30 + 40 * j;
-			//temp.y = m_info.y +50+ 40 * i;
-
 			temp->Set_Pos(m_info.x + 30 + 40 * j, m_info.y + 50 + 40 * i);
-
-			//m_info.x += 40 * j;
-			//m_info.y += 40 * i;
 			m_etcList.push_back(temp);
 		}
 	}
@@ -92,8 +71,6 @@ void CInventory_RectManager::Late_Update_GameObject()
 
 void CInventory_RectManager::Render_GameObject(HDC hDC)
 {
-	RECT rc;
-	//list<Object_Info> tempList;
 	list<CItem*> tempList;
 	if (m_isEquipmentClick)
 		tempList = m_equipmentList;
@@ -101,42 +78,12 @@ void CInventory_RectManager::Render_GameObject(HDC hDC)
 		tempList = m_consumeList;
 	if (m_isEtcClick)
 		tempList = m_etcList;
-	for (auto& list : tempList)
-	{
-		//Rectangle(hDC, rc.left, rc.top, rc.right, rc.bottom);
-		list->Render_GameObject(hDC);
-		//if (list->Get_ItemInfo()->itemName != "NONE")
-		//{
-		//	int temp2 = m_printDamageNum;
-		//	for (int i = 0; i < printNum; i++)
-		//	{
-		//		int temp = temp2 % 10;
-		//		temp2 /= 10;
-		//		GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
-		//			(m_rect.left + scrollX) + m_info.sizeX*(printNum / 2 - i),//위치 x,y
-		//			m_rect.top + scrollY,
-		//			m_info.sizeX,// 크기 xy
-		//			m_info.sizeY,
-		//			m_hdc,// 복사 할 대상
-		//			temp * m_info.sizeX, 0,// 그림의 시작 위치 x,y
-		//			m_info.sizeX,// 그리고자 하는 영역의 크기 x,y
-		//			m_info.sizeY,
-		//			RGB(255, 0, 255));
-		//	}
-		//}
-		//rc.left = static_cast<LONG>(list.x - (list.sizeX / 2));
-		//rc.top = static_cast<LONG>(list.y - (list.sizeY / 2));
-		//rc.right = static_cast<LONG>(list.x + (list.sizeX / 2));
-		//rc.bottom = static_cast<LONG>(list.y + (list.sizeY / 2));
 
-	}
+	for (auto& list : tempList)
+		list->Render_GameObject(hDC);
 }
 
 void CInventory_RectManager::Release_GameObject()
-{
-}
-
-void CInventory_RectManager::UpdateRect_GameObject()
 {
 }
 
@@ -218,63 +165,19 @@ void CInventory_RectManager::Push_EtcList(CItem * item)
 
 }
 
-void CInventory_RectManager::Find_EquipmentList(char * itemName)
-{
-
-}
-
-void CInventory_RectManager::Find_ConsumeList(char * itemName)
-{
-}
-
-void CInventory_RectManager::Find_EtcList(char * itemName)
-{
-}
-
-void CInventory_RectManager::Use_Item(char * itemName , CItem*& useItem)
+void CInventory_RectManager::Use_Item(CItem*& useItem)
 {
 	if (m_isEquipmentClick)
 	{
-		//for (auto & list : m_equipmentList)
-		//{
-		//	if (!strcmp(list->Get_ItemInfo()->itemName, itemName) && strcmp(itemName, "NONE"))
-		//	{
-		//		CPlayer *getPlayer = dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer());
-		//		if (getPlayer->Get_Weapon() == nullptr)
-		//		{
-		//			// 장착 장비가 없을 때
-		//			int invenPosX = list->Get_Info()->x;
-		//			int invenPosY = list->Get_Info()->y;
-		//			list->Set_ItemPlace(Item_Place::EQUIPMENT_ITEM);
-		//			getPlayer->Set_Weapon(list);
-		//			list = new CItem();
-		//			list->Set_Size(33, 33);
-		//			list->Set_Pos(invenPosX, invenPosY);
-		//		}
-		//		else
-		//		{
-		//			int invenPosX = list->Get_Info()->x;
-		//			int invenPosY = list->Get_Info()->y;
-		//			Pos_float shop_pos = list->Get_shopPos();
-		//			CItem* getWeapon = getPlayer->Get_Weapon();
-		//			list->Set_ItemPlace(Item_Place::EQUIPMENT_ITEM);
-		//			getPlayer->Set_Weapon(list);
-
-		//			getWeapon->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
-		//			getWeapon->Set_Pos(invenPosX, invenPosY);
-		//			getWeapon->Set_shopPos(shop_pos.x, shop_pos.y);
-		//			list = getWeapon;
-		//		}
-		//	}
-		//}
-		if (!strcmp(useItem->Get_ItemInfo()->itemName, itemName) && strcmp(itemName, "NONE"))
+		if (strcmp(useItem->Get_ItemInfo()->itemName, "NONE"))
 		{
 			CPlayer *getPlayer = dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer());
+			CSoundMgr::Get_Instance()->PlaySound(L"DropItem.mp3", CSoundMgr::PLAYER);
 			if (getPlayer->Get_Weapon() == nullptr)
 			{
 				// 장착 장비가 없을 때
-				int invenPosX = useItem->Get_Info()->x;
-				int invenPosY = useItem->Get_Info()->y;
+				float invenPosX = useItem->Get_Info()->x;
+				float invenPosY = useItem->Get_Info()->y;
 				useItem->Set_ItemPlace(Item_Place::EQUIPMENT_ITEM);
 				getPlayer->Set_Weapon(useItem);
 				useItem = new CItem();
@@ -283,8 +186,8 @@ void CInventory_RectManager::Use_Item(char * itemName , CItem*& useItem)
 			}
 			else
 			{
-				int invenPosX = useItem->Get_Info()->x;
-				int invenPosY = useItem->Get_Info()->y;
+				float invenPosX = useItem->Get_Info()->x;
+				float invenPosY = useItem->Get_Info()->y;
 				Pos_float shop_pos = useItem->Get_shopPos();
 				CItem* getWeapon = getPlayer->Get_Weapon();
 				useItem->Set_ItemPlace(Item_Place::EQUIPMENT_ITEM);
@@ -300,31 +203,26 @@ void CInventory_RectManager::Use_Item(char * itemName , CItem*& useItem)
 
 	else if (m_isConsumeClick)
 	{
-		for (auto & list : m_consumeList)
-		{
-			if (!strcmp(list->Get_ItemInfo()->itemName, itemName) && strcmp(itemName, "NONE"))
+			if (strcmp(useItem->Get_ItemInfo()->itemName, "NONE"))
 			{
-				CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Hp(list->Get_ItemInfoHp());
-				list->Set_Change_Quantity(-1);
+				CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Hp((float)useItem->Get_ItemInfoHp());
+				useItem->Set_Change_Quantity(-1);
 				CSoundMgr::Get_Instance()->PlaySound(L"Potion_Use.mp3", CSoundMgr::PLAYER);
-				if (list->Get_ItemInfo()->quantity == 0)
+				if (useItem->Get_ItemInfo()->quantity == 0)
 				{
 					if (dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Get_IsShopClick())
-						CShop_RectManager::Get_Instance()->Find_DeleteItem(itemName);
-					Object_Info tempInfo = *list->Get_Info();
+						CShop_RectManager::Get_Instance()->Find_DeleteItem(useItem->Get_ItemInfo()->itemName);
+					Object_Info tempInfo = *useItem->Get_Info();
 					CItem * temp = new CItem;
 					temp->Set_Pos(tempInfo.x, tempInfo.y);
 					temp->Set_Size(tempInfo.sizeX, tempInfo.sizeY);
 
-					Safe_Delete(list);
-					list = temp;
+					Safe_Delete(useItem);
+					useItem = temp;
 					if (dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Get_IsShopClick())
-						CShop_RectManager::Get_Instance()->DeleteItem(list);
-					int i;
-					i = 10;
+						CShop_RectManager::Get_Instance()->DeleteItem(useItem);
 				}
 			}
-		}
 		if (m_isEtcClick)
 		{
 			//m_etcList
@@ -332,10 +230,37 @@ void CInventory_RectManager::Use_Item(char * itemName , CItem*& useItem)
 	}
 }
 
-void CInventory_RectManager::Drop_Item(char * itemName , Object_Info pos)
+void CInventory_RectManager::Use_ItemQuickSlot(char * itemName)
 {
-	RECT rc;
-	//list<Object_Info> tempList;
+	for (auto & list : m_consumeList)
+	{
+		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+		{
+			if (list->Get_ItemInfo()->quantity == 0)
+				return;
+			CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Hp((float)list->Get_ItemInfoHp());
+			list->Set_Change_Quantity(-1);
+			CSoundMgr::Get_Instance()->PlaySound(L"Potion_Use.mp3", CSoundMgr::PLAYER);
+			if (list->Get_ItemInfo()->quantity == 0)
+			{
+				if (dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Get_IsShopClick())
+					CShop_RectManager::Get_Instance()->Find_DeleteItem(list->Get_ItemInfo()->itemName);
+				Object_Info tempInfo = *list->Get_Info();
+				CItem * temp = new CItem;
+				temp->Set_Pos(tempInfo.x, tempInfo.y);
+				temp->Set_Size(tempInfo.sizeX, tempInfo.sizeY);
+
+				Safe_Delete(list);
+				list = temp;
+				if (dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Get_IsShopClick())
+					CShop_RectManager::Get_Instance()->DeleteItem(list);
+			}
+		}
+	}
+}
+
+void CInventory_RectManager::Drop_Item(char * itemName , Object_Info pos , CItem*& item , list<CItem*>::iterator* Dropiter)
+{
 	list<CItem*>* tempList;
 	if (m_isEquipmentClick)
 		tempList = &m_equipmentList;
@@ -345,45 +270,130 @@ void CInventory_RectManager::Drop_Item(char * itemName , Object_Info pos)
 		tempList = &m_etcList;
 	else
 		return;
-	for (auto& list : *tempList)
+
+	if (item->Get_ItemInfo()->type == Item_type::EQUIPMENT)
 	{
-		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+		CItem* temp = new CItem();
+		temp->Set_Size(33, 33);
+		temp->Set_Pos(pos.x, pos.y);
+		item->Set_ItemPlace(Item_Place::FIELD_ITEM);
+		item->Set_m_isFieldOut(false);
+		item->Set_Pos(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+		CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, dynamic_cast<CGameObject*>(item));
+		*(*Dropiter) = temp;
+	}
+
+	if (item->Get_ItemInfo()->type == Item_type::CONSUME || item->Get_ItemInfo()->type == Item_type::ETC)
+	{
+		for (auto& list : *tempList)
 		{
-			//CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM , )
-			list->Set_Change_Quantity(-1);
-			if (!strcmp(itemName,"빨간 포션"))
-				CGameObject * item = CRed_Potion::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
-			else if (!strcmp(itemName, "엘릭서"))
-				CGameObject * item = CEilxir::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
-			else if (!strcmp(itemName, "파워 엘릭서"))
+			if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
 			{
-				/*	CGameObject * item = CPower_Elixir::Create();
-					item->Set_Pos(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
-					CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, item);*/
-			}
-			else if (!strcmp(itemName, "옥토퍼스 다리"))
-				CGameObject * item = CDrop_Octopus::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
-			else if (!strcmp(itemName, "주황버섯 갓"))
-				CGameObject * item = CDrop_Mushroom::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
-			if (list->Get_ItemInfo()->quantity == 0)
-			{
-				//CShop_RectManager::Get_Instance()->Find_DeleteItem(itemName);
-				Object_Info tempInfo = *list->Get_Info();
-				CItem * temp = new CItem;
-				temp->Set_Pos(pos.x, pos.y);
-				temp->Set_Size(pos.sizeX, pos.sizeY);
+				list->Set_Change_Quantity(-1);
+				if (!strcmp(itemName, "빨간 포션"))
+					CGameObject * item = CRed_Potion::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+				else if (!strcmp(itemName, "엘릭서"))
+					CGameObject * item = CEilxir::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+				else if (!strcmp(itemName, "파워 엘릭서"))
+					CGameObject * item = CPower_Elixir::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+				else if (!strcmp(itemName, "옥토퍼스 다리"))
+					CGameObject * item = CDrop_Octopus::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+				else if (!strcmp(itemName, "주황버섯 갓"))
+					CGameObject * item = CDrop_Mushroom::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
 
-				Safe_Delete(list);
-				list = temp;
-				//CShop_RectManager::Get_Instance()->DeleteItem(list);
-				int i;
-				i = 10;
-			}
-			else
-				list->Set_Pos(pos.x, pos.y);
+				if (list->Get_ItemInfo()->quantity == 0)
+				{
+					//CShop_RectManager::Get_Instance()->Find_DeleteItem(itemName);
+					Object_Info tempInfo = *list->Get_Info();
+					CItem * temp = new CItem;
+					temp->Set_Pos(pos.x, pos.y);
+					temp->Set_Size(pos.sizeX, pos.sizeY);
 
+					Safe_Delete(list);
+					list = temp;
+					//CShop_RectManager::Get_Instance()->DeleteItem(list);
+				}
+				else
+					list->Set_Pos(pos.x, pos.y);
+			}
 		}
 	}
+
+	//for (auto& list : *tempList)
+	//{
+	//	if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+	//	{
+	//		list->Set_Change_Quantity(-1);
+	//		if (!strcmp(itemName,"빨간 포션"))
+	//			CGameObject * item = CRed_Potion::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+	//		else if (!strcmp(itemName, "엘릭서"))
+	//			CGameObject * item = CEilxir::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+	//		else if (!strcmp(itemName, "파워 엘릭서"))
+	//			CGameObject * item = CPower_Elixir::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+	//		else if (!strcmp(itemName, "옥토퍼스 다리"))
+	//			CGameObject * item = CDrop_Octopus::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+	//		else if (!strcmp(itemName, "주황버섯 갓"))
+	//			CGameObject * item = CDrop_Mushroom::Create(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);	
+	//		
+	//		/*else if (!strcmp(itemName, "블러드 대거"))
+	//		{
+	//			CItem* temp = new CItem();
+	//			temp->Set_Size(33, 33);
+	//			temp->Set_Pos(item->Get_Info()->x, item->Get_Info()->y);
+	//			item->Set_ItemPlace(Item_Place::FIELD_ITEM);
+	//			item->Set_m_isFieldOut(false);
+	//			item->Set_Pos(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+	//			CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, item);
+	//			list = temp;
+	//		}
+	//		else if (!strcmp(itemName, "아케인셰이드 대거"))
+	//		{
+
+	//		}*/
+
+	//		if (!list->Get_ItemInfo()->type == Item_type::EQUIPMENT)
+	//		{
+	//			if (list->Get_ItemInfo()->quantity == 0)
+	//			{
+	//				//CShop_RectManager::Get_Instance()->Find_DeleteItem(itemName);
+	//				Object_Info tempInfo = *list->Get_Info();
+	//				CItem * temp = new CItem;
+	//				temp->Set_Pos(pos.x, pos.y);
+	//				temp->Set_Size(pos.sizeX, pos.sizeY);
+
+	//				Safe_Delete(list);
+	//				list = temp;
+	//				//CShop_RectManager::Get_Instance()->DeleteItem(list);
+	//			}
+	//			else
+	//				list->Set_Pos(pos.x, pos.y);
+	//		}
+	//	}
+	//}
+
+	////if (!strcmp(item->Get_ItemInfo()->itemName, "블러드 대거"))
+	////{
+	////	CItem* temp = new CItem();
+	////	temp->Set_Size(33, 33);
+	////	temp->Set_Pos(pos.x, pos.y);
+	////	item->Set_ItemPlace(Item_Place::FIELD_ITEM);
+	////	item->Set_m_isFieldOut(false);
+	////	item->Set_Pos(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+	////	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, dynamic_cast<CGameObject*>(item));
+	////	*(*Dropiter) = temp;
+	////}
+
+	////if (!strcmp(item->Get_ItemInfo()->itemName, "아케인셰이드 대거"))
+	////{
+	////	CItem* temp = new CItem();
+	////	temp->Set_Size(33, 33);
+	////	temp->Set_Pos(pos.x, pos.y);
+	////	item->Set_ItemPlace(Item_Place::FIELD_ITEM);
+	////	item->Set_m_isFieldOut(false);
+	////	item->Set_Pos(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->x, CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Info()->y);
+	////	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, dynamic_cast<CGameObject*>(item));
+	////	*(*Dropiter) = temp;
+	////}
 }
 
 void CInventory_RectManager::Find_DeleteItem(char * itemName , CItem*& useItem)
@@ -396,24 +406,29 @@ void CInventory_RectManager::Find_DeleteItem(char * itemName , CItem*& useItem)
 			m_deleteIter = iter;
 			m_deleteItemPos = *(*iter)->Get_Info();
 		}
-		/*if (!strcmp((*iter)->Get_ItemInfo()->itemName, itemName))
-		{
-			m_deleteIter = iter;
-			m_deleteItemPos = *(*iter)->Get_Info();
-		}*/
 	}
 }
 
 void CInventory_RectManager::DeleteItem(CItem * item, Pos_float shopPos)
 {
 	m_consumeList.empty();
-	//*m_deleteIter = item;
-	//Safe_Delete(m_deleteIter);
 	*m_deleteIter = nullptr;
 	*m_deleteIter = new CItem();
 	(*m_deleteIter)->Set_Pos(m_deleteItemPos.x, m_deleteItemPos.y);
 	(*m_deleteIter)->Set_Size(m_deleteItemPos.sizeX, m_deleteItemPos.sizeY);
 	(*m_deleteIter)->Set_shopPos(shopPos.x, shopPos.y);
+}
+
+int CInventory_RectManager::Get_ItemQuantity(char * itemName)
+{
+	for (auto & list : m_consumeList)
+	{
+		if (!strcmp(list->Get_ItemInfo()->itemName, itemName))
+		{
+			return list->Get_ItemInfo()->quantity;
+		}
+	}
+	return 0;
 }
 
 void CInventory_RectManager::Create(RECT pos)

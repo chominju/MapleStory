@@ -80,7 +80,6 @@ public:
 		m_weapon = weapon;
 	}
 
-	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
 
@@ -94,8 +93,6 @@ private:
 	bool m_isStatOpen;
 	bool m_isInventoryOpen;
 	bool m_isShopClick;
-
-	//bool m_jumpKeyUp;
 
 	float m_jumpHeight;
 	float m_DoublejumpHeight;
@@ -120,7 +117,5 @@ private:
 	int m_hitAnimationNum;
 
 	CItem* m_weapon;
-
-	//HDC m_temptemp; 스킬 체험
 };
 

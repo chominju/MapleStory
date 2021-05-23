@@ -27,7 +27,6 @@ public:
 	bool Floor_Collision_Line_Manager_Line_Manager(CPlayer*player);
 public:
 	void Insert_Line_Manager(Pos_float left, Pos_float right);
-	void Ready_Line_Manager();
 	void Render_Line_Manager(HDC hDC);
 	void Release_Line_Manager();
 

@@ -43,7 +43,7 @@ int COctopus::Ready_GameObject()
 	m_changeStateTime = GetTickCount();
 	m_changeStateSpeed = 5000;
 
-	m_data.maxExp = 500;
+	m_data.maxExp = 1000;
 	m_data.exp = m_data.maxExp;
 	m_data.maxHp = 3000;
 	m_data.hp = m_data.maxHp;
@@ -51,7 +51,7 @@ int COctopus::Ready_GameObject()
 	m_data.minAttack = m_data.maxAttack;
 	m_data.money = 1000;
 
-	return S_OK;
+	return READY_OK;
 }
 
 int COctopus::Update_GameObject()
@@ -74,11 +74,11 @@ int COctopus::Update_GameObject()
 	{
 		int temp = rand() % 10;
 		if (temp > 7)
-			CMeso::Create(m_info.x,m_rect.top, m_data.money);
+			CMeso::Create((float)m_info.x, (float)m_rect.top, m_data.money);
 		else if (temp > 5)
-			CDrop_Octopus::Create(m_info.x, m_rect.top);
+			CDrop_Octopus::Create(m_info.x, (float)m_rect.top);
 		else if (temp > 3)
-			CEilxir::Create(m_info.x, m_rect.top);
+			CEilxir::Create(m_info.x, (float)m_rect.top);
 		return OBJ_DEAD;
 	}
 
@@ -107,22 +107,12 @@ int COctopus::Update_GameObject()
 			m_changeDirectionTime = GetTickCount();
 		}
 
-		float fY;
 		if (m_isWalk && !m_isFall && !m_isSkillHit)
 		{
 			if (m_dir == Direction::DIR_LEFT)
-			{
 				m_info.x -= m_speed;
-				//if (!CLine_Manager::Get_Instance()->Collision_Line_Manager(this, &fY))
-					//m_info.x += m_speed;
-
-			}
 			else if (m_dir == Direction::DIR_RIGHT)
-			{
 				m_info.x += m_speed;
-				/*if (!CLine_Manager::Get_Instance()->Collision_Line_Manager(this, &fY))
-					m_info.x -= m_speed;*/
-			}
 		}
 		if (m_isSkillHit)
 		{
@@ -161,8 +151,6 @@ void COctopus::Late_Update_GameObject()
 	else if (m_rect.right >= m_maxX)
 		m_dir = Direction::DIR_LEFT;
 
-
-
 	float fY = 0.f;
 	bool bCollLine = CLine_Manager::Get_Instance()->Collision_Line_Manager(this, &fY);
 
@@ -179,9 +167,6 @@ void COctopus::Late_Update_GameObject()
 			m_isFall = false;
 		}
 	}
-
-
-
 }
 
 void COctopus::Release_GameObject()

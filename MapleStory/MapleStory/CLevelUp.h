@@ -16,8 +16,6 @@ public:
 	virtual void Release_GameObject() override;
 	virtual void UpdateRect_GameObject() override;
 
-	//virtual void Play_Animation() override;
-
 	static CGameObject* Create(CGameObject* player);
 
 };

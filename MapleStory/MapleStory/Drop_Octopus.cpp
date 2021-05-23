@@ -48,60 +48,6 @@ void CDrop_Octopus::Late_Update_GameObject()
 		m_info.y = fY - m_info.sizeY / 2;
 }
 
-//void CDrop_Octopus::Render_GameObject(HDC hDC)
-//{
-//	UpdateRect_GameObject();
-//	int scrollX = 0;
-//	int scrollY = 0;
-//	if (!m_isFieldOut)
-//	{
-//		scrollX = CScroll_Manager::Get_ScrollX();
-//		scrollY = CScroll_Manager::Get_ScrollY();
-//	}
-//	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
-//		m_rect.left + scrollX,//위치 x,y
-//		m_rect.top + scrollY,
-//		m_info.sizeX,// 크기 xy
-//		m_info.sizeY,
-//		m_hdc,// 복사 할 대상
-//		m_info.sizeX , m_info.sizeY * 2,// 그림의 시작 위치 x,y
-//		m_info.sizeX,// 그리고자 하는 영역의 크기 x,y
-//		m_info.sizeY,
-//		RGB(255, 0, 255));
-//
-//	if (m_isFieldOut)
-//	{
-//		int temp = m_itemInfo.quantity;
-//		int num = 0;
-//		int temp3 = m_itemInfo.quantity;
-//		while (true)
-//		{
-//			num++;
-//			temp3 /= 10;
-//			if (temp3 == 0)
-//				break;
-//		}
-//
-//		for (int i = 0; i < num; i++)
-//		{
-//			int temp2 = temp % 10;
-//			GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
-//				m_rect.right-5 - i * 7,//위치 x,y+ i) * 7,//위치 x,y
-//				m_rect.bottom -10,
-//				7,// 크기 xy
-//				10,
-//				m_State_Num_hdc,// 복사 할 대상
-//				7 * temp2, 0,// 그림의 시작 위치 x,y
-//				7,// 그리고자 하는 영역의 크기 x,y
-//				10,
-//				RGB(255, 0, 255));
-//			temp /= 10;
-//			if (temp == 0)
-//				break;
-//		}
-//	}
-//}
-
 void CDrop_Octopus::Release_GameObject()
 {
 }

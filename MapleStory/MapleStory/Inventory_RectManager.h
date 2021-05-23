@@ -16,7 +16,6 @@ public:
 	void Late_Update_GameObject();
 	void Render_GameObject(HDC hDC);
 	void Release_GameObject();
-	void UpdateRect_GameObject();
 
 	static CInventory_RectManager* Get_Instance()
 	{
@@ -25,8 +24,8 @@ public:
 
 	void SetPos(RECT pos)
 	{
-		m_info.x = pos.left;
-		m_info.y = pos.top;
+		m_info.x = (float)pos.left;
+		m_info.y = (float)pos.top;
 	}
 
 	void Set_isEquipmentClick(bool equipment)
@@ -49,14 +48,13 @@ public:
 	void Push_ConsumeList(CItem * item);
 	void Push_EtcList(CItem * item);
 
-	void Find_EquipmentList(char * itemName);
-	void Find_ConsumeList(char * itemName);
-	void Find_EtcList(char * itemName);
-
-	void Use_Item(char * itemName, CItem*& useItem);
-	void Drop_Item(char * itemName, Object_Info pos);
+	void Use_Item(CItem*& useItem);
+	void Use_ItemQuickSlot(char * itemName);
+	void Drop_Item(char * itemName, Object_Info pos, CItem*& item, list<CItem*>::iterator * Dropiter);
 	void Find_DeleteItem(char * itemName , CItem*& useItem);
 	void DeleteItem(CItem* item, Pos_float shopPos);
+
+	int Get_ItemQuantity(char * itemName);
 
 	list<CItem*>* Get_EquipmentList()
 	{
@@ -77,19 +75,18 @@ public:
 	{
 		if (m_isEquipmentClick)
 			return &m_equipmentList;
-		if (m_isConsumeClick)
+		else if (m_isConsumeClick)
 			return &m_consumeList;
-		if (m_isEtcClick)
+		else if (m_isEtcClick)
 			return &m_etcList;
+		else
+			return nullptr;
 	}
 
 	static void Create(RECT pos);
 
 private:
 	static CInventory_RectManager* instance;
-	//list<Object_Info> m_equipmentList;
-	//list<Object_Info> m_consumeList;
-	//list<Object_Info> m_etcList;
 
 	list<CItem*> m_equipmentList;
 	list<CItem*> m_consumeList;

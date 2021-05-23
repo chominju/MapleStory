@@ -13,6 +13,12 @@ public:
 	{
 		if (m_instance)
 		{
+			delete m_instance;
+			m_instance = nullptr;
+		}
+
+		/*if (m_instance)
+		{
 			for (auto&iter : m_instance->m_listLine)
 			{
 				Safe_Delete(iter);
@@ -21,7 +27,7 @@ public:
 
 			delete m_instance;
 			m_instance = nullptr;
-		}
+		}*/
 	}
 private:
 	CLine_Manager();

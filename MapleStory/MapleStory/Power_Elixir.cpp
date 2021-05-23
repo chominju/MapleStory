@@ -75,13 +75,12 @@ CItem * CPower_Elixir::Create()
 		instance = nullptr;
 	}
 	instance->Set_m_isFieldOut(true);
-	//CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, instance);
 	return instance;
 }
 
 int CPower_Elixir::Get_ItemInfoHp()
 {
-	int playerMaxHp = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Data()->maxHp;
-	m_itemInfo.hp = playerMaxHp;
+	float playerMaxHp = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Data()->maxHp;
+	m_itemInfo.hp = (int)playerMaxHp;
 	return m_itemInfo.hp;
 }

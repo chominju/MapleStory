@@ -11,7 +11,6 @@
 #include "Scroll_Manager.h"
 
 CMainApp::CMainApp()
-//:m_pPlayer(nullptr)
 	: m_szFPS(L"")
 	, m_iFPS(0)
 	, m_dwFPSTime(0)
@@ -27,9 +26,6 @@ CMainApp::~CMainApp()
 int CMainApp::Ready_MainApp()
 {
 	CLoadData::Get_Instance()->Load_Image();
-	
-	//CGameObject* object = CPlayer::Create();
-	//CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PLAYER, object);
 
 	m_hDC = GetDC(g_hwnd);
 	m_dwFPSTime = GetTickCount();
@@ -95,15 +91,3 @@ CMainApp * CMainApp::Create()
 	}
 	return pInstance;
 }
-/*
-디자인 패턴 - *디자인패턴이란 이러한 상황이라면 이러한 형태의 클래스 디자인을 사용하는 것이
-대게 좋더라* 라는 것이 모이고 이를 바탕으로 클래스간의 관계, 클래스간의 행동 양식을 분류하고
-각각에 대해 객체지향적인 설계를 따른 노하우들이 차곡 차곡 정리되어 코드의 구조들을 일정한
-형태로 만들어 재사용하기 편리하게 만든 일정한 패턴이라 생각하면 되고
-이걸 처음 제시한것이
-GOF라 불리는 4명의 컴퓨터 과학자 연구자들이 쓴 책 (이건 영어로 재이용 가능한 객체지향 소프트
-웨어의 요소 - 디자인 패턴 ) 이라는 책에서부터 쓰이기 시작함.
-
-이터레이터 패턴(반복자 패턴 ) - 내부 표현방식은 공개하지 않고 순차적인 접근 방법을 제공하는 패턴.
-이게 기본적인 이론이고.
-*/

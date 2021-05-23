@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Kerning_City.h"
 #include "Player.h"
-#include "Line_Manager.h";
+#include "Line_Manager.h"
 #include "Bitmap_Manager.h"
 #include "Scroll_Manager.h"
 #include "GameObject_Manager.h"
@@ -48,7 +48,6 @@ int Kerning_City::Ready_Scene()
 	CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::PORTAL, portal);
 
 	CGameObject*portal2 = CPortal::Create();
-	//portal2->SetPos(3780, 375);
 	portal2->Set_Pos(100, 380);
 	dynamic_cast<CPortal*>(portal2)->Set_NextSceneID(SCENE_MAP1);
 	dynamic_cast<CPortal*>(portal2)->Set_NextScenePos(100, 380);
@@ -61,16 +60,14 @@ int Kerning_City::Ready_Scene()
 
 	if (!CGameObject_Manager::Get_Instance()->GetPlayer()->Get_isPortal())
 		CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Pos(100, 100);
-	//else
-	//	CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Pos(100, 100);
-	//dynamic_cast<CPlayer*>(CGameObject_Manager::Get_Instance()->GetPlayer())->Set_CheckKeepY(-593);
 
 	CScroll_Manager::Set_ResetX();
 	CScroll_Manager::Set_ResetY();
 
+	CSoundMgr::Get_Instance()->StopAll();
 	CSoundMgr::Get_Instance()->PlayBGM(L"Kerning_City.mp3");
 
-	return S_OK;
+	return READY_OK;
 }
 
 void Kerning_City::Update_Scene()

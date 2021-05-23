@@ -66,7 +66,7 @@ void CMonster::Render_GameObject(HDC hDC)
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
 		m_rect.left + scrollX,//위치 x,y
 		m_rect.top -20 + scrollY,
-		m_info.sizeX *(m_data.hp/m_data.maxHp),// 크기 xy
+		(int)(m_info.sizeX *(m_data.hp/m_data.maxHp)),// 크기 xy
 		10,
 		m_hpBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y

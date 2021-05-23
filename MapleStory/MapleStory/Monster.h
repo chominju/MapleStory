@@ -17,7 +17,7 @@ public:
 	virtual void Release_GameObject() override;
 	virtual void UpdateRect_GameObject() override;
 
-	void Set_DistanceX(int min, int max)
+	void Set_DistanceX(float min, float max)
 	{
 		m_minX = min;
 		m_maxX = max;
@@ -32,10 +32,10 @@ public:
 protected:
 	Direction m_dir;
 	Monster_State m_state;
-	float m_attackTime;
-	float m_changeStateTime;
+	DWORD m_attackTime;
+	DWORD m_changeStateTime;
 	float m_changeStateSpeed;
-	float m_changeDirectionTime;
+	DWORD m_changeDirectionTime;
 	float m_changeDirectionSpeed;
 
 	bool m_isWalk;

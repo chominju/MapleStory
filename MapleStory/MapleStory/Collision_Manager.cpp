@@ -95,20 +95,8 @@ void CCollision_Manager::Collision_Monster(list<CGameObject*>* player, list<CGam
 					}
 				}
 			}
-			//}
 		}
 	}
-
-	/*if (!check)
-	{
-		for (auto & player_object : *player)
-		{
-			for (auto& portal_object : *monster)
-			{
-				player_object->Set_IsHit(false);
-			}
-		}
-	}*/
 }
 
 void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameObject*>* monster)
@@ -125,15 +113,6 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 			const RECT* skillRect = skill_object->GetRect();
 			const RECT* monsterRect = monster_object->GetRect();
 
-			/*if (playerRect->left >= monsterRect->left - 5 && playerRect->right <= monsterRect->right - 5)
-			{
-				if (skill_object->GetInfo()->y >= monsterRect->top &&skill_object->GetInfo()->y <= monsterRect->bottom)
-				{
-					check = true;
-					monster_object->SetHit(true);
-
-				}
-			}*/
 			RECT temp = {};
 			if (IntersectRect(&temp, skillRect, monsterRect))
 			{
@@ -148,21 +127,21 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 
 
 
-						int minAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_TotalMinAttack();
-						int maxAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_TotalMaxAttack();
+						int minAttack = (int)CGameObject_Manager::Get_Instance()->GetPlayer()->Get_TotalMinAttack();
+						int maxAttack = (int)CGameObject_Manager::Get_Instance()->GetPlayer()->Get_TotalMaxAttack();
 						int *randAttack = new int[skillHit + 1];
 						int attackSum = 0;
 						for (int i = 0; i < skillHit; i++)
 						{
-							randAttack[i] = rand() % maxAttack + minAttack;
+							randAttack[i] = rand() % 100 + minAttack;
 							attackSum += randAttack[i];
 						}
-						monster_object->Set_Change_Hp(-(skillHit * damage + attackSum));
+						monster_object->Set_Change_Hp((float)-(skillHit * damage * attackSum));
 
 						for (int i = 0; i < skillHit; i++)
 						{
-							CGameObject * damageSkin = CDamageSkin::Create(damage + randAttack[i]);
-							damageSkin->Set_Pos(monster_object->Get_Info()->x, monster_object->GetRect()->top - (49)*(i + 1));
+							CGameObject * damageSkin = CDamageSkin::Create(damage * randAttack[i]);
+							damageSkin->Set_Pos(monster_object->Get_Info()->x, (float)monster_object->GetRect()->top - (49)*(i + 1));
 							CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::UI, damageSkin);
 						}
 						if (monster_object->Get_Hp() <= 0)
@@ -179,22 +158,8 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 			{
 				monster_object->Set_IsSkillHit(false); // 스킬 끝나서 OFF
 			}
-
-			//}
 		}
 	}
-
-	/*if (!check)
-	{
-		for (auto & player_object : *player)
-		{
-			for (auto& portal_object : *monster)
-			{
-				player_object->SetHit(false);
-				portal_object->SetHit(false);
-			}
-		}
-	}*/
 }
 
 void CCollision_Manager::Collision_Boss(list<CGameObject*>* skill, list<CGameObject*>* boss)
@@ -222,21 +187,22 @@ void CCollision_Manager::Collision_Boss(list<CGameObject*>* skill, list<CGameObj
 							int damage = dynamic_cast<CSkill*>(skill_object)->Get_Damage();
 							int skillHit = dynamic_cast<CSkill*>(skill_object)->Get_hitNum();
 
-							int minAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_MinAttack();
-							int maxAttack = CGameObject_Manager::Get_Instance()->GetPlayer()->Get_MaxAttack();
+							int minAttack = (int)CGameObject_Manager::Get_Instance()->GetPlayer()->Get_TotalMinAttack();
+							int maxAttack = (int)CGameObject_Manager::Get_Instance()->GetPlayer()->Get_TotalMaxAttack();
 							int *randAttack = new int[skillHit + 1];
 							int attackSum = 0;
 							for (int i = 0; i < skillHit; i++)
 							{
-								randAttack[i] = rand() % maxAttack + minAttack;
+								randAttack[i] = rand() % 100 + minAttack;
 								attackSum += randAttack[i];
 							}
-							boss_object->Set_Change_Hp(-(skillHit * damage + attackSum));
+
+							boss_object->Set_Change_Hp((float)-(skillHit * damage * attackSum));
 
 							for (int i = 0; i < skillHit; i++)
 							{
-								CGameObject * damageSkin = CDamageSkin::Create(damage + randAttack[i]);
-								damageSkin->Set_Pos(boss_object->Get_Info()->x, boss_object->GetRect()->top - (49)*(i + 1));
+								CGameObject * damageSkin = CDamageSkin::Create(damage * randAttack[i]);
+								damageSkin->Set_Pos(boss_object->Get_Info()->x, (float)boss_object->GetRect()->top - (49)*(i + 1));
 								CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::UI, damageSkin);
 							}
 							if (boss_object->Get_Hp() <= 0)
@@ -254,7 +220,6 @@ void CCollision_Manager::Collision_Boss(list<CGameObject*>* skill, list<CGameObj
 					boss_object->Set_IsSkillHit(false); // 스킬 끝나서 OFF
 				}
 			}
-			//}
 		}
 	}
 }
@@ -288,7 +253,7 @@ void CCollision_Manager::Collision_BossSkill(list<CGameObject*>* skill, list<CGa
 						if (!player_object->Get_IsInvincibility())
 						{
 							player_object->Set_IsInvincibility(true);
-							player_object->Set_Change_Hp(-damage);
+							player_object->Set_Change_Hp(-(player_object->Get_Data()->maxHp*0.1 * damage));
 						}
 
 						if (player_object->Get_Hp() <= 0)
@@ -304,8 +269,6 @@ void CCollision_Manager::Collision_BossSkill(list<CGameObject*>* skill, list<CGa
 			{
 				player_object->Set_IsSkillHit(false); // 스킬 끝나서 OFF
 			}
-
-			//}
 		}
 	}
 }
@@ -316,30 +279,16 @@ bool CCollision_Manager::Collision_Rope(list<CGameObject*>* player, list<CGameOb
 	{
 		for (auto& rope_object : *rope)
 		{
-			float playerX = player_object->Get_Info()->x;
-			float player_top = player_object->GetRect()->top;
-			float player_bottom = player_object->GetRect()->bottom;
 			const RECT* ropeRect = rope_object->GetRect();
 
-			/*if (ropeRect->left <= playerX && playerX <= ropeRect->right)
-			{
-				if (player_top <= ropeRect->bottom - WINCY || player_bottom >= ropeRect->top)
-				{
-				*rc = ropeRect;
-				return true;
-				}
-			}*/
 			RECT temp = {};
 			RECT temp2 = *ropeRect;
 			temp2.bottom -= WINCY;
 			temp2.top -= WINCY;
 			if (IntersectRect(&temp, player_object->GetRect(), &temp2))
 			{
-				/*if (ropeRect->left <= playerX && playerX <= ropeRect->right)
-				{*/
 				*rc = ropeRect;
 				return true;
-				//}
 			}
 		}
 	}
@@ -348,7 +297,7 @@ bool CCollision_Manager::Collision_Rope(list<CGameObject*>* player, list<CGameOb
 
 void CCollision_Manager::Collision_DropItem(list<CGameObject*>* player, list<CGameObject*>* dropItem)
 {
-	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_Z))
+	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_Z) || CKey_Manager::Get_Instance()->Key_Pressing(KEY_NUMPAD0))
 	{
 		for (auto & player_object : *player)
 		{
@@ -378,8 +327,13 @@ void CCollision_Manager::Collision_DropItem(list<CGameObject*>* player, list<CGa
 						tempItem->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
 						CInventory_RectManager::Get_Instance()->Push_ConsumeList(tempItem);
 					}
+					else if (tempItem->Get_ItemInfo()->type == Item_type::EQUIPMENT)
+					{
+						tempItem->Set_m_isFieldOut(true);
+						tempItem->Set_ItemPlace(Item_Place::INVENTORY_ITEM);
+						CInventory_RectManager::Get_Instance()->Push_EquipmentList(tempItem);
+					}
 				}
-				//}
 			}
 		}
 	}

@@ -152,6 +152,7 @@
     <ClInclude Include="ArcaneShade_Dagger.h" />
     <ClInclude Include="Bitmap_Manager.h" />
     <ClInclude Include="Blood_Dagger.h" />
+    <ClInclude Include="BoomerangStab.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="BossMap.h" />
     <ClInclude Include="Boss_Attack2_Ball.h" />
@@ -159,7 +160,6 @@
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Close_Button.h" />
     <ClInclude Include="Collision_Manager.h" />
-    <ClInclude Include="DaggerBooster.h" />
     <ClInclude Include="DamageSkin.h" />
     <ClInclude Include="DoubleJump.h" />
     <ClInclude Include="DoubleStab.h" />
@@ -212,6 +212,7 @@
     <ClCompile Include="ArcaneShade_Dagger.cpp" />
     <ClCompile Include="Bitmap_Manager.cpp" />
     <ClCompile Include="Blood_Dagger.cpp" />
+    <ClCompile Include="BoomerangStab.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BossMap.cpp" />
     <ClCompile Include="Boss_Attack2_Ball.cpp" />
@@ -222,7 +223,6 @@
     <ClCompile Include="Drop_Octopus.cpp" />
     <ClCompile Include="Inventory_Button.cpp" />
     <ClCompile Include="Collision_Manager.cpp" />
-    <ClCompile Include="DaggerBooster.cpp" />
     <ClCompile Include="DamageSkin.cpp" />
     <ClCompile Include="DoubleJump.cpp" />
     <ClCompile Include="DoubleStab.cpp" />

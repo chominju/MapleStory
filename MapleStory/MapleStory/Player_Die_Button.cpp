@@ -60,7 +60,7 @@ void Player_Die_Button::Render_GameObject(HDC hDC)
 	m_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(m_BitMapKey.c_str());
 		GdiTransparentBlt(hDC,
 			m_rect.left,m_rect.top,
-			m_info.sizeX, m_info.sizeY,
+			m_info.sizeX, m_info.sizeY +5,
 			m_hdc,
 			0, 0,
 			m_info.sizeX, m_info.sizeY, RGB(255, 0, 255));

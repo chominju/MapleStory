@@ -28,14 +28,9 @@ public:
 
 public:
 	static CGameObject* Create();
-
-
-	//void Play_Animation();
 private:
 	static CGameObject * m_instance;
 	CGameObject* m_shopUi;
 	bool m_isNpcClick;
-
-	//HDC m_temptemp; 스킬 체험
 };
 

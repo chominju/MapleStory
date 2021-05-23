@@ -22,8 +22,7 @@ public:
 		}
 	}
 
-public:
-	CGameObject* Get_Target(Object_ID eID, CGameObject* pObject);
+
 public:
 	void DeleteID(Object_ID id);
 public:

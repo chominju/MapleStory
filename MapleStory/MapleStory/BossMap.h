@@ -21,7 +21,7 @@ public:
 private:
 	CGameObject*boss;
 
-	float m_createClockTime;
+	DWORD m_createClockTime;
 	float m_createClockSpeed;
 };
 

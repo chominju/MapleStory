@@ -20,7 +20,7 @@ public:
 public:
 	static CScene* Create();
 
-	float m_createMonsterTime;
+	DWORD m_createMonsterTime;
 	float m_createMonsterSpeed;
 };
 

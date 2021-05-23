@@ -32,6 +32,10 @@ DoubleJump_Left
 ../Resource/SkillEffect/DoubleJump/skill_shadowJump_left.bmp
 DoubleJump_Right
 ../Resource/SkillEffect/DoubleJump/skill_shadowJump_right.bmp
+BoomerangStab_Left
+../Resource/SkillEffect/BoomerangStab/skill_BoomerangStab_Left.bmp
+BoomerangStab_Right
+../Resource/SkillEffect/BoomerangStab/skill_BoomerangStab_Right.bmp
 Mushroom_Left
 ../Resource/Monster/Mushroom_Left.bmp
 Mushroom_Right

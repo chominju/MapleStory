@@ -37,7 +37,7 @@ void CBossMapTool::Update_Scene()
 
 void CBossMapTool::Render_Scene(HDC hDC)
 {
-	POINT pt{ 0,m_startPos.y - WINCY };
+	POINT pt{ 0,(LONG)m_startPos.y - WINCY };
 	pt.x -= CScroll_Manager::Get_ScrollX();
 	pt.y -= CScroll_Manager::Get_ScrollY();
 	BitBlt(hDC,// 복사하고자 하는 대상 

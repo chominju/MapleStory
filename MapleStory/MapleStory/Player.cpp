@@ -12,8 +12,11 @@
 #include "DoubleStab.h"
 #include "DoubleJump.h"
 #include "SavageBlow.h"
+#include "BoomerangStab.h"
 #include "CLevelUp.h"
 #include "Item.h"
+#include "Inventory_RectManager.h"
+
 
 CGameObject * CPlayer::m_instance = nullptr;
 
@@ -108,6 +111,22 @@ int CPlayer::Update_GameObject()
 	}
 	else
 	{
+		if (CKey_Manager::Get_Instance()->Key_Down(KEY_1))												// 빨간 포션 1
+		{
+			CInventory_RectManager::Get_Instance()->Use_ItemQuickSlot("빨간 포션");
+		}
+
+		if (CKey_Manager::Get_Instance()->Key_Down(KEY_2))												// 엘릭서 2
+		{
+			CInventory_RectManager::Get_Instance()->Use_ItemQuickSlot("엘릭서");
+		}
+
+		if (CKey_Manager::Get_Instance()->Key_Down(KEY_3))												// 파워 엘릭서 3
+		{
+			CInventory_RectManager::Get_Instance()->Use_ItemQuickSlot("파워 엘릭서");
+		}
+
+
 		if (!m_keyPush.isAttack && !m_keyPush.isDown && !m_keyPush.isRope && !m_keyPush.isRopeMove)
 		{
 			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_Q))												// 스킬 Q(더블스탭)
@@ -128,17 +147,25 @@ int CPlayer::Update_GameObject()
 				}
 			}
 
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_E))												// 스킬 W(새비지블로우)
+			{
+				if (!m_keyPush.isSkill)
+				{
+					CGameObject * DoubleStab = CBoomerangStab::Create(this);
+					Player_Skill(Animation::SWING, Animation_index::SWING_INDEX);
+				}
+			}
+
 			if (m_isJump)
 			{
 				if (m_keyPush.isDoubleJumpReady && !m_keyPush.isDoubleJump)
 				{
-					if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_F))										// 스킬 (더블점프)
+					if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_R))										// 스킬 (더블점프)
 					{
 						m_keyPush.isDoubleJump = true;
 						jumpDir = m_currentKey;
 						m_DoublejumpHeight = 20;
 						CGameObject * DoubleStab = CDoubleJump::Create(this);
-						//Player_Skill(Animation::JUMP , Animation_index::JUMP_INDEX);
 					}
 				}
 			}
@@ -157,7 +184,6 @@ int CPlayer::Update_GameObject()
 				m_keyPush.isRight = false;
 
 
-			//	if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_UP) || (CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN)))
 			if (m_keyPush.isRopeMove)
 				if (CKey_Manager::Get_Instance()->Key_Up(KEY_UP) || (CKey_Manager::Get_Instance()->Key_Up(KEY_DOWN)))
 					m_keyPush.isRopeMove = false;
@@ -172,7 +198,7 @@ int CPlayer::Update_GameObject()
 					m_keyPush.isDown = true;
 					if (!m_isJump)
 						Player_Prone();
-					if (CKey_Manager::Get_Instance()->Key_Down(KEY_F))
+					if (CKey_Manager::Get_Instance()->Key_Down(KEY_R))
 					{
 						m_info.y += 5;
 						float fY = 0.f;
@@ -193,10 +219,9 @@ int CPlayer::Update_GameObject()
 		}
 
 
-
 		if (!m_isDownJump)
 		{
-			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_F))
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_R))
 			{
 				if (!CKey_Manager::Get_Instance()->Key_Pressing(KEY_DOWN))
 				{
@@ -213,7 +238,7 @@ int CPlayer::Update_GameObject()
 
 		if (m_isJump)
 		{
-			if (CKey_Manager::Get_Instance()->Key_Up(KEY_F))
+			if (CKey_Manager::Get_Instance()->Key_Up(KEY_R))
 			{
 				m_keyPush.isDoubleJumpReady = true;
 			}
@@ -243,7 +268,6 @@ int CPlayer::Update_GameObject()
 		}
 
 
-
 		if (!m_keyPush.isJump && !m_keyPush.isLeft && !m_keyPush.isRight && !m_keyPush.isDown && !m_keyPush.isAttack && !m_keyPush.isRope && !m_keyPush.isSkill && !m_isHit)
 			Player_Idle();
 		if ((m_isJump || m_isDownJump) && !m_keyPush.isRope && !m_keyPush.isSkill && !m_isHit)
@@ -253,7 +277,6 @@ int CPlayer::Update_GameObject()
 
 		if (m_isHit)
 		{
-			//if(m_hitAnimationNum == 0)
 			Player_Hit();
 			m_hitAnimationNum++;
 
@@ -292,14 +315,9 @@ void CPlayer::Late_Update_GameObject()
 void CPlayer::Render_GameObject(HDC hDC)
 {
 	UpdateRect_GameObject();
-	//if (m_hdc == nullptr)
-	//	return;
 
 	int scrollX = CScroll_Manager::Get_ScrollX();
 	int scrollY = CScroll_Manager::Get_ScrollY();
-
-	int i;
-	int j;
 
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
 		m_rect.left+ scrollX,//위치 x,y
@@ -394,7 +412,7 @@ void CPlayer::Is_Jump()
 					m_info.x -= m_speed;
 					//if (m_info.x - WINCX / 2 >= 0)
 						//if (m_info.x + CScroll_Manager::Get_ScrollX() < WINCX / 2)
-							CScroll_Manager::Set_ScrollX(m_speed);
+							CScroll_Manager::Set_ScrollX((int)m_speed);
 
 					current_DoublejumpHeight += m_power;
 					//if (current_DoublejumpHeight <= m_DoublejumpHeight)
@@ -413,7 +431,7 @@ void CPlayer::Is_Jump()
 					m_info.x += m_speed;
 					//if (m_info.x > WINCX / 2)
 						//if (m_info.x + WINCX / 2 < CScene_Manager::Get_Instance()->Get_SceneSize().x)
-							CScroll_Manager::Set_ScrollX(-m_speed);
+							CScroll_Manager::Set_ScrollX((int)-m_speed);
 
 					current_DoublejumpHeight += m_power;
 					//if (current_DoublejumpHeight <= m_DoublejumpHeight)
@@ -435,12 +453,12 @@ void CPlayer::Is_Jump()
 				Player_Jump();
 			m_info.y += m_fallSpeed;
 			if (m_checkKeepY<m_info.y)
-				CScroll_Manager::Set_ScrollY(-m_fallSpeed);
+				CScroll_Manager::Set_ScrollY((int)-m_fallSpeed);
 		}
 		else
 		{
 			if (m_checkKeepY < m_info.y)
-				CScroll_Manager::Set_ScrollY(-((fY - m_info.sizeY / 2) - m_info.y));
+				CScroll_Manager::Set_ScrollY((int)-((fY - m_info.sizeY / 2) - m_info.y));
 			m_info.y = fY - m_info.sizeY / 2;
 			m_isDownJump = false;
 			m_moveLock = false;
@@ -466,7 +484,7 @@ void CPlayer::Player_MoveLeft()
 		m_currentKey = CurrentKey::CUR_LEFT;
 		if (!m_moveLock && !m_isJumpRight)
 		{
-			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_F))
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_R))
 			{
 				if (!m_isJump)
 				{
@@ -479,7 +497,7 @@ void CPlayer::Player_MoveLeft()
 				m_info.x -= m_speed;
 				//if (m_info.x - WINCX / 2 >= 0)
 					//if (m_info.x + CScroll_Manager::Get_ScrollX() < WINCX / 2)
-						CScroll_Manager::Set_ScrollX(m_speed);
+						CScroll_Manager::Set_ScrollX((int)m_speed);
 			}
 		}
 		else if (m_keyPush.isDoubleJump && m_currentKey == jumpDir &&!m_isFall)
@@ -487,7 +505,7 @@ void CPlayer::Player_MoveLeft()
 			m_info.x -= m_speed;
 			//if (m_info.x - WINCX / 2 >= 0)
 				//if (m_info.x + CScroll_Manager::Get_ScrollX() < WINCX / 2)
-					CScroll_Manager::Set_ScrollX(m_speed);
+					CScroll_Manager::Set_ScrollX((int)m_speed);
 		}
 	}
 }
@@ -503,7 +521,7 @@ void CPlayer::Player_MoveRight()
 		m_currentKey = CurrentKey::CUR_RIGHT;
 		if (!m_moveLock && !m_isJumpLeft)
 		{
-			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_F))
+			if (CKey_Manager::Get_Instance()->Key_Pressing(KEY_R))
 			{
 				if (!m_isJump)
 				{
@@ -517,7 +535,7 @@ void CPlayer::Player_MoveRight()
 
 				//if (m_info.x > WINCX / 2)
 					//if (m_info.x + WINCX / 2 < CScene_Manager::Get_Instance()->Get_SceneSize().x)
-						CScroll_Manager::Set_ScrollX(-m_speed);
+						CScroll_Manager::Set_ScrollX((int)-m_speed);
 			}
 		}
 		else if (m_keyPush.isDoubleJump&& m_currentKey == jumpDir &&!m_isFall)
@@ -526,7 +544,7 @@ void CPlayer::Player_MoveRight()
 
 			//if (m_info.x > WINCX / 2)
 				//if (m_info.x + WINCX / 2 < CScene_Manager::Get_Instance()->Get_SceneSize().x)
-					CScroll_Manager::Set_ScrollX(-m_speed);
+					CScroll_Manager::Set_ScrollX((int)-m_speed);
 		}
 	}
 }
@@ -692,18 +710,18 @@ void CPlayer::Player_Skill(Animation animScene, Animation_index frameEnd)
 
 void CPlayer::Is_OffSet()
 {
-	float scrollX = CScroll_Manager::Get_ScrollX();
-	float scrollY = CScroll_Manager::Get_ScrollY();
+	int scrollX = CScroll_Manager::Get_ScrollX();
+	int scrollY = CScroll_Manager::Get_ScrollY();
 	float X = m_info.x + scrollX;
 	float Y = m_info.y + scrollY;
 	if ((WINCX >> 1) + 100 < X)
-		CScroll_Manager::Set_ScrollX(-m_speed);
+		CScroll_Manager::Set_ScrollX((int)-m_speed);
 	if ((WINCX >> 1) - 100 > X)
-		CScroll_Manager::Set_ScrollX(m_speed);
+		CScroll_Manager::Set_ScrollX((int)m_speed);
 	if ((WINCY >> 1)+ 100 < Y)
-		CScroll_Manager::Set_ScrollY(-m_speed);
+		CScroll_Manager::Set_ScrollY((int)-m_speed);
 	if ((WINCY >> 1)- 100 > Y)
-		CScroll_Manager::Set_ScrollY(m_speed);
+		CScroll_Manager::Set_ScrollY((int)m_speed);
 }
 
 void CPlayer::Is_LevelUp()

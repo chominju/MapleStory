@@ -37,7 +37,7 @@ int CMeso::Ready_GameObject()
 
 	UpdateRect_GameObject();
 
-	return S_OK;
+	return READY_OK;
 }
 
 void CMeso::Late_Update_GameObject()

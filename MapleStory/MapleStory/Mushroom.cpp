@@ -19,8 +19,6 @@ int CMushroom::Ready_GameObject()
 {
 	m_left_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Mushroom_Left");
 	m_right_hdc = CBitmap_Manager::Get_Instance()->Get_memDC(L"Mushroom_Right");
-	//m_hpBar_hdc= CBitmap_Manager::Get_Instance()->Get_memDC(L"Monster_Hp_Bar");
-	//m_hpBackBar_hdc= CBitmap_Manager::Get_Instance()->Get_memDC(L"Monster_Hp_BackBar");
 	m_hdc = m_right_hdc;
 	m_info.x = 300;
 	m_info.y = 100;
@@ -59,7 +57,7 @@ int CMushroom::Ready_GameObject()
 	m_changeDirectionSpeed = 7000;
 	m_changeDirectionTime = GetTickCount();
 
-	m_data.maxExp = 100;
+	m_data.maxExp = 200;
 	m_data.exp = m_data.maxExp;
 	m_data.maxHp = 2500;
 	m_data.hp = m_data.maxHp;
@@ -70,7 +68,7 @@ int CMushroom::Ready_GameObject()
 	m_player = CGameObject_Manager::Get_Instance()->GetPlayer();
 	UpdateRect_GameObject();
 
-	return S_OK;
+	return READY_OK;
 }
 
 int CMushroom::Update_GameObject()
@@ -95,11 +93,11 @@ int CMushroom::Update_GameObject()
 	{
 		int temp = rand() % 10;
 		if (temp > 7)
-			CMeso::Create(m_info.x, m_rect.top , m_data.money);
+			CMeso::Create((float)m_info.x, (float)m_rect.top ,m_data.money);
 		else if (temp > 5)
-			CDrop_Mushroom::Create(m_info.x, m_rect.top);
+			CDrop_Mushroom::Create(m_info.x, (float)m_rect.top);
 		else if (temp > 3)
-			CRed_Potion::Create(m_info.x, m_rect.top);
+			CRed_Potion::Create(m_info.x, (float)m_rect.top);
 		return OBJ_DEAD;
 	}
 	if (!m_isHit)
@@ -133,7 +131,6 @@ int CMushroom::Update_GameObject()
 				else
 				{
 					m_isJump = true;
-					//m_isWalk = false;
 					if (m_dir == Direction::DIR_LEFT)
 						Set_Animation(m_left_hdc, Mushroom_Animation::MUSHROOM_JUMP, Mushroom_Animation_Index::MUSHROOM_JUMP_INDEX);
 					else if (m_dir == Direction::DIR_RIGHT)
@@ -151,7 +148,6 @@ int CMushroom::Update_GameObject()
 		{
 			if (m_changeDirectionTime + m_changeDirectionSpeed < GetTickCount())
 			{
-				//m_isJump = true;
 				int num = rand() % 2;
 				if (num == 0)
 				{
@@ -226,13 +222,8 @@ int CMushroom::Update_GameObject()
 
 void CMushroom::Late_Update_GameObject()
 {
-	//jumpDelay++;
 	if (m_trace)
 	{
-		//if (m_rect.top > m_player->GetRect()->bottom && jumpDelay>200)
-		//	m_isJump = true;
-		//else
-		//	m_isJump = false;
 		if ((m_dir == Direction::DIR_LEFT && m_rect.right < m_player->GetRect()->left) || m_rect.left <= 5)
 		{
 			m_dir = Direction::DIR_RIGHT;

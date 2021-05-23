@@ -79,6 +79,5 @@ CItem * CArcaneShade_Dagger::Create()
 		instance = nullptr;
 	}
 	instance->Set_m_isFieldOut(true);
-	//CGameObject_Manager::Get_Instance()->Add_GameObject_Manager(Object_ID::DROP_ITEM, instance);
 	return instance;
 }

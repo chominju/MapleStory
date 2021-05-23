@@ -55,18 +55,6 @@
     <Filter Include="소스 파일\01.GameObject\03.Skill">
       <UniqueIdentifier>{2f5f38a8-e359-4b37-a871-27ceec60a253}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.GameObject\03.Skill\DoubleStab">
-      <UniqueIdentifier>{3429fb3d-5cf6-4c5b-8def-f4ee90ffa602}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01.GameObject\03.Skill\DoubleJump">
-      <UniqueIdentifier>{50ef6743-a27f-4813-9610-1ce10705635b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01.GameObject\03.Skill\DaggerBooster">
-      <UniqueIdentifier>{ecf73242-a587-496c-882a-b5d5dd61af96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\01.GameObject\03.Skill\SavageBlow">
-      <UniqueIdentifier>{413a0e58-f8d0-4b80-92a6-3a85a00a7ef3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\01.GameObject\04.Portal">
       <UniqueIdentifier>{7191668a-e3b2-42a4-9d84-e0c70eaac4ac}</UniqueIdentifier>
     </Filter>
@@ -208,6 +196,18 @@
     <Filter Include="소스 파일\05.Scene\04.Menu">
       <UniqueIdentifier>{937eb357-12c1-4d7e-aedb-06e1fcc3983e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01.GameObject\03.Skill\01.DoubleJump">
+      <UniqueIdentifier>{50ef6743-a27f-4813-9610-1ce10705635b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\03.Skill\02.DoubleStab">
+      <UniqueIdentifier>{3429fb3d-5cf6-4c5b-8def-f4ee90ffa602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\03.Skill\03.SavageBlow">
+      <UniqueIdentifier>{413a0e58-f8d0-4b80-92a6-3a85a00a7ef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.GameObject\03.Skill\04.BoomerangStab">
+      <UniqueIdentifier>{e3f4d95c-82aa-4275-8c0e-77fc02519cdb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -265,16 +265,13 @@
       <Filter>소스 파일\01.GameObject\05.Rope</Filter>
     </ClInclude>
     <ClInclude Include="DoubleStab.h">
-      <Filter>소스 파일\01.GameObject\03.Skill\DoubleStab</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\02.DoubleStab</Filter>
     </ClInclude>
     <ClInclude Include="DoubleJump.h">
-      <Filter>소스 파일\01.GameObject\03.Skill\DoubleJump</Filter>
-    </ClInclude>
-    <ClInclude Include="DaggerBooster.h">
-      <Filter>소스 파일\01.GameObject\03.Skill\DaggerBooster</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\01.DoubleJump</Filter>
     </ClInclude>
     <ClInclude Include="SavageBlow.h">
-      <Filter>소스 파일\01.GameObject\03.Skill\SavageBlow</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\03.SavageBlow</Filter>
     </ClInclude>
     <ClInclude Include="Mushroom.h">
       <Filter>소스 파일\01.GameObject\02.Monster\01.Mushroom</Filter>
@@ -387,6 +384,9 @@
     <ClInclude Include="Menu.h">
       <Filter>소스 파일\05.Scene\04.Menu</Filter>
     </ClInclude>
+    <ClInclude Include="BoomerangStab.h">
+      <Filter>소스 파일\01.GameObject\03.Skill\04.BoomerangStab</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainApp.cpp">
@@ -429,16 +429,13 @@
       <Filter>소스 파일\01.GameObject\05.Rope</Filter>
     </ClCompile>
     <ClCompile Include="DoubleStab.cpp">
-      <Filter>소스 파일\01.GameObject\03.Skill\DoubleStab</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\02.DoubleStab</Filter>
     </ClCompile>
     <ClCompile Include="DoubleJump.cpp">
-      <Filter>소스 파일\01.GameObject\03.Skill\DoubleJump</Filter>
-    </ClCompile>
-    <ClCompile Include="DaggerBooster.cpp">
-      <Filter>소스 파일\01.GameObject\03.Skill\DaggerBooster</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\01.DoubleJump</Filter>
     </ClCompile>
     <ClCompile Include="SavageBlow.cpp">
-      <Filter>소스 파일\01.GameObject\03.Skill\SavageBlow</Filter>
+      <Filter>소스 파일\01.GameObject\03.Skill\03.SavageBlow</Filter>
     </ClCompile>
     <ClCompile Include="Mushroom.cpp">
       <Filter>소스 파일\01.GameObject\02.Monster\01.Mushroom</Filter>
@@ -556,6 +553,9 @@
     </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>소스 파일\05.Scene\04.Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="BoomerangStab.cpp">
+      <Filter>소스 파일\01.GameObject\03.Skill\04.BoomerangStab</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

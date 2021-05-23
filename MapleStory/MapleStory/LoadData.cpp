@@ -67,14 +67,7 @@ bool CLoadData::Load_Line(TCHAR * fileName)
 		MessageBox(nullptr, L"로드실패...", L"LoadFail", MB_OK);
 		return false;
 	}
-	//list<CLine*>* line_list = CLine_Manager::Get_Instance()->Get_listLine();
-	////이전 데이터는 필요 없으니 날리셈!////////////////////////////////////////////////////////////////////////
-	//for (auto& pLine : *line_list)
-	//	Safe_Delete(pLine);
-	//line_list->clear();
-	//불러오기 코드. 
-	// 출력용인자랑 받아줄 공간 만들었으셈. 
-	//얼마나 돌릴지는 아무도 모름. ////////////////////////////////////////////////////////////////////
+
 	DWORD dwByte = 0;
 	Line_Info tLineInfo = {};
 	CLine* pLine = nullptr;
@@ -89,35 +82,6 @@ bool CLoadData::Load_Line(TCHAR * fileName)
 		//line_list->push_back(pLine);
 	}
 	CloseHandle(hFile);
-	//MessageBox(nullptr, L"로드성공", L"LoadSuccess", MB_OK);
-
-	/*ifstream readFile;
-	readFile.open("../ResourceList/lineList.txt");
-	if (readFile.is_open())
-	{
-		while (!readFile.eof())
-		{
-			string leftX;
-			string leftY;
-			string rightX;
-			string rightY;
-			Pos_float leftPos;
-			Pos_float rightPos;
-			getline(readFile, leftX);
-			leftPos.x= stoi(leftX);
-
-			getline(readFile, leftY);
-			leftPos.y = stoi(leftY);
-
-			getline(readFile, rightX);
-			rightPos.x = stoi(rightX);
-			getline(readFile, rightY);
-			rightPos.y = stoi(rightY);
-
-			CLine_Manager::Get_Instance()->Insert_Line_Manager(leftPos, rightPos);
-		}
-
-	}*/
 
 	return true;
 }

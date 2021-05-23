@@ -4,15 +4,12 @@
 #include "Player.h"
 #include "GameObject_Manager.h"
 
-//CGameObject* CDoubleJump::m_instance;
-
 CDoubleJump::CDoubleJump()
 {
 }
 
 CDoubleJump::~CDoubleJump()
 {
-	//m_instance = nullptr;
 }
 
 int CDoubleJump::Ready_GameObject()
@@ -28,12 +25,12 @@ int CDoubleJump::Ready_GameObject()
 	if (m_currentKey == CurrentKey::CUR_LEFT)
 	{
 		m_hdc = m_left_hdc;
-		m_info.x = m_target->GetRect()->right;
+		m_info.x = (float)m_target->GetRect()->right;
 	}
 	else if (m_currentKey == CurrentKey::CUR_RIGHT)
 	{
 		m_hdc = m_right_hdc;
-		m_info.x = m_target->GetRect()->left;
+		m_info.x = (float)m_target->GetRect()->left;
 	}
 	m_info.y = m_target->Get_Info()->y + 70;
 
@@ -43,7 +40,7 @@ int CDoubleJump::Ready_GameObject()
 	m_animFrame.frame_speed = 100;
 	m_animFrame.frame_time = GetTickCount();
 
-	return S_OK;
+	return READY_OK;
 }
 
 int CDoubleJump::Update_GameObject()
@@ -52,12 +49,12 @@ int CDoubleJump::Update_GameObject()
 	if (m_currentKey == CurrentKey::CUR_LEFT)
 	{
 		m_hdc = m_left_hdc;
-		m_info.x = m_target->GetRect()->right + m_info.sizeX / 2;
+		m_info.x = (float)m_target->GetRect()->right + m_info.sizeX / 2;
 	}
 	else if (m_currentKey == CurrentKey::CUR_RIGHT)
 	{
 		m_hdc = m_right_hdc;
-		m_info.x = m_target->GetRect()->left - m_info.sizeX / 2;
+		m_info.x = (float)m_target->GetRect()->left - m_info.sizeX / 2;
 	}
 	m_info.y = m_target->Get_Info()->y -30;
 	Play_Animation();
@@ -74,7 +71,6 @@ void CDoubleJump::Late_Update_GameObject()
 
 CGameObject * CDoubleJump::Create(CGameObject * player)
 {
-	
 	CGameObject*instance = new CDoubleJump;
 	instance->Set_Target(player);
 	instance->Ready_GameObject();

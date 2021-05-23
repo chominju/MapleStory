@@ -4,6 +4,8 @@
 #include "Key_Manager.h"
 #include "Scene_Manager.h"
 #include "GameObject_Manager.h"
+#include "SoundMgr.h"
+
 CMenu::CMenu()
 {
 }
@@ -15,6 +17,7 @@ CMenu::~CMenu()
 
 int CMenu::Ready_Scene()
 {
+	CSoundMgr::Get_Instance()->PlayBGM(L"Menu.mp3");
 	return 0;
 }
 
@@ -32,7 +35,6 @@ void CMenu::Render_Scene(HDC hdc)
 	if (nullptr == hMemDC)
 		return;
 	BitBlt(hdc, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
-	//CGameObject_Manager::Get_Instance()->Render_GameObject_Manager(hDC);
 }
 
 void CMenu::Release_Scene()
