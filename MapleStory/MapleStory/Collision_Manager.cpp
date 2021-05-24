@@ -52,7 +52,6 @@ void CCollision_Manager::Collision_Portal(list<CGameObject*>* player, list<CGame
 				player_object->Set_isPortal(true);
 				portal_object->Set_isPortal(true);
 			}
-			//}
 		}
 	}
 
@@ -147,6 +146,7 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 						if (monster_object->Get_Hp() <= 0)
 						{
 							monster_object->Set_IsDead();
+							CSoundMgr::Get_Instance()->PlaySound(L"Mushroom_Die.mp3", CSoundMgr::MONSTER);
 							CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Exp(monster_object->Get_Exp());
 						}
 
@@ -258,7 +258,7 @@ void CCollision_Manager::Collision_BossSkill(list<CGameObject*>* skill, list<CGa
 
 						if (player_object->Get_Hp() <= 0)
 						{
-							player_object->Set_IsDead();
+							//player_object->Set_IsDead();
 						}
 						skill_object->Set_IsDead();
 

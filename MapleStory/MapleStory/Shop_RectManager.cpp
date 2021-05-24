@@ -149,7 +149,32 @@ int CShop_RectManager::Update_GameObject()
 	}
 	for (auto & inven : *invenConsume)
 	{
-		if (!strcmp(inven->Get_ItemInfo()->itemName,"NONE"))
+		bool check = false;
+		if (!strcmp(inven->Get_ItemInfo()->itemName, "NONE"))
+			continue;
+		for (auto & shop : m_consumeList)
+		{
+			if (shop == inven)
+			{
+				check = true;
+				break;
+			}
+		}
+
+		if (!check)
+		{
+			for (auto & shop : m_consumeList)
+			{
+				if (!strcmp(shop->Get_ItemInfo()->itemName, "NONE"))
+				{
+					Object_Info tempPos = *shop->Get_Info();
+					shop = inven;
+					shop->Set_shopPos(tempPos.x, tempPos.y);
+					break;
+				}
+			}
+		}
+		/*if (!strcmp(inven->Get_ItemInfo()->itemName,"NONE"))
 			continue;
 		for (auto & shop : m_consumeList)
 		{
@@ -162,7 +187,7 @@ int CShop_RectManager::Update_GameObject()
 				shop->Set_shopPos(tempPos.x, tempPos.y);
 				break;
 			}
-		}
+		}*/
 	}
 
 	
@@ -244,6 +269,7 @@ void CShop_RectManager::SellItem(char * itemName, CItem*& useItem)
 	{
 		if(list == useItem)
 		{
+			CSoundMgr::Get_Instance()->PlaySound(L"DropItem.mp3", CSoundMgr::PLAYER);
 			CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(list->Get_ItemInfo()->sellMoney);
 			list->Set_Change_Quantity(-1);
 			if (list->Get_ItemInfo()->quantity == 0)

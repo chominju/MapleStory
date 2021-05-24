@@ -89,8 +89,8 @@ int CBoss::Ready_GameObject()
 
 	m_data.maxExp = 10000;
 	m_data.exp = m_data.maxExp;
-	m_data.maxHp = 5000;
-//	m_data.maxHp = 5000000;
+//	m_data.maxHp = 5000;
+	m_data.maxHp = 5000000;
 	m_data.hp = m_data.maxHp;
 	m_data.money = 10000;
 	m_data.maxAttack = 5000;

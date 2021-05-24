@@ -27,12 +27,12 @@ int CBoss_Attack2_Ball::Ready_GameObject()
 
 	if (dir == Direction::DIR_LEFT)
 	{
-		m_info.x = (float)(m_target->GetRect()->left - m_info.sizeX / 2 + 85);
+		m_info.x = (float)(m_target->GetRect()->left - m_info.sizeX / 2 + 120);
 		m_animFrame.frame_animation = 0;
 	}
 	else if (dir == Direction::DIR_RIGHT)
 	{
-		m_info.x = (float)(m_target->GetRect()->right + m_info.sizeX / 2 - 85);
+		m_info.x = (float)(m_target->GetRect()->right + m_info.sizeX / 2 - 120);
 		m_animFrame.frame_animation = 1;
 	}
 	m_info.y = m_target->Get_Info()->y +30;

@@ -48,6 +48,7 @@ void Player_Die_Button::Late_Update_GameObject()
 				if (m_BitMapKey == L"Player_Die_Message_Button")
 				{
 					CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Hp(CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Data()->maxHp);
+					//CGameObject_Manager::Get_Instance()->GetPlayer()->Set_IsDead(false);
 					CScene_Manager::Get_Instance()->Change_Scene_Manager(Scene_ID::SCENE_Kerning_City);
 				}
 			}

@@ -86,7 +86,10 @@ int CMushroom::Update_GameObject()
 			Set_Animation(m_right_hdc, Mushroom_Animation::MUSHROOM_DIE, Mushroom_Animation_Index::MUSHROOM_DIE_INDEX);
 		}
 		if (m_animFrame.frame_start >= m_animFrame.frame_end - 1)
+		{
+			//CSoundMgr::Get_Instance()->PlaySound(L"Mushroom_Die.mp3", CSoundMgr::MONSTER);
 			m_isDie = true;
+		}
 	}
 
 	if (m_isDie)
