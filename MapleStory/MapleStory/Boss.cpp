@@ -74,23 +74,23 @@ int CBoss::Ready_GameObject()
 	m_Attack1Speed = 1000;
 
 	m_Attack2Time = GetTickCount();
-	m_Attack2Speed = 12000;
+	m_Attack2Speed = 15000;
 
 	m_Attack3Time = GetTickCount();
-	m_Attack3Speed = 30000;
+	m_Attack3Speed = 40000;
 
 	m_TeleportTime = GetTickCount();
-	m_TeleportSpeed = 15000;
+	m_TeleportSpeed = 20000;
 
 	m_TeleportAfterTime=GetTickCount();
 	m_TeleportAfterSpeed=3000;
 
 
 
-	m_data.maxExp = 10000;
+	m_data.maxExp = 50000;
 	m_data.exp = m_data.maxExp;
-//	m_data.maxHp = 5000;
-	m_data.maxHp = 5000000;
+	//m_data.maxHp = 5000;
+	m_data.maxHp = 1000000;
 	m_data.hp = m_data.maxHp;
 	m_data.money = 10000;
 	m_data.maxAttack = 5000;

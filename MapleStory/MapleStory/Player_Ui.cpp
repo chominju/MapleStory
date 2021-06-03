@@ -62,14 +62,14 @@ void CPlayer_Ui::Render_GameObject(HDC hDC)
 		RGB(255, 0, 255));
 
 	GdiTransparentBlt(hDC, // 그림을 복사하고자 하는 대상. 
-		1024 / 2 - 79,//위치 x,y
-		768 - 28 - 10,
-		(int)(175 * (m_data.hp / m_data.maxHp)),// 크기 xy
-		17,
+		1024 / 2 - 76,//위치 x,y
+		768 - 28 - 7,
+		(int)(169 * (m_data.hp / m_data.maxHp)),// 크기 xy
+		11,
 		m_hpBar_hdc,// 복사 할 대상
 		0, 0,// 그림의 시작 위치 x,y
-		175,// 그리고자 하는 영역의 크기 x,y
-		17,
+		169,// 그리고자 하는 영역의 크기 x,y
+		11,
 		RGB(255, 255, 255));
 
 

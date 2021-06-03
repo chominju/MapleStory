@@ -110,6 +110,8 @@ Boss_Purple_Clock
 ../Resource/Boss/Boss_Purple_Clock.bmp
 Boss_Blue_Clock
 ../Resource/Boss/Boss_Blue_Clock.bmp
+Clock_Die
+../Resource/Boss/Clock_Die.bmp
 Boss_Icon
 ../Resource/Boss/Boss_Icon.bmp
 Npc_store

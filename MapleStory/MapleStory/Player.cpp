@@ -76,7 +76,7 @@ int CPlayer::Ready_GameObject()
 	m_animFrame.frame_time = GetTickCount();
 
 	m_data.level = 1;
-	m_data.maxHp = 2000;
+	m_data.maxHp = 1000;
 
 	m_data.hp = m_data.maxHp;
 	m_data.minAttack = 100;
@@ -207,6 +207,7 @@ int CPlayer::Update_GameObject()
 							m_info.y -= 5;
 						else
 						{
+							CSoundMgr::Get_Instance()->PlaySound(L"Jump.mp3", CSoundMgr::PLAYER);
 							m_keyPush.isJump = true;
 							m_isDownJump = true;
 							m_moveLock = true;
@@ -231,6 +232,7 @@ int CPlayer::Update_GameObject()
 							m_moveLock = true;
 						m_isJump = true;
 						m_beforeJumpY = m_info.y;
+						CSoundMgr::Get_Instance()->PlaySound(L"Jump.mp3", CSoundMgr::PLAYER);
 					}
 				}
 			}
@@ -488,6 +490,7 @@ void CPlayer::Player_MoveLeft()
 			{
 				if (!m_isJump)
 				{
+					CSoundMgr::Get_Instance()->PlaySound(L"Jump.mp3", CSoundMgr::PLAYER);
 					m_isJump = true;
 					m_isJumpLeft = true;
 				}
@@ -525,6 +528,7 @@ void CPlayer::Player_MoveRight()
 			{
 				if (!m_isJump)
 				{
+					CSoundMgr::Get_Instance()->PlaySound(L"Jump.mp3", CSoundMgr::PLAYER);
 					m_isJumpRight = true;
 					m_isJump = true;
 				}
@@ -730,7 +734,7 @@ void CPlayer::Is_LevelUp()
 	{
 		CLevelUp::Create(this);
 		m_data.level++;
-		m_data.maxHp += 500;
+		m_data.maxHp += 1000;
 		m_data.hp = m_data.maxHp;
 		m_data.maxAttack += 100;
 		m_data.minAttack += 100;

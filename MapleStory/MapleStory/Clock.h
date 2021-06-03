@@ -19,5 +19,9 @@ public:
 	static CGameObject* Create();
 private:
 	Direction dir;
+	bool m_isDeadAnimation;
+
+	HDC m_die_hdc;
+	int m_clockNum;
 };
 

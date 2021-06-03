@@ -297,6 +297,7 @@ void CShop_RectManager::BuyItem(CItem*& item)
 	{
 		if (item->Get_ItemInfo()->buyMoney <= CGameObject_Manager::Get_Instance()->GetPlayer()->Get_Money())
 		{
+			CSoundMgr::Get_Instance()->PlaySound(L"DropItem.mp3", CSoundMgr::PLAYER);
 			CGameObject_Manager::Get_Instance()->GetPlayer()->Set_Change_Money(-item->Get_ItemInfo()->buyMoney);
 			if (item->Get_ItemInfo()->type == Item_type::CONSUME)
 			{

@@ -133,9 +133,9 @@ void CCollision_Manager::Collision_Skill(list<CGameObject*>* skill, list<CGameOb
 						for (int i = 0; i < skillHit; i++)
 						{
 							randAttack[i] = rand() % 100 + minAttack;
-							attackSum += randAttack[i];
+							attackSum += randAttack[i] * damage;
 						}
-						monster_object->Set_Change_Hp((float)-(skillHit * damage * attackSum));
+						monster_object->Set_Change_Hp((float)-(attackSum));
 
 						for (int i = 0; i < skillHit; i++)
 						{
@@ -194,10 +194,10 @@ void CCollision_Manager::Collision_Boss(list<CGameObject*>* skill, list<CGameObj
 							for (int i = 0; i < skillHit; i++)
 							{
 								randAttack[i] = rand() % 100 + minAttack;
-								attackSum += randAttack[i];
+								attackSum += randAttack[i] * damage;
 							}
 
-							boss_object->Set_Change_Hp((float)-(skillHit * damage * attackSum));
+							boss_object->Set_Change_Hp((float)-(attackSum));
 
 							for (int i = 0; i < skillHit; i++)
 							{
@@ -242,7 +242,7 @@ void CCollision_Manager::Collision_BossSkill(list<CGameObject*>* skill, list<CGa
 			{
 				if (!player_object->Get_IsSkillHit() && !player_object->Get_IsDead())
 				{
-					if (dynamic_cast<CSkill*>(skill_object)->isHitMonsterNum())
+					if (dynamic_cast<CSkill*>(skill_object)->isHitMonsterNum() && !skill_object->Get_IsDead())
 					{
 						CSoundMgr::Get_Instance()->PlaySound(L"Boss_CharDam2.mp3", CSoundMgr::PLAYER);
 						player_object->Set_IsSkillHit(true); // 스킬 맞음 ON
